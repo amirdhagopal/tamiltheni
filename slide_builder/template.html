@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamilTheni Word List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 90%;
+            max-width: 900px;
+            /* aspect-ratio: 16/9; Remove strict aspect ratio for better height control */
+            height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            /* padding removed to allow slide to fill */
+        }
+
+        #slides-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: flex-start;
+            /* Align to top */
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+            position: relative;
+            /* Fixes containing block issue */
+            padding: 40px;
+            padding-top: 100px;
+            /* Push content down from top */
+            /* Moved padding here */
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background-color: #e3f2fd;
+            color: #1565c0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .category-badge-ta {
+            position: absolute;
+            top: 75px;
+            left: 30px;
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .sno-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background-color: #eeeeee;
+            color: #616161;
+            padding: 8px 12px;
+            border-radius: 50%;
+            font-size: 0.9em;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .difficulty-badge {
+            position: absolute;
+            top: 75px;
+            right: 30px;
+            background-color: #fff3e0;
+            color: #ef6c00;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        /* ... */
+
+        .image-container {
+            width: 100%;
+            max-width: 450px;
+            /* Slightly larger */
+            height: 320px;
+            margin: 10px auto;
+            /* Reduced margin */
+            /* ... */
+        }
+
+        .word-en {
+            font-size: 3em;
+            font-weight: 700;
+            color: #212121;
+            margin-bottom: 5px;
+            /* Reduced margin */
+            line-height: 1.2;
+            margin-top: 40px;
+            /* Add some top margin to clear badges if needed */
+        }
+
+        #slides-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: flex-start;
+            /* Align to top */
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+            position: relative;
+            /* Fixes containing block issue */
+            padding: 40px;
+            padding-top: 100px;
+            /* Push content down from top */
+            /* Moved padding here */
+            box-sizing: border-box;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        /* ... keyframes ... */
+
+        /* ... badges ... */
+
+        .image-container {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 20px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .slide-image:hover {
+            transform: scale(1.05);
+        }
+
+        .word-en {
+            font-size: 3em;
+            /* Slightly smaller to fit image */
+            font-weight: 700;
+            color: #212121;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            margin-top: 0;
+            /* padding-top on slide handles this now */
+        }
+
+
+        .word-ta {
+            font-size: 3em;
+            color: #d32f2f;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            filter: blur(5px);
+            cursor: pointer;
+            margin-top: auto;
+            /* Push to bottom */
+            margin-bottom: 40px;
+            /* Space from bottom */
+        }
+
+        .slide.revealed .word-ta {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            background-color: #212121;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.1s, background-color 0.2s;
+            z-index: 10;
+            /* Ensure buttons are clickable above slide click area */
+        }
+
+        /* ... previous styles ... */
+    </style>
+</head>
+
+<body>
+
+    <div class="slide-container">
+        <div class="progress" id="progressBar" style="width: 0%"></div>
+        <div id="slides-wrapper">
+            <!-- SLIDES_PLACEHOLDER -->
+        </div>
+
+        <div class="navigation">
+            <button id="prevBtn" onclick="changeSlide(-1); event.stopPropagation();">Previous</button>
+            <span style="align-self: center; color: #757575;" id="counter"></span>
+            <button id="nextBtn" onclick="changeSlide(1); event.stopPropagation();">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        // TOTAL_SLIDES_PLACEHOLDER
+
+        // Cache for images to avoid re-fetching
+        const imageCache = {};
+
+        async function fetchImage(word, imgElement) {
+            if (!word) return;
+
+            if (imageCache[word]) {
+                imgElement.src = imageCache[word];
+                return;
+            }
+
+            try {
+                // Search for the word directly
+                const searchTerm = encodeURIComponent(word);
+                const url = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${searchTerm}&gsrlimit=1&prop=pageimages&pithumbsize=400&format=json&origin=*`;
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.query && data.query.pages) {
+                    const pages = Object.values(data.query.pages);
+                    if (pages.length > 0 && pages[0].thumbnail) {
+                        const imageUrl = pages[0].thumbnail.source;
+                        imageCache[word] = imageUrl;
+                        imgElement.src = imageUrl;
+                    } else {
+                        // Fallback if no image found on Wikipedia
+                        imgElement.src = `https://loremflickr.com/400/300/${searchTerm}?lock=1`;
+                    }
+                } else {
+                    imgElement.src = `https://loremflickr.com/400/300/${searchTerm}?lock=1`;
+                }
+            } catch (error) {
+                console.error('Error fetching image:', error);
+                imgElement.src = `https://loremflickr.com/400/300/${encodeURIComponent(word)}?lock=1`;
+            }
+        }
+
+        function updateUI() {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(s => {
+                s.classList.remove('active');
+                if (s.id !== `slide-${currentSlide}`) {
+                    s.classList.remove('revealed');
+                }
+            });
+
+            // Show current
+            const currentElement = document.getElementById(`slide-${currentSlide}`);
+            if (currentElement) {
+                currentElement.classList.add('active');
+
+                // Load image if not loaded
+                const img = currentElement.querySelector('.slide-image');
+                if (img && img.dataset.word && !img.dataset.loaded) {
+                    fetchImage(img.dataset.word, img);
+                    img.dataset.loaded = "true";
+                }
+            }
+
+            // Update buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            // Update counter
+            document.getElementById('counter').innerText = `${currentSlide + 1} / ${totalSlides}`;
+
+            // Update progress bar
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Update URL hash
+            const hash = `#${currentSlide + 1}`;
+            if (window.location.hash !== hash) {
+                window.history.replaceState(null, null, hash);
+            }
+        }
+
+        function changeSlide(direction) {
+            const newIndex = currentSlide + direction;
+            if (newIndex >= 0 && newIndex < totalSlides) {
+                currentSlide = newIndex;
+                updateUI();
+            }
+        }
+
+        // ... (rest of the listeners same as before) ...
+        function handleHashChange() {
+            const hash = window.location.hash.substring(1);
+            const slideNum = parseInt(hash);
+            if (!isNaN(slideNum) && slideNum >= 1 && slideNum <= totalSlides) {
+                currentSlide = slideNum - 1;
+                updateUI();
+            }
+        }
+
+        document.getElementById('slides-wrapper').addEventListener('click', (e) => {
+            const currentElement = document.getElementById(`slide-${currentSlide}`);
+            if (currentElement && !e.target.closest('button')) {
+                currentElement.classList.toggle('revealed');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === ' ' || e.key === 'Enter') {
+                const currentElement = document.getElementById(`slide-${currentSlide}`);
+                if (currentElement) currentElement.classList.toggle('revealed');
+            }
+        });
+
+        window.addEventListener('hashchange', handleHashChange);
+
+        if (window.location.hash) {
+            handleHashChange();
+        } else {
+            updateUI();
+        }
+    </script>
+</body>
+
+</html>
