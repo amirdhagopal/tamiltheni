@@ -6,9 +6,10 @@ def json_to_csv(json_path, csv_path):
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
-    headers = ["Category_Id", "Difficulty", "SNo", "English", "Tamil", "Category_Name", "Category_Name_Tamil"]
+    headers = ["Sequence", "Category_Id", "Difficulty", "SNo", "English", "Tamil", "Category_Name", "Category_Name_Tamil"]
     
     rows = []
+    
     
     for category_entry in data:
         cat_info = category_entry.get('category', {})
@@ -16,13 +17,17 @@ def json_to_csv(json_path, csv_path):
         cat_name_en = cat_info.get('en', '')
         cat_name_ta = cat_info.get('ta', '')
         
+        # Collect D1 and D2 words separately for this category
+        d1_words = []
+        d2_words = []
+        
         for word in category_entry.get('words', []):
             s_no = word.get('no', '')
             
             # Process D1
             d1 = word.get('d1', {})
             if d1 and (d1.get('en') or d1.get('ta')):
-                rows.append({
+                d1_words.append({
                     "Category_Id": cat_id,
                     "Difficulty": "D1",
                     "SNo": s_no,
@@ -35,7 +40,7 @@ def json_to_csv(json_path, csv_path):
             # Process D2
             d2 = word.get('d2', {})
             if d2 and (d2.get('en') or d2.get('ta')):
-                rows.append({
+                d2_words.append({
                     "Category_Id": cat_id,
                     "Difficulty": "D2",
                     "SNo": s_no,
@@ -44,6 +49,14 @@ def json_to_csv(json_path, csv_path):
                     "Category_Name": cat_name_en,
                     "Category_Name_Tamil": cat_name_ta
                 })
+        
+        # Add all D1 words first, then all D2 words for this category
+        rows.extend(d1_words)
+        rows.extend(d2_words)
+    
+    # Add sequence numbers starting from 1
+    for idx, row in enumerate(rows, start=1):
+        row["Sequence"] = idx
                 
     print(f"Writing {len(rows)} rows to {csv_path}...")
     with open(csv_path, 'w', encoding='utf-8', newline='') as f:

@@ -56,6 +56,9 @@ def clean_text(text, is_english=True):
         suffixes = ['லை', 'ளை', 'னை', 'ன', 'ண']
         for suf in suffixes:
             text = text.replace(f" {suf}", f"{suf}")
+        
+        # Specific corrections for known extraction errors
+        text = text.replace("ப்பாளி மரம்", "பப்பாளி மரம்")
 
     # Common cleanup
     text = re.sub(r'\s+', ' ', text)
