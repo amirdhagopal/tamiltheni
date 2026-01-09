@@ -241,6 +241,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            z-index: 20;
         }
 
         button {
@@ -284,6 +285,7 @@
             font-size: 1.5em;
             padding: 0;
             transition: all 0.3s ease;
+            z-index: 20;
         }
 
         .audio-button.muted {
@@ -292,6 +294,84 @@
 
         .audio-button:hover {
             transform: scale(1.1);
+        }
+
+        .mic-button {
+            position: absolute;
+            top: 30px;
+            right: 180px;
+            background-color: #2196F3;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            padding: 0;
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .mic-button.recording {
+            background-color: #ff9800;
+            animation: pulse 1.5s infinite;
+        }
+
+        .mic-button:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 152, 0, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 152, 0, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
+            }
+        }
+
+        .voice-feedback {
+            position: absolute;
+            top: 90px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            display: none;
+            animation: slideInRight 0.3s ease;
+            z-index: 10;
+        }
+
+        .voice-feedback.success {
+            display: block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #2e7d32;
+        }
+
+        .voice-feedback.error {
+            display: block;
+            background-color: #ffebee;
+            color: #c62828;
+            border: 2px solid #c62828;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
         .control-panel {
@@ -530,6 +610,13 @@
             title="Toggle audio pronunciation">
             🔊
         </button>
+
+        <button id="micBtn" class="mic-button" onclick="toggleVoiceRecognition(); event.stopPropagation();"
+            title="Validate pronunciation (Microphone)">
+            🎤
+        </button>
+
+        <div id="voiceFeedback" class="voice-feedback"></div>
 
         <div id="slides-wrapper">
             
@@ -13353,6 +13440,7 @@
 
         // Audio state
         let audioEnabled = true;
+        let audioTimeout = null;
         const synth = window.speechSynthesis;
 
         // Filter and sequence state
@@ -13363,6 +13451,39 @@
         let filteredSlides = [];
         let originalOrder = [];
         let isShuffled = false;
+
+        // Speech Recognition setup
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = null;
+        let isRecording = false;
+
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.lang = 'ta-IN'; // Tamil (India)
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.onresult = (event) => {
+                const speechResult = event.results[0][0].transcript.trim();
+                validateVoiceResult(speechResult);
+            };
+
+            recognition.onerror = (event) => {
+                if (event.error !== 'no-speech') {
+                    console.error('Speech recognition error:', event.error);
+                    showFeedback("Error: " + event.error, "error");
+                }
+                stopRecording();
+            };
+
+            recognition.onend = () => {
+                if (isRecording) stopRecording();
+            };
+        } else {
+            console.warn('Speech recognition not supported.');
+            const micBtn = document.getElementById('micBtn');
+            if (micBtn) micBtn.style.display = 'none';
+        }
 
         // Cache for images to avoid re-fetching
         const imageCache = {};
@@ -13569,8 +13690,78 @@
             }
         }
 
+        function toggleVoiceRecognition() {
+            if (!recognition) {
+                alert("Speech recognition is not supported in this browser. Please use Chrome, Safari or Edge.");
+                return;
+            }
+
+            if (isRecording) {
+                stopRecording();
+            } else {
+                startRecording();
+            }
+        }
+
+        function startRecording() {
+            try {
+                recognition.start();
+                isRecording = true;
+                document.getElementById('micBtn').classList.add('recording');
+                showFeedback("Listening for Tamil...", "success");
+            } catch (e) {
+                console.error('Recognition start error:', e);
+            }
+        }
+
+        function stopRecording() {
+            if (recognition && isRecording) {
+                recognition.stop();
+            }
+            isRecording = false;
+            const micBtn = document.getElementById('micBtn');
+            if (micBtn) micBtn.classList.remove('recording');
+        }
+
+        function validateVoiceResult(spokenText) {
+            const currentElement = filteredSlides[currentSlide];
+            if (!currentElement) return;
+
+            const targetText = currentElement.querySelector('.word-ta').textContent.trim();
+
+            // Normalize for comparison
+            const normalize = (text) => text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").replace(/\s+/g, "");
+
+            const normalizedSpoken = normalize(spokenText);
+            const normalizedTarget = normalize(targetText);
+
+            if (normalizedSpoken === normalizedTarget || normalizedTarget.includes(normalizedSpoken) || normalizedSpoken.includes(normalizedTarget)) {
+                showFeedback(`Correct! ✅ (${spokenText})`, "success");
+                currentElement.classList.add('revealed');
+            } else {
+                showFeedback(`Heard "${spokenText}" ❌`, "error");
+            }
+
+            stopRecording();
+        }
+
+        function showFeedback(text, type) {
+            const feedback = document.getElementById('voiceFeedback');
+            feedback.textContent = text;
+            feedback.className = `voice-feedback ${type}`;
+
+            // Auto-hide feedback
+            if (type !== 'recording' && !text.includes("Listening")) {
+                setTimeout(() => {
+                    if (feedback.textContent === text) {
+                        feedback.className = 'voice-feedback';
+                    }
+                }, 4000);
+            }
+        }
+
         function speakWord(word) {
-            if (!audioEnabled || !word) return;
+            if (!audioEnabled || !word || !synth) return;
 
             // Cancel any ongoing speech
             synth.cancel();
@@ -13591,7 +13782,7 @@
                 audioBtn.textContent = '🔊';
                 audioBtn.title = 'Mute audio';
                 // Speak current word
-                const currentElement = document.getElementById(`slide-${currentSlide}`);
+                const currentElement = filteredSlides[currentSlide];
                 if (currentElement) {
                     const wordEn = currentElement.querySelector('.word-en');
                     if (wordEn) speakWord(wordEn.textContent);
@@ -13600,7 +13791,8 @@
                 audioBtn.classList.add('muted');
                 audioBtn.textContent = '🔇';
                 audioBtn.title = 'Unmute audio';
-                synth.cancel();
+                if (audioTimeout) clearTimeout(audioTimeout);
+                if (synth) synth.cancel();
             }
         }
 
@@ -13626,9 +13818,19 @@
 
                     // Pronounce the English word if audio is enabled
                     const wordEn = s.querySelector('.word-en');
-                    if (wordEn && audioEnabled) {
-                        setTimeout(() => speakWord(wordEn.textContent), 300);
+                    if (wordEn) {
+                        if (audioTimeout) clearTimeout(audioTimeout);
+                        if (audioEnabled) {
+                            audioTimeout = setTimeout(() => {
+                                if (audioEnabled) speakWord(wordEn.textContent);
+                            }, 300);
+                        }
                     }
+
+                    // Reset voice validation state
+                    stopRecording();
+                    const feedback = document.getElementById('voiceFeedback');
+                    if (feedback) feedback.className = 'voice-feedback';
                 } else {
                     s.classList.remove('revealed');
                 }
