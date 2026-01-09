@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TamilTheni - Theni 5 Mastery</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Hind+Madurai:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --accent: #ff7675;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: var(--text);
+        }
+
+        /* Control Panel */
+        .control-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .control-header {
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .control-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-content {
+            max-height: 400px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .control-panel.collapsed .control-content {
+            max-height: 0;
+            padding: 0 30px;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .control-label {
+            font-weight: 600;
+            min-width: 100px;
+            font-size: 0.9rem;
+        }
+
+        input[type="number"] {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            width: 70px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .action-button {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Slide UI */
+        .slide-container {
+            width: 90%;
+            max-width: 800px;
+            height: 600px;
+            background: var(--card-bg);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            box-sizing: border-box;
+            margin-top: 60px;
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, #00d2ff 100%);
+            border-radius: 32px 32px 0 0;
+            transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .words-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .word-item {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 15px 30px;
+            background: #fdfdfd;
+            border: 1px solid #f0f0f0;
+            border-radius: 20px;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .word-item:hover {
+            background: #fff;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-color: var(--primary);
+        }
+
+
+        .tamil-word {
+            font-family: 'Hind Madurai', sans-serif;
+            font-size: 2.2rem;
+            color: var(--secondary);
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        /* Navigation */
+        .nav-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            background: var(--text);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #000;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+
+        .status-badge {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--secondary);
+            min-width: 80px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="control-panel" id="controlPanel">
+        <div class="control-header" onclick="document.getElementById('controlPanel').classList.toggle('collapsed')">
+            <h3><span>⚙️</span> Theni 5 Study Controls</h3>
+            <span>▼</span>
+        </div>
+        <div class="control-content">
+            <div class="control-row">
+                <span class="control-label">Range:</span>
+                <input type="number" id="startRange" value="1" min="1" max="250">
+                <span>to</span>
+                <input type="number" id="endRange" value="250" min="1" max="250">
+                <button class="action-button" onclick="applyFilters()">Apply</button>
+            </div>
+            <div class="control-row">
+                <span class="control-label">Actions:</span>
+                <button class="action-button" onclick="shuffleWords()"><span>🔀</span> Shuffle</button>
+                <button class="action-button" onclick="resetWords()"><span>↩️</span> Reset</button>
+            </div>
+            <div class="control-row">
+                <a href="index.html" class="action-button"
+                    style="text-decoration: none; width: 100%; justify-content: center;">
+                    <span>🏠</span> Back to Portal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container" id="slide-surface">
+        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+
+
+        <div class="words-grid" id="wordsGrid">
+            <!-- Words will be injected here -->
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn" id="firstBtn" onclick="goToSlide(0)">⏮</button>
+            <button class="nav-btn" id="prevBtn" onclick="prevSlide()">◀</button>
+            <div class="status-badge" id="slideIndicator">Slide 1 of 50</div>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">▶</button>
+            <button class="nav-btn" id="lastBtn" onclick="goToSlide(totalPages - 1)">⏭</button>
+        </div>
+    </div>
+
+    <script>
+        const rawWords = [
+            { s: 1, w: "இதயம்" }, { s: 2, w: "உதடு" }, { s: 3, w: "எலும்பு" }, { s: 4, w: "கண்" }, { s: 5, w: "கழுத்து" },
+            { s: 6, w: "கன்னம்" }, { s: 7, w: "காது" }, { s: 8, w: "குடல்" }, { s: 9, w: "குருதி" }, { s: 10, w: "சிறுநீரகம்" },
+            { s: 11, w: "தசை" }, { s: 12, w: "தோள்" }, { s: 13, w: "நரம்பு" }, { s: 14, w: "நாக்கு" }, { s: 15, w: "நுரையீரல்" },
+            { s: 16, w: "பல்" }, { s: 17, w: "பாதம்" }, { s: 18, w: "முகம்" }, { s: 19, w: "முடி" }, { s: 20, w: "முதுகு" },
+            { s: 21, w: "மூக்கு" }, { s: 22, w: "மூட்டு" }, { s: 23, w: "மூளை" }, { s: 24, w: "வயிறு" }, { s: 25, w: "வாய்" },
+            { s: 26, w: "விரல்" }, { s: 27, w: "அங்காடி" }, { s: 28, w: "அமைதி" }, { s: 29, w: "அவமானம்" }, { s: 30, w: "அறம்" },
+            { s: 31, w: "அறிவியல்" }, { s: 32, w: "அறிவு" }, { s: 33, w: "அன்பு" }, { s: 34, w: "ஆசை" }, { s: 35, w: "ஆச்சரியம்" },
+            { s: 36, w: "ஆண்டு" }, { s: 37, w: "ஆர்வம்" }, { s: 38, w: "இசை" }, { s: 39, w: "இன்பம்" }, { s: 40, w: "உண்மை" },
+            { s: 41, w: "உதவி" }, { s: 42, w: "உலகம்" }, { s: 43, w: "ஊக்கம்" }, { s: 44, w: "ஒழுக்கம்" }, { s: 45, w: "ஓவியம்" },
+            { s: 46, w: "கட்டுரை" }, { s: 47, w: "கணிதம்" }, { s: 48, w: "கருணை" }, { s: 49, w: "கல்லூரி" }, { s: 50, w: "கல்வி" },
+            { s: 51, w: "கவலை" }, { s: 52, w: "கவிதை" }, { s: 53, w: "கனவு" }, { s: 54, w: "காலம்" }, { s: 55, w: "கிராம்" },
+            { s: 56, w: "கொடை" }, { s: 57, w: "கோபம்" }, { s: 58, w: "சட்டம்" }, { s: 59, w: "சந்தை" }, { s: 60, w: "சவால்" },
+            { s: 61, w: "சாதனை" }, { s: 62, w: "சிற்பம்" }, { s: 63, w: "சுதந்திரம்" }, { s: 64, w: "சோலை" }, { s: 65, w: "திருட்டு" },
+            { s: 66, w: "திருவிழா" }, { s: 67, w: "துணிச்சல்" }, { s: 68, w: "தோல்வி" }, { s: 69, w: "நகரம்" }, { s: 70, w: "நடனம்" },
+            { s: 71, w: "நம்பிக்கை" }, { s: 72, w: "நாகரீகம்" }, { s: 73, w: "நாடகம்" }, { s: 74, w: "நாடு" }, { s: 75, w: "நினைவாற்றல்" },
+            { s: 76, w: "நீதி" }, { s: 77, w: "நூலகம்" }, { s: 78, w: "நெடுஞ்சாலை" }, { s: 79, w: "பண்பாடு" }, { s: 80, w: "பயணம்" },
+            { s: 81, w: "பயம்" }, { s: 82, w: "பயிற்சி" }, { s: 83, w: "பரிசு" }, { s: 84, w: "பள்ளி" }, { s: 85, w: "பாராட்டு" },
+            { s: 86, w: "பிரதமர்" }, { s: 87, w: "புகழ்" }, { s: 88, w: "பூகோளம்" }, { s: 89, w: "பெருமை" }, { s: 90, w: "பொய்" },
+            { s: 91, w: "பொறுமை" }, { s: 92, w: "மகிழ்ச்சி" }, { s: 93, w: "மரியாதை" }, { s: 94, w: "மாதம்" }, { s: 95, w: "முயற்சி" },
+            { s: 96, w: "வரலாறு" }, { s: 97, w: "வானியல்" }, { s: 98, w: "விருந்து" }, { s: 99, w: "விளையாட்டு" }, { s: 100, w: "வெறுப்பு" },
+            { s: 101, w: "வெற்றி" }, { s: 102, w: "அடுப்பு" }, { s: 103, w: "அம்மி" }, { s: 104, w: "அலைபேசி" }, { s: 105, w: "அழிப்பான்" },
+            { s: 106, w: "ஆணி" }, { s: 107, w: "உப்பு" }, { s: 108, w: "உரல்" }, { s: 109, w: "உலக்கை" }, { s: 110, w: "ஊசி" },
+            { s: 111, w: "ஊஞ்சல்" }, { s: 112, w: "எண்ணெய்" }, { s: 113, w: "எழுதுகோல்" }, { s: 114, w: "ஏணி" }, { s: 115, w: "கணினி" },
+            { s: 116, w: "கண்ணாடி" }, { s: 117, w: "கத்தரிக்கோல்" }, { s: 118, w: "கயிறு" }, { s: 119, w: "கரிக்கோல்" }, { s: 120, w: "குடம்" },
+            { s: 121, w: "குடை" }, { s: 122, w: "குப்பை" }, { s: 123, w: "கூரை" }, { s: 124, w: "சங்கிலி" }, { s: 125, w: "சட்டை" },
+            { s: 126, w: "சர்க்கரை" }, { s: 127, w: "சன்னல்" }, { s: 128, w: "சாவி" }, { s: 129, w: "சீப்பு" }, { s: 130, w: "சுத்தி" },
+            { s: 131, w: "சேலை" }, { s: 132, w: "தாழ்ப்பாள்" }, { s: 133, w: "திண்ணை" }, { s: 134, w: "துடைப்பம்" }, { s: 135, w: "துணி" },
+            { s: 136, w: "துண்டு" }, { s: 137, w: "தொலைக்காட்சி" }, { s: 138, w: "நாள்காட்டி" }, { s: 139, w: "நூல்" }, { s: 140, w: "பணப்பை" },
+            { s: 141, w: "பானை" }, { s: 142, w: "பூட்டு" }, { s: 143, w: "பெட்டி" }, { s: 144, w: "பை" }, { s: 145, w: "போர்வை" },
+            { s: 146, w: "மடிக்கணினி" }, { s: 147, w: "மதில்" }, { s: 148, w: "மருந்து" }, { s: 149, w: "மாடி" }, { s: 150, w: "மாத்திரை" },
+            { s: 151, w: "மிதிவண்டி" }, { s: 152, w: "மிளகாய்" }, { s: 153, w: "மின்சாரம்" }, { s: 154, w: "மின்விசிறி" }, { s: 155, w: "முற்றம்" },
+            { s: 156, w: "மெத்தை" }, { s: 157, w: "மெழுகுவர்த்தி" }, { s: 158, w: "மேசை" }, { s: 159, w: "மோதிரம்" }, { s: 160, w: "வரைபடம்" },
+            { s: 161, w: "வளையல்" }, { s: 162, w: "வாசல்" }, { s: 163, w: "வாளி" }, { s: 164, w: "வானொலி" }, { s: 165, w: "விளக்கு" },
+            { s: 166, w: "வேட்டி" }, { s: 167, w: "அமாவாசை" }, { s: 168, w: "அருவி" }, { s: 169, w: "அலை" }, { s: 170, w: "ஆகாயம்" },
+            { s: 171, w: "ஆலமரம்" }, { s: 172, w: "ஆழி" }, { s: 173, w: "இருட்டு" }, { s: 174, w: "இலை" }, { s: 175, w: "ஓடை" },
+            { s: 176, w: "கனி" }, { s: 177, w: "காடு" }, { s: 178, w: "குகை" }, { s: 179, w: "குளம்" }, { s: 180, w: "சுனை" },
+            { s: 181, w: "சூழல்" }, { s: 182, w: "செடி" }, { s: 183, w: "தங்கம்" }, { s: 184, w: "தாமரை" }, { s: 185, w: "தென்றல்" },
+            { s: 186, w: "நிழல்" }, { s: 187, w: "நீலம்" }, { s: 188, w: "நெருப்பு" }, { s: 189, w: "பவளம்" }, { s: 190, w: "பள்ளத்தாக்கு" },
+            { s: 191, w: "பனி" }, { s: 192, w: "பாலைவனம்" }, { s: 193, w: "பாறை" }, { s: 194, w: "புயல்" }, { s: 195, w: "பூ" },
+            { s: 196, w: "பூமி" }, { s: 197, w: "பௌர்ணமி" }, { s: 198, w: "மணல்" }, { s: 199, w: "மண்" }, { s: 200, w: "மரம்" },
+            { s: 201, w: "மல்லிகை" }, { s: 202, w: "மின்னல்" }, { s: 203, w: "முத்து" }, { s: 204, w: "மேகம்" }, { s: 205, w: "மொட்டு" },
+            { s: 206, w: "ரோசா" }, { s: 207, w: "வறட்சி" }, { s: 208, w: "வானவில்" }, { s: 209, w: "விடியல்" }, { s: 210, w: "விண்மீன்" },
+            { s: 211, w: "வெளிச்சம்" }, { s: 212, w: "வெள்ளி" }, { s: 213, w: "வேம்பு" }, { s: 214, w: "வேர்" }, { s: 215, w: "வைரம்" },
+            { s: 216, w: "அக்கா" }, { s: 217, w: "அண்ணன்" }, { s: 218, w: "அரசன்" }, { s: 219, w: "அரசி" }, { s: 220, w: "அன்னை" },
+            { s: 221, w: "ஆசிரியர்" }, { s: 222, w: "இளைஞன்" }, { s: 223, w: "உறவினர்" }, { s: 224, w: "ஓட்டுநர்" }, { s: 225, w: "காவலர்" },
+            { s: 226, w: "குழந்தை" }, { s: 227, w: "கூட்டம்" }, { s: 228, w: "செவிலியர்" }, { s: 229, w: "தங்கை" }, { s: 230, w: "தச்சர்" },
+            { s: 231, w: "தந்தை" }, { s: 232, w: "தம்பி" }, { s: 233, w: "தாத்தா" }, { s: 234, w: "நண்பன்" }, { s: 235, w: "பாட்டி" },
+            { s: 236, w: "புலவர்" }, { s: 237, w: "பேரக்குழந்தை" }, { s: 238, w: "மகள்" }, { s: 239, w: "மகன்" }, { s: 240, w: "மந்திரி" },
+            { s: 241, w: "மருத்துவர்" }, { s: 242, w: "மருமகள்" }, { s: 243, w: "மருமகன்" }, { s: 244, w: "மாணவன்" }, { s: 245, w: "மாமனார்" },
+            { s: 246, w: "மாமியார்" }, { s: 247, w: "முதியவர்" }, { s: 248, w: "விருந்தினர்" }, { s: 249, w: "விவசாயி" }, { s: 250, w: "வீரன்" }
+        ];
+
+        let activeWords = [...rawWords];
+        let currentSlide = 0;
+        let totalPages = 50;
+
+        function init() {
+            updateSlideRange();
+            renderSlide();
+
+            // Event Listeners
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT') return;
+                if (e.key === 'ArrowLeft') prevSlide();
+                if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') nextSlide();
+                if (e.key === 'Home') goToSlide(0);
+                if (e.key === 'End') goToSlide(totalPages - 1);
+            });
+
+            document.addEventListener('click', (e) => {
+                const panel = document.getElementById('controlPanel');
+                const isClickInsidePanel = panel.contains(e.target);
+                const isActionBtn = e.target.closest('button') || e.target.closest('input') || e.target.closest('a');
+
+                if (isActionBtn) return;
+
+                const wasCollapsed = panel.classList.contains('collapsed');
+
+                if (!isClickInsidePanel) {
+                    panel.classList.add('collapsed');
+                }
+
+                // Interaction for slide advancement
+                if (e.target.closest('#slide-surface')) {
+                    if (wasCollapsed) {
+                        nextSlide();
+                    } else {
+                        // Just collapse, don't advance
+                        panel.classList.add('collapsed');
+                    }
+                }
+            });
+        }
+
+        function updateSlideRange() {
+            const start = parseInt(document.getElementById('startRange').value) || 1;
+            const end = parseInt(document.getElementById('endRange').value) || 250;
+
+            activeWords = rawWords.filter(w => w.s >= start && w.s <= end);
+            totalPages = Math.ceil(activeWords.length / 5);
+            currentSlide = 0;
+            renderSlide();
+        }
+
+        function renderSlide() {
+            const grid = document.getElementById('wordsGrid');
+            grid.innerHTML = '';
+
+            const startIdx = currentSlide * 5;
+            const slideWords = activeWords.slice(startIdx, startIdx + 5);
+
+            if (slideWords.length === 0 && activeWords.length > 0) {
+                currentSlide = 0;
+                return renderSlide();
+            }
+
+            slideWords.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'word-item';
+                div.id = `word-${i}`;
+                div.innerHTML = `
+                    <div class="tamil-word">${item.w}</div>
+                `;
+                grid.appendChild(div);
+            });
+
+            updateUI();
+        }
+
+
+        function nextSlide() {
+            if (currentSlide < totalPages - 1) {
+                currentSlide++;
+                renderSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlide();
+            }
+        }
+
+        function goToSlide(idx) {
+            currentSlide = Math.max(0, Math.min(idx, totalPages - 1));
+            renderSlide();
+        }
+
+        function updateUI() {
+            document.getElementById('slideIndicator').innerText = `${currentSlide + 1} / ${totalPages || 1}`;
+            document.getElementById('progressBar').style.width = `${((currentSlide + 1) / totalPages) * 100}%`;
+
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = (currentSlide === totalPages - 1);
+            document.getElementById('firstBtn').disabled = currentSlide === 0;
+            document.getElementById('lastBtn').disabled = currentSlide === totalPages - 1;
+        }
+
+        function shuffleWords() {
+            for (let i = activeWords.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [activeWords[i], activeWords[j]] = [activeWords[j], activeWords[i]];
+            }
+            currentSlide = 0;
+            renderSlide();
+        }
+
+        function resetWords() {
+            const start = parseInt(document.getElementById('startRange').value) || 1;
+            const end = parseInt(document.getElementById('endRange').value) || 250;
+            activeWords = rawWords.filter(w => w.s >= start && w.s <= end);
+            currentSlide = 0;
+            renderSlide();
+        }
+
+        function applyFilters() {
+            updateSlideRange();
+        }
+
+
+        init();
+    </script>
+</body>
+
+</html>
