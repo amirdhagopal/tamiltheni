@@ -475,7 +475,7 @@
 
     <div class="control-panel" id="controlPanel">
         <div class="control-header" onclick="toggleControlPanel()">
-            <h3><span>⚙️</span> Study Controls</h3>
+            <h3><span>⚙️</span> பியோரியா தமிழ்ப் பள்ளி - Study Controls</h3>
             <span class="toggle-icon">▼</span>
         </div>
         <div class="control-content">
@@ -13334,7 +13334,7 @@
         <div class="navigation">
             <button id="prevBtn" onclick="changeSlide(-1); event.stopPropagation();">Previous</button>
             <span style="align-self: center; color: #757575;" id="counter"></span>
-            <button id="nextBtn" onclick="changeSlide(1); event.stopPropagation();">Next</button>
+            <button id="nextBtn" onclick="handleNextAction(); event.stopPropagation();">Next</button>
         </div>
     </div>
 
@@ -13657,6 +13657,18 @@
             }
         }
 
+        function handleNextAction() {
+            if (!filteredSlides[currentSlide]) return;
+
+            if (filteredSlides[currentSlide].classList.contains('revealed')) {
+                // Already revealed, move to next slide
+                changeSlide(1);
+            } else {
+                // Not revealed yet, reveal it
+                filteredSlides[currentSlide].classList.add('revealed');
+            }
+        }
+
         // ... (rest of the listeners same as before) ...
         function handleHashChange() {
             const hash = window.location.hash.substring(1);
@@ -13674,18 +13686,15 @@
         }
 
         document.getElementById('slides-wrapper').addEventListener('click', (e) => {
-            if (filteredSlides[currentSlide] && !e.target.closest('button')) {
-                filteredSlides[currentSlide].classList.toggle('revealed');
+            if (!e.target.closest('button')) {
+                handleNextAction();
             }
         });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') changeSlide(-1);
-            if (e.key === 'ArrowRight') changeSlide(1);
-            if (e.key === ' ' || e.key === 'Enter') {
-                if (filteredSlides[currentSlide]) {
-                    filteredSlides[currentSlide].classList.toggle('revealed');
-                }
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                handleNextAction();
             }
             // Filter shortcuts
             if (e.key === '1') filterDifficulty('D1');
