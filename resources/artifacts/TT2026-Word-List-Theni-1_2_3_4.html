@@ -328,8 +328,10 @@
         }
 
         .control-content {
-            max-height: 200px;
-            overflow: hidden;
+            max-height: 400px;
+            /* Increased to accommodate category list */
+            overflow: visible;
+            /* Allow dropdown to overflow */
             transition: max-height 0.3s ease, padding 0.3s ease;
             padding: 0 30px 20px;
         }
@@ -337,6 +339,7 @@
         .control-panel.collapsed .control-content {
             max-height: 0;
             padding: 0 30px;
+            overflow: hidden;
         }
 
         .control-row {
@@ -398,17 +401,70 @@
             transform: translateY(-2px);
         }
 
-        .progress-info {
-            font-size: 0.85em;
-            opacity: 0.9;
+        .category-dropdown {
+            position: relative;
+            min-width: 250px;
         }
 
-        body {
-            padding-top: 0;
+        .dropdown-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
         }
 
-        .slide-container {
-            margin-top: 120px;
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            color: #333;
+            border-radius: 8px;
+            margin-top: 5px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1100;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-item:hover {
+            background: #f9f9f9;
+        }
+
+        .dropdown-item input {
+            cursor: pointer;
+        }
+
+        .dropdown-item.header {
+            background: #f5f5f5;
+            font-weight: 700;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         /* ... previous styles ... */
@@ -423,6 +479,24 @@
             <span class="toggle-icon">▼</span>
         </div>
         <div class="control-content">
+            <div class="control-row">
+                <span class="control-label">Categories:</span>
+                <div class="category-dropdown">
+                    <button class="dropdown-button" onclick="toggleDropdown(event)">
+                        <span id="selectedCatText">All Categories</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu" id="categoryMenu">
+                        <div class="dropdown-item header" onclick="toggleAllCategories(event)">
+                            <input type="checkbox" id="selectAllCats" checked onclick="event.stopPropagation()">
+                            <span>Select All / None</span>
+                        </div>
+                        <div id="categoryList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="control-row">
                 <span class="control-label">Difficulty:</span>
                 <div class="pill-group">
@@ -13272,12 +13346,142 @@
         let audioEnabled = true;
         const synth = window.speechSynthesis;
 
+        // Filter and sequence state
+        let currentFilter = 'all'; // Difficulty
+        let selectedCategories = []; // List of selected Category strings "En - Ta"
+        let availableCategories = []; // All unique categories found in slides
+        let allSlides = [];
+        let filteredSlides = [];
+        let originalOrder = [];
+        let isShuffled = false;
+
         // Cache for images to avoid re-fetching
         const imageCache = {};
 
         function toggleControlPanel() {
             const panel = document.getElementById('controlPanel');
             panel.classList.toggle('collapsed');
+            // Hide dropdown menu if panel is collapsed
+            document.getElementById('categoryMenu').classList.remove('show');
+        }
+
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            document.getElementById('categoryMenu').classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.category-dropdown')) {
+                document.getElementById('categoryMenu').classList.remove('show');
+            }
+        });
+
+        function populateCategories() {
+            const catMap = new Map();
+            allSlides.forEach(slide => {
+                const en = slide.querySelector('.category-badge').textContent;
+                const ta = slide.querySelector('.category-badge-ta').textContent;
+                const key = `${en} - ${ta}`;
+                if (!catMap.has(key)) {
+                    catMap.set(key, true);
+                }
+            });
+
+            availableCategories = Array.from(catMap.keys());
+            selectedCategories = [...availableCategories]; // Select all by default
+
+            const list = document.getElementById('categoryList');
+            list.innerHTML = '';
+
+            availableCategories.forEach(cat => {
+                const item = document.createElement('div');
+                item.className = 'dropdown-item';
+                item.onclick = (e) => toggleCategory(cat, e);
+                item.innerHTML = `
+                    <input type="checkbox" checked id="cat-${cat}" onclick="event.stopPropagation(); toggleCategory('${cat}', event)">
+                    <span>${cat}</span>
+                `;
+                list.appendChild(item);
+            });
+
+            updateCategoryText();
+        }
+
+        function toggleCategory(category, event) {
+            if (event) event.stopPropagation();
+
+            const index = selectedCategories.indexOf(category);
+            if (index > -1) {
+                selectedCategories.splice(index, 1);
+            } else {
+                selectedCategories.push(category);
+            }
+
+            // Update UI
+            const checkbox = document.getElementById(`cat-${category}`);
+            if (checkbox) checkbox.checked = selectedCategories.includes(category);
+
+            updateCategoryText();
+            applyFilters();
+        }
+
+        function toggleAllCategories(event) {
+            event.stopPropagation();
+            const checkbox = document.getElementById('selectAllCats');
+            const targetState = checkbox.checked;
+
+            if (targetState) {
+                selectedCategories = [...availableCategories];
+            } else {
+                selectedCategories = [];
+            }
+
+            // Update UI
+            document.querySelectorAll('#categoryList input').forEach(cb => cb.checked = targetState);
+
+            updateCategoryText();
+            applyFilters();
+        }
+
+        function updateCategoryText() {
+            const text = document.getElementById('selectedCatText');
+            if (selectedCategories.length === availableCategories.length) {
+                text.textContent = 'All Categories';
+                document.getElementById('selectAllCats').checked = true;
+            } else if (selectedCategories.length === 0) {
+                text.textContent = 'None selected';
+                document.getElementById('selectAllCats').checked = false;
+            } else {
+                text.textContent = `${selectedCategories.length} selected`;
+                document.getElementById('selectAllCats').checked = false;
+            }
+        }
+
+        function applyFilters(resetToStart = true) {
+            filteredSlides = allSlides.filter(slide => {
+                const diffBadge = slide.querySelector('.difficulty-badge').textContent;
+                const catBadge = slide.querySelector('.category-badge').textContent;
+                const catBadgeTa = slide.querySelector('.category-badge-ta').textContent;
+                const catKey = `${catBadge} - ${catBadgeTa}`;
+
+                const difficultyMatch = (currentFilter === 'all' || diffBadge === currentFilter);
+                const categoryMatch = selectedCategories.includes(catKey);
+
+                return difficultyMatch && categoryMatch;
+            });
+
+            if (isShuffled) {
+                // Fisher-Yates shuffle
+                for (let i = filteredSlides.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [filteredSlides[i], filteredSlides[j]] = [filteredSlides[j], filteredSlides[i]];
+                }
+            }
+
+            if (resetToStart) currentSlide = 0;
+            updateProgress();
+            updateUI();
         }
 
         function filterDifficulty(difficulty) {
@@ -13287,72 +13491,31 @@
             document.querySelectorAll('.pill-button').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`).classList.add('active');
 
-            // Filter slides
-            if (difficulty === 'all') {
-                filteredSlides = [...allSlides];
-            } else {
-                filteredSlides = allSlides.filter(slide => {
-                    const diffBadge = slide.querySelector('.difficulty-badge');
-                    return diffBadge && diffBadge.textContent === difficulty;
-                });
-            }
-
-            // Reset to original order when filtering
-            if (isShuffled) {
-                resetSequence();
-                return;
-            }
-
-            currentSlide = 0;
-            updateProgress();
-            updateUI();
+            applyFilters();
         }
 
         function shuffleSlides() {
-            // Fisher-Yates shuffle
-            const shuffled = [...filteredSlides];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            filteredSlides = shuffled;
             isShuffled = true;
-            currentSlide = 0;
-            updateProgress();
-            updateUI();
+            applyFilters();
         }
 
         function resetSequence() {
-            // Restore original order
-            if (currentFilter === 'all') {
-                filteredSlides = [...allSlides];
-            } else {
-                filteredSlides = allSlides.filter(slide => {
-                    const diffBadge = slide.querySelector('.difficulty-badge');
-                    return diffBadge && diffBadge.textContent === currentFilter;
-                });
-            }
             isShuffled = false;
-            currentSlide = 0;
-            updateProgress();
-            updateUI();
+            applyFilters();
         }
 
         function updateProgress() {
-            const d1Count = allSlides.filter(s => {
-                const badge = s.querySelector('.difficulty-badge');
-                return badge && badge.textContent === 'D1';
-            }).length;
-            const d2Count = allSlides.filter(s => {
-                const badge = s.querySelector('.difficulty-badge');
-                return badge && badge.textContent === 'D2';
-            }).length;
+            const totalD1 = allSlides.filter(s => s.querySelector('.difficulty-badge').textContent === 'D1').length;
+            const totalD2 = allSlides.filter(s => s.querySelector('.difficulty-badge').textContent === 'D2').length;
 
-            let filterText = currentFilter === 'all' ? 'All' : currentFilter;
+            const currentFilteredD1 = filteredSlides.filter(s => s.querySelector('.difficulty-badge').textContent === 'D1').length;
+            const currentFilteredD2 = filteredSlides.filter(s => s.querySelector('.difficulty-badge').textContent === 'D2').length;
+
+            let filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
             let shuffleText = isShuffled ? ' (Shuffled)' : '';
 
             document.getElementById('progressInfo').textContent =
-                `${currentSlide + 1}/${filteredSlides.length} slides - Filter: ${filterText}${shuffleText} (Total: D1=${d1Count}, D2=${d2Count})`;
+                `${filteredSlides.length === 0 ? 0 : currentSlide + 1}/${filteredSlides.length} slides - Filter: ${filterText}${shuffleText} (Matches: D1=${currentFilteredD1}, D2=${currentFilteredD2})`;
         }
 
         async function fetchImage(word, imgElement) {
@@ -13490,9 +13653,15 @@
         // ... (rest of the listeners same as before) ...
         function handleHashChange() {
             const hash = window.location.hash.substring(1);
-            const slideNum = parseInt(hash);
-            if (!isNaN(slideNum) && slideNum >= 1 && slideNum <= totalSlides) {
-                currentSlide = slideNum - 1;
+            const targetSlideId = `slide-${parseInt(hash) - 1}`;
+
+            const index = filteredSlides.findIndex(s => s.id === targetSlideId);
+            if (index !== -1) {
+                currentSlide = index;
+                updateUI();
+            } else if (filteredSlides.length > 0) {
+                // If current hash slide isn't in filtered view, ensure we are at a valid index
+                if (currentSlide >= filteredSlides.length) currentSlide = 0;
                 updateUI();
             }
         }
@@ -13526,6 +13695,9 @@
         allSlides = Array.from(document.querySelectorAll('.slide'));
         filteredSlides = [...allSlides];
         originalOrder = [...allSlides];
+
+        // Populate categories from the slides
+        populateCategories();
 
         // Update progress on load
         updateProgress();
