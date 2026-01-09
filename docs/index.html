@@ -13500,10 +13500,18 @@
             document.getElementById('categoryMenu').classList.toggle('show');
         }
 
-        // Close dropdown when clicking outside
+        // Close dropdown and control panel when clicking outside
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.category-dropdown')) {
                 document.getElementById('categoryMenu').classList.remove('show');
+            }
+
+            // Collapse control panel if clicking outside of it
+            if (!e.target.closest('.control-panel')) {
+                const panel = document.getElementById('controlPanel');
+                if (panel && !panel.classList.contains('collapsed')) {
+                    panel.classList.add('collapsed');
+                }
             }
         });
 
