@@ -24,11 +24,12 @@
             font-family: 'Outfit', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--bg);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
             color: var(--text);
         }
@@ -191,7 +192,10 @@
             justify-content: center;
             align-items: center;
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 25px;
+            position: relative;
+            width: 90%;
+            max-width: 800px;
         }
 
         .nav-btn {
@@ -227,6 +231,95 @@
             text-align: center;
             letter-spacing: 1px;
         }
+
+        /* Filled Circular Timer UI */
+        .circular-timer {
+            position: absolute;
+            right: 0;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timer-visual {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 360deg, #f0f0f0 0);
+            transition: background 0.3s ease;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .timer-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer-display {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--secondary);
+            line-height: 1;
+        }
+
+        .timer-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .timer-btn:hover {
+            color: var(--secondary);
+            transform: scale(1.2);
+        }
+
+        .circular-timer.alarm .timer-visual {
+            background: conic-gradient(var(--accent) 360deg, #fff5f5 0) !important;
+            animation: pulse-fill 0.5s infinite alternate;
+        }
+
+        @keyframes pulse-fill {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(255, 118, 117, 0.4);
+            }
+        }
+
+        @keyframes pulse-text {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
     </style>
 </head>
 
@@ -251,6 +344,12 @@
                 <button class="action-button" onclick="resetWords()"><span>↩️</span> Reset</button>
             </div>
             <div class="control-row">
+                <span class="control-label">Timer:</span>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9rem;">
+                    <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()"> Show Timer
+                </label>
+            </div>
+            <div class="control-row">
                 <a href="index.html" class="action-button"
                     style="text-decoration: none; width: 100%; justify-content: center;">
                     <span>🏠</span> Back to Portal
@@ -262,18 +361,24 @@
     <div class="slide-container" id="slide-surface">
         <div class="progress-bar" id="progressBar" style="width: 0%"></div>
 
-
-
         <div class="words-grid" id="wordsGrid">
             <!-- Words will be injected here -->
         </div>
+    </div>
 
-        <div class="nav-controls">
-            <button class="nav-btn" id="firstBtn" onclick="goToSlide(0)">⏮</button>
-            <button class="nav-btn" id="prevBtn" onclick="prevSlide()">◀</button>
-            <div class="status-badge" id="slideIndicator">Slide 1 of 50</div>
-            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">▶</button>
-            <button class="nav-btn" id="lastBtn" onclick="goToSlide(totalPages - 1)">⏭</button>
+    <div class="nav-controls">
+        <button class="nav-btn" id="firstBtn" onclick="goToSlide(0)">⏮</button>
+        <button class="nav-btn" id="prevBtn" onclick="prevSlide()">◀</button>
+        <div class="status-badge" id="slideIndicator">1 / 50</div>
+        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">▶</button>
+        <button class="nav-btn" id="lastBtn" onclick="goToSlide(totalPages - 1)">⏭</button>
+
+        <div class="circular-timer" id="timerPill" title="Study Timer (1 min)">
+            <div class="timer-visual" id="timerPie"></div>
+            <div class="timer-content">
+                <span class="timer-display" id="timerDisplay">01:00</span>
+                <button class="timer-btn" id="timerBtn" onclick="toggleTimer()">▶</button>
+            </div>
         </div>
     </div>
 
@@ -335,9 +440,20 @@
         let currentSlide = 0;
         let totalPages = 50;
 
+        // Timer Variables
+        let timeLeft = 60;
+        let timerId = null;
+        let audioCtx = null;
+
         function init() {
             updateSlideRange();
             renderSlide();
+
+            // Check timer visibility and auto-start
+            toggleTimerVisibility();
+            if (document.getElementById('showTimer').checked) {
+                toggleTimer();
+            }
 
             // Event Listeners
             document.addEventListener('keydown', (e) => {
@@ -453,6 +569,97 @@
             activeWords = rawWords.filter(w => w.s >= start && w.s <= end);
             currentSlide = 0;
             renderSlide();
+        }
+
+        // Timer Logic
+        function toggleTimer() {
+            const btn = document.getElementById('timerBtn');
+            const pill = document.getElementById('timerPill');
+
+            if (timerId) {
+                // Pause
+                clearInterval(timerId);
+                timerId = null;
+                btn.innerText = '▶';
+                pill.classList.remove('alarm');
+            } else {
+                // Start
+                if (timeLeft <= 0) resetTimer();
+                timerId = setInterval(tick, 1000);
+                btn.innerText = '⏸';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerId);
+            timerId = null;
+            timeLeft = 60;
+            updateTimerDisplay();
+            document.getElementById('timerBtn').innerText = '▶';
+            document.getElementById('timerBtn').onclick = toggleTimer; // Restore original onclick
+            document.getElementById('timerPill').classList.remove('alarm');
+        }
+
+        function tick() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft === 0) {
+                    triggerAlarm();
+                }
+            }
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timeLeft / 60);
+            const secs = timeLeft % 60;
+            document.getElementById('timerDisplay').innerText =
+                `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+            // Update filled circular progress (conic gradient)
+            const angle = (timeLeft / 60) * 360;
+            document.getElementById('timerPie').style.background =
+                `conic-gradient(var(--primary) ${angle}deg, #f0f0f0 0)`;
+        }
+
+        function toggleTimerVisibility() {
+            const isVisible = document.getElementById('showTimer').checked;
+            const pill = document.getElementById('timerPill');
+            pill.style.display = isVisible ? 'flex' : 'none';
+
+            if (!isVisible && timerId) {
+                toggleTimer(); // Stop if hidden
+            }
+        }
+
+        function triggerAlarm() {
+            clearInterval(timerId);
+            timerId = null;
+            document.getElementById('timerBtn').innerText = '↺';
+            document.getElementById('timerBtn').onclick = resetTimer;
+            document.getElementById('timerPill').classList.add('alarm');
+            playAlarmSound();
+        }
+
+        function playAlarmSound() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+            const duration = 1.5;
+            const oscillator = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // A5
+            oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + duration);
+
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+
+            oscillator.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + duration);
         }
 
         function applyFilters() {
