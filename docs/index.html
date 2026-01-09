@@ -559,7 +559,7 @@
 
     <div class="control-panel" id="controlPanel">
         <div class="control-header" onclick="toggleControlPanel()">
-            <h3><span>⚙️</span> பியோரியா தமிழ்ப் பள்ளி - Study Controls</h3>
+            <h3><span>⚙️</span> பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Study Controls</h3>
             <span class="toggle-icon">▼</span>
         </div>
         <div class="control-content">
@@ -607,12 +607,12 @@
         <div class="progress" id="progressBar" style="width: 0%"></div>
 
         <button id="audioBtn" class="audio-button" onclick="toggleAudio(); event.stopPropagation();"
-            title="Toggle audio pronunciation">
+            title="Audio is ON - Click to Mute">
             🔊
         </button>
 
         <button id="micBtn" class="mic-button" onclick="toggleVoiceRecognition(); event.stopPropagation();"
-            title="Validate pronunciation (Microphone)">
+            title="Voice Validation is IDLE - Click to Start Listening">
             🎤
         </button>
 
@@ -13707,7 +13707,9 @@
             try {
                 recognition.start();
                 isRecording = true;
-                document.getElementById('micBtn').classList.add('recording');
+                const micBtn = document.getElementById('micBtn');
+                micBtn.classList.add('recording');
+                micBtn.title = "Voice Validation is ACTIVE - Click to Stop Listening";
                 showFeedback("Listening for Tamil...", "success");
             } catch (e) {
                 console.error('Recognition start error:', e);
@@ -13720,7 +13722,10 @@
             }
             isRecording = false;
             const micBtn = document.getElementById('micBtn');
-            if (micBtn) micBtn.classList.remove('recording');
+            if (micBtn) {
+                micBtn.classList.remove('recording');
+                micBtn.title = "Voice Validation is IDLE - Click to Start Listening";
+            }
         }
 
         function validateVoiceResult(spokenText) {
@@ -13780,7 +13785,7 @@
             if (audioEnabled) {
                 audioBtn.classList.remove('muted');
                 audioBtn.textContent = '🔊';
-                audioBtn.title = 'Mute audio';
+                audioBtn.title = 'Audio is ON - Click to Mute';
                 // Speak current word
                 const currentElement = filteredSlides[currentSlide];
                 if (currentElement) {
@@ -13790,7 +13795,7 @@
             } else {
                 audioBtn.classList.add('muted');
                 audioBtn.textContent = '🔇';
-                audioBtn.title = 'Unmute audio';
+                audioBtn.title = 'Audio is OFF - Click to Unmute';
                 if (audioTimeout) clearTimeout(audioTimeout);
                 if (synth) synth.cancel();
             }
