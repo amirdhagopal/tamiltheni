@@ -20,6 +20,7 @@ def generate_html_slides(csv_path, output_html_path):
         active_class = " active" if idx == 0 else ""
         
         # Safe get for fields
+        sequence = row.get('Sequence', str(idx + 1))  # Use Sequence from CSV, fallback to idx+1
         sno = row.get('SNo', '')
         cat_name = row.get('Category_Name', '')
         cat_name_ta = row.get('Category_Name_Tamil')
@@ -35,7 +36,7 @@ def generate_html_slides(csv_path, output_html_path):
         placeholder = "https://placehold.co/400x300?text=Loading..."
 
         slides_html += f"""
-        <div class="slide{active_class}" id="slide-{idx}">
+        <div class="slide{active_class}" id="slide-{int(sequence) - 1}">
             <div class="category-badge">{html.escape(cat_name)}</div>
             <div class="category-badge-ta">{html.escape(cat_name_ta)}</div>
             
