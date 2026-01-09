@@ -290,11 +290,160 @@
             transform: scale(1.1);
         }
 
+        .control-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .control-header {
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .control-header h3 {
+            margin: 0;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .control-panel.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .control-content {
+            max-height: 200px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 30px 20px;
+        }
+
+        .control-panel.collapsed .control-content {
+            max-height: 0;
+            padding: 0 30px;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .control-label {
+            font-weight: 600;
+            min-width: 90px;
+        }
+
+        .pill-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .pill-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .pill-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .pill-button.active {
+            background: white;
+            color: #667eea;
+            border-color: white;
+        }
+
+        .action-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .progress-info {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        body {
+            padding-top: 0;
+        }
+
+        .slide-container {
+            margin-top: 120px;
+        }
+
         /* ... previous styles ... */
     </style>
 </head>
 
 <body>
+
+    <div class="control-panel" id="controlPanel">
+        <div class="control-header" onclick="toggleControlPanel()">
+            <h3><span>⚙️</span> Study Controls</h3>
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="control-content">
+            <div class="control-row">
+                <span class="control-label">Difficulty:</span>
+                <div class="pill-group">
+                    <button class="pill-button active" onclick="filterDifficulty('all')" id="filterAll">All</button>
+                    <button class="pill-button" onclick="filterDifficulty('D1')" id="filterD1">D1 Only</button>
+                    <button class="pill-button" onclick="filterDifficulty('D2')" id="filterD2">D2 Only</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <span class="control-label">Sequence:</span>
+                <div class="pill-group">
+                    <button class="action-button" onclick="shuffleSlides()"><span>🔀</span> Shuffle</button>
+                    <button class="action-button" onclick="resetSequence()"><span>↩️</span> Reset</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <span class="control-label">Progress:</span>
+                <span class="progress-info" id="progressInfo">Loading...</span>
+            </div>
+        </div>
+    </div>
 
     <div class="slide-container">
         <div class="progress" id="progressBar" style="width: 0%"></div>
@@ -325,6 +474,86 @@
 
         // Cache for images to avoid re-fetching
         const imageCache = {};
+
+        function toggleControlPanel() {
+            const panel = document.getElementById('controlPanel');
+            panel.classList.toggle('collapsed');
+        }
+
+        function filterDifficulty(difficulty) {
+            currentFilter = difficulty;
+
+            // Update button states
+            document.querySelectorAll('.pill-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`).classList.add('active');
+
+            // Filter slides
+            if (difficulty === 'all') {
+                filteredSlides = [...allSlides];
+            } else {
+                filteredSlides = allSlides.filter(slide => {
+                    const diffBadge = slide.querySelector('.difficulty-badge');
+                    return diffBadge && diffBadge.textContent === difficulty;
+                });
+            }
+
+            // Reset to original order when filtering
+            if (isShuffled) {
+                resetSequence();
+                return;
+            }
+
+            currentSlide = 0;
+            updateProgress();
+            updateUI();
+        }
+
+        function shuffleSlides() {
+            // Fisher-Yates shuffle
+            const shuffled = [...filteredSlides];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            filteredSlides = shuffled;
+            isShuffled = true;
+            currentSlide = 0;
+            updateProgress();
+            updateUI();
+        }
+
+        function resetSequence() {
+            // Restore original order
+            if (currentFilter === 'all') {
+                filteredSlides = [...allSlides];
+            } else {
+                filteredSlides = allSlides.filter(slide => {
+                    const diffBadge = slide.querySelector('.difficulty-badge');
+                    return diffBadge && diffBadge.textContent === currentFilter;
+                });
+            }
+            isShuffled = false;
+            currentSlide = 0;
+            updateProgress();
+            updateUI();
+        }
+
+        function updateProgress() {
+            const d1Count = allSlides.filter(s => {
+                const badge = s.querySelector('.difficulty-badge');
+                return badge && badge.textContent === 'D1';
+            }).length;
+            const d2Count = allSlides.filter(s => {
+                const badge = s.querySelector('.difficulty-badge');
+                return badge && badge.textContent === 'D2';
+            }).length;
+
+            let filterText = currentFilter === 'all' ? 'All' : currentFilter;
+            let shuffleText = isShuffled ? ' (Shuffled)' : '';
+
+            document.getElementById('progressInfo').textContent =
+                `${currentSlide + 1}/${filteredSlides.length} slides - Filter: ${filterText}${shuffleText} (Total: D1=${d1Count}, D2=${d2Count})`;
+        }
 
         async function fetchImage(word, imgElement) {
             if (!word) return;
@@ -398,54 +627,61 @@
 
         function updateUI() {
             // Hide all slides
-            document.querySelectorAll('.slide').forEach(s => {
+            allSlides.forEach(s => {
                 s.classList.remove('active');
-                if (s.id !== `slide-${currentSlide}`) {
+                s.style.display = 'none';
+            });
+
+            // Show only filtered slides
+            filteredSlides.forEach((s, idx) => {
+                s.style.display = idx === currentSlide ? 'flex' : 'none';
+                if (idx === currentSlide) {
+                    s.classList.add('active');
+
+                    // Load image if not loaded
+                    const img = s.querySelector('.slide-image');
+                    if (img && img.dataset.word && !img.dataset.loaded) {
+                        fetchImage(img.dataset.word, img);
+                        img.dataset.loaded = "true";
+                    }
+
+                    // Pronounce the English word if audio is enabled
+                    const wordEn = s.querySelector('.word-en');
+                    if (wordEn && audioEnabled) {
+                        setTimeout(() => speakWord(wordEn.textContent), 300);
+                    }
+                } else {
                     s.classList.remove('revealed');
                 }
             });
 
-            // Show current
-            const currentElement = document.getElementById(`slide-${currentSlide}`);
-            if (currentElement) {
-                currentElement.classList.add('active');
-
-                // Load image if not loaded
-                const img = currentElement.querySelector('.slide-image');
-                if (img && img.dataset.word && !img.dataset.loaded) {
-                    fetchImage(img.dataset.word, img);
-                    img.dataset.loaded = "true";
-                }
-
-                // Pronounce the English word if audio is enabled
-                const wordEn = currentElement.querySelector('.word-en');
-                if (wordEn && audioEnabled) {
-                    // Small delay to let slide transition complete
-                    setTimeout(() => speakWord(wordEn.textContent), 300);
-                }
-            }
-
             // Update buttons
             document.getElementById('prevBtn').disabled = currentSlide === 0;
-            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            document.getElementById('nextBtn').disabled = currentSlide === filteredSlides.length - 1;
 
             // Update counter
-            document.getElementById('counter').innerText = `${currentSlide + 1} / ${totalSlides}`;
+            document.getElementById('counter').innerText = `${currentSlide + 1} / ${filteredSlides.length}`;
 
             // Update progress bar
-            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            const progress = ((currentSlide + 1) / filteredSlides.length) * 100;
             document.getElementById('progressBar').style.width = `${progress}%`;
 
-            // Update URL hash
-            const hash = `#${currentSlide + 1}`;
-            if (window.location.hash !== hash) {
-                window.history.replaceState(null, null, hash);
+            // Update progress info
+            updateProgress();
+
+            // Update URL hash (use original slide ID)
+            if (filteredSlides[currentSlide]) {
+                const slideId = filteredSlides[currentSlide].id.replace('slide-', '');
+                const hash = `#${parseInt(slideId) + 1}`;
+                if (window.location.hash !== hash) {
+                    window.history.replaceState(null, null, hash);
+                }
             }
         }
 
         function changeSlide(direction) {
             const newIndex = currentSlide + direction;
-            if (newIndex >= 0 && newIndex < totalSlides) {
+            if (newIndex >= 0 && newIndex < filteredSlides.length) {
                 currentSlide = newIndex;
                 updateUI();
             }
@@ -462,9 +698,8 @@
         }
 
         document.getElementById('slides-wrapper').addEventListener('click', (e) => {
-            const currentElement = document.getElementById(`slide-${currentSlide}`);
-            if (currentElement && !e.target.closest('button')) {
-                currentElement.classList.toggle('revealed');
+            if (filteredSlides[currentSlide] && !e.target.closest('button')) {
+                filteredSlides[currentSlide].classList.toggle('revealed');
             }
         });
 
@@ -472,12 +707,28 @@
             if (e.key === 'ArrowLeft') changeSlide(-1);
             if (e.key === 'ArrowRight') changeSlide(1);
             if (e.key === ' ' || e.key === 'Enter') {
-                const currentElement = document.getElementById(`slide-${currentSlide}`);
-                if (currentElement) currentElement.classList.toggle('revealed');
+                if (filteredSlides[currentSlide]) {
+                    filteredSlides[currentSlide].classList.toggle('revealed');
+                }
             }
+            // Filter shortcuts
+            if (e.key === '1') filterDifficulty('D1');
+            if (e.key === '2') filterDifficulty('D2');
+            if (e.key === 'a' || e.key === 'A') filterDifficulty('all');
+            // Shuffle/Reset shortcuts
+            if (e.key === 's' || e.key === 'S') shuffleSlides();
+            if (e.key === 'r' || e.key === 'R') resetSequence();
         });
 
         window.addEventListener('hashchange', handleHashChange);
+
+        // Initialize slide arrays
+        allSlides = Array.from(document.querySelectorAll('.slide'));
+        filteredSlides = [...allSlides];
+        originalOrder = [...allSlides];
+
+        // Update progress on load
+        updateProgress();
 
         if (window.location.hash) {
             handleHashChange();
