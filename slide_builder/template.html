@@ -256,6 +256,40 @@
             /* Ensure buttons are clickable above slide click area */
         }
 
+        button:hover {
+            background-color: #424242;
+            transform: scale(1.05);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .audio-button {
+            position: absolute;
+            top: 30px;
+            right: 120px;
+            background-color: #4CAF50;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .audio-button.muted {
+            background-color: #f44336;
+        }
+
+        .audio-button:hover {
+            transform: scale(1.1);
+        }
+
         /* ... previous styles ... */
     </style>
 </head>
@@ -264,6 +298,12 @@
 
     <div class="slide-container">
         <div class="progress" id="progressBar" style="width: 0%"></div>
+
+        <button id="audioBtn" class="audio-button" onclick="toggleAudio(); event.stopPropagation();"
+            title="Toggle audio pronunciation">
+            🔊
+        </button>
+
         <div id="slides-wrapper">
             <!-- SLIDES_PLACEHOLDER -->
         </div>
@@ -278,6 +318,10 @@
     <script>
         let currentSlide = 0;
         // TOTAL_SLIDES_PLACEHOLDER
+
+        // Audio state
+        let audioEnabled = true;
+        const synth = window.speechSynthesis;
 
         // Cache for images to avoid re-fetching
         const imageCache = {};
@@ -317,6 +361,41 @@
             }
         }
 
+        function speakWord(word) {
+            if (!audioEnabled || !word) return;
+
+            // Cancel any ongoing speech
+            synth.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            synth.speak(utterance);
+        }
+
+        function toggleAudio() {
+            audioEnabled = !audioEnabled;
+            const audioBtn = document.getElementById('audioBtn');
+
+            if (audioEnabled) {
+                audioBtn.classList.remove('muted');
+                audioBtn.textContent = '🔊';
+                audioBtn.title = 'Mute audio';
+                // Speak current word
+                const currentElement = document.getElementById(`slide-${currentSlide}`);
+                if (currentElement) {
+                    const wordEn = currentElement.querySelector('.word-en');
+                    if (wordEn) speakWord(wordEn.textContent);
+                }
+            } else {
+                audioBtn.classList.add('muted');
+                audioBtn.textContent = '🔇';
+                audioBtn.title = 'Unmute audio';
+                synth.cancel();
+            }
+        }
+
         function updateUI() {
             // Hide all slides
             document.querySelectorAll('.slide').forEach(s => {
@@ -336,6 +415,13 @@
                 if (img && img.dataset.word && !img.dataset.loaded) {
                     fetchImage(img.dataset.word, img);
                     img.dataset.loaded = "true";
+                }
+
+                // Pronounce the English word if audio is enabled
+                const wordEn = currentElement.querySelector('.word-en');
+                if (wordEn && audioEnabled) {
+                    // Small delay to let slide transition complete
+                    setTimeout(() => speakWord(wordEn.textContent), 300);
                 }
             }
 
