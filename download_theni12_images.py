@@ -21,7 +21,7 @@ def get_words_from_html(file_path):
     words = [html.unescape(w) for w in words]
     return list(set(words))
 
-def download_image(word, output_dir, force=False, source_preference='all', strict=False):
+def download_image(word, output_dir, force=False, source_preference='all', strict=False, exclude_sources=None):
     safe_filename = "".join([c for c in word if c.isalpha() or c.isdigit() or c in (' ', '-', '_')]).rstrip()
     safe_filename = safe_filename.replace(' ', '_')
     file_path = os.path.join(output_dir, f"{safe_filename}.jpg")
@@ -70,68 +70,116 @@ def download_image(word, output_dir, force=False, source_preference='all', stric
         sanitized_word = urllib.parse.quote(word)
         return f"https://loremflickr.com/400/300/{sanitized_word}?lock=1"
 
+    def try_openverse():
+         try:
+            # Openverse API (free, no key required)
+            url = f"https://api.openverse.org/v1/images/?q={urllib.parse.quote(word)}&format=json"
+            resp = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=15)
+            if resp.status_code == 200:
+                data = resp.json()
+                if data.get('results'):
+                    print(f"  Found valid Openverse image for {word}")
+                    return data['results'][0]['url']
+         except Exception as e:
+            print(f"  Openverse error for {word}: {e}")
+         return None
+
     def try_pollinations():
          # Generative AI
          sanitized_word = urllib.parse.quote(word)
          import random
          seed = random.randint(0, 1000)
-         # Adding "educational illustration" to prompt to potentially improve relevance?
-         # Or just keeping it simple. Pollinations usually takes the prompt literally.
          return f"https://image.pollinations.ai/prompt/{sanitized_word}?width=400&height=300&nologo=true&seed={seed}"
 
     # Determine validation strategy
-    # For Wikipedia, we get a URL that is "guaranteed" to exist (unless 403).
-    # For LoremFlickr/Pollinations, we construct a URL and have to test it.
-    
     sources = []
     
+    import time
+    import random
+
     # Priority logic
     if source_preference == 'pollinations':
-        sources = [try_pollinations, try_wikipedia, try_loremflickr]
+        sources = [try_pollinations, try_wikipedia, try_openverse, try_loremflickr]
     elif source_preference == 'wiki':
-        sources = [try_wikipedia, try_loremflickr, try_pollinations]
+        sources = [try_wikipedia, try_openverse, try_loremflickr, try_pollinations]
     elif source_preference == 'flickr':
-        sources = [try_loremflickr, try_wikipedia, try_pollinations]
+        sources = [try_loremflickr, try_openverse, try_wikipedia, try_pollinations]
+    elif source_preference == 'openverse':
+        sources = [try_openverse, try_wikipedia, try_loremflickr, try_pollinations]
     else: # 'all' / default
-        sources = [try_wikipedia, try_loremflickr, try_pollinations]
+        sources = [try_wikipedia, try_openverse, try_loremflickr, try_pollinations]
         
     if strict:
-        # Keep only the first source from the priority list
         sources = sources[:1]
+        
+    if exclude_sources:
+        func_map = {
+            try_wikipedia: 'wiki',
+            try_loremflickr: 'flickr',
+            try_pollinations: 'pollinations'
+        }
+        sources = [s for s in sources if func_map.get(s, '') not in exclude_sources]
 
     download_success = False
+
+    # List of User-Agents to rotate
+    user_agents = [
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15'
+    ]
 
     for source_func in sources:
         if download_success: break
         
-        # Don't retry same source types if we are strictly preferring one? 
-        # No, the preference just sets the ORDER. We still fallback unless user only wants one source? 
-        # For now, fallback is good.
-        
         url = source_func()
         if not url: continue
         
-        # Skip if we are trying the same URL type again? (Not really possible with this structure)
+        # Determine strictness for retries
+        max_retries = 3 if "pollinations" not in url else 1
         
-        if "pollinations" in url:
-             print(f"  Attempting Pollinations AI for {word}")
-        elif "loremflickr" in url:
-             print(f"  Attempting LoremFlickr for {word}")
-             
-        try:
-             # Standard download attempt
-             timeout = 20 if "pollinations" in url else 10
-             resp = requests.get(url, headers=headers, timeout=timeout)
-             if resp.status_code == 200:
-                # OPTIMIZATION: Only overwrite if we successfully got the new image
-                with open(file_path, 'wb') as f:
-                    f.write(resp.content)
-                print(f"  Saved to {file_path}")
-                download_success = True
-             else:
-                print(f"  Failed download {url} status: {resp.status_code}")
-        except Exception as e:
-            print(f"  Download error for {word} from {url}: {e}")
+        for attempt in range(max_retries):
+            current_headers = headers.copy()
+            current_headers['User-Agent'] = random.choice(user_agents)
+            
+            try:
+                # Add delay before request to be nice
+                time.sleep(random.uniform(1.0, 3.0)) 
+                
+                timeout = 25 if "pollinations" in url else 15
+                resp = requests.get(url, headers=current_headers, timeout=timeout)
+                
+                if resp.status_code == 200:
+                    # OPTIMIZATION: Only overwrite if we successfully got the new image
+                    with open(file_path, 'wb') as f:
+                        f.write(resp.content)
+                    print(f"  Saved to {file_path}")
+                    download_success = True
+                    break # Break retry loop
+                
+                elif resp.status_code == 429:
+                    wait_time = (attempt + 1) * 5
+                    print(f"  Rate limited (429) on {url}. Waiting {wait_time}s...")
+                    time.sleep(wait_time)
+                    continue # Retry
+                
+                elif resp.status_code == 403:
+                    print(f"  Forbidden (403) on {url}.")
+                    # specific handling? maybe simple retry with diff UA helps?
+                    # usually 403 is persistent for a URL pattern unless UA fixes it.
+                    if attempt < max_retries - 1:
+                        time.sleep(2)
+                        continue
+                    break # Stop retrying 403s
+                
+                else:
+                    print(f"  Failed download {url} status: {resp.status_code}")
+                    break # Don't retry other errors
+                    
+            except Exception as e:
+                print(f"  Download error for {word} from {url}: {e}")
+                time.sleep(1)
 
     return download_success
 
@@ -140,9 +188,10 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description='Download images for Theni 12 words.')
     parser.add_argument('--force', action='store_true', help='Overwrite existing images')
-    parser.add_argument('--source', choices=['wiki', 'flickr', 'pollinations', 'all'], default='all', help='Preferred source strategy')
+    parser.add_argument('--source', choices=['wiki', 'flickr', 'pollinations', 'openverse', 'all'], default='all', help='Preferred source strategy')
     parser.add_argument('--words', nargs='+', help='Specific words to download (overrides HTML scan)')
     parser.add_argument('--strict', action='store_true', help='Disable fallbacks (use only preferred source)')
+    parser.add_argument('--exclude', nargs='+', help='Sources to exclude (e.g. pollinations)')
     
     args = parser.parse_args()
 
@@ -166,7 +215,7 @@ def main():
         # If specific words are provided, we likely want to force them, or user should use --force
         force_download = args.force
         
-        if download_image(word, ASSETS_DIR, force=force_download, source_preference=args.source, strict=args.strict):
+        if download_image(word, ASSETS_DIR, force=force_download, source_preference=args.source, strict=args.strict, exclude_sources=args.exclude):
             count += 1
             # Only sleep if we actually downloaded something to be nice to APIs
             time.sleep(2.0)
