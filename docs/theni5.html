@@ -234,13 +234,23 @@
 
         /* Filled Circular Timer UI */
         .circular-timer {
-            position: absolute;
-            right: 0;
-            width: 70px;
-            height: 70px;
+            position: fixed;
+            left: calc(50% + 430px);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 270px;
+            height: 270px;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 100;
+        }
+
+        @media (max-width: 1200px) {
+            .circular-timer {
+                left: auto;
+                right: 20px;
+            }
         }
 
         .timer-visual {
@@ -252,7 +262,7 @@
             border-radius: 50%;
             background: conic-gradient(var(--primary) 360deg, #f0f0f0 0);
             transition: background 0.3s ease;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05), 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
         .timer-content {
@@ -262,17 +272,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.9);
-            width: 54px;
-            height: 54px;
+            background: rgba(255, 255, 255, 0.95);
+            width: 210px;
+            height: 210px;
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .timer-display {
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 3rem;
             color: var(--secondary);
             line-height: 1;
         }
@@ -282,8 +292,9 @@
             border: none;
             color: var(--primary);
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 2.5rem;
             padding: 0;
+            margin-top: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -372,13 +383,13 @@
         <div class="status-badge" id="slideIndicator">1 / 50</div>
         <button class="nav-btn" id="nextBtn" onclick="nextSlide()">▶</button>
         <button class="nav-btn" id="lastBtn" onclick="goToSlide(totalPages - 1)">⏭</button>
+    </div>
 
-        <div class="circular-timer" id="timerPill" title="Study Timer (1 min)">
-            <div class="timer-visual" id="timerPie"></div>
-            <div class="timer-content">
-                <span class="timer-display" id="timerDisplay">01:00</span>
-                <button class="timer-btn" id="timerBtn" onclick="toggleTimer()">▶</button>
-            </div>
+    <div class="circular-timer" id="timerPill" title="Study Timer (1 min)">
+        <div class="timer-visual" id="timerPie"></div>
+        <div class="timer-content">
+            <span class="timer-display" id="timerDisplay">01:00</span>
+            <button class="timer-btn" id="timerBtn" onclick="toggleTimer()">▶</button>
         </div>
     </div>
 
@@ -644,13 +655,14 @@
         let timeLeft = 60;
         let timerId = null;
         let audioCtx = null;
+        let timerJustRestarted = false;
+        let restartTimeoutId = null;
 
         function init() {
             updateSlideRange();
             renderSlide();
 
-            // Check timer visibility and auto-start
-            toggleTimerVisibility();
+            // Timer visibility is handled by renderSlide() which calls restartTimer()
 
             // Event Listeners
             document.addEventListener('keydown', (e) => {
@@ -803,18 +815,67 @@
         }
 
         function restartTimer() {
+            // Cancel any previous restart timeout
+            if (restartTimeoutId) {
+                clearTimeout(restartTimeoutId);
+            }
+            timerJustRestarted = true;
             resetTimer();
             toggleTimer();
+            // Clear the flag after 2 seconds to allow tick sounds
+            restartTimeoutId = setTimeout(() => {
+                timerJustRestarted = false;
+                restartTimeoutId = null;
+            }, 2000);
         }
 
         function tick() {
             if (timeLeft > 0) {
                 timeLeft--;
                 updateTimerDisplay();
+
+                // Play tick sound for last 5 seconds only (not during restart)
+                if (timeLeft > 0 && timeLeft <= 5 && !timerJustRestarted) {
+                    playTickSound();
+                }
+
                 if (timeLeft === 0) {
                     triggerAlarm();
                 }
             }
+        }
+
+        function playTickSound() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+            // Create a clock-like tick using filtered noise
+            const bufferSize = audioCtx.sampleRate * 0.03; // 30ms
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+
+            // Generate noise burst
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.1));
+            }
+
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+
+            // Bandpass filter for clock-like character
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.value = 3000;
+            filter.Q.value = 2;
+
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            noise.start();
         }
 
         function updateTimerDisplay() {
@@ -853,22 +914,49 @@
         function playAlarmSound() {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-            const duration = 1.5;
-            const oscillator = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
+            // Pleasant chime with 3 ascending notes
+            const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 (major chord)
+            const noteDelay = 0.15;
+            const noteDuration = 0.6;
 
-            oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // A5
-            oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + duration);
+            notes.forEach((freq, i) => {
+                const startTime = audioCtx.currentTime + (i * noteDelay);
 
-            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                // Main tone
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
 
-            oscillator.connect(gain);
-            gain.connect(audioCtx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, startTime);
 
-            oscillator.start();
-            oscillator.stop(audioCtx.currentTime + duration);
+                // Soft attack and decay
+                gain.gain.setValueAtTime(0, startTime);
+                gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.01, startTime + noteDuration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(startTime);
+                osc.stop(startTime + noteDuration);
+
+                // Add a subtle harmonic for richness
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(freq * 2, startTime); // Octave above
+
+                gain2.gain.setValueAtTime(0, startTime);
+                gain2.gain.linearRampToValueAtTime(0.03, startTime + 0.05);
+                gain2.gain.exponentialRampToValueAtTime(0.001, startTime + noteDuration);
+
+                osc2.connect(gain2);
+                gain2.connect(audioCtx.destination);
+
+                osc2.start(startTime);
+                osc2.stop(startTime + noteDuration);
+            });
         }
 
         function applyFilters() {
