@@ -246,10 +246,78 @@
             z-index: 100;
         }
 
+        /* Large screens - timer beside slide */
         @media (max-width: 1200px) {
             .circular-timer {
                 left: auto;
                 right: 20px;
+                width: 200px;
+                height: 200px;
+            }
+
+            .circular-timer .timer-content {
+                width: 160px;
+                height: 160px;
+            }
+
+            .circular-timer .timer-display {
+                font-size: 2.2rem;
+            }
+
+            .circular-timer .timer-btn {
+                font-size: 1.8rem;
+                margin-top: 4px;
+            }
+        }
+
+        /* Medium screens - smaller timer */
+        @media (max-width: 1000px) {
+            .circular-timer {
+                width: 120px;
+                height: 120px;
+                right: 10px;
+            }
+
+            .circular-timer .timer-content {
+                width: 95px;
+                height: 95px;
+            }
+
+            .circular-timer .timer-display {
+                font-size: 1.3rem;
+            }
+
+            .circular-timer .timer-btn {
+                font-size: 1.1rem;
+                margin-top: 2px;
+            }
+        }
+
+        /* Small screens - compact timer below navigation */
+        @media (max-width: 768px) {
+            .circular-timer {
+                position: fixed;
+                left: 50%;
+                top: auto;
+                bottom: 20px;
+                transform: translateX(-50%);
+                width: 70px;
+                height: 70px;
+                right: auto;
+            }
+
+            .circular-timer .timer-content {
+                width: 55px;
+                height: 55px;
+            }
+
+            .circular-timer .timer-display {
+                font-size: 0.9rem;
+            }
+
+            .circular-timer .timer-btn {
+                font-size: 0.8rem;
+                margin-top: 1px;
             }
         }
 
