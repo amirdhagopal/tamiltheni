@@ -690,18 +690,14 @@
             <div class="control-row">
                 <span class="control-label">Progress:</span>
                 <span class="progress-info" id="progressInfo">Loading...</span>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Timer:</span>
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9em;">
-                    <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()" checked> Show Timer (8s)
-                </label>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Audio:</span>
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9em;">
-                    <input type="checkbox" id="audioToggle" onchange="toggleAudio()" checked> 🔊 Pronounce Words
-                </label>
+                <div style="margin-left: auto; display: flex; gap: 20px;">
+                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                        <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()" checked> ⏱️ Timer
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                        <input type="checkbox" id="audioToggle" onchange="toggleAudio()" checked> 🔊 Audio
+                    </label>
+                </div>
             </div>
             <div class="control-row"
                 style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
