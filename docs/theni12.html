@@ -551,7 +551,98 @@
             z-index: 10;
         }
 
-        /* ... previous styles ... */
+        /* Circular Timer UI */
+        .circular-timer {
+            position: fixed;
+            left: calc(50% + 480px);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 270px;
+            height: 270px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        @media (max-width: 1250px) {
+            .circular-timer {
+                left: auto;
+                right: 20px;
+            }
+        }
+
+        .timer-visual {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(#667eea 360deg, #f0f0f0 0);
+            transition: background 0.3s ease;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05), 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .timer-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.95);
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timer-display {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            color: #764ba2;
+            line-height: 1;
+        }
+
+        .timer-btn {
+            background: none;
+            border: none;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 2.5rem;
+            padding: 0;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            min-width: auto;
+        }
+
+        .timer-btn:hover {
+            color: #764ba2;
+            transform: scale(1.2);
+            background: none;
+            box-shadow: none;
+        }
+
+        .circular-timer.alarm .timer-visual {
+            background: conic-gradient(#ff7675 360deg, #fff5f5 0) !important;
+            animation: pulse-fill 0.5s infinite alternate;
+        }
+
+        @keyframes pulse-fill {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(255, 118, 117, 0.4);
+            }
+        }
     </style>
 </head>
 
@@ -599,6 +690,12 @@
             <div class="control-row">
                 <span class="control-label">Progress:</span>
                 <span class="progress-info" id="progressInfo">Loading...</span>
+            </div>
+            <div class="control-row">
+                <span class="control-label">Timer:</span>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9em;">
+                    <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()" checked> Show Timer (8s)
+                </label>
             </div>
             <div class="control-row"
                 style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
@@ -14241,6 +14338,14 @@
         </div>
     </div>
 
+    <div class="circular-timer" id="timerPill" title="Study Timer (8s)">
+        <div class="timer-visual" id="timerPie"></div>
+        <div class="timer-content">
+            <span class="timer-display" id="timerDisplay">00:08</span>
+            <button class="timer-btn" id="timerBtn" onclick="toggleTimer(); event.stopPropagation();">▶</button>
+        </div>
+    </div>
+
     <script>
         let currentSlide = 0;
         const totalSlides = 800;
@@ -14258,6 +14363,14 @@
         let filteredSlides = [];
         let originalOrder = [];
         let isShuffled = false;
+
+        // Timer Variables (8 seconds)
+        const TIMER_DURATION = 8;
+        let timeLeft = TIMER_DURATION;
+        let timerId = null;
+        let audioCtx = null;
+        let timerJustRestarted = false;
+        let restartTimeoutId = null;
 
         // Speech Recognition setup
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -14665,6 +14778,11 @@
                     window.history.replaceState(null, null, hash);
                 }
             }
+
+            // Restart timer on new slide if enabled
+            if (document.getElementById('showTimer').checked) {
+                restartTimer();
+            }
         }
 
         function goToFirst() {
@@ -14752,10 +14870,187 @@
         // Update progress on load
         updateProgress();
 
+        // Initialize timer visibility
+        toggleTimerVisibility();
+
         if (window.location.hash) {
             handleHashChange();
         } else {
             updateUI();
+        }
+
+        // ===== Timer Functions =====
+        function toggleTimer() {
+            const btn = document.getElementById('timerBtn');
+            const pill = document.getElementById('timerPill');
+
+            if (timerId) {
+                // Pause
+                clearInterval(timerId);
+                timerId = null;
+                btn.innerText = '▶';
+                pill.classList.remove('alarm');
+            } else {
+                // Start
+                if (timeLeft <= 0) resetTimer();
+                timerId = setInterval(tick, 1000);
+                btn.innerText = '⏸';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerId);
+            timerId = null;
+            timeLeft = TIMER_DURATION;
+            updateTimerDisplay();
+            document.getElementById('timerBtn').innerText = '▶';
+            document.getElementById('timerBtn').onclick = function () { toggleTimer(); event.stopPropagation(); };
+            document.getElementById('timerPill').classList.remove('alarm');
+        }
+
+        function restartTimer() {
+            // Cancel any previous restart timeout
+            if (restartTimeoutId) {
+                clearTimeout(restartTimeoutId);
+            }
+            timerJustRestarted = true;
+            resetTimer();
+            toggleTimer();
+            // Clear the flag after 2 seconds to allow tick sounds
+            restartTimeoutId = setTimeout(() => {
+                timerJustRestarted = false;
+                restartTimeoutId = null;
+            }, 2000);
+        }
+
+        function tick() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                updateTimerDisplay();
+
+                // Play tick sound for last 3 seconds only (not during restart)
+                if (timeLeft > 0 && timeLeft <= 3 && !timerJustRestarted) {
+                    playTickSound();
+                }
+
+                if (timeLeft === 0) {
+                    triggerAlarm();
+                }
+            }
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timeLeft / 60);
+            const secs = timeLeft % 60;
+            document.getElementById('timerDisplay').innerText =
+                `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+            // Update filled circular progress (conic gradient)
+            const angle = (timeLeft / TIMER_DURATION) * 360;
+            document.getElementById('timerPie').style.background =
+                `conic-gradient(#667eea ${angle}deg, #f0f0f0 0)`;
+        }
+
+        function toggleTimerVisibility() {
+            const isVisible = document.getElementById('showTimer').checked;
+            const pill = document.getElementById('timerPill');
+            pill.style.display = isVisible ? 'flex' : 'none';
+
+            if (isVisible) {
+                restartTimer();
+            } else {
+                resetTimer();
+            }
+        }
+
+        function triggerAlarm() {
+            clearInterval(timerId);
+            timerId = null;
+            document.getElementById('timerBtn').innerText = '↺';
+            document.getElementById('timerBtn').onclick = function () { resetTimer(); event.stopPropagation(); };
+            document.getElementById('timerPill').classList.add('alarm');
+            playAlarmSound();
+        }
+
+        function playTickSound() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+            // Create a clock-like tick using filtered noise
+            const bufferSize = audioCtx.sampleRate * 0.03; // 30ms
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+
+            // Generate noise burst
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.1));
+            }
+
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+
+            // Bandpass filter for clock-like character
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.value = 3000;
+            filter.Q.value = 2;
+
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            noise.start();
+        }
+
+        function playAlarmSound() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+            // Pleasant chime with 3 ascending notes
+            const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 (major chord)
+            const noteDelay = 0.15;
+            const noteDuration = 0.6;
+
+            notes.forEach((freq, i) => {
+                const startTime = audioCtx.currentTime + (i * noteDelay);
+
+                // Main tone
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, startTime);
+
+                // Soft attack and decay
+                gain.gain.setValueAtTime(0, startTime);
+                gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
+                gain.gain.exponentialRampToValueAtTime(0.01, startTime + noteDuration);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(startTime);
+                osc.stop(startTime + noteDuration);
+
+                // Add a subtle harmonic for richness
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(freq * 2, startTime); // Octave above
+
+                gain2.gain.setValueAtTime(0, startTime);
+                gain2.gain.linearRampToValueAtTime(0.03, startTime + 0.05);
+                gain2.gain.exponentialRampToValueAtTime(0.001, startTime + noteDuration);
+
+                osc2.connect(gain2);
+                gain2.connect(audioCtx.destination);
+
+                osc2.start(startTime);
+                osc2.stop(startTime + noteDuration);
+            });
         }
     </script>
 </body>
