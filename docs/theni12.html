@@ -697,6 +697,12 @@
                     <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()" checked> Show Timer (8s)
                 </label>
             </div>
+            <div class="control-row">
+                <span class="control-label">Audio:</span>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9em;">
+                    <input type="checkbox" id="audioToggle" onchange="toggleAudio()" checked> 🔊 Pronounce Words
+                </label>
+            </div>
             <div class="control-row"
                 style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
                 <a href="index.html" class="action-button"
@@ -709,11 +715,6 @@
 
     <div class="slide-container">
         <div class="progress" id="progressBar" style="width: 0%"></div>
-
-        <button id="audioBtn" class="audio-button" onclick="toggleAudio(); event.stopPropagation();"
-            title="Audio is ON - Click to Mute">
-            🔊
-        </button>
 
         <button id="micBtn" class="mic-button" onclick="toggleVoiceRecognition(); event.stopPropagation();"
             title="Voice Validation is IDLE - Click to Start Listening">
@@ -14692,13 +14693,10 @@
         }
 
         function toggleAudio() {
-            audioEnabled = !audioEnabled;
-            const audioBtn = document.getElementById('audioBtn');
+            const audioCheckbox = document.getElementById('audioToggle');
+            audioEnabled = audioCheckbox.checked;
 
             if (audioEnabled) {
-                audioBtn.classList.remove('muted');
-                audioBtn.textContent = '🔊';
-                audioBtn.title = 'Audio is ON - Click to Mute';
                 // Speak current word
                 const currentElement = filteredSlides[currentSlide];
                 if (currentElement) {
@@ -14706,9 +14704,6 @@
                     if (wordEn) speakWord(wordEn.textContent);
                 }
             } else {
-                audioBtn.classList.add('muted');
-                audioBtn.textContent = '🔇';
-                audioBtn.title = 'Audio is OFF - Click to Unmute';
                 if (audioTimeout) clearTimeout(audioTimeout);
                 if (synth) synth.cancel();
             }
