@@ -218,7 +218,7 @@ Sequence,Category_Id,Difficulty,SNo,English,Tamil,Category_Name,Category_Name_Ta
 217,13,D1,17,chiku fruit,சீமையிலுப்பை,Fruits,பழங்கள்
 218,13,D1,18,citron,நாரத்தைப் பழம்,Fruits,பழங்கள்
 219,13,D1,19,orange,கிச்சிலிப்பழம்,Fruits,பழங்கள்
-220,13,D1,20,watermelon,தர்ப்பூசணிப்பழ ம்,Fruits,பழங்கள்
+220,13,D1,20,watermelon,தர்ப்பூசணிப்பழம்,Fruits,பழங்கள்
 221,13,D2,1,blackberry,கருநாவற்பழம்,Fruits,பழங்கள்
 222,13,D2,2,sweet lime,சாத்துக்குடி,Fruits,பழங்கள்
 223,13,D2,3,sugar palm,நுங்கு,Fruits,பழங்கள்
@@ -291,7 +291,7 @@ Sequence,Category_Id,Difficulty,SNo,English,Tamil,Category_Name,Category_Name_Ta
 290,19,D1,10,pressure,அழுத்தம்,Geography,புவியியல்
 291,19,D1,11,ranges,தொடர்கள்,Geography,புவியியல்
 292,19,D1,12,globe,புவிக்கோளம்,Geography,புவியியல்
-293,19,D1,13,village,கிராம்,Geography,புவியியல்
+293,19,D1,13,village,கிராமம்,Geography,புவியியல்
 294,19,D1,14,universe,அண்டம்,Geography,புவியியல்
 295,19,D1,15,geography,புவியியல் (நிலவியல்),Geography,புவியியல்
 296,19,D1,16,sky,வானம்,Geography,புவியியல்
@@ -490,7 +490,7 @@ Sequence,Category_Id,Difficulty,SNo,English,Tamil,Category_Name,Category_Name_Ta
 489,29,D1,9,short vowel,குறில்,Grammar,இலக்கணம்
 490,29,D1,10,long vowel,நெடில்,Grammar,இலக்கணம்
 491,29,D1,11,word,சொல்,Grammar,இலக்கணம்
-492,29,D1,12,,வாக்கியம்,Grammar,இலக்கணம்
+492,29,D1,12,sentence,வாக்கியம்,Grammar,இலக்கணம்
 493,29,D1,13,singular,ஒருமை,Grammar,இலக்கணம்
 494,29,D1,14,plural,பன்மை,Grammar,இலக்கணம்
 495,29,D1,15,past tense,கடந்தகாலம்,Grammar,இலக்கணம்
