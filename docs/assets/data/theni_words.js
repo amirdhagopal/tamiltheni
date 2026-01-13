@@ -1,4 +1,5 @@
-window.theni2Data = [
+// Theni Words - Shared word list for Theni 1 and Theni 2 (800 words)
+window.theniWords = [
   {
     "id": 1,
     "category": "Body Parts",

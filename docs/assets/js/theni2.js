@@ -102,23 +102,23 @@
     async function loadSlidesData() {
         try {
             // Check if data is loaded
-            if (!window.theni2Data) {
-                console.error("Data not found (window.theni2Data is undefined)");
+            if (!window.theniWords) {
+                console.error("Data not found (window.theniWords is undefined)");
                 // Fallback attempt with fetch if running on server (optional, but keeping it simple)
                 try {
-                    const response = await fetch('assets/data/theni2_words.json');
+                    const response = await fetch('assets/data/theni_words.json');
                     if (response.ok) {
-                        window.theni2Data = await response.json();
+                        window.theniWords = await response.json();
                     } else {
                         throw new Error("Local data fetch failed");
                     }
                 } catch (e) {
-                    alert("Data loading failed. Please ensure assets/data/theni2_data.js is loaded.");
+                    alert("Data loading failed. Please ensure assets/data/theni_words.js is loaded.");
                     return;
                 }
             }
 
-            const data = window.theni2Data;
+            const data = window.theniWords;
 
             const wrapper = document.getElementById('slides-wrapper');
             if (!wrapper) return;
