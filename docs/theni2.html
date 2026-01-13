@@ -14967,11 +14967,12 @@
             // Load image
             const cardImg = document.getElementById(prefix + 'Img');
             if (cardImg) {
+                const safeFilename = word.replace(/\s+/g, '_').toLowerCase();
                 // Check cache first
                 if (imageCache[word]) {
                     cardImg.src = imageCache[word];
                 } else {
-                    cardImg.src = `images/${word.replace(/\s+/g, '_').toLowerCase()}.jpg`;
+                    cardImg.src = `assets/images/theni12/${safeFilename}.jpg`;
                     cardImg.onerror = function () {
                         this.src = `https://placehold.co/300x180?text=${encodeURIComponent(wordEn)}`;
                     };
