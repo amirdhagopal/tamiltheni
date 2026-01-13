@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TamilTheni - Theni 2 (Dual Image Mode)</title>
+    <title>TamilTheni - Theni 2</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -241,10 +241,12 @@
             background: #fafafa;
             border-radius: 16px;
             padding: 20px;
+            padding-bottom: 40px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             border: 2px solid transparent;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .dual-word-card:hover {
@@ -275,6 +277,15 @@
         .dual-word-card .word-ta {
             font-size: 1.6em;
             margin: 5px 0;
+            opacity: 0;
+            filter: blur(5px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dual-word-card.revealed .word-ta {
+            opacity: 1;
+            filter: blur(0);
         }
 
         .dual-word-card .card-badge {
@@ -291,10 +302,26 @@
             color: #1565c0;
         }
 
-        .dual-word-card .difficulty-label {
+        .dual-word-card .category-label-ta {
+            background: #ffebee;
+            color: #c62828;
+            margin-left: 5px;
+        }
+
+        .dual-word-card .difficulty-badge-corner {
+            position: absolute;
+            bottom: 10px;
             background: #fff3e0;
             color: #ef6c00;
-            margin-left: 5px;
+            font-weight: 700;
+        }
+
+        .dual-word-card .difficulty-badge-corner.left {
+            left: 10px;
+        }
+
+        .dual-word-card .difficulty-badge-corner.right {
+            right: 10px;
         }
 
         /* Hide original slide content in dual mode */
@@ -873,10 +900,11 @@
                         </div>
                         <div class="word-en" id="card1En">Word 1</div>
                         <div class="word-ta" id="card1Ta">சொல் 1</div>
-                        <div>
+                        <div class="category-badges">
                             <span class="card-badge category-label" id="card1Cat">Category</span>
-                            <span class="card-badge difficulty-label" id="card1Diff">D1</span>
+                            <span class="card-badge category-label-ta" id="card1CatTa">வகை</span>
                         </div>
+                        <span class="card-badge difficulty-badge-corner left" id="card1Diff">D1</span>
                     </div>
                     <div class="dual-word-card" id="card2">
                         <div class="card-image">
@@ -884,10 +912,11 @@
                         </div>
                         <div class="word-en" id="card2En">Word 2</div>
                         <div class="word-ta" id="card2Ta">சொல் 2</div>
-                        <div>
+                        <div class="category-badges">
                             <span class="card-badge category-label" id="card2Cat">Category</span>
-                            <span class="card-badge difficulty-label" id="card2Diff">D2</span>
+                            <span class="card-badge category-label-ta" id="card2CatTa">வகை</span>
                         </div>
+                        <span class="card-badge difficulty-badge-corner right" id="card2Diff">D2</span>
                     </div>
                 </div>
             </div>
@@ -14878,6 +14907,10 @@
 
         function updateUI() {
             // Dual view mode - show two cards
+            // Reset revealed state for both cards
+            document.getElementById('card1').classList.remove('revealed');
+            document.getElementById('card2').classList.remove('revealed');
+
             if (filteredSlides.length < 2) {
                 // Not enough slides for dual view
                 document.getElementById('card1En').textContent = 'Not enough words';
@@ -14947,6 +14980,7 @@
             const wordEn = slide.querySelector('.word-en')?.textContent || '';
             const wordTa = slide.querySelector('.word-ta')?.textContent || '';
             const category = slide.querySelector('.category-badge')?.textContent || '';
+            const categoryTa = slide.querySelector('.category-badge-ta')?.textContent || '';
             const difficulty = slide.querySelector('.difficulty-badge')?.textContent || '';
             const img = slide.querySelector('.slide-image');
             const word = img?.dataset.word || wordEn.toLowerCase();
@@ -14955,12 +14989,14 @@
             document.getElementById(prefix + 'En').textContent = wordEn;
             document.getElementById(prefix + 'Ta').textContent = wordTa;
             document.getElementById(prefix + 'Cat').textContent = category;
+            document.getElementById(prefix + 'CatTa').textContent = categoryTa;
             document.getElementById(prefix + 'Diff').textContent = difficulty;
 
             // Load image
             const cardImg = document.getElementById(prefix + 'Img');
             if (cardImg) {
-                const safeFilename = word.replace(/\s+/g, '_').toLowerCase();
+                // Same logic as fetchImage in theni1 - remove special chars, replace spaces with underscores
+                const safeFilename = word.replace(/[^a-zA-Z0-9 \-_]/g, '').trim().replace(/\s+/g, '_').toLowerCase();
                 // Check cache first
                 if (imageCache[word]) {
                     cardImg.src = imageCache[word];
@@ -14999,12 +15035,18 @@
         function handleNextAction() {
             if (!filteredSlides[currentSlide]) return;
 
-            if (filteredSlides[currentSlide].classList.contains('revealed')) {
+            // Check if both cards are revealed
+            const card1 = document.getElementById('card1');
+            const card2 = document.getElementById('card2');
+            const bothRevealed = card1.classList.contains('revealed') && card2.classList.contains('revealed');
+
+            if (bothRevealed) {
                 // Already revealed, move to next slide
                 changeSlide(1);
             } else {
-                // Not revealed yet, reveal it
-                filteredSlides[currentSlide].classList.add('revealed');
+                // Not revealed yet, reveal both cards
+                card1.classList.add('revealed');
+                card2.classList.add('revealed');
             }
         }
 
