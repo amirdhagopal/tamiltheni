@@ -20,56 +20,15 @@
     let viewedPartners = {}; // Stores index -> partnerIndex mapping for persistence
     let sentenceCache = {}; // Stores "word1|word2" -> {tamil, english}
 
-    // Timer Variables (20 seconds for dual image mode)
-    const TIMER_DURATION = 20;
-    let timeLeft = TIMER_DURATION;
-    let timerId = null;
-    let audioCtx = null;
-    let timerJustRestarted = false;
-    let restartTimeoutId = null;
+    // Timer state handled by shared timer.js
+
 
 
     // Initialize
     document.addEventListener('DOMContentLoaded', initApp);
 
-    // Unlock AudioContext and SpeechSynthesis on first user interaction (required by Safari, Comet, and strict browsers)
-    function unlockAudio() {
-        // Unlock AudioContext
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
+    // Audio unlock handled by timer.js
 
-        // Resume the context
-        const resumePromise = audioCtx.resume();
-
-        // Play a silent buffer to fully unlock audio (required by very strict browsers)
-        if (resumePromise) {
-            resumePromise.then(() => {
-                // Create and play a silent buffer to ensure audio is fully unlocked
-                const silentBuffer = audioCtx.createBuffer(1, 1, 22050);
-                const source = audioCtx.createBufferSource();
-                source.buffer = silentBuffer;
-                source.connect(audioCtx.destination);
-                source.start(0);
-                console.log('AudioContext unlocked successfully');
-            }).catch(err => {
-                console.warn('AudioContext resume failed:', err);
-            });
-        }
-
-        // Note: SpeechSynthesis doesn't require pre-unlock like AudioContext
-        // Removing the silent utterance that was blocking the queue
-        console.log('Audio systems ready');
-
-        // Remove listeners after first interaction
-        document.removeEventListener('click', unlockAudio);
-        document.removeEventListener('touchstart', unlockAudio);
-        document.removeEventListener('keydown', unlockAudio);
-    }
-
-    document.addEventListener('click', unlockAudio, { passive: true });
-    document.addEventListener('touchstart', unlockAudio, { passive: true });
-    document.addEventListener('keydown', unlockAudio);
 
     async function initApp() {
         // Load Data
@@ -86,8 +45,10 @@
         // Update progress on load
         updateProgress();
 
-        // Initialize timer visibility
-        toggleTimerVisibility();
+        // Initialize timer
+        if (window.TheniTimer) {
+            window.TheniTimer.init(20);
+        }
 
         if (window.location.hash) {
             handleHashChange();
@@ -171,10 +132,10 @@
     window.shuffleSlides = shuffleSlides;
     window.resetSequence = resetSequence;
     window.generateSentence = generateSentence;
-    window.toggleTimer = toggleTimer;
+    window.toggleTimer = () => window.TheniTimer && window.TheniTimer.toggle();
     window.saveApiKey = saveApiKey;
     window.toggleAudio = toggleAudio;
-    window.toggleTimerVisibility = toggleTimerVisibility;
+    window.toggleTimerVisibility = () => window.TheniTimer && window.TheniTimer.toggleVisibility();
 
     // Navigation
     window.handleNextAction = handleNextAction;
@@ -370,305 +331,8 @@
 
     // fetchImage removed as needed, logic integrated into template or updateCard
 
-    function toggleTimer() {
-        const btn = document.getElementById('timerBtn');
-        const pill = document.getElementById('timerPill');
+    // Timer functions delegated to timer.js
 
-        console.log("toggleTimer called. timerId WAS:", timerId);
-
-        if (timerId) {
-            // Pause
-            console.log("Pausing timer. Clearing interval:", timerId);
-            clearInterval(timerId);
-            timerId = null;
-            if (btn) btn.innerText = '▶';
-            if (pill) pill.classList.remove('alarm');
-        } else {
-            // Start
-            console.log("Starting timer. timeLeft:", timeLeft);
-            if (timeLeft <= 0) resetTimer();
-            timerId = setInterval(tick, 1000);
-            console.log("New timerId STARTED:", timerId);
-            if (btn) btn.innerText = '⏸';
-        }
-    }
-
-    function resetTimer() {
-        console.log("resetTimer called. Clearing interval:", timerId);
-        clearInterval(timerId);
-        timerId = null;
-        timeLeft = TIMER_DURATION;
-        updateTimerDisplay();
-        const btn = document.getElementById('timerBtn');
-        if (btn) {
-            btn.innerText = '▶';
-            btn.onclick = function (e) { toggleTimer(); e.stopPropagation(); };
-        }
-        const pill = document.getElementById('timerPill');
-        if (pill) pill.classList.remove('alarm');
-    }
-
-    function restartTimer() {
-        console.log("restartTimer called");
-        if (restartTimeoutId) {
-            clearTimeout(restartTimeoutId);
-        }
-        timerJustRestarted = true;
-        resetTimer();
-        toggleTimer();
-        restartTimeoutId = setTimeout(() => {
-            timerJustRestarted = false;
-            restartTimeoutId = null;
-        }, 2000);
-    }
-
-    function tick() {
-        console.log("Tick executing. ID used:", timerId);
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateTimerDisplay();
-
-            if (timeLeft > 0 && timeLeft <= 5 && !timerJustRestarted) {
-                playTickSound();
-            }
-
-            if (timeLeft === 0) {
-                triggerAlarm();
-            }
-        }
-    }
-
-    function updateTimerDisplay() {
-        const mins = Math.floor(timeLeft / 60);
-        const secs = timeLeft % 60;
-        document.getElementById('timerDisplay').innerText =
-            `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-
-        // Update filled circular progress (conic gradient)
-        const angle = (timeLeft / TIMER_DURATION) * 360;
-        document.getElementById('timerPie').style.background =
-            `conic-gradient(#667eea ${angle}deg, #f0f0f0 0)`;
-    }
-
-    function toggleTimerVisibility() {
-        const checkbox = document.getElementById('showTimer');
-        if (!checkbox) return;
-
-        const isVisible = checkbox.checked;
-        const pill = document.getElementById('timerPill');
-        if (pill) pill.style.display = isVisible ? 'flex' : 'none';
-
-        if (isVisible) {
-            restartTimer();
-        } else {
-            resetTimer();
-        }
-    }
-
-    function saveApiKey(key) {
-        localStorage.setItem('gemini_api_key', key);
-        const status = document.getElementById('keyStatus');
-        if (status) {
-            status.style.display = 'inline';
-            setTimeout(() => status.style.display = 'none', 3000);
-        }
-    }
-
-    async function generateSentence() {
-        const resultDiv = document.getElementById('aiResult');
-        const resultText = document.getElementById('aiText');
-        const resultTextEn = document.getElementById('aiTextEn');
-        const btn = document.getElementById('aiBtn');
-        const key = document.getElementById('apiKeyInput').value;
-
-        if (!key) {
-            alert('Please enter your Gemini API Key in the settings first.');
-            toggleControlPanel(); // Open settings
-            return;
-        }
-
-        // Get current words
-        const word1 = document.getElementById('card1Ta').textContent;
-        const word2 = document.getElementById('card2Ta').textContent;
-
-        if (!word1 || !word2) return;
-
-        const cacheKey = `${word1}|${word2}`;
-
-        // Check Cache
-        if (sentenceCache[cacheKey]) {
-            const json = sentenceCache[cacheKey];
-            resultText.textContent = json.tamil;
-            resultTextEn.textContent = json.english;
-            resultDiv.style.display = 'block';
-
-            // Speak the Tamil sentence
-            if (audioEnabled) speakWord(json.tamil);
-
-            btn.innerHTML = '<span>✨</span> Generate Sentence with AI';
-            btn.disabled = false;
-            return;
-        }
-
-        // UI Loading State
-        btn.disabled = true;
-        btn.innerHTML = '<span>⏳</span> Generating...';
-        resultDiv.style.display = 'none';
-
-        try {
-            const prompt = `Generate a simple, easy Tamil sentence using these two words: "${word1}" and "${word2}". Also provide the English meaning. Format as JSON: { "tamil": "tamil sentence", "english": "english meaning" }`;
-
-            // Step 1: List models to find a valid one
-            let modelName = 'models/gemini-1.5-flash'; // Default backup
-
-            try {
-                const listResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${key}`);
-                if (listResponse.ok) {
-                    const listData = await listResponse.json();
-                    // Find first model that supports generateContent and is a Gemini model
-                    const validModel = listData.models?.find(m =>
-                        m.supportedGenerationMethods?.includes('generateContent') &&
-                        m.name.includes('gemini')
-                    );
-                    if (validModel) {
-                        modelName = validModel.name;
-                        console.log('Using dynamically found model:', modelName);
-                    }
-                }
-            } catch (e) {
-                console.warn('Failed to list models, using default:', modelName);
-            }
-
-            // Step 2: Use the found model
-            let response = await fetch(`https://generativelanguage.googleapis.com/v1beta/${modelName}:generateContent?key=${key}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-            });
-
-            if (!response.ok) {
-                const errData = await response.json();
-                console.error('Gemini API Error:', errData);
-                throw new Error(`API Error: ${response.status} ${response.statusText} - ${JSON.stringify(errData)}`);
-            }
-
-            const data = await response.json();
-            const text = data.candidates[0].content.parts[0].text;
-
-            // Parse JSON from response (handle potential markdown code blocks)
-            const cleanJson = text.replace(/```json/g, '').replace(/```/g, '').trim();
-            const json = JSON.parse(cleanJson);
-
-            // Save to Cache
-            sentenceCache[cacheKey] = json;
-
-            resultText.textContent = json.tamil;
-            resultTextEn.textContent = json.english;
-            resultDiv.style.display = 'block';
-
-            // Speak the Tamil sentence
-            if (audioEnabled) speakWord(json.tamil);
-
-        } catch (error) {
-            console.error(error);
-            alert('Failed to generate sentence. Check your API Key and Console.');
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = '<span>✨</span> Generate Sentence with AI';
-        }
-    }
-
-    function triggerAlarm() {
-        clearInterval(timerId);
-        timerId = null;
-        document.getElementById('timerBtn').innerText = '↺';
-        document.getElementById('timerBtn').onclick = function (e) { resetTimer(); e.stopPropagation(); };
-        document.getElementById('timerPill').classList.add('alarm');
-        playAlarmSound();
-    }
-
-    function playTickSound() {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        // Create a clock-like tick using filtered noise
-        const bufferSize = audioCtx.sampleRate * 0.03; // 30ms
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-
-        // Generate noise burst
-        for (let i = 0; i < bufferSize; i++) {
-            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.1));
-        }
-
-        const noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
-
-        // Bandpass filter for clock-like character
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.value = 3000;
-        filter.Q.value = 2;
-
-        const gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        noise.start();
-    }
-
-    function playAlarmSound() {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        // Pleasant chime with 3 ascending notes
-        const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 (major chord)
-        const noteDelay = 0.15;
-        const noteDuration = 0.6;
-
-        notes.forEach((freq, i) => {
-            const startTime = audioCtx.currentTime + (i * noteDelay);
-
-            // Main tone
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, startTime);
-
-            // Soft attack and decay
-            gain.gain.setValueAtTime(0, startTime);
-            gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.01, startTime + noteDuration);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start(startTime);
-            osc.stop(startTime + noteDuration);
-
-            // Add a subtle harmonic for richness
-            const osc2 = audioCtx.createOscillator();
-            const gain2 = audioCtx.createGain();
-
-            osc2.type = 'sine';
-            osc2.frequency.setValueAtTime(freq * 2, startTime); // Octave above
-
-            gain2.gain.setValueAtTime(0, startTime);
-            gain2.gain.linearRampToValueAtTime(0.03, startTime + 0.05);
-            gain2.gain.exponentialRampToValueAtTime(0.001, startTime + noteDuration);
-
-            osc2.connect(gain2);
-            gain2.connect(audioCtx.destination);
-
-            osc2.start(startTime);
-            osc2.stop(startTime + noteDuration);
-        });
-    }
 
 
     function speakWord(word, lang = null, cancelPrevious = true) {
@@ -833,7 +497,7 @@
         // Restart timer on new slide if enabled
         const timerCheck = document.getElementById('showTimer');
         if (timerCheck && timerCheck.checked) {
-            restartTimer();
+            if (window.TheniTimer) window.TheniTimer.restart();
         }
     }
 

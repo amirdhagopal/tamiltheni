@@ -9,13 +9,8 @@
     let currentSlide = 0;
     let totalPages = 50;
 
-    // Timer Variables (60 seconds)
-    const TIMER_DURATION = 60;
-    let timeLeft = TIMER_DURATION;
-    let timerId = null;
-    let audioCtx = null;
-    let timerJustRestarted = false;
-    let restartTimeoutId = null;
+    // Timer state deferred to shared timer.js
+
 
     // Audio unlock for strict browsers
     function unlockAudioContext() {
@@ -47,6 +42,7 @@
 
     function init() {
         updateSlideRange();
+        if (window.TheniTimer) window.TheniTimer.init(60);
         renderSlide();
 
         // Event Listeners
@@ -115,8 +111,9 @@
         updateUI();
 
         // Restart timer on new slide if enabled
+        // Restart timer on new slide if enabled
         if (document.getElementById('showTimer').checked) {
-            restartTimer();
+            if (window.TheniTimer) window.TheniTimer.restart();
         }
     }
 
@@ -166,168 +163,8 @@
         renderSlide();
     }
 
-    // Timer Logic
-    function toggleTimer() {
-        const btn = document.getElementById('timerBtn');
-        const pill = document.getElementById('timerPill');
+    // Timer Logic deferred to timer.js
 
-        if (timerId) {
-            clearInterval(timerId);
-            timerId = null;
-            btn.innerText = '▶';
-            pill.classList.remove('alarm');
-        } else {
-            if (timeLeft <= 0) resetTimer();
-            timerId = setInterval(tick, 1000);
-            btn.innerText = '⏸';
-        }
-    }
-
-    function resetTimer() {
-        clearInterval(timerId);
-        timerId = null;
-        timeLeft = TIMER_DURATION;
-        updateTimerDisplay();
-        document.getElementById('timerBtn').innerText = '▶';
-        document.getElementById('timerBtn').onclick = toggleTimer;
-        document.getElementById('timerPill').classList.remove('alarm');
-    }
-
-    function restartTimer() {
-        if (restartTimeoutId) {
-            clearTimeout(restartTimeoutId);
-        }
-        timerJustRestarted = true;
-        resetTimer();
-        toggleTimer();
-        restartTimeoutId = setTimeout(() => {
-            timerJustRestarted = false;
-            restartTimeoutId = null;
-        }, 2000);
-    }
-
-    function tick() {
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateTimerDisplay();
-
-            if (timeLeft > 0 && timeLeft <= 5 && !timerJustRestarted) {
-                playTickSound();
-            }
-
-            if (timeLeft === 0) {
-                triggerAlarm();
-            }
-        }
-    }
-
-    function playTickSound() {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        const bufferSize = audioCtx.sampleRate * 0.03;
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-
-        for (let i = 0; i < bufferSize; i++) {
-            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.1));
-        }
-
-        const noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
-
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.value = 3000;
-        filter.Q.value = 2;
-
-        const gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        noise.start();
-    }
-
-    function updateTimerDisplay() {
-        const mins = Math.floor(timeLeft / 60);
-        const secs = timeLeft % 60;
-        document.getElementById('timerDisplay').innerText =
-            `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-
-        const angle = (timeLeft / TIMER_DURATION) * 360;
-        document.getElementById('timerPie').style.background =
-            `conic-gradient(var(--primary) ${angle}deg, #f0f0f0 0)`;
-    }
-
-    function toggleTimerVisibility() {
-        const isVisible = document.getElementById('showTimer').checked;
-        const pill = document.getElementById('timerPill');
-        pill.style.display = isVisible ? 'flex' : 'none';
-
-        if (isVisible) {
-            restartTimer();
-        } else {
-            resetTimer();
-        }
-    }
-
-    function triggerAlarm() {
-        clearInterval(timerId);
-        timerId = null;
-        document.getElementById('timerBtn').innerText = '↺';
-        document.getElementById('timerBtn').onclick = resetTimer;
-        document.getElementById('timerPill').classList.add('alarm');
-        playAlarmSound();
-    }
-
-    function playAlarmSound() {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        const notes = [523.25, 659.25, 783.99];
-        const noteDelay = 0.15;
-        const noteDuration = 0.6;
-
-        notes.forEach((freq, i) => {
-            const startTime = audioCtx.currentTime + (i * noteDelay);
-
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, startTime);
-
-            gain.gain.setValueAtTime(0, startTime);
-            gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.01, startTime + noteDuration);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start(startTime);
-            osc.stop(startTime + noteDuration);
-
-            const osc2 = audioCtx.createOscillator();
-            const gain2 = audioCtx.createGain();
-
-            osc2.type = 'sine';
-            osc2.frequency.setValueAtTime(freq * 2, startTime);
-
-            gain2.gain.setValueAtTime(0, startTime);
-            gain2.gain.linearRampToValueAtTime(0.03, startTime + 0.05);
-            gain2.gain.exponentialRampToValueAtTime(0.001, startTime + noteDuration);
-
-            osc2.connect(gain2);
-            gain2.connect(audioCtx.destination);
-
-            osc2.start(startTime);
-            osc2.stop(startTime + noteDuration);
-        });
-    }
 
     function applyFilters() {
         updateSlideRange();
@@ -337,8 +174,8 @@
     window.applyFilters = applyFilters;
     window.shuffleWords = shuffleWords;
     window.resetWords = resetWords;
-    window.toggleTimerVisibility = toggleTimerVisibility;
-    window.toggleTimer = toggleTimer;
+    window.toggleTimerVisibility = () => window.TheniTimer && window.TheniTimer.toggleVisibility();
+    window.toggleTimer = () => window.TheniTimer && window.TheniTimer.toggle();
     window.goToSlide = goToSlide;
     window.nextSlide = nextSlide;
     window.prevSlide = prevSlide;

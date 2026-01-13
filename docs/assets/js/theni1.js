@@ -19,47 +19,16 @@
     let originalOrder = [];
     let isShuffled = false;
 
-    // Timer Variables (8 seconds)
-    const TIMER_DURATION = 8;
-    let timeLeft = TIMER_DURATION;
-    let timerId = null;
-    let audioCtx = null;
-    let timerJustRestarted = false;
-    let restartTimeoutId = null;
+    // Timer state deferred to shared timer.js
+
 
     // Speech Recognition setup
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = null;
     let isRecording = false;
 
-    // Audio unlock for strict browsers (Comet/WebKit)
-    function unlockAudioContext() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
+    // Audio unlock handled by timer.js
 
-        const resumePromise = audioCtx.resume();
-        if (resumePromise) {
-            resumePromise.then(() => {
-                const silentBuffer = audioCtx.createBuffer(1, 1, 22050);
-                const source = audioCtx.createBufferSource();
-                source.buffer = silentBuffer;
-                source.connect(audioCtx.destination);
-                source.start(0);
-                console.log('AudioContext unlocked successfully');
-            }).catch(err => {
-                console.warn('AudioContext resume failed:', err);
-            });
-        }
-
-        document.removeEventListener('click', unlockAudioContext);
-        document.removeEventListener('touchstart', unlockAudioContext);
-        document.removeEventListener('keydown', unlockAudioContext);
-    }
-
-    document.addEventListener('click', unlockAudioContext);
-    document.addEventListener('touchstart', unlockAudioContext);
-    document.addEventListener('keydown', unlockAudioContext);
 
     // Initialize speech recognition
     if (SpeechRecognition) {
@@ -462,7 +431,7 @@
         }
 
         if (document.getElementById('showTimer').checked) {
-            restartTimer();
+            if (window.TheniTimer) window.TheniTimer.restart();
         }
     }
 
@@ -513,168 +482,8 @@
         }
     }
 
-    // Timer Functions
-    function toggleTimer() {
-        const btn = document.getElementById('timerBtn');
-        const pill = document.getElementById('timerPill');
+    // Timer Functions delegated to timer.js
 
-        if (timerId) {
-            clearInterval(timerId);
-            timerId = null;
-            btn.innerText = '▶';
-            pill.classList.remove('alarm');
-        } else {
-            if (timeLeft <= 0) resetTimer();
-            timerId = setInterval(tick, 1000);
-            btn.innerText = '⏸';
-        }
-    }
-
-    function resetTimer() {
-        clearInterval(timerId);
-        timerId = null;
-        timeLeft = TIMER_DURATION;
-        updateTimerDisplay();
-        document.getElementById('timerBtn').innerText = '▶';
-        document.getElementById('timerBtn').onclick = function () { toggleTimer(); event.stopPropagation(); };
-        document.getElementById('timerPill').classList.remove('alarm');
-    }
-
-    function restartTimer() {
-        if (restartTimeoutId) {
-            clearTimeout(restartTimeoutId);
-        }
-        timerJustRestarted = true;
-        resetTimer();
-        toggleTimer();
-        restartTimeoutId = setTimeout(() => {
-            timerJustRestarted = false;
-            restartTimeoutId = null;
-        }, 2000);
-    }
-
-    function tick() {
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateTimerDisplay();
-
-            if (timeLeft > 0 && timeLeft <= 3 && !timerJustRestarted) {
-                playTickSound();
-            }
-
-            if (timeLeft === 0) {
-                triggerAlarm();
-            }
-        }
-    }
-
-    function updateTimerDisplay() {
-        const mins = Math.floor(timeLeft / 60);
-        const secs = timeLeft % 60;
-        document.getElementById('timerDisplay').innerText =
-            `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-
-        const angle = (timeLeft / TIMER_DURATION) * 360;
-        document.getElementById('timerPie').style.background =
-            `conic-gradient(#667eea ${angle}deg, #f0f0f0 0)`;
-    }
-
-    function toggleTimerVisibility() {
-        const isVisible = document.getElementById('showTimer').checked;
-        const pill = document.getElementById('timerPill');
-        pill.style.display = isVisible ? 'flex' : 'none';
-
-        if (isVisible) {
-            restartTimer();
-        } else {
-            resetTimer();
-        }
-    }
-
-    function triggerAlarm() {
-        clearInterval(timerId);
-        timerId = null;
-        document.getElementById('timerBtn').innerText = '↺';
-        document.getElementById('timerBtn').onclick = function () { resetTimer(); event.stopPropagation(); };
-        document.getElementById('timerPill').classList.add('alarm');
-        playAlarmSound();
-    }
-
-    function playTickSound() {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        const bufferSize = audioCtx.sampleRate * 0.03;
-        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-
-        for (let i = 0; i < bufferSize; i++) {
-            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.1));
-        }
-
-        const noise = audioCtx.createBufferSource();
-        noise.buffer = buffer;
-
-        const filter = audioCtx.createBiquadFilter();
-        filter.type = 'bandpass';
-        filter.frequency.value = 3000;
-        filter.Q.value = 2;
-
-        const gain = audioCtx.createGain();
-        gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
-
-        noise.connect(filter);
-        filter.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        noise.start();
-    }
-
-    function playAlarmSound() {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        const notes = [523.25, 659.25, 783.99];
-        const noteDelay = 0.15;
-        const noteDuration = 0.6;
-
-        notes.forEach((freq, i) => {
-            const startTime = audioCtx.currentTime + (i * noteDelay);
-
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, startTime);
-
-            gain.gain.setValueAtTime(0, startTime);
-            gain.gain.linearRampToValueAtTime(0.15, startTime + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.01, startTime + noteDuration);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start(startTime);
-            osc.stop(startTime + noteDuration);
-
-            const osc2 = audioCtx.createOscillator();
-            const gain2 = audioCtx.createGain();
-
-            osc2.type = 'sine';
-            osc2.frequency.setValueAtTime(freq * 2, startTime);
-
-            gain2.gain.setValueAtTime(0, startTime);
-            gain2.gain.linearRampToValueAtTime(0.03, startTime + 0.05);
-            gain2.gain.exponentialRampToValueAtTime(0.001, startTime + noteDuration);
-
-            osc2.connect(gain2);
-            gain2.connect(audioCtx.destination);
-
-            osc2.start(startTime);
-            osc2.stop(startTime + noteDuration);
-        });
-    }
 
     // Event Listeners
     document.getElementById('slides-wrapper').addEventListener('click', (e) => {
@@ -709,9 +518,9 @@
     window.resetSequence = resetSequence;
     window.toggleVoiceRecognition = toggleVoiceRecognition;
     window.toggleAudio = toggleAudio;
-    window.toggleTimer = toggleTimer;
-    window.toggleTimerVisibility = toggleTimerVisibility;
-    window.resetTimer = resetTimer;
+    window.toggleTimer = () => window.TheniTimer && window.TheniTimer.toggle();
+    window.toggleTimerVisibility = () => window.TheniTimer && window.TheniTimer.toggleVisibility();
+    window.resetTimer = () => window.TheniTimer && window.TheniTimer.reset();
     window.goToFirst = goToFirst;
     window.goToLast = goToLast;
     window.changeSlide = changeSlide;
@@ -722,7 +531,10 @@
         generateSlides();
         populateCategories();
         updateProgress();
-        toggleTimerVisibility();
+        updateProgress();
+        if (window.TheniTimer) {
+            window.TheniTimer.init(8);
+        }
 
         if (window.location.hash) {
             handleHashChange();
