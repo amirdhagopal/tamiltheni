@@ -32,8 +32,8 @@ window.theniWords = [
     "word_en": "head",
     "word_ta": "தலை",
     "image_word": "head",
-    "sentence_en": "She carefully washed her own head.",
-    "sentence_ta": "அவள் தன் தலையை கவனமாக கழுவினாள்.",
+    "sentence_en": "She nodded her head.",
+    "sentence_ta": "அவள் தலையை ஆட்டினாள்.",
     "complexity": 1
   },
   {
@@ -68,8 +68,8 @@ window.theniWords = [
     "word_en": "leg",
     "word_ta": "கால்",
     "image_word": "leg",
-    "sentence_en": "The dog lifted its leg to cross the river.",
-    "sentence_ta": "நாய் ஆற்றைக் கடக்க தன் கால் ஒன்றை தூக்கியது.",
+    "sentence_en": "The dog hurt its leg.",
+    "sentence_ta": "நாயின் காலில் காயம் ஏற்பட்டது.",
     "complexity": 2
   },
   {
@@ -92,8 +92,8 @@ window.theniWords = [
     "word_en": "teeth",
     "word_ta": "பல்",
     "image_word": "teeth",
-    "sentence_en": "I have clean teeth every morning.",
-    "sentence_ta": "எனக்கு தினமும் காலையில் சுத்தமான பற்கள் இருக்கும்.",
+    "sentence_en": "I brush my teeth every morning.",
+    "sentence_ta": "நான் தினமும் காலையில் பல் துலக்குவேன்.",
     "complexity": 1
   },
   {
@@ -128,8 +128,8 @@ window.theniWords = [
     "word_en": "nail",
     "word_ta": "நகம்",
     "image_word": "nail",
-    "sentence_en": "The small nail was stuck in the board.",
-    "sentence_ta": "சிறிய ஆணி பலகையில் சிக்கிக்கொண்டது.",
+    "sentence_en": "I need to cut my nails.",
+    "sentence_ta": "நான் என் நகங்களை வெட்ட வேண்டும்.",
     "complexity": 1
   },
   {
@@ -200,8 +200,8 @@ window.theniWords = [
     "word_en": "tongue",
     "word_ta": "நாக்கு",
     "image_word": "tongue",
-    "sentence_en": "The cat licks its own tongue.",
-    "sentence_ta": "பூனை தன் நாக்கினால் சுத்தம் செய்யும்.",
+    "sentence_en": "The doctor asked me to show my tongue.",
+    "sentence_ta": "மருத்துவர் என்னிடம் நாக்கை நீட்டச் சொன்னார்.",
     "complexity": 1
   },
   {
@@ -260,8 +260,8 @@ window.theniWords = [
     "word_en": "eyelid",
     "word_ta": "இமை",
     "image_word": "eyelid",
-    "sentence_en": "The eyelid of the eye helps to protect it.",
-    "sentence_ta": "கண் இமை கண்ணைப் பாதுகாக்க உதவுகிறது.",
+    "sentence_en": "She closed her heavy eyelids.",
+    "sentence_ta": "அவள் தன் கனமான இமைகளை மூடினாள்.",
     "complexity": 1
   },
   {
@@ -320,8 +320,8 @@ window.theniWords = [
     "word_en": "foot",
     "word_ta": "பாதம்",
     "image_word": "foot",
-    "sentence_en": "The athlete fell on his foot.",
-    "sentence_ta": "விளையாட்டு வீரர் தன் பாதத்தின் மீது விழுந்தார்.",
+    "sentence_en": "He injured his left foot.",
+    "sentence_ta": "அவன் இடது பாதத்தில் காயம் ஏற்பட்டது.",
     "complexity": 1
   },
   {
@@ -368,8 +368,8 @@ window.theniWords = [
     "word_en": "elbow",
     "word_ta": "முழங்கை",
     "image_word": "elbow",
-    "sentence_en": "I need to bend my elbow to reach the top shelf.",
-    "sentence_ta": "மேல் அடுக்கை அடைய நான் என் முழங்கையை வளைக்க வேண்டும்.",
+    "sentence_en": "He bumped his elbow on the table.",
+    "sentence_ta": "அவன் மேஜையில் முழங்கையை இடித்துக்கொண்டான்.",
     "complexity": 2
   },
   {
@@ -404,8 +404,8 @@ window.theniWords = [
     "word_en": "spine",
     "word_ta": "முதுகெலும்பு",
     "image_word": "spine",
-    "sentence_en": "The human body has a strong backbone spine.",
-    "sentence_ta": "மனித உடலில் வலுவான முதுகெலும்பு உள்ளது.",
+    "sentence_en": "He injured his spine.",
+    "sentence_ta": "அவருக்கு முதுகெலும்பில் காயம் ஏற்பட்டது.",
     "complexity": 1
   },
   {
@@ -428,8 +428,8 @@ window.theniWords = [
     "word_en": "bonejoint",
     "word_ta": "எலும்பு மூட்டு",
     "image_word": "bonejoint",
-    "sentence_en": "The bonejoint is very important for our body.",
-    "sentence_ta": "எலும்பு மூட்டு நம் உடலுக்கு அதிக முக்கியத்துவம் வாய்ந்தது.",
+    "sentence_en": "Exercise keeps your joints flexible.",
+    "sentence_ta": "உடற்பயிற்சி உங்கள் மூட்டுகளை நெகிழ்வாக வைத்திருக்கும்.",
     "complexity": 2
   },
   {
@@ -464,8 +464,8 @@ window.theniWords = [
     "word_en": "blood",
     "word_ta": "குருதி",
     "image_word": "blood",
-    "sentence_en": "Blood is an essential part of our body.",
-    "sentence_ta": "குருதி எம் உடலின் அவசியமான ஒரு பகுதி.",
+    "sentence_en": "Blood is red.",
+    "sentence_ta": "ரத்தம் சிவப்பு நிறமானது.",
     "complexity": 2
   },
   {
@@ -608,8 +608,8 @@ window.theniWords = [
     "word_en": "oil",
     "word_ta": "எண்ணெய்",
     "image_word": "oil",
-    "sentence_en": "The car runs on oil",
-    "sentence_ta": "கார் எண்ணெய்யில் ஓடுகிறது.",
+    "sentence_en": "She used oil to cook.",
+    "sentence_ta": "சமையலுக்கு அவள் எண்ணெய் பயன்படுத்தினாள்.",
     "complexity": 1
   },
   {
@@ -644,6 +644,7 @@ window.theniWords = [
     "word_en": "mustard",
     "word_ta": "கடுகு",
     "image_word": "mustard",
+    "sentence_en": "I like food with mustard.",
     "sentence_ta": "எனக்கு கடுகு சேர்த்த உணவு மிகவும் பிடிக்கும்.",
     "complexity": 2
   },
@@ -667,8 +668,8 @@ window.theniWords = [
     "word_en": "pickle",
     "word_ta": "ஊறுகாய்",
     "image_word": "pickle",
-    "sentence_en": "The pickle is a type of fermented food.",
-    "sentence_ta": "ஊறுகாய் பலவகைச் சுவைகளில் கிடைக்கிறது.",
+    "sentence_en": "I like mango pickle.",
+    "sentence_ta": "எனக்கு மாங்காய் ஊறுகாய் பிடிக்கும்.",
     "complexity": 1
   },
   {
@@ -703,6 +704,7 @@ window.theniWords = [
     "word_en": "jaggery",
     "word_ta": "வெல்லம்",
     "image_word": "jaggery",
+    "sentence_en": "Jaggery is made from sugarcane.",
     "sentence_ta": "கரும்பிலிருந்து வெல்லம் தயாரிக்கப்படுகிறது.",
     "complexity": 2
   },
@@ -799,7 +801,7 @@ window.theniWords = [
     "word_ta": "எலுமிச்சை பானம்",
     "image_word": "lemonade",
     "sentence_en": "I'm drinking lemonade on a hot summer day.",
-    "sentence_ta": "நான் வெப்பமான கோடை நாளில் எலுமிச்சை பானத்தை அருந்துகிறேன்.",
+    "sentence_ta": "நான் வெப்பமான கோடை நாளில் எலுமிச்சை பானத்தை குடிக்கிறேன்.",
     "complexity": 2
   },
   {
@@ -847,7 +849,7 @@ window.theniWords = [
     "word_ta": "மதிய உணவு",
     "image_word": "lunch",
     "sentence_en": "I'm going to eat lunch at the park.",
-    "sentence_ta": "நான் பூங்காவில் மதிய உணவு சாப்பிடுவேன்",
+    "sentence_ta": "நான் பூங்காவில் மதிய உணவு சாப்பிடுவேன்.",
     "complexity": 2
   },
   {
@@ -882,8 +884,8 @@ window.theniWords = [
     "word_en": "Fruit Juice",
     "word_ta": "பழச்சாறு",
     "image_word": "Fruit Juice",
-    "sentence_en": "Fruit Juice is a healthy drink for children.",
-    "sentence_ta": "பழச்சாறு ஒரு ஆரோக்கியமான குடிநீர் ஆகும்.",
+    "sentence_en": "Fruit Juice is a healthy drink.",
+    "sentence_ta": "பழச்சாறு ஒரு ஆரோக்கியமான பானம் ஆகும்.",
     "complexity": 1
   },
   {
@@ -1519,7 +1521,7 @@ window.theniWords = [
     "word_ta": "வகுப்பறை",
     "image_word": "classroom",
     "sentence_en": "The students are studying in the classroom.",
-    "sentence_ta": "மாணவர்கள் வகுப்பறையில் படித்துக்கொண்டிருந்தனர்.",
+    "sentence_ta": "மாணவர்கள் வகுப்பறையில் படிக்கிறார்கள்.",
     "complexity": 2
   },
   {
@@ -1542,8 +1544,8 @@ window.theniWords = [
     "word_en": "score",
     "word_ta": "மதிப்பெண்",
     "image_word": "score",
-    "sentence_en": "The football team scored a high score today.",
-    "sentence_ta": "கூடுதல் மதிப்பெண்ணை விளையாட்டுக் குழு இன்று சாதித்தது.",
+    "sentence_en": "He got a high score in the exam.",
+    "sentence_ta": "அவன் தேர்வில் அதிக மதிப்பெண் பெற்றான்.",
     "complexity": 1
   },
   {
@@ -1567,7 +1569,7 @@ window.theniWords = [
     "word_ta": "விருது",
     "image_word": "award",
     "sentence_en": "She received an award for her excellent work.",
-    "sentence_ta": "அவள் சிறந்த பணி கொடுத்ததற்காக ஒரு விருது பெற்றாள்.",
+    "sentence_ta": "அவள் சிறந்த பணிக்காக விருது பெற்றாள்.",
     "complexity": 1
   },
   {
@@ -1578,8 +1580,8 @@ window.theniWords = [
     "word_en": "answer",
     "word_ta": "விடை",
     "image_word": "answer",
-    "sentence_en": "The correct answer is always the one that makes sense.",
-    "sentence_ta": "",
+    "sentence_en": "I know the correct answer.",
+    "sentence_ta": "சரியான விடை எனக்கு தெரியும்.",
     "complexity": 2
   },
   {
@@ -1591,7 +1593,7 @@ window.theniWords = [
     "word_ta": "வினா",
     "image_word": "question",
     "sentence_en": "The teacher asked me an easy question.",
-    "sentence_ta": "ஆசிரியர் என்னுடைய சுலபமான வினா கேட்டார்.",
+    "sentence_ta": "ஆசிரியர் என்னிடம் ஒரு எளிய வினாவைக் கேட்டார்.",
     "complexity": 2
   },
   {
@@ -1602,8 +1604,8 @@ window.theniWords = [
     "word_en": "holiday",
     "word_ta": "விடுமுறை",
     "image_word": "holiday",
-    "sentence_en": "We are going to school on holiday.",
-    "sentence_ta": "நாம் விடுமுறையில் பள்ளிக்கு செல்கிறோம்.",
+    "sentence_en": "Tomorrow is a holiday.",
+    "sentence_ta": "நாளை விடுமுறை.",
     "complexity": 1
   },
   {
@@ -1615,7 +1617,7 @@ window.theniWords = [
     "word_ta": "காகிதம்",
     "image_word": "paper",
     "sentence_en": "The student wrote on the paper carefully.",
-    "sentence_ta": "மாணவர் காகிதத்தில் நன்றாக எழுதி உள்ளார்.",
+    "sentence_ta": "மாணவர் காகிதத்தில் கவனமாக எழுதினார்.",
     "complexity": 2
   },
   {
@@ -1651,7 +1653,7 @@ window.theniWords = [
     "word_ta": "ஆங்கிலம்",
     "image_word": "English",
     "sentence_en": "English is an important language to learn.",
-    "sentence_ta": "ஆங்கிலம் கற்றுக்கொள்வது ஒரு அடிப்படை மொழி.",
+    "sentence_ta": "ஆங்கிலம் ஒரு முக்கியமான மொழி.",
     "complexity": 2
   },
   {
@@ -1674,8 +1676,8 @@ window.theniWords = [
     "word_en": "eraser",
     "word_ta": "அழிப்பான்",
     "image_word": "eraser",
-    "sentence_en": "The eraser is useful for writing mistakes.",
-    "sentence_ta": "அழிப்பான் எழுத்தெடுப்பதற்குள்ளே செய்யும் தவறுகளுக்கு உதவியாக உள்ளது.",
+    "sentence_en": "Use an eraser to fix mistakes.",
+    "sentence_ta": "தவறுகளைத் திருத்த அழிப்பான் பயன்படுகிறது.",
     "complexity": 2
   },
   {
@@ -1687,7 +1689,7 @@ window.theniWords = [
     "word_ta": "வண்ணத் தூரிகை",
     "image_word": "paint brush",
     "sentence_en": "She is holding the paint brush carefully.",
-    "sentence_ta": "அவள் மிகச்சிறிய பாதுகாப்பை கொண்டு வண்ணத் தூரிகையை எடுத்துக்கொண்டிருக்கிறாள்.",
+    "sentence_ta": "அவள் வண்ணத் தூரிகையை கவனமாக வைத்துள்ளாள்.",
     "complexity": 1
   },
   {
@@ -1699,7 +1701,7 @@ window.theniWords = [
     "word_ta": "விளையாட்டுத் திடல்",
     "image_word": "playground",
     "sentence_en": "The kids love playing in the playground.",
-    "sentence_ta": "குழந்தைகள் விளையாட்டுத் திடலில் விளையாடும் பற்றிய குழந்தைகள் அனைவரும்.",
+    "sentence_ta": "குழந்தைகள் விளையாட்டுத் திடலில் விளையாட விரும்புகிறார்கள்.",
     "complexity": 1
   },
   {
@@ -1710,8 +1712,8 @@ window.theniWords = [
     "word_en": "race",
     "word_ta": "பந்தயம்",
     "image_word": "race",
-    "sentence_en": "The car started in the racing race today.",
-    "sentence_ta": "கார் தற்போது ஓட்டப்பந்தயமில் ஆரம்பித்தது.",
+    "sentence_en": "The race started today.",
+    "sentence_ta": "இன்று பந்தயம் தொடங்கியது.",
     "complexity": 2
   },
   {
@@ -1723,7 +1725,7 @@ window.theniWords = [
     "word_ta": "சுண்ண எழுதுகோல்",
     "image_word": "chalk",
     "sentence_en": "The teacher wrote on the chalkboard.",
-    "sentence_ta": "ஆசிரியர் சுண்ண எழுதுகோலில் படிவம் எழுதினார்.",
+    "sentence_ta": "ஆசிரியர் சுண்ணக்கட்டியைப் பயன்படுத்தி எழுதினார்.",
     "complexity": 1
   },
   {
@@ -1735,7 +1737,7 @@ window.theniWords = [
     "word_ta": "பரிசுக் கோப்பை",
     "image_word": "trophy",
     "sentence_en": "The trophy was given to the winner of the game.",
-    "sentence_ta": "போட்டியில் வெற்றி பெற்றதன் காரணமாக பரிசுக் கோப்பை அளிக்கப்பட்டது.",
+    "sentence_ta": "வெற்றி பெற்றவருக்கு பரிசுக் கோப்பை வழங்கப்பட்டது.",
     "complexity": 2
   },
   {
@@ -1747,7 +1749,7 @@ window.theniWords = [
     "word_ta": "சீருடை",
     "image_word": "uniform",
     "sentence_en": "The school requires students to wear their uniform.",
-    "sentence_ta": "பாடசாலை மாணவர்களுக்கு தங்கள் சீருடையை அணிந்து வர வேண்டும்.",
+    "sentence_ta": "பள்ளி மாணவர்கள் சீருடை அணிய வேண்டும்.",
     "complexity": 2
   },
   {
@@ -1759,7 +1761,7 @@ window.theniWords = [
     "word_ta": "அறிவிப்பு",
     "image_word": "announcement",
     "sentence_en": "The principal made an important announcement today.",
-    "sentence_ta": "தலைமையாசிரியர் ஒரு கவனிப்புடன் அறிவிப்பு இன்று ஆனது.",
+    "sentence_ta": "தலைமையாசிரியர் இன்று ஒரு முக்கிய அறிவிப்பை வெளியிட்டார்.",
     "complexity": 2
   },
   {
@@ -1771,7 +1773,7 @@ window.theniWords = [
     "word_ta": "ஒலிபெருக்கி",
     "image_word": "loud speaker",
     "sentence_en": "The loud speaker was very clear and loud.",
-    "sentence_ta": "ஒலிபெருக்கி மிகவும் நேர்மறை உச்சரிப்பு மற்றும் அதிகமான.",
+    "sentence_ta": "ஒலிபெருக்கியின் சத்தம் தெளிவாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -1783,7 +1785,7 @@ window.theniWords = [
     "word_ta": "இடைவேளை",
     "image_word": "interval",
     "sentence_en": "The interval between classes is very short.",
-    "sentence_ta": "விடுமுறை இடைவேளை மிகக் குறுகியது.",
+    "sentence_ta": "வகுப்பு இடைவேளை மிகக் குறுகியது.",
     "complexity": 1
   },
   {
@@ -1795,7 +1797,7 @@ window.theniWords = [
     "word_ta": "கரும்பலகை",
     "image_word": "black board",
     "sentence_en": "The black board is very important for our studies.",
-    "sentence_ta": "கரும்பலகை நம் ஆய்வுக்கு அதிகமான சிறப்பை கொண்டுள்ளது.",
+    "sentence_ta": "வகுப்பறையில் கரும்பலகை முக்கியமானது.",
     "complexity": 2
   },
   {
@@ -1807,7 +1809,7 @@ window.theniWords = [
     "word_ta": "மனப்பாடம்",
     "image_word": "memorize",
     "sentence_en": "You need to memorize all the formulas for math exams.",
-    "sentence_ta": "நீ மதிப்புக்கான இலவச உத்தியாக மனப்பாடம் செய்ய வேண்டும்.",
+    "sentence_ta": "தேர்வுக்கு அனைத்து சூத்திரங்களையும் மனப்பாடம் செய்ய வேண்டும்.",
     "complexity": 2
   },
   {
@@ -1819,7 +1821,7 @@ window.theniWords = [
     "word_ta": "படி",
     "image_word": "read",
     "sentence_en": "She will read the book tonight.",
-    "sentence_ta": "அவள் இன்று மாலை புத்தகத்தை படி",
+    "sentence_ta": "அவள் இன்று இரவு புத்தகத்தைப் படிப்பாள்.",
     "complexity": 1
   },
   {
@@ -1843,7 +1845,7 @@ window.theniWords = [
     "word_ta": "சான்றிதழ்",
     "image_word": "certificate",
     "sentence_en": "She received her certificate yesterday.",
-    "sentence_ta": "அவர் காலையில் சான்றிதழைப் பெற்றார்.",
+    "sentence_ta": "அவள் நேற்று சான்றிதழைப் பெற்றாள்.",
     "complexity": 2
   },
   {
@@ -1855,7 +1857,7 @@ window.theniWords = [
     "word_ta": "ஆராய்ச்சி",
     "image_word": "research",
     "sentence_en": "The student did research on his science project.",
-    "sentence_ta": "மாணவர் தனது அறிவியல் பேராசிரியரை ஆராய்ச்சி செய்க",
+    "sentence_ta": "மாணவர் தனது அறிவியல் திட்டத்தில் ஆராய்ச்சி செய்தார்.",
     "complexity": 2
   },
   {
@@ -1867,7 +1869,7 @@ window.theniWords = [
     "word_ta": "தேர்ச்சி",
     "image_word": "pass",
     "sentence_en": "She needs to pass the exam to get the degree.",
-    "sentence_ta": "அவள் பட்டதாரியாகி இருக்க வேண்டியது முன்னைய ஆசை.",
+    "sentence_ta": "பட்டம் பெற அவள் தேர்வில் தேர்ச்சி பெற வேண்டும்.",
     "complexity": 2
   },
   {
@@ -1915,7 +1917,7 @@ window.theniWords = [
     "word_ta": "கவிதை",
     "image_word": "poem",
     "sentence_en": "She wrote a beautiful poem yesterday.",
-    "sentence_ta": "அவர் ஒரு செல்வம் பொதிந்த கவிதையை இன்று எழுதினார்.",
+    "sentence_ta": "அவள் நேற்று ஒரு அழகான கவிதையை எழுதினாள்.",
     "complexity": 2
   },
   {
@@ -1927,7 +1929,7 @@ window.theniWords = [
     "word_ta": "அம்மா",
     "image_word": "mom",
     "sentence_en": "My mom is very kind and caring.",
-    "sentence_ta": "என் அம்மா கொடுமை இல்லாத, வாய்ப்பகிழ்ச்சி ஆள்.",
+    "sentence_ta": "என் அம்மா மிகவும் அன்பானவர்.",
     "complexity": 2
   },
   {
@@ -1939,7 +1941,7 @@ window.theniWords = [
     "word_ta": "அப்பா",
     "image_word": "dad",
     "sentence_en": "My dad is going to the store.",
-    "sentence_ta": "என் அப்பா விற்பனை மற்றும் நிலையத்திற்கு செல்கிறார்.",
+    "sentence_ta": "என் அப்பா கடைக்குச் செல்கிறார்.",
     "complexity": 1
   },
   {
@@ -1951,7 +1953,7 @@ window.theniWords = [
     "word_ta": "அண்ணன்",
     "image_word": "older brother",
     "sentence_en": "My older brother is very kind to me.",
-    "sentence_ta": "என் அண்ணன் என்பாருக்கு மிகவும் நன்றி",
+    "sentence_ta": "என் அண்ணன் என்னிடம் அன்பாக இருப்பார்.",
     "complexity": 2
   },
   {
@@ -1963,7 +1965,7 @@ window.theniWords = [
     "word_ta": "அக்கா",
     "image_word": "older sister",
     "sentence_en": "My older sister is very kind to me.",
-    "sentence_ta": "என் பெரியவளும் நான்க்கு அன்பு உண்டு.",
+    "sentence_ta": "என் அக்கா என்னிடம் மிகவும் அன்பாக உள்ளார்.",
     "complexity": 2
   },
   {
@@ -1975,7 +1977,7 @@ window.theniWords = [
     "word_ta": "தம்பி",
     "image_word": "younger brother",
     "sentence_en": "My younger brother is studying in 9th standard.",
-    "sentence_ta": "என் தம்பி 9 ஆவது சோலையில் படிக்கிறார்.",
+    "sentence_ta": "என் தம்பி ஒன்பதாம் வகுப்பு படிக்கிறான்.",
     "complexity": 2
   },
   {
@@ -1987,7 +1989,7 @@ window.theniWords = [
     "word_ta": "தங்கை",
     "image_word": "younger sister",
     "sentence_en": "My younger sister is very happy today.",
-    "sentence_ta": "என் இளைய தங்கை இப்போது மிகவும் சந்தோஷமாக உள்ளார்.",
+    "sentence_ta": "என் தங்கை இன்று மிகவும் மகிழ்ச்சியாக இருக்கிறாள்.",
     "complexity": 2
   },
   {
@@ -1999,7 +2001,7 @@ window.theniWords = [
     "word_ta": "தாத்தா",
     "image_word": "grandfather",
     "sentence_en": "My grandfather is very kind and loving.",
-    "sentence_ta": "என் தாத்தா அழகியவர்.",
+    "sentence_ta": "என் தாத்தா மிகவும் அன்பானவர்.",
     "complexity": 2
   },
   {
@@ -2011,7 +2013,7 @@ window.theniWords = [
     "word_ta": "பாட்டி",
     "image_word": "grandmother",
     "sentence_en": "My grandmother is very kind to me.",
-    "sentence_ta": "என் பாட்டி என்னுக்கு மிகவும் நன்றியுணர்வைத் தருவாள்.",
+    "sentence_ta": "என் பாட்டி என்னிடம் அன்பாக இருப்பார்.",
     "complexity": 2
   },
   {
@@ -2023,7 +2025,7 @@ window.theniWords = [
     "word_ta": "அத்தை",
     "image_word": "aunt",
     "sentence_en": "My aunt is very kind to me.",
-    "sentence_ta": "என் அத்தை என்னை மிகவும் நாணயமானவர்.",
+    "sentence_ta": "என் அத்தை மிகவும் அன்பானவர்.",
     "complexity": 2
   },
   {
@@ -2035,7 +2037,7 @@ window.theniWords = [
     "word_ta": "மாமா",
     "image_word": "uncle",
     "sentence_en": "My uncle is very kind.",
-    "sentence_ta": "ப்ஈ கைலைட மெ கேசு஝.",
+    "sentence_ta": "என் மாமா மிகவும் அன்பானவர்.",
     "complexity": 2
   },
   {
@@ -2047,7 +2049,7 @@ window.theniWords = [
     "word_ta": "கணவன்",
     "image_word": "husband",
     "sentence_en": "My husband is very kind to me.",
-    "sentence_ta": "என் கணவன் நான்பற்றி அருள்சில ஆகிறார்.",
+    "sentence_ta": "என் கணவர் என்னிடம் அன்பாக இருக்கிறார்.",
     "complexity": 1
   },
   {
@@ -2059,7 +2061,7 @@ window.theniWords = [
     "word_ta": "மனைவி",
     "image_word": "wife",
     "sentence_en": "My wife is very intelligent.",
-    "sentence_ta": "என் மனைவி அறிவு நிர்ணயம் உள்ளவள்.",
+    "sentence_ta": "என் மனைவி மிகவும் புத்திசாலி.",
     "complexity": 2
   },
   {
@@ -2071,7 +2073,7 @@ window.theniWords = [
     "word_ta": "தோழன்",
     "image_word": "friend (boy)",
     "sentence_en": "My friend is a happy boy.",
-    "sentence_ta": "என் தோழன் மகிழ்ச்சி படாத வயதுள்ள ஆண்",
+    "sentence_ta": "என் நண்பன் மகிழ்ச்சியானவன்.",
     "complexity": 1
   },
   {
@@ -2095,7 +2097,7 @@ window.theniWords = [
     "word_ta": "நண்பர்கள்",
     "image_word": "friends",
     "sentence_en": "My friends are very kind and helpful.",
-    "sentence_ta": "என் நண்பர்கள் மிக அழகான உலகத்தையுடையவர்கள்.",
+    "sentence_ta": "என் நண்பர்கள் அன்பானவர்கள் மற்றும் உதவி செய்பவர்கள்.",
     "complexity": 2
   },
   {
@@ -2119,7 +2121,7 @@ window.theniWords = [
     "word_ta": "பேரன்",
     "image_word": "grandson",
     "sentence_en": "My grandson is very happy today.",
-    "sentence_ta": "என் பேரன் இன்று மிக சில மகிழ்ச்சி.",
+    "sentence_ta": "என் பேரன் இன்று மிகவும் மகிழ்ச்சியாக இருக்கிறான்.",
     "complexity": 2
   },
   {
@@ -2131,7 +2133,7 @@ window.theniWords = [
     "word_ta": "பேத்தி",
     "image_word": "granddaughter",
     "sentence_en": "My granddaughter loves playing with her dolls.",
-    "sentence_ta": "என் பேத்தி வாயில ஆடுகளுக்கு சிறந்த ராஜா.",
+    "sentence_ta": "என் பேத்தி பொம்மைகளுடன் விளையாட விரும்புகிறாள்.",
     "complexity": 2
   },
   {
@@ -2155,7 +2157,7 @@ window.theniWords = [
     "word_ta": "மகள்",
     "image_word": "daughter",
     "sentence_en": "My daughter loves to play outside.",
-    "sentence_ta": "என் மகள் வெளியில் ஆடத் தாராது",
+    "sentence_ta": "என் மகள் வெளியில் விளையாட விரும்புகிறாள்.",
     "complexity": 2
   },
   {
@@ -2167,7 +2169,7 @@ window.theniWords = [
     "word_ta": "பெரியம்மா",
     "image_word": "mom&#x27;s older sister",
     "sentence_en": "My mom's older sister is called my aunt.",
-    "sentence_ta": "என் தாயின் பெரியம்மா என்னுடைய அண்ணி.",
+    "sentence_ta": "என் அம்மாவின் அக்கா பெரியம்மா.",
     "complexity": 1
   },
   {
@@ -2179,7 +2181,7 @@ window.theniWords = [
     "word_ta": "பெரியப்பா",
     "image_word": "dad&#x27;s older brother",
     "sentence_en": "My dad's older brother is my பெரியப்பா.",
-    "sentence_ta": "என் தந்தைக்கு முதலில் உள்ள சகோதரர் என் பெரியப்பா.",
+    "sentence_ta": "என் அப்பாவின் அண்ணன் பெரியப்பா.",
     "complexity": 2
   },
   {
@@ -2215,7 +2217,7 @@ window.theniWords = [
     "word_ta": "மாமியார்",
     "image_word": "mother-in-law",
     "sentence_en": "My mother-in-law is very kind and caring.",
-    "sentence_ta": "என் மாமியார் பெருமக்கள் தங்கள் வசிலி அடியார்கள்.",
+    "sentence_ta": "என் மாமியார் மிகவும் அன்பானவர்.",
     "complexity": 1
   },
   {
@@ -2251,7 +2253,7 @@ window.theniWords = [
     "word_ta": "மருமகள்",
     "image_word": "daughter-in-law",
     "sentence_en": "My daughter-in-law is very helpful at home.",
-    "sentence_ta": "என் மருமகள் தாங்கள் வீட்டில் உறுதுணையாக இருப்பார்.",
+    "sentence_ta": "என் மருமகள் வீட்டில் மிகவும் உதவியாக இருக்கிறார்.",
     "complexity": 2
   },
   {
@@ -2262,7 +2264,7 @@ window.theniWords = [
     "word_en": "older brother&#x27;s wife",
     "word_ta": "அண்ணி",
     "image_word": "older brother&#x27;s wife",
-    "sentence_en": "My older brother's wife is my aunt",
+    "sentence_en": "My older brother's wife is my sister-in-law.",
     "sentence_ta": "என் பெரிய அண்ணன் மனைவி என் அண்ணி",
     "complexity": 1
   },
@@ -2311,7 +2313,7 @@ window.theniWords = [
     "word_ta": "மணமகன்",
     "image_word": "groom",
     "sentence_en": "The groom wore a beautiful suit to the wedding.",
-    "sentence_ta": "மணமகன் திரும்புறைக்கு சென்றான்.",
+    "sentence_ta": "மணமகன் அழகான ஆடை அணிந்திருந்தார்.",
     "complexity": 2
   },
   {
@@ -2347,7 +2349,7 @@ window.theniWords = [
     "word_ta": "பேரக்குழந்தைகள்",
     "image_word": "grandkids",
     "sentence_en": "My grandkids love playing outside.",
-    "sentence_ta": "என் பேரக்குழந்தைகள் வெளியே விளையாடும் பற்றால்.",
+    "sentence_ta": "என் பேரக்குழந்தைகள் வெளியே விளையாட விரும்புகிறார்கள்.",
     "complexity": 2
   },
   {
@@ -2359,7 +2361,7 @@ window.theniWords = [
     "word_ta": "கொள்ளுத்தாத்தா",
     "image_word": "great grandfather",
     "sentence_en": "My great grandfather was a very kind person.",
-    "sentence_ta": "என் கொள்ளுத்தாத்தா ஒரு வியப்பான நல்லவர்.",
+    "sentence_ta": "என் கொள்ளுத்தாத்தா மிகவும் நல்லவர்.",
     "complexity": 2
   },
   {
@@ -2383,7 +2385,7 @@ window.theniWords = [
     "word_ta": "உடன்பிறந்தவர்கள்",
     "image_word": "siblings",
     "sentence_en": "My siblings are very supportive of me.",
-    "sentence_ta": "என் உடன்பிறந்தவர்கள் என்னைச் சுற்றி இருக்கின்றன.",
+    "sentence_ta": "என் உடன்பிறந்தவர்கள் எனக்கு ஆதரவாக உள்ளனர்.",
     "complexity": 1
   },
   {
@@ -2407,7 +2409,7 @@ window.theniWords = [
     "word_ta": "வாழைப்பழம்",
     "image_word": "banana",
     "sentence_en": "The banana is a yellow fruit.",
-    "sentence_ta": "வாழைப்பழம் தருவறை நிறமான பழமாகும்.",
+    "sentence_ta": "வாழைப்பழம் மஞ்சள் நிற பழம்.",
     "complexity": 2
   },
   {
@@ -2419,7 +2421,7 @@ window.theniWords = [
     "word_ta": "பலாப்பழம்",
     "image_word": "jackfruit",
     "sentence_en": "Jackfruit is a delicious tropical fruit.",
-    "sentence_ta": "பலாப்பழம் ஒரு சுவையான தாதுவிக்குடா பழம்.",
+    "sentence_ta": "பலாப்பழம் மிகவும் சுவையான பழம்.",
     "complexity": 2
   },
   {
@@ -2431,7 +2433,7 @@ window.theniWords = [
     "word_ta": "மாம்பழம்",
     "image_word": "mango",
     "sentence_en": "I love eating fresh mango.",
-    "sentence_ta": "நான் மெல்லிய மாம்பழத்தை குடிக்கும் வல்லமை உடையவன்.",
+    "sentence_ta": "எனக்கு மாம்பழம் சாப்பிடப் பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -2443,7 +2445,7 @@ window.theniWords = [
     "word_ta": "கொய்யாப்பழம்",
     "image_word": "guavas",
     "sentence_en": "Guavas are a type of tropical fruit.",
-    "sentence_ta": "கொய்யாப்பழங்கள் ஒரு வகை தென்மேற்காசிய பழமாகும்.",
+    "sentence_ta": "கொய்யாப்பழம் ஒரு வெப்பமண்டல பழம்.",
     "complexity": 2
   },
   {
@@ -2455,7 +2457,7 @@ window.theniWords = [
     "word_ta": "சீதாப்பழம்",
     "image_word": "custard apple",
     "sentence_en": "Custard apples are delicious and healthy to eat.",
-    "sentence_ta": "சீதாப்பழங்கள் விரும்பத்தக்கன. ",
+    "sentence_ta": "சீதாப்பழம் சுவையானது மற்றும் சத்தானது.",
     "complexity": 2
   },
   {
@@ -2479,7 +2481,7 @@ window.theniWords = [
     "word_ta": "மாதுளம்பழம்",
     "image_word": "pomegranate",
     "sentence_en": "The pomegranate is a juicy and sweet fruit.",
-    "sentence_ta": "மாதுளம்பழம் ஒரு சாக்லினேட்டு உணவாக அருந்தற்ற பழங்களில் ஒன்றாகும்.",
+    "sentence_ta": "மாதுளம்பழம் சாறு நிறைந்தது மற்றும் இனிப்பானது.",
     "complexity": 2
   },
   {
@@ -2503,7 +2505,7 @@ window.theniWords = [
     "word_ta": "அன்னாசிப்பழம்",
     "image_word": "pineapple",
     "sentence_en": "Pineapple is a sweet tropical fruit.",
-    "sentence_ta": "பைனாப்பிள் ஒரு மகிழ்ச்சி தரும் வெப்பமண்டல பழம்.",
+    "sentence_ta": "அன்னாசிப்பழம் ஒரு இனிப்பான பழம்.",
     "complexity": 2
   },
   {
@@ -2515,7 +2517,7 @@ window.theniWords = [
     "word_ta": "பப்பாளிப்பழம்",
     "image_word": "papaya",
     "sentence_en": "Papaya is a delicious tropical fruit.",
-    "sentence_ta": "பப்பாளிப்பழம் ஒரு சுவையான துருவங்கி பழம்.",
+    "sentence_ta": "பப்பாளிப்பழம் மிகவும் சுவையானது.",
     "complexity": 2
   },
   {
@@ -2526,8 +2528,8 @@ window.theniWords = [
     "word_en": "raisins",
     "word_ta": "உலர் திராட்சை",
     "image_word": "raisins",
-    "sentence_en": "The recipe uses brown sugar and raisins.",
-    "sentence_ta": "இந்த செய்முறை பிராண்ட் சக்கை மற்றும் உலர் திராட்சையை பயன்படுத்துகிறது.",
+    "sentence_en": "Raisins used to make sweets.",
+    "sentence_ta": "இனிப்பு செய்ய உலர் திராட்சை பயன்படுகிறது.",
     "complexity": 1
   },
   {
@@ -2539,7 +2541,7 @@ window.theniWords = [
     "word_ta": "எலுமிச்சம்பழம்",
     "image_word": "lemon",
     "sentence_en": "The lemon is a sour yellow fruit.",
-    "sentence_ta": "எலுமிச்சம்பழம் ஒரு கசப்பான சாம்பிராணி வெள்ளை பழமா.",
+    "sentence_ta": "எலுமிச்சம்பழம் புளிப்புச் சுவை கொண்டது.",
     "complexity": 2
   },
   {
@@ -2551,7 +2553,7 @@ window.theniWords = [
     "word_ta": "திராட்சைப்பழம்",
     "image_word": "grapes",
     "sentence_en": "Grapes are small, round fruits.",
-    "sentence_ta": "திராட்சைப்பழம் சிறிய, வட்ட உணவுகள்.",
+    "sentence_ta": "திராட்சைப்பழம் சிறிய, வட்டமான பழம்.",
     "complexity": 1
   },
   {
@@ -2563,7 +2565,7 @@ window.theniWords = [
     "word_ta": "பேரிக்காய்",
     "image_word": "pears",
     "sentence_en": "I love eating juicy pears.",
-    "sentence_ta": "நான் மெல்லிய பேரிக்காய்களை சுவைத்து விடுகிறேன்.",
+    "sentence_ta": "எனக்கு பேரிக்காய் பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -2575,7 +2577,7 @@ window.theniWords = [
     "word_ta": "பேரீச்சம்பழம்",
     "image_word": "dates",
     "sentence_en": "My mom brought dates from the market yesterday.",
-    "sentence_ta": "என் தாய் நிகழ்ச்சி மைதானத்தில் இருந்து பேரீச்சம்பழங்களை கொண்டு வந்தார்.",
+    "sentence_ta": "என் அம்மா சந்தையிலிருந்து பேரீச்சம்பழம் வாங்கினார்.",
     "complexity": 2
   },
   {
@@ -2587,7 +2589,7 @@ window.theniWords = [
     "word_ta": "நெல்லிக்காய்",
     "image_word": "gooseberry",
     "sentence_en": "The gooseberry is my favorite summer fruit.",
-    "sentence_ta": "நெல்லிக்காய் எனது சூடான பழம்.",
+    "sentence_ta": "நெல்லிக்காய் எனக்கு மிகவும் பிடித்த பழம்.",
     "complexity": 2
   },
   {
@@ -2611,7 +2613,7 @@ window.theniWords = [
     "word_ta": "நாரத்தைப் பழம்",
     "image_word": "citron",
     "sentence_en": "Citron is a type of citrus fruit.",
-    "sentence_ta": "நாரத்தைப் பழம் ஒரு வகை கிளிஞ்சல் பழம்.",
+    "sentence_ta": "நாரத்தைப் பழம் சிட்ரஸ் வகையைச் சார்ந்தது.",
     "complexity": 2
   },
   {
@@ -2635,7 +2637,7 @@ window.theniWords = [
     "word_ta": "தர்ப்பூசணிப்பழம்",
     "image_word": "watermelon",
     "sentence_en": "The juicy watermelon is my favorite summer fruit.",
-    "sentence_ta": "அதிக நீர்வாங்கும் தர்ப்பூசணிப்பழம் எனக்கு ஆரஞ்சுக் காலத்தில் விருப்பமான பழம்.",
+    "sentence_ta": "தர்ப்பூசணிப்பழம் எனக்கு மிகவும் பிடித்த கோடைக்கால பழம்.",
     "complexity": 3
   },
   {
@@ -2647,7 +2649,7 @@ window.theniWords = [
     "word_ta": "கருநாவற்பழம்",
     "image_word": "blackberry",
     "sentence_en": "I picked a ripe blackberry from the bush.",
-    "sentence_ta": "நான் ஒரு மிகவும் பழுத்த கருநாவற்பழத்தை களியையிலிருந்து எடுத்தேன்.",
+    "sentence_ta": "புதரில் இருந்து பழுத்த கருநாவற்பழத்தை பறித்தேன்.",
     "complexity": 2
   },
   {
@@ -2659,7 +2661,7 @@ window.theniWords = [
     "word_ta": "சாத்துக்குடி",
     "image_word": "sweet lime",
     "sentence_en": "I ate a sweet lime in Sathukudi yesterday.",
-    "sentence_ta": "நான் ஒரு சிறுத்தையில் இன்று வளைகுடி முன்பு சாத்துக்குடியில் உண்டேன்.",
+    "sentence_ta": "நேற்று நான் சாத்துக்குடியை சாப்பிட்டேன்.",
     "complexity": 2
   },
   {
@@ -2671,7 +2673,7 @@ window.theniWords = [
     "word_ta": "நுங்கு",
     "image_word": "sugar palm",
     "sentence_en": "The sugar palm tree is native to tropical regions.",
-    "sentence_ta": "நுங்கு மூலிகையின் வீட்டு செடி தொப்புள் பிராந்தியத்தில் உள்ளது.",
+    "sentence_ta": "நுங்கு வெப்பமண்டல பகுதிகளில் கிடைக்கிறது.",
     "complexity": 2
   },
   {
@@ -2683,7 +2685,7 @@ window.theniWords = [
     "word_ta": "முந்திரிப்பழம்",
     "image_word": "cashew fruit",
     "sentence_en": "The cashew fruit is rich in antioxidants.",
-    "sentence_ta": "முந்திரிப்பழம் செயற்கையான அணுக்கட்டுவாதங்களால் நிறைந்துள்ளது.",
+    "sentence_ta": "முந்திரிப்பழம் சத்தானது.",
     "complexity": 2
   },
   {
@@ -2695,7 +2697,7 @@ window.theniWords = [
     "word_ta": "விளாம்பழம்",
     "image_word": "wood apple",
     "sentence_en": "Wood apples are edible when they are ripe.",
-    "sentence_ta": "விளாம்பழங்கள் இனிதான விதைக்கும் நேரத்தில் உண்ணக்கூடியவை.",
+    "sentence_ta": "விளாம்பழம் பழுத்தவுடன் உண்ணக்கூடியது.",
     "complexity": 1
   },
   {
@@ -2707,7 +2709,7 @@ window.theniWords = [
     "word_ta": "விலச்சிப்பழம்",
     "image_word": "lychee",
     "sentence_en": "I love eating fresh lychee",
-    "sentence_ta": "நான் விலச்சிப்பழத்தை குளிர்ந்த நிலையில் உண்டு வணங்கியது",
+    "sentence_ta": "எனக்கு விலச்சிப்பழம் மிகவும் பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -2719,7 +2721,7 @@ window.theniWords = [
     "word_ta": "குமளிப்பழம்",
     "image_word": "apple",
     "sentence_en": "The apple is a juicy fruit.",
-    "sentence_ta": "குமளிப்பழம் ஒரு வெள்ளையும் இனிப்பான பழம்.",
+    "sentence_ta": "குமளிப்பழம் சாறு நிறைந்தது.",
     "complexity": 2
   },
   {
@@ -2731,7 +2733,7 @@ window.theniWords = [
     "word_ta": "சருக்கரை பாதாமிப்பழம்",
     "image_word": "apricot",
     "sentence_en": "Apricot is a type of sweet fruit.",
-    "sentence_ta": "சருக்கரை பாதாமிப்பழம் ஒரு வகை கொழுக்குளித்தனமான பழம்.",
+    "sentence_ta": "சருக்கரை பாதாமி ஒரு வகை இனிப்பு பழம்.",
     "complexity": 2
   },
   {
@@ -2743,7 +2745,7 @@ window.theniWords = [
     "word_ta": "தேனீ முலாம்பழம்",
     "image_word": "honeydew melon",
     "sentence_en": "I love eating the honeydew melon in summer.",
-    "sentence_ta": "நெற்றில் இது மிகவும் சுபாஷிதமான தேனீ முலாம்பழம்.",
+    "sentence_ta": "கோடைகாலத்தில் தேனீ முலாம்பழம் சாப்பிட எனக்கு பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -2755,7 +2757,7 @@ window.theniWords = [
     "word_ta": "கீரணிப்பழம்",
     "image_word": "muskmelon",
     "sentence_en": "The muskmelon is a sweet and juicy summer fruit.",
-    "sentence_ta": "முஸ்க்மெலான் ஒரு அடிக்கடி சாதாரண வேத்தியப் பழமாகும்.",
+    "sentence_ta": "கீரணிப்பழம் ஒரு இனிப்பான கோடைகால பழம்.",
     "complexity": 2
   },
   {
@@ -2767,7 +2769,7 @@ window.theniWords = [
     "word_ta": "பசலிப்பழம்",
     "image_word": "kiwi fruit",
     "sentence_en": "The kiwi fruit is a small, hairy green fruit.",
-    "sentence_ta": "பசலிப்பழம் ஒரு சிறிய, அடிக்கடி வெள்ளை இதழ் உள்ள பழம்.",
+    "sentence_ta": "பசலிப்பழம் ஒரு சிறிய பச்சை நிற பழம்.",
     "complexity": 2
   },
   {
@@ -2779,7 +2781,7 @@ window.theniWords = [
     "word_ta": "வெண்ணெய்ப்பழம்",
     "image_word": "avocado",
     "sentence_en": "Avocados are nutritious and delicious fruits.",
-    "sentence_ta": "வெண்ணெய்ப்பழங்கள் நன்மை தரும் உண்மையான பழங்கள்.",
+    "sentence_ta": "வெண்ணெய்ப்பழம் சத்தான மற்றும் சுவையான பழம்.",
     "complexity": 2
   },
   {
@@ -2791,7 +2793,7 @@ window.theniWords = [
     "word_ta": "பஞ்சலிப்பழம்",
     "image_word": "bell fruit",
     "sentence_en": "The bell fruit is sweet and juicy.",
-    "sentence_ta": "பஞ்சலிப்பழம் வெனிஷும் கனி.",
+    "sentence_ta": "பஞ்சலிப்பழம் இனிப்பானது.",
     "complexity": 1
   },
   {
@@ -2803,7 +2805,7 @@ window.theniWords = [
     "word_ta": "செம்புற்றுப்பழம்",
     "image_word": "strawberry",
     "sentence_en": "The strawberry is my favorite fruit.",
-    "sentence_ta": "செம்புற்றுப்ழம் எனது விருப்பமான காயல்.",
+    "sentence_ta": "செம்புற்றுப்பழம் எனக்கு மிகவும் பிடித்த பழம்.",
     "complexity": 1
   },
   {
@@ -2839,7 +2841,7 @@ window.theniWords = [
     "word_ta": "மஞ்சள் முலாம்பழம்",
     "image_word": "cantaloupe",
     "sentence_en": "The cantaloupe is very juicy and sweet.",
-    "sentence_ta": "\"மஞ்சள் முலாம்பழம் இது அருகிலே நன்றாய் வறண்டது\"",
+    "sentence_ta": "மஞ்சள் முலாம்பழம் சாறு நிறைந்தது மற்றும் இனிப்பானது.",
     "complexity": 2
   },
   {
@@ -2887,7 +2889,7 @@ window.theniWords = [
     "word_ta": "கோணம்",
     "image_word": "angle",
     "sentence_en": "The angle of the roof is very sharp.",
-    "sentence_ta": "மாடியின் கோணம் சிறுத்தி அளவில் இருந்தது.",
+    "sentence_ta": "கூரை விளிம்பு மிகக் கூர்மையான கோணத்தில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -2898,8 +2900,8 @@ window.theniWords = [
     "word_en": "square",
     "word_ta": "சதுரம்",
     "image_word": "square",
-    "sentence_en": "The new school is located in the big square.",
-    "sentence_ta": "புதிய பள்ளி பெரிய சதுரம் இல் அமைந்துள்ளது.",
+    "sentence_en": "The box is a square shape.",
+    "sentence_ta": "பெட்டி சதுர வடிவில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -2947,7 +2949,7 @@ window.theniWords = [
     "word_ta": "வட்டி",
     "image_word": "interest",
     "sentence_en": "The bank paid interest on her savings account.",
-    "sentence_ta": "வங்கியில் அதிகாரியின் ஆர்வம் நிச்சயப்பூண்டு ஒரு கணக்கிற்கு",
+    "sentence_ta": "வங்கி சேமிப்புக் கணக்கிற்கு வட்டி அளித்தது.",
     "complexity": 2
   },
   {
@@ -2971,7 +2973,7 @@ window.theniWords = [
     "word_ta": "செவ்வகம்",
     "image_word": "rectangle",
     "sentence_en": "A rectangle has four right angles.",
-    "sentence_ta": "ஒரு செவ்வகம் நான்கு திட்ட கோணங்களைக் கொண்டுள்ளது.",
+    "sentence_ta": "செவ்வகத்திற்கு நான்கு செங்கோணங்கள் உள்ளன.",
     "complexity": 1
   },
   {
@@ -2983,7 +2985,7 @@ window.theniWords = [
     "word_ta": "நேர்க்கோடு",
     "image_word": "straight line",
     "sentence_en": "A straight line is the shortest distance between two points.",
-    "sentence_ta": "ஒரு நேர்க்கோடு இரு புள்ளிகளுக்கு சிறுத்தொலைவு.",
+    "sentence_ta": "இரு புள்ளிகளுக்கு இடையே உள்ள குறைந்தபட்ச தூரம் நேர்க்கோடு.",
     "complexity": 2
   },
   {
@@ -3018,8 +3020,8 @@ window.theniWords = [
     "word_en": "eighty",
     "word_ta": "எண்பது",
     "image_word": "eighty",
-    "sentence_en": "The temperature outside is around eighty degrees.",
-    "sentence_ta": "வெளியுலகத்தில் எண்பது மாரி சூடாக இருக்கிறது.",
+    "sentence_en": "I have eighty rupees.",
+    "sentence_ta": "என்னிடம் எண்பது ரூபாய் உள்ளது.",
     "complexity": 2
   },
   {
@@ -3031,7 +3033,7 @@ window.theniWords = [
     "word_ta": "வட்டம்",
     "image_word": "circle",
     "sentence_en": "The circle is a perfect geometric shape.",
-    "sentence_ta": "வட்டம் ஒரு முழுமையான கணித சிலுப்பையாகும்.",
+    "sentence_ta": "வட்டம் ஒரு வடிவம்.",
     "complexity": 2
   },
   {
@@ -3042,8 +3044,8 @@ window.theniWords = [
     "word_en": "addition",
     "word_ta": "கூட்டல்",
     "image_word": "addition",
-    "sentence_en": "The new math problem is an example of addition.",
-    "sentence_ta": "புதிய கணித சோதனை ஒரு உதாரணம் அது. கூட்டல்.",
+    "sentence_en": "This is an addition problem.",
+    "sentence_ta": "இது ஒரு கூட்டல் கணக்கு.",
     "complexity": 1
   },
   {
@@ -3055,7 +3057,7 @@ window.theniWords = [
     "word_ta": "வகுத்தல்",
     "image_word": "division",
     "sentence_en": "The math teacher helped with the division homework.",
-    "sentence_ta": "கணிதப் பேராசிரியர் முறையான வகுத்தல் பாடங்களை உதவினார்.",
+    "sentence_ta": "ஆசிரியர் வகுத்தல் கணக்கை செய்ய உதவினார்.",
     "complexity": 2
   },
   {
@@ -3067,7 +3069,7 @@ window.theniWords = [
     "word_ta": "பெருக்கல்",
     "image_word": "multiplication",
     "sentence_en": "Multiplication helps us find the total number quickly.",
-    "sentence_ta": "பெருக்கல் நமது அனைத்துணர் எண்ணிக்கையைச் சிறிது வேகத்தில் காட்ட உதவும்.",
+    "sentence_ta": "பெருக்கல் மூலம் மொத்தத்தை வேகமாக கண்டறியலாம்.",
     "complexity": 2
   },
   {
@@ -3079,7 +3081,7 @@ window.theniWords = [
     "word_ta": "கழித்தல்",
     "image_word": "subtraction",
     "sentence_en": "Subtraction is an important math operation.",
-    "sentence_ta": "கழித்தல் ஒரு முக்கியமான எண் கோட்பாட்டுச் செயலி.",
+    "sentence_ta": "கழித்தல் ஒரு முக்கியமான கணித செயல்பாடு.",
     "complexity": 2
   },
   {
@@ -3115,7 +3117,7 @@ window.theniWords = [
     "word_ta": "புள்ளி",
     "image_word": "point",
     "sentence_en": "The point of the compass was very clear.",
-    "sentence_ta": "கம்பீரின் அடையாளம் சிறந்து விளங்கியது.",
+    "sentence_ta": "திசைக்காட்டியின் முள் தெளிவாக இருந்தது.",
     "complexity": 1
   },
   {
@@ -3138,8 +3140,8 @@ window.theniWords = [
     "word_en": "quotient",
     "word_ta": "ஈவு",
     "image_word": "quotient",
-    "sentence_en": "The quotient of the division is always a whole number.",
-    "sentence_ta": "பிரிவின் ஈவு எப்போதும் நிலையான எண்ணாக இருக்கும்.",
+    "sentence_en": "The quotient is 5.",
+    "sentence_ta": "வகுத்தலின் ஈவு 5 ஆகும்.",
     "complexity": 2
   },
   {
@@ -3151,7 +3153,7 @@ window.theniWords = [
     "word_ta": "கால்வட்டம்",
     "image_word": "quarter circle",
     "sentence_en": "A quarter circle is a circular arc that covers one fourth of the circle.",
-    "sentence_ta": "ஒரு கால்வட்டம் என்பது ஒரு சூழலில் நான்கில் ஒரு பங்கு ஆர்க்கைக் கவரும்.",
+    "sentence_ta": "கால்வட்டம் என்பது வட்டத்தின் நான்கில் ஒரு பகுதி.",
     "complexity": 2
   },
   {
@@ -3163,7 +3165,7 @@ window.theniWords = [
     "word_ta": "அரைவட்டம்",
     "image_word": "half circle",
     "sentence_en": "The shape is half of a full circle.",
-    "sentence_ta": "வடிவம் ஒரு பூர்த்தி வட்டத்தின் அரைவட்டம்",
+    "sentence_ta": "இது ஒரு அரைவட்ட வடிவம்.",
     "complexity": 1
   },
   {
@@ -3174,8 +3176,8 @@ window.theniWords = [
     "word_en": "difference",
     "word_ta": "வேறுபாடு",
     "image_word": "difference",
-    "sentence_en": "The difference between two numbers is always positive.",
-    "sentence_ta": "இரு எண்களின் வேறுபாடு எப்போதும் சாய்வு அல்ல.",
+    "sentence_en": "The difference is 5.",
+    "sentence_ta": "இரு எண்களுக்கு இடையே உள்ள வித்தியாசம் 5.",
     "complexity": 2
   },
   {
@@ -3198,8 +3200,8 @@ window.theniWords = [
     "word_en": "remainder",
     "word_ta": "மீதி",
     "image_word": "remainder",
-    "sentence_en": "The remainder of the division is very small.",
-    "sentence_ta": "பிரிவின் மீதி என்பது சிறியது.",
+    "sentence_en": "The remainder is 2.",
+    "sentence_ta": "வகுத்தலின் மீதி 2 ஆகும்.",
     "complexity": 2
   },
   {
@@ -3294,8 +3296,8 @@ window.theniWords = [
     "word_en": "right angle",
     "word_ta": "செங்கோணம்",
     "image_word": "right angle",
-    "sentence_en": "The triangle has three right angles.",
-    "sentence_ta": "மூன்று செங்கோணங்கள் உடைய திரிபு ஒன்று இருந்தது.",
+    "sentence_en": "A square has four right angles.",
+    "sentence_ta": "சதுரத்திற்கு நான்கு செங்கோணங்கள் உள்ளன.",
     "complexity": 2
   },
   {
@@ -3307,7 +3309,7 @@ window.theniWords = [
     "word_ta": "செங்குத்துக்கோடு",
     "image_word": "perpendicular",
     "sentence_en": "The wall is perpendicular to the floor.",
-    "sentence_ta": "",
+    "sentence_ta": "சுவர் தரைக்கு செங்குத்தாக உள்ளது.",
     "complexity": 1
   },
   {
@@ -3319,7 +3321,7 @@ window.theniWords = [
     "word_ta": "இணை கோடு",
     "image_word": "parallel",
     "sentence_en": "The two lines run in parallel.",
-    "sentence_ta": "இரு கோடுகள் ஒன்றிணை கோடு",
+    "sentence_ta": "இவை இரண்டும் இணை கோடுகள்.",
     "complexity": 1
   },
   {
@@ -3331,7 +3333,7 @@ window.theniWords = [
     "word_ta": "விட்டம்",
     "image_word": "diameter",
     "sentence_en": "The diameter of this circle is very small.",
-    "sentence_ta": "இந்த விளம்புகளின் விட்டம் அற்புதமாக சிறியது.",
+    "sentence_ta": "இந்த வட்டத்தின் விட்டம் மிகச் சிறியது.",
     "complexity": 2
   },
   {
@@ -3343,7 +3345,7 @@ window.theniWords = [
     "word_ta": "சரிவகம்",
     "image_word": "trapezoid",
     "sentence_en": "A trapezoid has two parallel sides.",
-    "sentence_ta": "ஒரு சரிவகம் இரண்டு தனிப்பால்வீழ்ச்சி அளவுகளை உடையது.",
+    "sentence_ta": "சரிவகத்திற்கு இரண்டு இணை பக்கங்கள் உண்டு.",
     "complexity": 2
   },
   {
@@ -3355,7 +3357,7 @@ window.theniWords = [
     "word_ta": "குறுக்குவெட்டு",
     "image_word": "intersection",
     "sentence_en": "The intersection of two roads is very important.",
-    "sentence_ta": "இரு சாலைகளின் குறுக்குவெட்டு மிகவும் அதிகமான முக்கியத்துவம் வாய்ந்தது.",
+    "sentence_ta": "இரு சாலைகளின் சந்திப்பு மிகவும் முக்கியமானது.",
     "complexity": 2
   },
   {
@@ -3367,7 +3369,7 @@ window.theniWords = [
     "word_ta": "புவி",
     "image_word": "earth",
     "sentence_en": "The earth is a beautiful planet.",
-    "sentence_ta": "புவி ஒரு செவ்விய நிலம்",
+    "sentence_ta": "பூமி ஒரு அழகான கோள்.",
     "complexity": 1
   },
   {
@@ -3379,7 +3381,7 @@ window.theniWords = [
     "word_ta": "கண்டம்",
     "image_word": "continent",
     "sentence_en": "Africa is the second largest continent.",
-    "sentence_ta": "ஆப்பிரிக்கா இரண்டாவது மூலை அன்றாட உலகம். ",
+    "sentence_ta": "ஆப்பிரிக்கா இரண்டாவது பெரிய கண்டம்.",
     "complexity": 2
   },
   {
@@ -3390,8 +3392,8 @@ window.theniWords = [
     "word_en": "country",
     "word_ta": "நாடு",
     "image_word": "country",
-    "sentence_en": "My country is a beautiful place to live.",
-    "sentence_ta": "என் நாடு அழகிய இருப்புவிடமாக உள்ளது",
+    "sentence_en": "My country beautiful residence-place is.",
+    "sentence_ta": "என் நாடு வசிப்பதற்கு அழகான இடம்.",
     "complexity": 2
   },
   {
@@ -3415,7 +3417,7 @@ window.theniWords = [
     "word_ta": "நகரம்",
     "image_word": "city",
     "sentence_en": "The city is very big and busy.",
-    "sentence_ta": "நகரம் அதிக பெரியது மற்றும் செயல்மிகு.",
+    "sentence_ta": "நகரம் மிகப்பெரியது மற்றும் பரபரப்பானது.",
     "complexity": 2
   },
   {
@@ -3439,7 +3441,7 @@ window.theniWords = [
     "word_ta": "ஞாயிறு",
     "image_word": "sun",
     "sentence_en": "The sun is shining brightly in the sky.",
-    "sentence_ta": "சூரியன் விண்மீனுக்கு பிறகு நேர்த்தி ஒளிருகிறது.",
+    "sentence_ta": "வானத்தில் சூரியன் பிரகாசமாக ஒளிருகிறது.",
     "complexity": 2
   },
   {
@@ -3450,8 +3452,8 @@ window.theniWords = [
     "word_en": "moon",
     "word_ta": "திங்கள்",
     "image_word": "moon",
-    "sentence_en": "The moon is visible on Tuesday evening.",
-    "sentence_ta": "திங்கள் மாலை நேரத்தில் புனித சக்கரவர்த்தி எடுகொள்ளப்படும்.",
+    "sentence_en": "The moon shines at night.",
+    "sentence_ta": "நிலவு இரவில் ஒளிரும்.",
     "complexity": 2
   },
   {
@@ -3487,7 +3489,7 @@ window.theniWords = [
     "word_ta": "தொடர்கள்",
     "image_word": "ranges",
     "sentence_en": "The mountains and valleys are in different height ranges.",
-    "sentence_ta": "மலைகளும் ஆன்மாதல் பெருநிலங்களும் வெவ்வேறு உயரத்தில் உள்ள தொடர்கள்.",
+    "sentence_ta": "மலைகளும் பள்ளத்தாக்குகளும் வெவ்வேறு உயரங்களில் உள்ளன.",
     "complexity": 2
   },
   {
@@ -3523,7 +3525,7 @@ window.theniWords = [
     "word_ta": "அண்டம்",
     "image_word": "universe",
     "sentence_en": "The universe is full of mystery and wonder.",
-    "sentence_ta": "உலக அண்டம் பெருந் திரிசோறி வாயில்.",
+    "sentence_ta": "பேரண்டம் மர்மங்களும் அதிசயங்களும் நிறைந்தது.",
     "complexity": 2
   },
   {
@@ -3535,7 +3537,7 @@ window.theniWords = [
     "word_ta": "புவியியல் (நிலவியல்)",
     "image_word": "geography",
     "sentence_en": "Geography is an important subject for students.",
-    "sentence_ta": "புவியியல் ஒரு முக்கியத்துவமுள்ள ஆசிரியர்களுக்கு நீடிப்பானது.",
+    "sentence_ta": "மாணர்களுக்கு புவியியல் ஒரு முக்கியமான பாடம்.",
     "complexity": 2
   },
   {
@@ -3559,7 +3561,7 @@ window.theniWords = [
     "word_ta": "நீர்",
     "image_word": "water",
     "sentence_en": "The water is very refreshing.",
-    "sentence_ta": "நீர் மிக ஆற்றலுள்ளது.",
+    "sentence_ta": "தண்ணீர் மிகவும் புத்துணர்ச்சியானது.",
     "complexity": 2
   },
   {
@@ -3571,7 +3573,7 @@ window.theniWords = [
     "word_ta": "நெருப்பு",
     "image_word": "fire",
     "sentence_en": "Fire is very hot to touch.",
-    "sentence_ta": "நெருப்பு சிறிய தோல் மட்டும் எரியும்",
+    "sentence_ta": "நெருப்பு தொடுவதற்கு மிகவும் சூடாக இருக்கும்.",
     "complexity": 1
   },
   {
@@ -3606,8 +3608,8 @@ window.theniWords = [
     "word_en": "eclipse",
     "word_ta": "கிரகணம்",
     "image_word": "eclipse",
-    "sentence_en": "The total eclipse will block the sunlight completely.",
-    "sentence_ta": "முழுக்கிரகணம் ஒளி வெளிச்சத்தை முற்றிலும் போக்கும்.",
+    "sentence_en": "The solar eclipse will hide the sun.",
+    "sentence_ta": "சூரிய கிரகணம் சூரியனை மறைக்கும்.",
     "complexity": 2
   },
   {
@@ -3631,7 +3633,7 @@ window.theniWords = [
     "word_ta": "சூறாவளி",
     "image_word": "typhoon",
     "sentence_en": "The typhoon was coming towards the city.",
-    "sentence_ta": "நகரத்தின் வைப்பிடம் சூறாவளி வருகிறது.",
+    "sentence_ta": "நகரத்தை நோக்கி சூறாவளி வருகிறது.",
     "complexity": 2
   },
   {
@@ -3643,7 +3645,7 @@ window.theniWords = [
     "word_ta": "எரிமலைக்குழம்பு",
     "image_word": "lava",
     "sentence_en": "Lava flows slowly through the valley.",
-    "sentence_ta": "எரிமலைக்குழம்பு வளைந்த சாணி வழியாக ஆரம்பித்துக் கொள்கிறது.",
+    "sentence_ta": "பள்ளத்தாக்கின் வழியாக எரிமலைக்குழம்பு பாய்கிறது.",
     "complexity": 2
   },
   {
@@ -3654,8 +3656,8 @@ window.theniWords = [
     "word_en": "hemisphere",
     "word_ta": "அரைக்கோளம்",
     "image_word": "hemisphere",
-    "sentence_en": "The Northern Hemisphere receives more sunlight than the Southern Hemisphere.",
-    "sentence_ta": "வடக்கு அரைக்கோளம் தென்கிழக்கு அரைக்கோளத்தை விட சூரிய ஒளி பல நேரங்கள் வாங்குகிறது.",
+    "sentence_en": "The Northern Hemisphere is north of the equator.",
+    "sentence_ta": "வடக்கு அரைக்கோளம் பூமத்திய ரேகைக்கு வடக்கே உள்ளது.",
     "complexity": 2
   },
   {
@@ -3667,7 +3669,7 @@ window.theniWords = [
     "word_ta": "பீடபூமி",
     "image_word": "plateau",
     "sentence_en": "The plateau was at an elevation of over three thousand feet.",
-    "sentence_ta": "பீடபூமி அதன் உயரம் மூன்று ஆயிரங்கால் அடி இருந்தது.",
+    "sentence_ta": "பீடபூமி மூவாயிரம் அடி உயரத்தில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -3678,8 +3680,8 @@ window.theniWords = [
     "word_en": "tropic of cancer",
     "word_ta": "கடக்கோடு",
     "image_word": "tropic of cancer",
-    "sentence_en": "The tropical region lies between the Tropic of Cancer and equator.",
-    "sentence_ta": "துருப்பிறகு வடக்கு மற்றும் சாய்மாநிலம் வழி உள்ளது.",
+    "sentence_en": "The Tropic of Cancer is in the North.",
+    "sentence_ta": "கடக ரேகை வடக்கில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -3703,7 +3705,7 @@ window.theniWords = [
     "word_ta": "வடிகால்",
     "image_word": "drain",
     "sentence_en": "The water is draining from the pipe.",
-    "sentence_ta": "நீர் குழாயிலிருந்து வடிகால்",
+    "sentence_ta": "குழாயிலிருந்து தண்ணீர் வெளியேறுகிறது.",
     "complexity": 1
   },
   {
@@ -3715,7 +3717,7 @@ window.theniWords = [
     "word_ta": "கிளை நதிகள்",
     "image_word": "distributaries",
     "sentence_en": "Rivers have many distributaries nearby.",
-    "sentence_ta": "நீர் ஆறுகளின் பல சிறிய கிளை நதிகள் அழைக்கவும்.",
+    "sentence_ta": "ஆறுகளுக்கு பல கிளை நதிகள் உண்டு.",
     "complexity": 1
   },
   {
@@ -3751,7 +3753,7 @@ window.theniWords = [
     "word_ta": "வளைகுடா",
     "image_word": "gulf",
     "sentence_en": "The gulf is a large body of water.",
-    "sentence_ta": "வளைகுடா என்பது ஒரு பெரிய நீர் மேகலாம்",
+    "sentence_ta": "வளைகுடா என்பது ஒரு பெரிய நீர் பரப்பு.",
     "complexity": 1
   },
   {
@@ -3787,7 +3789,7 @@ window.theniWords = [
     "word_ta": "எரிமலைவாய்",
     "image_word": "crater",
     "sentence_en": "The volcano created a big crater on the mountain.",
-    "sentence_ta": "வெடிமலை அது பெரிய எரிமலைவாய்க் கண்டுள்ளது.",
+    "sentence_ta": "எரிமலை மலையில் ஒரு பெரிய பள்ளத்தை உருவாக்கியது.",
     "complexity": 2
   },
   {
@@ -3799,7 +3801,7 @@ window.theniWords = [
     "word_ta": "பனிப்புயல்",
     "image_word": "blizzard",
     "sentence_en": "A strong blizzard is hitting our city today.",
-    "sentence_ta": "ஒரு வலிமையான பனிப்புயல் நம் நகரத்தை இப்போது அணுகுகிறது.",
+    "sentence_ta": "பலமான பனிப்புயல் வீசுகிறது.",
     "complexity": 2
   },
   {
@@ -3810,8 +3812,8 @@ window.theniWords = [
     "word_en": "archipelago",
     "word_ta": "தீவுக்கூட்டம்",
     "image_word": "archipelago",
-    "sentence_en": "The Philippines is an archipelago of over seven thousand islands.",
-    "sentence_ta": "பிலிப்பைன்ஸ் ஏழாயிரத்து முக்கால்வயிற்செய்யாக நிரம்பிய ஒரு தீவுக்கூட்டம்.",
+    "sentence_en": "The Philippines is an archipelago.",
+    "sentence_ta": "பிலிப்பைன்ஸ் பல தீவுகளின் கூட்டம்.",
     "complexity": 3
   },
   {
@@ -3823,7 +3825,7 @@ window.theniWords = [
     "word_ta": "எல்லைக்கோடு",
     "image_word": "border line, boundary",
     "sentence_en": "The new country has a clear border line and boundary.",
-    "sentence_ta": "புதிய நாட்டிற்கு ஒரு மெல்லிய எல்லைக்கோடு உண்டு.",
+    "sentence_ta": "நாட்டிற்கு ஒரு தெளிவான எல்லைக்கோடு உள்ளது.",
     "complexity": 2
   },
   {
@@ -3835,7 +3837,7 @@ window.theniWords = [
     "word_ta": "அகழி",
     "image_word": "moat",
     "sentence_en": "The castle had a wide moat around it.",
-    "sentence_ta": "அரண்மனை ஒரு பெரிய அகழி சுற்றி இருந்தது.",
+    "sentence_ta": "அரண்மனையைச் சுற்றி ஒரு அகழி இருந்தது.",
     "complexity": 1
   },
   {
@@ -3846,8 +3848,8 @@ window.theniWords = [
     "word_en": "motherly love",
     "word_ta": "தாய்ப்பாசம்",
     "image_word": "motherly love",
-    "sentence_en": "Her motherly love made her always care for others.",
-    "sentence_ta": "அவளுடைய தாய்ப்பாசம் என்பதால் அவள் ஒருவருக்கும் சிந்திக்கும்.",
+    "sentence_en": "Motherly love is unique.",
+    "sentence_ta": "தாய் பாசம் ஈடு இணையற்றது.",
     "complexity": 2
   },
   {
@@ -3859,7 +3861,7 @@ window.theniWords = [
     "word_ta": "அக்கறை",
     "image_word": "caring",
     "sentence_en": "She is very caring towards her friends.",
-    "sentence_ta": "அவள் தன்னுடைய நண்பர்களுக்கு சிறந்த அக்கறை கொண்டவள்.",
+    "sentence_ta": "அவள் தன் நண்பர்கள் மீது அக்கறை கொண்டவள்.",
     "complexity": 2
   },
   {
@@ -3871,7 +3873,7 @@ window.theniWords = [
     "word_ta": "உதவி",
     "image_word": "help",
     "sentence_en": "I need your help to finish this project.",
-    "sentence_ta": "நான் உங்களுடைய உதவி தேவைப்படுகிறேன் இந்தப் பிரச்சாரத்தை முடிக்கவும்.",
+    "sentence_ta": "எனக்கு உங்கள் உதவி தேவை.",
     "complexity": 2
   },
   {
@@ -3883,7 +3885,7 @@ window.theniWords = [
     "word_ta": "பக்தி",
     "image_word": "devotion",
     "sentence_en": "Her devotion to her studies is truly admirable.",
-    "sentence_ta": "அவள் படிப்புக்கான தன் மகிழ்ச்சி நேர்மறையான பக்தி.",
+    "sentence_ta": "படிப்பு மீதான அவளது பக்தி போற்றத்தக்கது.",
     "complexity": 2
   },
   {
@@ -3895,7 +3897,7 @@ window.theniWords = [
     "word_ta": "மரியாதை",
     "image_word": "respect",
     "sentence_en": "She shows respect to her elders always.",
-    "sentence_ta": "அவர் எப்போதும் தன் கொடியாலும் ஆசாரத்தை காட்டுகிறார்.",
+    "sentence_ta": "அவள் எப்போதும் பெரியவர்களுக்கு மரியாதை கொடுக்கிறாள்.",
     "complexity": 1
   },
   {
@@ -3907,7 +3909,7 @@ window.theniWords = [
     "word_ta": "நட்பு",
     "image_word": "friendship",
     "sentence_en": "Friendship is an important part of our lives.",
-    "sentence_ta": "நட்பு எம் வாழ்க்கையில் ஒரு முக்கிய செயலாகும்.",
+    "sentence_ta": "நட்பு நம் வாழ்க்கையின் முக்கிய அங்கமாகும்.",
     "complexity": 2
   },
   {
@@ -3919,7 +3921,7 @@ window.theniWords = [
     "word_ta": "தோழமை",
     "image_word": "friendliness",
     "sentence_en": "The teacher showed great friendliness towards the students.",
-    "sentence_ta": "ஆசிரியர் மாணவர்களை நட்புத் தனத்தோடு காட்டினார்.",
+    "sentence_ta": "ஆசிரியர் மாணவர்களிடம் நட்பாக பழகினார்.",
     "complexity": 2
   },
   {
@@ -3931,7 +3933,7 @@ window.theniWords = [
     "word_ta": "அணைப்பு",
     "image_word": "hug",
     "sentence_en": "She gave him a big hug.",
-    "sentence_ta": "அவள் அவனுக்கு பெரிய அணைப்பு தந்தாள்.",
+    "sentence_ta": "அவள் அவனை கட்டிப்பிடித்தாள்.",
     "complexity": 2
   },
   {
@@ -3943,7 +3945,7 @@ window.theniWords = [
     "word_ta": "ஆசை",
     "image_word": "desire",
     "sentence_en": "Her greatest desire is to become a doctor.",
-    "sentence_ta": "அவளுடைய மிகப்பெரிய ஆசை நாட்டில் மருத்துவராக இருப்பது.",
+    "sentence_ta": "மருத்துவராகி வேண்டும் என்பதே அவளது மிகப்பெரிய ஆசை.",
     "complexity": 2
   },
   {
@@ -3955,7 +3957,7 @@ window.theniWords = [
     "word_ta": "அன்புறவு",
     "image_word": "affection",
     "sentence_en": "She showed great affection to her younger brother.",
-    "sentence_ta": "அவள் தனது சிற்றரசனுக்கு பெரிய அன்புறவை காட்டினாள்.",
+    "sentence_ta": "அவள் தன் தம்பி மீது மிகுந்த அன்பு காட்டினாள்.",
     "complexity": 2
   },
   {
@@ -3967,7 +3969,7 @@ window.theniWords = [
     "word_ta": "உறவு",
     "image_word": "relationship",
     "sentence_en": "A good relationship is built on trust and respect.",
-    "sentence_ta": "நம்பிக்கை மற்றும் மதிப்புடன் ஒரு உறவு அமைய வேண்டும்.",
+    "sentence_ta": "நம்பிக்கை மற்றும் மரியாதையே நல்ல உறவின் அடிப்படை.",
     "complexity": 2
   },
   {
@@ -3979,7 +3981,7 @@ window.theniWords = [
     "word_ta": "புரத்தல் (கவனிப்பு)",
     "image_word": "taking care",
     "sentence_en": "We are taking care of the plants in our garden.",
-    "sentence_ta": "மரங்களை எங்கள் தோட்டத்தில் புரத்தல் (கவனிப்பு) செய்கிறோம்.",
+    "sentence_ta": "நாங்கள் தோட்டத்து செடிகளை பராமரிக்கிறோம்.",
     "complexity": 2
   },
   {
@@ -3991,7 +3993,7 @@ window.theniWords = [
     "word_ta": "மென்மை",
     "image_word": "tender",
     "sentence_en": "The tender flower was very delicate and soft.",
-    "sentence_ta": "அந்த மென்மையான குறிப்புக் கொடைத்தூர் மலர் சிறிது அழுத்தமாக இருந்தது.",
+    "sentence_ta": "அந்த மலர் மிகவும் மென்மையானது.",
     "complexity": 2
   },
   {
@@ -4003,7 +4005,7 @@ window.theniWords = [
     "word_ta": "நேசம்",
     "image_word": "fondness",
     "sentence_en": "I have great fondness for my pet dog.",
-    "sentence_ta": "நான் பெரிய நேசம் என்று தனி விலங்கிடம் வைக்கிறேன்.",
+    "sentence_ta": "எனக்கு என் செல்ல நாய் மீது தனி பிரியம் உண்டு.",
     "complexity": 2
   },
   {
@@ -4015,7 +4017,7 @@ window.theniWords = [
     "word_ta": "இரக்கம்",
     "image_word": "mercy",
     "sentence_en": "God shows mercy to those who do good.",
-    "sentence_ta": "தெய்வம் நன்றி செய்பவர்களுக்கு இரக்கம் காட்டுகிறது.",
+    "sentence_ta": "நன்மை செய்பவர்களிடம் இறைவன் கருணை காட்டுவார்.",
     "complexity": 2
   },
   {
@@ -4039,7 +4041,7 @@ window.theniWords = [
     "word_ta": "காதல்",
     "image_word": "love",
     "sentence_en": "I love my family very much.",
-    "sentence_ta": "நான் என் குடும்பத்திற்கு அன்பு வைக்கிறேன்.",
+    "sentence_ta": "நான் என் குடும்பத்தை மிகவும் நேசிக்கிறேன்.",
     "complexity": 1
   },
   {
@@ -4051,7 +4053,7 @@ window.theniWords = [
     "word_ta": "துணை",
     "image_word": "companion",
     "sentence_en": "My best friend is my closest companion.",
-    "sentence_ta": "என் மிகச்சிறந்த நண்பர் என் அடுத்த துணை.",
+    "sentence_ta": "என் சிறந்த நண்பரே என் நெருங்கிய துணை.",
     "complexity": 2
   },
   {
@@ -4063,7 +4065,7 @@ window.theniWords = [
     "word_ta": "நம்பிக்கை",
     "image_word": "trust",
     "sentence_en": "I trust my parents to make the right decisions.",
-    "sentence_ta": "எனக்கு விரோதம் இல்லாமல் உங்களை நம்பிக்கை",
+    "sentence_ta": "சரியான முடிவுகளை எடுப்பார்கள் என்று நான் என் பெற்றோரை நம்புகிறேன்.",
     "complexity": 2
   },
   {
@@ -4075,7 +4077,7 @@ window.theniWords = [
     "word_ta": "முத்தம்",
     "image_word": "kiss",
     "sentence_en": "The boy gave her a gentle kiss.",
-    "sentence_ta": "ஆண்பெண் அவளுக்கு நன்றி முத்தம் சுறுத்தான்.",
+    "sentence_ta": "சிறுவன் அவளுக்கு ஒரு முத்தம் கொடுத்தான்.",
     "complexity": 2
   },
   {
@@ -4087,7 +4089,7 @@ window.theniWords = [
     "word_ta": "திருமணம்",
     "image_word": "wedding",
     "sentence_en": "The wedding was celebrated by the happy couple.",
-    "sentence_ta": "திருமணம் செய்யப்பட்ட இந்த ஆனந்த ஜோடி.",
+    "sentence_ta": "மகிழ்ச்சியான தம்பதியர் திருமணத்தை கொண்டாடினர்.",
     "complexity": 1
   },
   {
@@ -4099,7 +4101,7 @@ window.theniWords = [
     "word_ta": "பொறுப்பு",
     "image_word": "responsible",
     "sentence_en": "She is a responsible person in our school.",
-    "sentence_ta": "அவர் எங்கள் பாடசாலையில் ஒரு பொறுப்பு நபர்.",
+    "sentence_ta": "அவள் எங்கள் பள்ளியில் பொறுப்புள்ள ஒரு நபர்.",
     "complexity": 2
   },
   {
@@ -4111,7 +4113,7 @@ window.theniWords = [
     "word_ta": "அனுதாபம்",
     "image_word": "sympathy",
     "sentence_en": "She showed her sympathy to the victim.",
-    "sentence_ta": "\"வாய்ப்புக்கு\" அனுதாபம் காட்டினார் ",
+    "sentence_ta": "அவள் பாதிக்கப்பட்டவரிடம் அனுதாபம் காட்டினாள்.",
     "complexity": 1
   },
   {
@@ -4123,7 +4125,7 @@ window.theniWords = [
     "word_ta": "கருணை",
     "image_word": "kindness",
     "sentence_en": "The boy showed kindness to his little sister.",
-    "sentence_ta": "குழந்தை அவன் சிங்கிளி அரசியலை பார்த்தது.",
+    "sentence_ta": "சிறுவன் தன் தங்கையிடம் அன்பு காட்டினான்.",
     "complexity": 1
   },
   {
@@ -4147,7 +4149,7 @@ window.theniWords = [
     "word_ta": "மனிதநேயம்",
     "image_word": "humanity",
     "sentence_en": "Humanity has always helped others in need.",
-    "sentence_ta": "மனிதநேயம் பருவத்தில் எப்போதும் மற்றவர்களுக்கு உதவி செய்துவந்தது.",
+    "sentence_ta": "தேவைப்படுபவர்களுக்கு மனிதநேயம் எப்போதும் உதவும்.",
     "complexity": 2
   },
   {
@@ -4171,7 +4173,7 @@ window.theniWords = [
     "word_ta": "ஆதரவு",
     "image_word": "supportive",
     "sentence_en": "My friends are very supportive during exams.",
-    "sentence_ta": "\"நான் சோதனைக்கு பொருந்திய இலவச \"",
+    "sentence_ta": "தேர்வு நேரத்தில் என் நண்பர்கள் மிகவும் ஆதரவாக இருந்தனர்.",
     "complexity": 1
   },
   {
@@ -4183,7 +4185,7 @@ window.theniWords = [
     "word_ta": "நேர்மை",
     "image_word": "honesty",
     "sentence_en": "Honesty is very important for everyone.",
-    "sentence_ta": "நேர்மை அனைவருக்கும் மிகவும் பொருத்தமானது.",
+    "sentence_ta": "எல்லோருக்கும் நேர்மை மிக முக்கியம்.",
     "complexity": 2
   },
   {
@@ -4195,7 +4197,7 @@ window.theniWords = [
     "word_ta": "உறுதி",
     "image_word": "committed",
     "sentence_en": "She has committed herself to helping the community.",
-    "sentence_ta": "அவள் துணைவியர்க்கு உறுதி எடுத்துள்ளாள்.",
+    "sentence_ta": "சமூகத்திற்கு உதவ அவள் உறுதி பூண்டுள்ளாள்.",
     "complexity": 2
   },
   {
@@ -4206,8 +4208,8 @@ window.theniWords = [
     "word_en": "attachment",
     "word_ta": "இணைப்பு",
     "image_word": "attachment",
-    "sentence_en": "The email has an attachment",
-    "sentence_ta": "மின்னுறை இணைப்பை கொண்டிருக்கிறது",
+    "sentence_en": "Email has an attachment.",
+    "sentence_ta": "மின்னஞ்சலில் ஒரு இணைப்பு இருந்தது.",
     "complexity": 1
   },
   {
@@ -4219,7 +4221,7 @@ window.theniWords = [
     "word_ta": "அன்புள்ளம்",
     "image_word": "good natured",
     "sentence_en": "She is a good natured person.",
-    "sentence_ta": "அவர் மிக்க ஒரு சிறந்த இனிமை உடையவர்.",
+    "sentence_ta": "அவள் நல்ல குணம் கொண்டவர்.",
     "complexity": 1
   },
   {
@@ -4231,7 +4233,7 @@ window.theniWords = [
     "word_ta": "நன்னம்பிக்கை",
     "image_word": "loyalty",
     "sentence_en": "Her loyalty is very important to me.",
-    "sentence_ta": "\"நன்னம்பிக்கை\" என்பது எனக்கு அவள் செலுத்தும் உயர்ந்தது.",
+    "sentence_ta": "அவளது விசுவாசம் எனக்கு மிக முக்கியம்.",
     "complexity": 2
   },
   {
@@ -4267,7 +4269,7 @@ window.theniWords = [
     "word_ta": "ஆறுதல்",
     "image_word": "consolation",
     "sentence_en": "The letter offered her some consolation.",
-    "sentence_ta": "அனுப்பிய எழுத்து இவர்க்கு ஆறுதல் அளித்தது.",
+    "sentence_ta": "கடிதம் அவளுக்கு ஆறுதல் அளித்தது.",
     "complexity": 2
   },
   {
@@ -4279,7 +4281,7 @@ window.theniWords = [
     "word_ta": "பாராட்டு",
     "image_word": "appreciation",
     "sentence_en": "She showed great appreciation for his help.",
-    "sentence_ta": "அவர் பெரிய பாராட்டுகள் தந்தார் அவரது உதவி.",
+    "sentence_ta": "அவரது உதவிக்கு அவள் மிகவும் நன்றி தெரிவித்தாள்.",
     "complexity": 2
   },
   {
@@ -4303,7 +4305,7 @@ window.theniWords = [
     "word_ta": "நாட்டுப்பற்று",
     "image_word": "patriotism",
     "sentence_en": "Patriotism is a great virtue in our country.",
-    "sentence_ta": "நாட்டுப்பற்று என்பது உலகில் மிகச் சிறந்த அர்த்தமான தனி மதிப்பு.",
+    "sentence_ta": "நாட்டுப்பற்று ஒரு சிறந்த பண்பு.",
     "complexity": 2
   },
   {
@@ -4315,7 +4317,7 @@ window.theniWords = [
     "word_ta": "என்றென்றும்",
     "image_word": "forever",
     "sentence_en": "I will love you forever.",
-    "sentence_ta": "நீ என்றென்றும் என்னை விருப்பப்படேல்",
+    "sentence_ta": "நான் உன்னை என்றென்றும் நேசிப்பேன்.",
     "complexity": 2
   },
   {
@@ -4326,8 +4328,8 @@ window.theniWords = [
     "word_en": "litter (trash)",
     "word_ta": "குப்பை",
     "image_word": "litter (trash)",
-    "sentence_en": "The litter on the beach is very dirty.",
-    "sentence_ta": "அந்த குப்பை மீன் சுரங்கத்தில் சிறியது.",
+    "sentence_en": "There is trash on the beach.",
+    "sentence_ta": "கடற்கரையில் குப்பைகள் உள்ளன.",
     "complexity": 1
   },
   {
@@ -4338,8 +4340,8 @@ window.theniWords = [
     "word_en": "waste",
     "word_ta": "கழிவு",
     "image_word": "waste",
-    "sentence_en": "The new recycling program helps reduce household waste.",
-    "sentence_ta": "புதிய சுரண்டல் நிகழ்வு இல்லையான மற்றும் இல்லையான  கழிவு அளவை குறைக்க உதவுகிறது.",
+    "sentence_en": "Recycling reduces waste.",
+    "sentence_ta": "மறுசுழற்சி கழிவுகளைக் குறைக்கிறது.",
     "complexity": 2
   },
   {
@@ -4351,7 +4353,7 @@ window.theniWords = [
     "word_ta": "இயற்கை எரிவாயு",
     "image_word": "natural gas",
     "sentence_en": "Natural gas is used as an energy source.",
-    "sentence_ta": "இயற்கை எரிவாயு ஆனது ஒரு சக்தி வள உபயோகம்.",
+    "sentence_ta": "இயற்கை எரிவாயு ஆற்றல் மூலமாக பயன்படுகிறது.",
     "complexity": 2
   },
   {
@@ -4363,7 +4365,7 @@ window.theniWords = [
     "word_ta": "மரம் நடு",
     "image_word": "plant a tree",
     "sentence_en": "We need to plant a tree every week.",
-    "sentence_ta": "நாம ஒவ்வொரு ஆண்டுக்கும் மரம் நடுங்கள்.",
+    "sentence_ta": "நாம் வாரம் ஒரு மரம் நட வேண்டும்.",
     "complexity": 1
   },
   {
@@ -4374,8 +4376,8 @@ window.theniWords = [
     "word_en": "climate",
     "word_ta": "பருவநிலை",
     "image_word": "climate",
-    "sentence_en": "The climate in our city is very pleasant.",
-    "sentence_ta": "நம் நகரின் பருவநிலை அழகானது.",
+    "sentence_en": "The climate is pleasant.",
+    "sentence_ta": "தட்பவெப்ப நிலை இதமாக உள்ளது.",
     "complexity": 1
   },
   {
@@ -4387,7 +4389,7 @@ window.theniWords = [
     "word_ta": "உலக வெப்பமயமாத ல்",
     "image_word": "global warming",
     "sentence_en": "Global warming affects the Earth's climate.",
-    "sentence_ta": "\"உலக வெப்பமயமாதல்\" நிலவு சூழலின் அடிப்படையை எள்ளி கொண்டு",
+    "sentence_ta": "புவி வெப்பமடைதல் காலநிலையை பாதிக்கிறது.",
     "complexity": 2
   },
   {
@@ -4399,7 +4401,7 @@ window.theniWords = [
     "word_ta": "கடல் வெப்பம்",
     "image_word": "ocean heat",
     "sentence_en": "The ocean heat is increasing due to climate change.",
-    "sentence_ta": "கிளைமேட் சாங்கு வலுப்படுத்திய காரணமாக, கடல் வெப்பம் அதிகமாகி உள்ளது.",
+    "sentence_ta": "காலநிலை மாற்றத்தால் கடல் வெப்பம் அதிகரிக்கிறது.",
     "complexity": 2
   },
   {
@@ -4411,7 +4413,7 @@ window.theniWords = [
     "word_ta": "காட்டுத்தீ",
     "image_word": "wildfire",
     "sentence_en": "A wildfire is spreading quickly through the forest.",
-    "sentence_ta": "ஒரு காட்டுத்தீ விரைவான வேகத்தில் மழையில் பரவி வருகிறது.",
+    "sentence_ta": "காட்டில் தீ வேகமாக பரவுகிறது.",
     "complexity": 2
   },
   {
@@ -4447,7 +4449,7 @@ window.theniWords = [
     "word_ta": "மறுசுழற்சி",
     "image_word": "recycle",
     "sentence_en": "We must recycle old plastic bottles.",
-    "sentence_ta": "நாம் பழைய தச்சருக்கு மறுசுழற்சி செய்ய வேண்டும்.",
+    "sentence_ta": "பழைய பிளாஸ்டிக் பாட்டில்களை மறுசுழற்சி செய்ய வேண்டும்.",
     "complexity": 2
   },
   {
@@ -4458,8 +4460,8 @@ window.theniWords = [
     "word_en": "reuse",
     "word_ta": "மறுபயன்பாடு",
     "image_word": "reuse",
-    "sentence_en": "We should reuse old materials whenever possible.",
-    "sentence_ta": "நாம் வீட்டுக்கூரை, பிற வேலையிட பொருள்கள் ஆகியவற்றை மறுபயன்பாடு செய்ய வேண்டும்.",
+    "sentence_en": "We should reuse old materials.",
+    "sentence_ta": "பழைய பொருட்களை மறுபயன்பாடு செய்ய வேண்டும்.",
     "complexity": 1
   },
   {
@@ -4483,7 +4485,7 @@ window.theniWords = [
     "word_ta": "கரியமில வாயு",
     "image_word": "carbon dioxide",
     "sentence_en": "Carbon dioxide is released during combustion.",
-    "sentence_ta": "கரியமில வாயு என்பது உரசல் செய்யப்படும் போது வெளியிடப்படுகிறது.",
+    "sentence_ta": "எரிபொருள் எரியும்போது கார்பன் டை ஆக்சைடு வெளியாகிறது.",
     "complexity": 2
   },
   {
@@ -4507,7 +4509,7 @@ window.theniWords = [
     "word_ta": "காற்று மாசுபாடு",
     "image_word": "air pollution",
     "sentence_en": "Air pollution is very bad for our health.",
-    "sentence_ta": "காற்று மாசுபாடு நம் ஆரோக்கியத்துக்கு மிகவும் தீங்கு விளai.",
+    "sentence_ta": "காற்று மாசுபாடு நம் ஆரோக்கியத்திற்கு மிகவும் கெடுதலானது.",
     "complexity": 2
   },
   {
@@ -4531,7 +4533,7 @@ window.theniWords = [
     "word_ta": "ஒளி மாசுபடு",
     "image_word": "light pollution",
     "sentence_en": "Light pollution affects our view of the stars.",
-    "sentence_ta": "ஒளி மாசுபடு நம் விண்மீன் காட்சியைப் பாதிக்கிறது.",
+    "sentence_ta": "ஒளி மாசுபாடு விண்மீன்களைப் பார்ப்பதைத் தடுக்கிறது.",
     "complexity": 1
   },
   {
@@ -4543,7 +4545,7 @@ window.theniWords = [
     "word_ta": "ஒலி மாசுபாடு",
     "image_word": "noise pollution",
     "sentence_en": "Noise pollution is very bad for our health.",
-    "sentence_ta": "ஒலி மாசுபாடு என்பது நமது ஆரோக்கியத்திற்கு அழுத்தமானது.",
+    "sentence_ta": "ஒலி மாசுபாடு நம் ஆரோக்கியத்திற்கு கெடுதலானது.",
     "complexity": 2
   },
   {
@@ -4567,7 +4569,7 @@ window.theniWords = [
     "word_ta": "ஓசோன் படிவம்",
     "image_word": "ozone layer",
     "sentence_en": "The ozone layer protects us from the sun's harmful rays.",
-    "sentence_ta": "ஓசோன் படிவம் அது நமக்கு ஒளியின் சேதக்காரணி வீச்சுகளைப் பாதுகாக்கிறது.",
+    "sentence_ta": "ஓசோன் படலம் சூரியனின் தீங்கு விளைவிக்கும் கதிர்களிலிருந்து நம்மைக் காக்கிறது.",
     "complexity": 2
   },
   {
@@ -4579,7 +4581,7 @@ window.theniWords = [
     "word_ta": "மழைப்பொழிவு",
     "image_word": "precipitation",
     "sentence_en": "Precipitation is an essential part of the Earth's water cycle.",
-    "sentence_ta": "மழைப்பொழிவு இந்த உலகின் நீர்ச்சுழற்சி அங்கம்.",
+    "sentence_ta": "பனிமழை உலகின் நீர் சுழற்சியின் ஒரு முக்கிய அங்கம்.",
     "complexity": 2
   },
   {
@@ -4591,7 +4593,7 @@ window.theniWords = [
     "word_ta": "அமிலமழை",
     "image_word": "acid rain",
     "sentence_en": "Acid rain is very bad for our planet.",
-    "sentence_ta": "அமிலமழை எங்கள் புவி சாராத நன்றாக இருக்க ஆரம்பிக்க வேண்டும்.",
+    "sentence_ta": "அமிலமழை நம் பூமிக்கு மிகக் கெடுதலானது.",
     "complexity": 2
   },
   {
@@ -4615,7 +4617,7 @@ window.theniWords = [
     "word_ta": "காற்று விசையாழி",
     "image_word": "wind turbine",
     "sentence_en": "The wind turbine generates electricity from the wind.",
-    "sentence_ta": "காற்று விசையாழி பொதிநிலை மின் ஆற்றலை உருவாக்குகிறது.",
+    "sentence_ta": "காற்றாலை காற்றிலிருந்து மின்சாரத்தை உற்பத்தி செய்கிறது.",
     "complexity": 2
   },
   {
@@ -4651,7 +4653,7 @@ window.theniWords = [
     "word_ta": "கடல் அமிலத்தன்மை",
     "image_word": "ocean acidity",
     "sentence_en": "The ocean acidity is increasing due to pollution.",
-    "sentence_ta": "கடல் அமிலத்தன்மை சேர்வை நீர்ப்பாசி காரணமாக அதிகரிக்கிறது.",
+    "sentence_ta": "மாசுபாடு காரணமாக கடலின் அமிலத்தன்மை அதிகரிக்கிறது.",
     "complexity": 2
   },
   {
@@ -4662,8 +4664,8 @@ window.theniWords = [
     "word_en": "adaptation",
     "word_ta": "பொருந்தும் தன்மை",
     "image_word": "adaptation",
-    "sentence_en": "The movie's adaptation was perfect for the new generation.",
-    "sentence_ta": "புதிய சந்ததி கூட்டாளிகளுக்கு முழுவதும் பொருந்தும் தன்மை ஆன திரைப்படம்.",
+    "sentence_en": "Animals show adaptation to their environment.",
+    "sentence_ta": "விலங்குகள் தங்கள் சூழலுக்கு ஏற்ப தகவமைத்துக் கொள்கின்றன.",
     "complexity": 2
   },
   {
@@ -4686,8 +4688,8 @@ window.theniWords = [
     "word_en": "biodegradable",
     "word_ta": "மக்கும்",
     "image_word": "biodegradable",
-    "sentence_en": "The bag is made from biodegradable materials.",
-    "sentence_ta": "விதை மக்கும் பொருட்களால் செய்யப்பட்ட சட்டை.",
+    "sentence_en": "This bag is made of biodegradable materials.",
+    "sentence_ta": "இப்பை மக்கும் பொருட்களால் செய்யப்பட்டுள்ளது.",
     "complexity": 2
   },
   {
@@ -4699,7 +4701,7 @@ window.theniWords = [
     "word_ta": "மாசுபாடு குறைத்தல்",
     "image_word": "reduce pollution",
     "sentence_en": "We need to reduce pollution in our community.",
-    "sentence_ta": "எங்கள் சமூகத்தில் மாசுபாடு குறைத்தல் வேண்டும்.",
+    "sentence_ta": "நாம் மாசுபாட்டைக் குறைக்க வேண்டும்.",
     "complexity": 1
   },
   {
@@ -4711,7 +4713,7 @@ window.theniWords = [
     "word_ta": "இயற்கைப் பாதுகாப்பு",
     "image_word": "nature conservation",
     "sentence_en": "Nature conservation is very important for our planet.",
-    "sentence_ta": "இயற்கைப் பாதுகாப்பு என்பது நமது உலகத்திற்குச் சிறப்பு.",
+    "sentence_ta": "இயற்கைப் பாதுகாப்பு நம் பூமிக்கு மிக முக்கியம்.",
     "complexity": 2
   },
   {
@@ -4723,7 +4725,7 @@ window.theniWords = [
     "word_ta": "இயற்கைவள பராமரிப்பு",
     "image_word": "natural resources maintenance",
     "sentence_en": "Natural resources maintenance is very important for our planet.",
-    "sentence_ta": "இயற்கைவள பராமரிப்பு எங்கள் சந்ததிக்கான உலகம் அடிக்கடி.",
+    "sentence_ta": "இயற்கை வளங்களை பராமரிப்பது மிக முக்கியம்.",
     "complexity": 2
   },
   {
@@ -4747,7 +4749,7 @@ window.theniWords = [
     "word_ta": "அணுக் கழிவு",
     "image_word": "nuclear waste",
     "sentence_en": "Nuclear waste is disposed of properly every year.",
-    "sentence_ta": "அணுக் கழிவு ஒவ்வோர் ஆண்டும் சரியான முறையில் தூக்கி எறியப்படுகிறது.",
+    "sentence_ta": "அணுக்கழிவுகள் பாதுகாப்பாக அகற்றப்படுகின்றன.",
     "complexity": 2
   },
   {
@@ -4759,7 +4761,7 @@ window.theniWords = [
     "word_ta": "நச்சுக்கழிவு",
     "image_word": "toxic waste",
     "sentence_en": "The toxic waste was dumped into the ocean.",
-    "sentence_ta": "நச்சுக்கழிவு பெருங்கடலின் மீது ஒட்டுக்குத்தாற்றி",
+    "sentence_ta": "நச்சுக்கழிவுகள் கடலில் கொட்டப்பட்டன.",
     "complexity": 1
   },
   {
@@ -4771,7 +4773,7 @@ window.theniWords = [
     "word_ta": "நெகிழிக் கழிவு",
     "image_word": "plastic waste",
     "sentence_en": "We should reduce plastic waste at our school.",
-    "sentence_ta": "நெகிழிக் கழிவுகளை எங்கள் பாடசாலையில் குறைத்தல் வேண்டும்.",
+    "sentence_ta": "நாம் நெகிழிப் பயன்பாட்டை குறைக்க வேண்டும்.",
     "complexity": 1
   },
   {
@@ -4783,7 +4785,7 @@ window.theniWords = [
     "word_ta": "தொழிற்சாலைக் கழிவு",
     "image_word": "industrial waste",
     "sentence_en": "Industrial waste is harmful to our environment.",
-    "sentence_ta": "தொழிற்சாலைக் கழிவு எமது சூழலுக்கு அச்சுறுத்தலாகும்.",
+    "sentence_ta": "தொழிற்சாலைக் கழிவுகள் சுற்றுச்சூழலுக்கு கெடுதலானவை.",
     "complexity": 1
   },
   {
@@ -4795,7 +4797,7 @@ window.theniWords = [
     "word_ta": "சூரியக் கதிர்வீச்சு",
     "image_word": "solar radiation",
     "sentence_en": "Solar radiation heats up the Earth's surface.",
-    "sentence_ta": "சூரியக் கதிர்வீச்சு புவி மேலாட்சி நிலையை வெப்பப்படுத்துகிறது.",
+    "sentence_ta": "சூரியக் கதிர்வீச்சு பூமியின் மேற்பரப்பை வெப்பமாக்குகிறது.",
     "complexity": 2
   },
   {
@@ -4807,7 +4809,7 @@ window.theniWords = [
     "word_ta": "இரவு",
     "image_word": "night",
     "sentence_en": "The night is very dark outside tonight.",
-    "sentence_ta": "இரவு பொழுதில் மிகவும் அடர்ந்து நிற்கிறது.",
+    "sentence_ta": "இன்று இரவு வெளியே மிகவும் இருட்டாக உள்ளது.",
     "complexity": 2
   },
   {
@@ -4819,7 +4821,7 @@ window.theniWords = [
     "word_ta": "பகல்",
     "image_word": "day",
     "sentence_en": "I love spending time outside on this day.",
-    "sentence_ta": "நான் பெரிய விருப்பமாக இந்த பகல் சூழலில் எங்கும் வெளி உலா வருகிறேன்.",
+    "sentence_ta": "பகல் பொழுதை வெளியில் கழிப்பது எனக்கு பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -4843,7 +4845,7 @@ window.theniWords = [
     "word_ta": "அந்தி",
     "image_word": "dusk",
     "sentence_en": "The sky is beautiful during the dusk.",
-    "sentence_ta": "வியப்பூட்டும் காட்சி அந்தி நேரத்தில்.",
+    "sentence_ta": "அந்தி வானம் அழகாக உள்ளது.",
     "complexity": 1
   },
   {
@@ -4855,7 +4857,7 @@ window.theniWords = [
     "word_ta": "சூரியக்குடும்பம்",
     "image_word": "solar system",
     "sentence_en": "The solar system has eight planets.",
-    "sentence_ta": "சூரியக்குடும்பத்தில் எட்டு விண்மீன்கள் உள்ளன.",
+    "sentence_ta": "சூரியக் குடும்பத்தில் எட்டு கோள்கள் உள்ளன.",
     "complexity": 2
   },
   {
@@ -4879,7 +4881,7 @@ window.theniWords = [
     "word_ta": "வெள்ளி (கோள்)",
     "image_word": "venus",
     "sentence_en": "Venus is the second planet in our solar system.",
-    "sentence_ta": "வெள்ளி என்பது நாம் அறிந்த சூரிய குடும்பத்தில் இரண்டாவது கோள்.",
+    "sentence_ta": "சூரியக் குடும்பத்தில் வெள்ளி இரண்டாவது கோள்.",
     "complexity": 2
   },
   {
@@ -4903,7 +4905,7 @@ window.theniWords = [
     "word_ta": "செவ்வாய் (கோள்)",
     "image_word": "mars",
     "sentence_en": "Mars is the fourth planet from our Sun.",
-    "sentence_ta": "மார்ஸ என்பது சூரியனிலிருந்து நான்காவது கோள்.",
+    "sentence_ta": "செவ்வாய் சூரியனிலிருந்து நான்காவது கோள்.",
     "complexity": 2
   },
   {
@@ -4927,7 +4929,7 @@ window.theniWords = [
     "word_ta": "சனி (கோள்)",
     "image_word": "saturn",
     "sentence_en": "Saturn is the sixth planet in our solar system.",
-    "sentence_ta": "சனி (கோள்) எம்முடைய தேயிலை வாழ்த்த அமைப்பில் ஆறாவது கோள்.",
+    "sentence_ta": "சனி சூரியனிலிருந்து ஆறாவது கோள்.",
     "complexity": 1
   },
   {
@@ -4939,7 +4941,7 @@ window.theniWords = [
     "word_ta": "சுற்றுப்பாதை",
     "image_word": "orbit",
     "sentence_en": "The Earth is in orbit around the Sun.",
-    "sentence_ta": "பூமி சூரியனுடன் சுற்றுப்பாதையில் உள்ளது.",
+    "sentence_ta": "பூமி சூரியனைச் சுற்றி வருகிறது.",
     "complexity": 2
   },
   {
@@ -4951,7 +4953,7 @@ window.theniWords = [
     "word_ta": "தொலைநோக்கி",
     "image_word": "telescope",
     "sentence_en": "The telescope helps us to see far away stars.",
-    "sentence_ta": "தொலைநோக்கி மிகவும் தூரத்தில் உள்ள நிலாவட்டங்களைப் பார்க்கச் செய்கிறது.",
+    "sentence_ta": "தொலைநோக்கி மூலம் தூரத்து நட்சத்திரங்களை பார்க்கலாம்.",
     "complexity": 2
   },
   {
@@ -4963,7 +4965,7 @@ window.theniWords = [
     "word_ta": "அடிவானம்",
     "image_word": "horizon",
     "sentence_en": "The sun sets below the horizon.",
-    "sentence_ta": "கீழே அடிவானம்",
+    "sentence_ta": "சூரியன் அடிவானத்திற்கு கீழே மறைகிறது.",
     "complexity": 2
   },
   {
@@ -4974,8 +4976,8 @@ window.theniWords = [
     "word_en": "zenith",
     "word_ta": "உச்சிவானம்",
     "image_word": "zenith",
-    "sentence_en": "The highest point of the sun is at its zenith.",
-    "sentence_ta": "சூரிய உச்சிவானம் கடந்து பொழுதுக்களில் அதுவே.",
+    "sentence_en": "The sun is at its zenith.",
+    "sentence_ta": "சூரியன் உச்சிவானத்தில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -4987,7 +4989,7 @@ window.theniWords = [
     "word_ta": "விண்வெளி",
     "image_word": "space",
     "sentence_en": "The universe is made up of vast space.",
-    "sentence_ta": "சூரிய மண்டலத்தின் புவி, உள்நோக்கு விண்வெளி ஒன்றாகும்.",
+    "sentence_ta": "பேரண்டம் பரந்த விண்வெளியால் ஆனது.",
     "complexity": 2
   },
   {
@@ -4999,7 +5001,7 @@ window.theniWords = [
     "word_ta": "கருங்குழி",
     "image_word": "blackhole",
     "sentence_en": "A blackhole is very dense and heavy.",
-    "sentence_ta": "ஒரு கருங்குழி பிடிவாதம் நிறையுள்ளதும் எடையுள்ளதும்.",
+    "sentence_ta": "கருந்துளை மிகவும் அடர்த்தியானது.",
     "complexity": 2
   },
   {
@@ -5010,8 +5012,8 @@ window.theniWords = [
     "word_en": "waxing",
     "word_ta": "வளர்பிறை",
     "image_word": "waxing",
-    "sentence_en": "The moon is currently waxing full.",
-    "sentence_ta": "இப்போது சிலீர்விக்க ஆரம்பித்துவிட்ட நிலவு முழுக்கானது.",
+    "sentence_en": "The moon is waxing.",
+    "sentence_ta": "நிலவு வளர்ந்து வருகிறது.",
     "complexity": 2
   },
   {
@@ -5022,8 +5024,8 @@ window.theniWords = [
     "word_en": "waning",
     "word_ta": "தேய்பிறை",
     "image_word": "waning",
-    "sentence_en": "The sunlight was waning during the evening.",
-    "sentence_ta": "பிறை தேய்பிறை அது சூரிய வெளிச்சம்.",
+    "sentence_en": "The moon is waning.",
+    "sentence_ta": "நிலவு தேய்ந்து வருகிறது.",
     "complexity": 2
   },
   {
@@ -5034,8 +5036,8 @@ window.theniWords = [
     "word_en": "vacuum",
     "word_ta": "வெற்றிடம்",
     "image_word": "vacuum",
-    "sentence_en": "The vacuum cleaner is used to clean the floor.",
-    "sentence_ta": "வெற்றிடம் சுத்தப்பிரயோஜனம் அறைக்குள் கழுவி எடுக்கப்படுகிறது.",
+    "sentence_en": "Space is a vacuum.",
+    "sentence_ta": "விண்வெளி ஒரு வெற்றிடம்.",
     "complexity": 2
   },
   {
@@ -5046,8 +5048,8 @@ window.theniWords = [
     "word_en": "atmosphere",
     "word_ta": "வளி மண்டலம்",
     "image_word": "atmosphere",
-    "sentence_en": "The atmosphere in the park is very pleasant.",
-    "sentence_ta": "பெருந்தள வளி மண்டலம் பூங்காவில் இயற்கை.",
+    "sentence_en": "The atmosphere surrounds the Earth.",
+    "sentence_ta": "வளிமண்டலம் பூமியைச் சூழ்ந்துள்ளது.",
     "complexity": 1
   },
   {
@@ -5071,7 +5073,7 @@ window.theniWords = [
     "word_ta": "சூரிய கிரகணம்",
     "image_word": "solar eclipse",
     "sentence_en": "A solar eclipse occurs when the moon blocks sunlight",
-    "sentence_ta": "சூரிய கிரஹணம் நிகழும்போது நிலவு ஒளி விழுங்கும்",
+    "sentence_ta": "சூரிய கிரகணத்தின் போது நிலவு சூரியனை மறைக்கும்.",
     "complexity": 2
   },
   {
@@ -5083,7 +5085,7 @@ window.theniWords = [
     "word_ta": "சந்திர கிரகணம்",
     "image_word": "lunar eclipse",
     "sentence_en": "The lunar eclipse occurred on a clear night.",
-    "sentence_ta": "சந்திர கிரகணம் ஒளியுடன் காலை நேரத்தில் நிகழ்ந்தது.",
+    "sentence_ta": "சந்திர கிரகணம் இரவில் தெரியும்.",
     "complexity": 2
   },
   {
@@ -5119,7 +5121,7 @@ window.theniWords = [
     "word_ta": "பால் வெளியண்டம்",
     "image_word": "milky way",
     "sentence_en": "The milky way is visible in the night sky.",
-    "sentence_ta": "பால் வெளியண்டம் இரவு வெளிச்சத்தில் காணப்படுகிறது.",
+    "sentence_ta": "பால் வழி மண்டலம் இரவு வானில் தெரியும்.",
     "complexity": 2
   },
   {
@@ -5131,7 +5133,7 @@ window.theniWords = [
     "word_ta": "விண்மீன் மண்டலம்",
     "image_word": "galaxy",
     "sentence_en": "Our galaxy is part of the Milky Way.",
-    "sentence_ta": "எங்கள் விண்மீன் மண்டலம் மில்கி வே வாயின் ஒரு பகுதியாகும்.",
+    "sentence_ta": "நம் விண்மீன் மண்டலம் பால் வழி மண்டவத்தின் ஒரு பகுதி.",
     "complexity": 2
   },
   {
@@ -5155,7 +5157,7 @@ window.theniWords = [
     "word_ta": "குறுங்கோள்",
     "image_word": "asteroid",
     "sentence_en": "The asteroid is very close to the Earth.",
-    "sentence_ta": "குறுங்கோள் பூமியை அருகில் உள்ளது.",
+    "sentence_ta": "குறுங்கோள் பூமிக்கு அருகில் உள்ளது.",
     "complexity": 1
   },
   {
@@ -5167,7 +5169,7 @@ window.theniWords = [
     "word_ta": "வான்கோள்",
     "image_word": "planetoid",
     "sentence_en": "The small planetoid was discovered in our solar system.",
-    "sentence_ta": "சிறிய வான்கோள் எம் தேசிய அலைமருவி பணிக்கு கண்டு பிடிக்கப்பட்டது.",
+    "sentence_ta": "சூரிய குடும்பத்தில் ஒரு சிறிய வான்கோள் கண்டுபிடிக்கப்பட்டது.",
     "complexity": 1
   },
   {
@@ -5179,7 +5181,7 @@ window.theniWords = [
     "word_ta": "எரிகல் பொழிவு",
     "image_word": "meteor shower",
     "sentence_en": "A meteor shower can be seen in the night sky.",
-    "sentence_ta": "ஒரு எரிகல் பொழிவு இரவில் நிலாவின் மீது பார்க்கப்படும்.",
+    "sentence_ta": "இரவு வானில் விண்கல் மழை தெரியும்.",
     "complexity": 1
   },
   {
@@ -5191,7 +5193,7 @@ window.theniWords = [
     "word_ta": "பூமத்திய ரேகை",
     "image_word": "equator",
     "sentence_en": "The equator is an imaginary line around the Earth.",
-    "sentence_ta": "பூமத்திய ரேகை ஒரு புவி சுற்றில் காணப்படும் ஓர் எண்ணற்ற வரையறை.",
+    "sentence_ta": "பூமத்திய ரேகை என்பது பூமியைச் சுற்றியுள்ள ஒரு கற்பனைக் கோடு.",
     "complexity": 2
   },
   {
@@ -5202,8 +5204,8 @@ window.theniWords = [
     "word_en": "light year",
     "word_ta": "ஒளியாண்டு",
     "image_word": "light year",
-    "sentence_en": "The distance between Earth and the Sun is about four light years.",
-    "sentence_ta": "நிலவும் சூரியனுக்கு இடையில் அப்போது ஐந்து ஒளியாண்டுகள் உள்ளது.",
+    "sentence_en": "The nearest star is four light years away.",
+    "sentence_ta": "அருகிலுள்ள நட்சத்திரம் நான்கு ஒளியாண்டுகள் தொலைவில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -5215,7 +5217,7 @@ window.theniWords = [
     "word_ta": "அயனி மண்டலம்",
     "image_word": "ionosphere",
     "sentence_en": "The ionosphere is a layer of the Earth's atmosphere.",
-    "sentence_ta": "அயனி மண்டலம் ஒரு நிலவியல் கூறு ஆகும்.",
+    "sentence_ta": "அயனி மண்டலம் வளிமண்டலத்தின் ஒரு அடுக்கு.",
     "complexity": 1
   },
   {
@@ -5227,7 +5229,7 @@ window.theniWords = [
     "word_ta": "அண்டவியல்",
     "image_word": "cosmology",
     "sentence_en": "Cosmology is the study of the universe.",
-    "sentence_ta": "அண்டவியல் அனைத்து சூழமைப்புகளையும் ஆராயும் துறை.",
+    "sentence_ta": "அண்டவியல் என்பது பேரண்டத்தை பற்றிய படிப்பு.",
     "complexity": 1
   },
   {
@@ -5239,7 +5241,7 @@ window.theniWords = [
     "word_ta": "அண்டக்கதிர்கள்",
     "image_word": "cosmic rays",
     "sentence_en": "Cosmic rays travel through the Earth's atmosphere.",
-    "sentence_ta": "அண்டக்கதிர்கள் பூமியின் வளிமண்டலத்துக்கு வழிநடத்தப்படுகின்றன.",
+    "sentence_ta": "அண்டக்கதிர்கள் வளிமண்டலத்தின் ஊடாக பயணிக்கின்றன.",
     "complexity": 2
   },
   {
@@ -5251,7 +5253,7 @@ window.theniWords = [
     "word_ta": "சூரிய வடிகட்டி",
     "image_word": "solar filter",
     "sentence_en": "A solar filter is used to reduce eye damage.",
-    "sentence_ta": "சூரிய வடிகட்டி பார்வை அழுத்தத்தை குறைக்க உபயோகிக்கப்படுகின்றது.",
+    "sentence_ta": "கண் பாதிப்பைத் தடுக்க சூரிய வடிகட்டி பயன்படுகிறது.",
     "complexity": 2
   },
   {
@@ -5275,7 +5277,7 @@ window.theniWords = [
     "word_ta": "புறக்கோள்கள்",
     "image_word": "exoplanets",
     "sentence_en": "Exoplanets are discovered every few years in space.",
-    "sentence_ta": "புறக்கோள்கள் விண்மீன் அருகில் ஆண்டுதொடர்ச்சியாக கண்டுபிடிக்கப்படுகின்றன.",
+    "sentence_ta": "விண்வெளியில் அடிக்கடி புறக்கோள்கள் கண்டுபிடிக்கப்படுகின்றன.",
     "complexity": 2
   },
   {
@@ -5287,7 +5289,7 @@ window.theniWords = [
     "word_ta": "பிறந்தநாள் விழா",
     "image_word": "birthday party",
     "sentence_en": "We are planning a fun birthday party",
-    "sentence_ta": "நாம் சிறந்த பிறந்தநாள் விழா ஒன்றைக் கொண்டாடுகிறோம்",
+    "sentence_ta": "நாங்கள் பிறந்தநாள் விழாவிற்கு திட்டமிடுகிறோம்.",
     "complexity": 2
   },
   {
@@ -5299,7 +5301,7 @@ window.theniWords = [
     "word_ta": "பிறந்தநாள் சிறுவன்",
     "image_word": "birthday boy",
     "sentence_en": "The birthday boy is very happy today.",
-    "sentence_ta": "",
+    "sentence_ta": "பிறந்தநாள் பையன் இன்று மகிழ்ச்சியாக இருக்கிறான்.",
     "complexity": 1
   },
   {
@@ -5335,7 +5337,7 @@ window.theniWords = [
     "word_ta": "வயது",
     "image_word": "age",
     "sentence_en": "The girl's age is twelve years.",
-    "sentence_ta": "பெண்ணின் வயது பன்னிரண்டு வயது.",
+    "sentence_ta": "சிறுமிக்கு பன்னிரண்டு வயது.",
     "complexity": 1
   },
   {
@@ -5359,7 +5361,7 @@ window.theniWords = [
     "word_ta": "பூங்கொத்து",
     "image_word": "bouquet",
     "sentence_en": "The bouquet was placed on the dining table.",
-    "sentence_ta": "பூங்கொத்து உணவு அறையில் வைக்கப்பட்டது.",
+    "sentence_ta": "பூங்கொத்து மேஜை மீது வைக்கப்பட்டது.",
     "complexity": 1
   },
   {
@@ -5371,7 +5373,7 @@ window.theniWords = [
     "word_ta": "நாடாக்கள்",
     "image_word": "ribbons",
     "sentence_en": "She decorated her hair with colorful ribbons.",
-    "sentence_ta": "அவள் தனது கொம்பலில் நிறமாலை நாடாக்களை அணிந்திருந்தாள்.",
+    "sentence_ta": "அவள் தலைமுடியில் வண்ண ரிப்பன்களை அணிந்திருந்தாள்.",
     "complexity": 2
   },
   {
@@ -5383,7 +5385,7 @@ window.theniWords = [
     "word_ta": "கோமாளி",
     "image_word": "clown",
     "sentence_en": "The clown is making people laugh very happily.",
-    "sentence_ta": "கோமாளி நபர்களை மிக மகிழ்ச்சியுடன் விளையாட வைக்கிறது.",
+    "sentence_ta": "கோமாளி மக்களை சிரிக்க வைக்கிறான்.",
     "complexity": 2
   },
   {
@@ -5395,7 +5397,7 @@ window.theniWords = [
     "word_ta": "மெழுகுவர்த்தி",
     "image_word": "candle",
     "sentence_en": "The candle lit up the dark room.",
-    "sentence_ta": "ஒரு மெழுகுவர்த்தி இருள் நிறைந்த அறையை எரிந்தது.",
+    "sentence_ta": "மெழுகுவர்த்தி இருண்ட அறைக்கு வெளிச்சம் தந்தது.",
     "complexity": 1
   },
   {
@@ -5407,7 +5409,7 @@ window.theniWords = [
     "word_ta": "வாழ்த்து",
     "image_word": "wish",
     "sentence_en": "I wish you have a happy birthday.",
-    "sentence_ta": "நீங்கள் மகிழ்ச்சி திருநாளை வாழ்த்துகிறேன்.",
+    "sentence_ta": "உங்களுக்கு இனிய பிறந்தநாள் வாழ்த்துக்கள்.",
     "complexity": 2
   },
   {
@@ -5419,7 +5421,7 @@ window.theniWords = [
     "word_ta": "பொம்மை",
     "image_word": "doll",
     "sentence_en": "The little girl is playing with her doll.",
-    "sentence_ta": "சிந்து கையில் அவளுடைய பொம்மையை விளையாடுகிறாள்.",
+    "sentence_ta": "சிறுமி தன் பொம்மையுடன் விளையாடுகிறாள்.",
     "complexity": 1
   },
   {
@@ -5431,7 +5433,7 @@ window.theniWords = [
     "word_ta": "புத்தாடை",
     "image_word": "new clothes",
     "sentence_en": "I bought new clothes for the party.",
-    "sentence_ta": "நான் பார்வைக்கு புத்தாடை வாங்கி வந்திருக்கிறேன்.",
+    "sentence_ta": "நான் விழாவிற்கு புதிய உடை வாங்கினேன்.",
     "complexity": 1
   },
   {
@@ -5467,7 +5469,7 @@ window.theniWords = [
     "word_ta": "பரிசுப் பெட்டி",
     "image_word": "gift box",
     "sentence_en": "The gift box was beautifully decorated.",
-    "sentence_ta": "பரிசுப் பெட்டி அழகாக முறியடித்து வைக்கப்பட்டிருந்தது.",
+    "sentence_ta": "பரிசுப் பெட்டி அழகாக அலங்கரிக்கப்பட்டிருந்தது.",
     "complexity": 2
   },
   {
@@ -5479,7 +5481,7 @@ window.theniWords = [
     "word_ta": "விளையாட்டுப் பொருள்கள்",
     "image_word": "toys",
     "sentence_en": "The child likes to play with various toys.",
-    "sentence_ta": "குழந்தை பல விளையாட்டுப் பொருள்களை விளையாடுவதைப் பற்றி விரும்புகிறது.",
+    "sentence_ta": "குழந்தை பல பொம்மைகளுடன் விளையாட விரும்புகிறது.",
     "complexity": 2
   },
   {
@@ -5491,7 +5493,7 @@ window.theniWords = [
     "word_ta": "மேடை",
     "image_word": "stage",
     "sentence_en": "The school play will be on the stage tonight.",
-    "sentence_ta": "பாடசாலை நாடகம் இன்று மாணிக்க வெளியே மேடை தொடரும்.",
+    "sentence_ta": "பள்ளி நாடகம் இன்று இரவு மேடையில் நடக்கும்.",
     "complexity": 1
   },
   {
@@ -5503,7 +5505,7 @@ window.theniWords = [
     "word_ta": "விருந்தினர்கள்",
     "image_word": "guests",
     "sentence_en": "Our guests are welcome to the party.",
-    "sentence_ta": "எங்கள் விருந்தினர்கள் விழாவிற்கு வரவேற்படுகின்றனர்.",
+    "sentence_ta": "விருந்தினர்கள் விழாவிற்கு வரவேற்கப்படுகிறார்கள்.",
     "complexity": 2
   },
   {
@@ -5527,7 +5529,7 @@ window.theniWords = [
     "word_ta": "தின்பண்டங்கள்",
     "image_word": "eatables",
     "sentence_en": "We need more eatables for the party.",
-    "sentence_ta": "நாம் கூட்டத்திற்கு அதிகமான உணவுப்பொருட்களை தேவைப்படுகிறோம்.",
+    "sentence_ta": "விழாவிற்கு அதிக தின்பண்டங்கள் தேவை.",
     "complexity": 1
   },
   {
@@ -5538,8 +5540,8 @@ window.theniWords = [
     "word_en": "festoon",
     "word_ta": "தோரணம்",
     "image_word": "festoon",
-    "sentence_en": "The colorful lights festoon the entrance.",
-    "sentence_ta": "விருப்பமான நிறங்கள் தோரணத்தைச் சுற்றி ஊடுருவுகின்றன.",
+    "sentence_en": "Colorful festoons decorate the entrance.",
+    "sentence_ta": "நுழைவாயிலில் வண்ணத் தோரணங்கள் உள்ளன.",
     "complexity": 2
   },
   {
@@ -5563,7 +5565,7 @@ window.theniWords = [
     "word_ta": "ஊதற்பை",
     "image_word": "balloon",
     "sentence_en": "The child inflated the red balloon.",
-    "sentence_ta": "குழந்தை சிவப்பு ஊதற்பையை உள்ளடக்கி இருந்தது.",
+    "sentence_ta": "குழந்தை சிவப்பு பலூனை ஊதியது.",
     "complexity": 2
   },
   {
@@ -5575,7 +5577,7 @@ window.theniWords = [
     "word_ta": "ஊது குழாய்",
     "image_word": "blow pipe",
     "sentence_en": "The artist used a blow pipe to shape the metal.",
-    "sentence_ta": "கலைஞர் ஒரு ஊது குழாய் உபயோகித்து மூலம் வடிவம் செய்தார்.",
+    "sentence_ta": "கலைஞர் உலோகத்தை வளைக்க ஊதுகுழலை பயன்படுத்தினார்.",
     "complexity": 2
   },
   {
@@ -5587,7 +5589,7 @@ window.theniWords = [
     "word_ta": "காகித் தட்டு",
     "image_word": "paper plate",
     "sentence_en": "The paper plate was very useful for the party.",
-    "sentence_ta": "பார்டிக்கு தேவையான ஒரு அமைதியான காகித் தட்டு.",
+    "sentence_ta": "காகிதத் தட்டு விழாவிற்கு மிகவும் உதவியாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -5611,7 +5613,7 @@ window.theniWords = [
     "word_ta": "நகப்பூச்சு",
     "image_word": "nail polish",
     "sentence_en": "She uses nail polish to paint her nails.",
-    "sentence_ta": "அவள் நகப்பூச்சுடன் தன் நகங்களை வரியாக்குகிறாள்.",
+    "sentence_ta": "அவள் தன் நகங்களில் நகப்பூச்சு பூசினாள்.",
     "complexity": 1
   },
   {
@@ -5623,7 +5625,7 @@ window.theniWords = [
     "word_ta": "வாழ்த்து அட்டை",
     "image_word": "greeting card",
     "sentence_en": "She gave him a lovely greeting card.",
-    "sentence_ta": "அவள் ஒரு மிகவும் பொன்மையான வாழ்த்து அட்டையை அவருக்கு வழங்கினாள்.",
+    "sentence_ta": "அவள் அவருக்கு ஒரு அழகான வாழ்த்து அட்டை கொடுத்தாள்.",
     "complexity": 2
   },
   {
@@ -5647,7 +5649,7 @@ window.theniWords = [
     "word_ta": "மேசை விரிப்பு",
     "image_word": "tablecloth",
     "sentence_en": "The tablecloth is hanging loosely over the table.",
-    "sentence_ta": "மேசை விரிப்பு கட்டு தாழம்பால் உருண்டி அண்டு மேயுள்ளது",
+    "sentence_ta": "மேசை விரிப்பு மேஜையில் விரிக்கப்பட்டுள்ளது.",
     "complexity": 2
   },
   {
@@ -5683,7 +5685,7 @@ window.theniWords = [
     "word_ta": "காகி்த் துண்டுகள்",
     "image_word": "confetti",
     "sentence_en": "The party used colorful confetti everywhere.",
-    "sentence_ta": "அந்த கொண்டாட்டத்தில் பலவிசையான காகி்த் துண்டுகள் எங்கும் இருந்தது.",
+    "sentence_ta": "விழாவில் வண்ண காகிதத் துண்டுகள் தூவப்பட்டன.",
     "complexity": 1
   },
   {
@@ -5707,7 +5709,7 @@ window.theniWords = [
     "word_ta": "தண்ணீர்த் துப்பாக்கி",
     "image_word": "water gun",
     "sentence_en": "She played with her water gun in the backyard.",
-    "sentence_ta": "அவள் தண்ணீர்த் துப்பாக்கியுடன் முற்றிலும் ஆங்காடி சவாலில் இருந்தாள்.",
+    "sentence_ta": "அவள் கொல்லைப்புறத்தில் தண்ணீர் துப்பாக்கியுடன் விளையாடினாள்.",
     "complexity": 3
   },
   {
@@ -5719,7 +5721,7 @@ window.theniWords = [
     "word_ta": "தொடர் விளக்கு",
     "image_word": "serial light",
     "sentence_en": "The serial light is shining brightly in the room.",
-    "sentence_ta": "தொடர் விளக்கு அறையில் நெருப்பாக சீரிழக்காமல் எரிந்துகொண்டிருக்கிறது.",
+    "sentence_ta": "அறையில் தொடர் விளக்கு பிரகாசமாக எரிகிறது.",
     "complexity": 2
   },
   {
@@ -5731,7 +5733,7 @@ window.theniWords = [
     "word_ta": "மாயவித்தை நிகழ்ச்சி",
     "image_word": "magic show",
     "sentence_en": "The magic show was very entertaining for me.",
-    "sentence_ta": "மாயவித்தை நிகழ்ச்சி என்பது எனக்கு இரண்டாயிரம் ஆகும்.",
+    "sentence_ta": "மாயவித்தை நிகழ்ச்சி எனக்கு மிகவும் பிடித்திருந்தது.",
     "complexity": 2
   },
   {
@@ -5755,7 +5757,7 @@ window.theniWords = [
     "word_ta": "உபசரிப்பு",
     "image_word": "hospitality",
     "sentence_en": "She showed great hospitality to her guests.",
-    "sentence_ta": "அவள் தன் சிந்தியார்களுக்கு மிகப்பெரிய உபசரிப்பை காட்டினாள்.",
+    "sentence_ta": "அவள் விருந்தினர்களை சிறப்பாக உபசரித்தாள்.",
     "complexity": 2
   },
   {
@@ -5767,7 +5769,7 @@ window.theniWords = [
     "word_ta": "பெயர்ச்சொல்",
     "image_word": "noun",
     "sentence_en": "A noun is a type of word in language.",
-    "sentence_ta": "ஒரு பெயர்ச்சொல் ஒரு மொழியின் வகை என்ற சொல்.",
+    "sentence_ta": "பெயர்ச்சொல் என்பது ஒரு சொல் வகை.",
     "complexity": 2
   },
   {
@@ -5779,7 +5781,7 @@ window.theniWords = [
     "word_ta": "இலக்கணம்",
     "image_word": "grammar",
     "sentence_en": "Grammar is an important part of language.",
-    "sentence_ta": "இலக்கணம் ஒரு மொழியின் அடிப்படைத் துறை ஆகும்.",
+    "sentence_ta": "இலக்கணம் மொழியின் முக்கிய அங்கம்.",
     "complexity": 2
   },
   {
@@ -5791,7 +5793,7 @@ window.theniWords = [
     "word_ta": "உயிர் எழுத்து",
     "image_word": "vowel",
     "sentence_en": "A vowel is an essential sound in language.",
-    "sentence_ta": "\"உயிர் எழுத்து\" ஒன்றுக்கொன்று அவசியமான ஒலி ஆகும்.",
+    "sentence_ta": "உயிரெழுத்து மொழியின் முக்கிய ஒலி.",
     "complexity": 2
   },
   {
@@ -5815,7 +5817,7 @@ window.theniWords = [
     "word_ta": "உயிர்மெய் எழுத்து",
     "image_word": "vowel consonant",
     "sentence_en": "The sound of vowel consonant is very interesting.",
-    "sentence_ta": "உயிர்மெய் எழுத்தின் சதி ஒலி இனிமையாக இருக்கிறது.",
+    "sentence_ta": "உயிர்மெய் எழுத்தின் ஒலி சுவாரஸ்யமானது.",
     "complexity": 2
   },
   {
@@ -5826,8 +5828,8 @@ window.theniWords = [
     "word_en": "hard-sounding consonant",
     "word_ta": "வல்லினம்",
     "image_word": "hard-sounding consonant",
-    "sentence_en": "The hard-sounding consonant is found in வல்லினம்.",
-    "sentence_ta": "",
+    "sentence_en": "Hard consonants are called Vallinam.",
+    "sentence_ta": "வல்லின எழுத்துக்கள் கடினமான ஒலியை உடையவை.",
     "complexity": 1
   },
   {
@@ -5839,7 +5841,7 @@ window.theniWords = [
     "word_ta": "மெல்லினம்",
     "image_word": "soft-sounding consonant",
     "sentence_en": "The soft-sounding consonant makes a gentle sound.",
-    "sentence_ta": "\"மெல்லினம்\" குறித்த சொல் ஒரு வாழ்த்து சொல்லை உணர்த்தும்.",
+    "sentence_ta": "மெல்லின எழுத்துக்கள் மென்மையான ஒலியை உடையவை.",
     "complexity": 2
   },
   {
@@ -5851,7 +5853,7 @@ window.theniWords = [
     "word_ta": "இடையினம்",
     "image_word": "middle-sounding consonant",
     "sentence_en": "A middle-sounding consonant is difficult to pronounce.",
-    "sentence_ta": "ஒரு இடையினம் செவ்வினால் மிகவும் போதாது.",
+    "sentence_ta": "இடையின எழுத்துக்கள் இடைப்பட்ட ஒலியை உடையவை.",
     "complexity": 2
   },
   {
@@ -5863,7 +5865,7 @@ window.theniWords = [
     "word_ta": "குறில்",
     "image_word": "short vowel",
     "sentence_en": "A short vowel is pronounced briefly.",
-    "sentence_ta": "ஒரு குறில் எழுத்து பெயர்ச்சி சின்ன அளவில் உள்ளது.",
+    "sentence_ta": "குறில் எழுத்து குறுகிய ஓசை உடையது.",
     "complexity": 2
   },
   {
@@ -5874,8 +5876,8 @@ window.theniWords = [
     "word_en": "long vowel",
     "word_ta": "நெடில்",
     "image_word": "long vowel",
-    "sentence_en": "The word 'ai' is an example of a long vowel.",
-    "sentence_ta": "சொல் 'ai' ஒரு நெடில் வாக்கல் என்பது உண்மை.",
+    "sentence_en": "'Ai' is a long vowel.",
+    "sentence_ta": "'ஐ' என்பது ஒரு நெடில் எழுத்து.",
     "complexity": 1
   },
   {
@@ -5886,8 +5888,8 @@ window.theniWords = [
     "word_en": "word",
     "word_ta": "சொல்",
     "image_word": "word",
-    "sentence_en": "The word 'hello' is a popular greeting.",
-    "sentence_ta": "வார்த்தை 'ஹலோ' ஒரு பிரபலமான அறிவிப்பாகும்.",
+    "sentence_en": "'Vanakkam' is a popular greeting.",
+    "sentence_ta": "'வணக்கம்' என்பது ஒரு பிரபலமான சொல்.",
     "complexity": 2
   },
   {
@@ -5910,8 +5912,8 @@ window.theniWords = [
     "word_en": "singular",
     "word_ta": "ஒருமை",
     "image_word": "singular",
-    "sentence_en": "The word 'run' is in the singular form.",
-    "sentence_ta": "சொல் 'ஓடு' ஒருமை வடிவில் உள்ளது",
+    "sentence_en": "The word 'cat' is singular.",
+    "sentence_ta": "'பூனை' என்ற சொல் ஒருமையில் உள்ளது.",
     "complexity": 1
   },
   {
@@ -5922,8 +5924,8 @@ window.theniWords = [
     "word_en": "plural",
     "word_ta": "பன்மை",
     "image_word": "plural",
-    "sentence_en": "The word plural refers to many things in English.",
-    "sentence_ta": "பெயர் முறைச் சில பொருள்களை விளக்கும்",
+    "sentence_en": "Plural refers to more than one thing.",
+    "sentence_ta": "பன்மை என்பது பல பொருட்களை குறிக்கும்.",
     "complexity": 2
   },
   {
@@ -5947,7 +5949,7 @@ window.theniWords = [
     "word_ta": "நிகழ்காலம்",
     "image_word": "present tense",
     "sentence_en": "We use the present tense to talk about actions",
-    "sentence_ta": "நிகழ்காலத்தை பயன்படுத்துவதன் மூலம், செயற்கையான செயல்களை உரைப்பதன் ஊக்குவிக்கப்படுகிறது",
+    "sentence_ta": "நிகழ்காலம் தற்போது நடக்கும் செயலை குறிக்கும்.",
     "complexity": 2
   },
   {
@@ -5959,7 +5961,7 @@ window.theniWords = [
     "word_ta": "எதிர்காலம்",
     "image_word": "future tense",
     "sentence_en": "The future tense is used for the future actions.",
-    "sentence_ta": "எதிர்காலம் பயன்படுவது எதிர்காலத் தாமதங்களுக்கானது.",
+    "sentence_ta": "எதிர்காலம் இனி நடக்கப்போகும் செயலை குறிக்கும்.",
     "complexity": 2
   },
   {
@@ -5971,7 +5973,7 @@ window.theniWords = [
     "word_ta": "ஆண்பால்",
     "image_word": "masculine gender",
     "sentence_en": "The word 'he' belongs to the masculine gender.",
-    "sentence_ta": "முற்காட்சி வினைத் தன்மை பெற்ற இலக்கணம் 'he' ஆண்பால்.",
+    "sentence_ta": "'அவன்' என்பது ஆண்பால் சொல்.",
     "complexity": 2
   },
   {
@@ -5983,7 +5985,7 @@ window.theniWords = [
     "word_ta": "பெண்பால்",
     "image_word": "feminine gender",
     "sentence_en": "The word 'she' is an example of the feminine gender.",
-    "sentence_ta": "",
+    "sentence_ta": "'அவள்' என்பது பெண்பால் சொல்.",
     "complexity": 1
   },
   {
@@ -5995,7 +5997,7 @@ window.theniWords = [
     "word_ta": "வினைச்சொல்",
     "image_word": "verb",
     "sentence_en": "The verb is an action word in grammar.",
-    "sentence_ta": "வினைச்சொல் என்பது இலக்கணத்தில் நடத்தல் செய்யும் ஒரு வார்த்தை.",
+    "sentence_ta": "வினைச்சொல் என்பது ஒரு செயலைக் குறிக்கும் சொல்.",
     "complexity": 2
   },
   {
@@ -6007,7 +6009,7 @@ window.theniWords = [
     "word_ta": "எதிர்ச்சொல்",
     "image_word": "antonym",
     "sentence_en": "The antonym of the word 'big' is small.",
-    "sentence_ta": "சொல் 'பெரிய' எதிர்ச்சொல் 'சிறிய'",
+    "sentence_ta": "'பெரிய' என்ற சொல்லின் எதிர்ச்சொல் 'சிறிய'.",
     "complexity": 1
   },
   {
@@ -6019,7 +6021,7 @@ window.theniWords = [
     "word_ta": "இணைச்சொல்",
     "image_word": "synonym",
     "sentence_en": "A synonym is another word having the same meaning.",
-    "sentence_ta": "ஒரு இணைச்சொல் அதிகாரம் உள்ள ஒரு வேறு சொல்.",
+    "sentence_ta": "இணைச்சொல் என்பது அதே பொருளைக் கொண்ட வேறு சொல்.",
     "complexity": 1
   },
   {
@@ -6042,8 +6044,8 @@ window.theniWords = [
     "word_en": "non cognitive",
     "word_ta": "அஃறிணை",
     "image_word": "non cognitive",
-    "sentence_en": "Non cognitive skills are useful in our daily lives.",
-    "sentence_ta": "அஃறிணை திறன்கள் எங்கள் நாட்குறிப்பு வாழ்க்கையில் உதவும்.",
+    "sentence_en": "Animals belong to the non-rational class.",
+    "sentence_ta": "விலங்குகள் அஃறிணையைச் சேர்ந்தவை.",
     "complexity": 2
   },
   {
@@ -6054,8 +6056,8 @@ window.theniWords = [
     "word_en": "object",
     "word_ta": "செயப்படு பொருள்",
     "image_word": "object",
-    "sentence_en": "The teacher explained the purpose of the object.",
-    "sentence_ta": "ஆசிரியர் பொருளின் நோக்கை விளக்கினார்.",
+    "sentence_en": "The object receives the action.",
+    "sentence_ta": "செயப்படு பொருள் வினையின் செயலை ஏற்கிறது.",
     "complexity": 2
   },
   {
@@ -6067,7 +6069,7 @@ window.theniWords = [
     "word_ta": "பெயரடை",
     "image_word": "adjective",
     "sentence_en": "The adjective describes the noun or pronoun.",
-    "sentence_ta": "பெயரடை பெயர் அல்லது சொற்களை விவரிக்கின்றது.",
+    "sentence_ta": "பெயரடை பெயர்ச்சொல்லை விவரிக்கும்.",
     "complexity": 1
   },
   {
@@ -6079,7 +6081,7 @@ window.theniWords = [
     "word_ta": "வினையடை",
     "image_word": "adverb",
     "sentence_en": "The adverb helps to describe the verb clearly.",
-    "sentence_ta": "\"வினையடை\" என்பது வினையை விரித்து கூறும்.",
+    "sentence_ta": "வினையடை வினைச்சொல்லை விவரிக்கும்.",
     "complexity": 2
   },
   {
@@ -6091,7 +6093,7 @@ window.theniWords = [
     "word_ta": "பெயரெச்சம்",
     "image_word": "adjectival participle",
     "sentence_en": "The adjectival participle helps in forming the adjective.",
-    "sentence_ta": "பெயரெச்சம் அடைமொழி உருவாக்கிக் கூறுகிறது.",
+    "sentence_ta": "பெயரெச்சம் பெயர்ச்சொல்லை தழுவி வரும்.",
     "complexity": 2
   },
   {
@@ -6103,7 +6105,7 @@ window.theniWords = [
     "word_ta": "வினையெச்சம்",
     "image_word": "adverbial participle",
     "sentence_en": "The adverbial participle expresses its function clearly.",
-    "sentence_ta": "",
+    "sentence_ta": "வினையெச்சம் வினைச்சொல்லை தழுவி வரும்.",
     "complexity": 1
   },
   {
@@ -6115,7 +6117,7 @@ window.theniWords = [
     "word_ta": "வேற்றுமை உருபு",
     "image_word": "preposition",
     "sentence_en": "A preposition is an important word in grammar.",
-    "sentence_ta": "வேற்றுமை உருபு ஒரு அடிப்படைக் கருத்தியல் சொல் ஆகும்.",
+    "sentence_ta": "வேற்றுமை உருபு வாக்கியத்தில் சொற்களை இணைக்கும்.",
     "complexity": 1
   },
   {
@@ -6126,8 +6128,8 @@ window.theniWords = [
     "word_en": "active voice",
     "word_ta": "செய்வினை",
     "image_word": "active voice",
-    "sentence_en": "Active voice is the main subject of the sentence.",
-    "sentence_ta": "செய்வினை என்பது முக்கிய பொருள் அடங்கிய வாக்கியம்.",
+    "sentence_en": "In active voice, the subject performs the action.",
+    "sentence_ta": "செய்வினை வாக்கியத்தில் எழுவாய் முதன்மையாக இருக்கும்.",
     "complexity": 2
   },
   {
@@ -6138,8 +6140,8 @@ window.theniWords = [
     "word_en": "passive voice",
     "word_ta": "செயப்பாட்டு வினை",
     "image_word": "passive voice",
-    "sentence_en": "The passive voice is used to describe actions quietly.",
-    "sentence_ta": "செயப்பாட்டு வினை மறைந்து செயல் குறித்தது",
+    "sentence_en": "In passive voice, the object is emphasized.",
+    "sentence_ta": "செயப்பாட்டு வினை வாக்கியத்தில் செயப்படு பொருள் முதன்மையாக இருக்கும்.",
     "complexity": 2
   },
   {
@@ -6150,8 +6152,8 @@ window.theniWords = [
     "word_en": "first person",
     "word_ta": "தன்மை",
     "image_word": "first person",
-    "sentence_en": "The first person in the story is the main character.",
-    "sentence_ta": "",
+    "sentence_en": "First person refers to the speaker.",
+    "sentence_ta": "தன்மை என்பது பேசுபவரைக் குறிக்கும்.",
     "complexity": 1
   },
   {
@@ -6162,8 +6164,8 @@ window.theniWords = [
     "word_en": "second person",
     "word_ta": "முன்னிலை",
     "image_word": "second person",
-    "sentence_en": "The term 'second person' refers to you.",
-    "sentence_ta": "",
+    "sentence_en": "Second person refers to the listener.",
+    "sentence_ta": "முன்னிலை என்பது கேட்பவரைக் குறிக்கும்.",
     "complexity": 1
   },
   {
@@ -6174,8 +6176,8 @@ window.theniWords = [
     "word_en": "third person",
     "word_ta": "படர்க்கை",
     "image_word": "third person",
-    "sentence_en": "The third person is often seen in this story.",
-    "sentence_ta": "இந்த கதையில் மூன்றாம் படர்க்கை பெரும்பாலும் காணப்படுகிறது.",
+    "sentence_en": "Third person refers to others.",
+    "sentence_ta": "படர்க்கை என்பது மற்றவரைக் குறிக்கும்.",
     "complexity": 2
   },
   {
@@ -6186,8 +6188,8 @@ window.theniWords = [
     "word_en": "conjunction",
     "word_ta": "இணைப்புச்சொல்",
     "image_word": "conjunction",
-    "sentence_en": "A conjunction is an essential part of grammar.",
-    "sentence_ta": "ஒரு இணைப்புச் சொல் வினைமூலத்திற்கு அடிப்படையானது.",
+    "sentence_en": "A conjunction connects two sentences.",
+    "sentence_ta": "இணைப்புச்சொல் இரண்டு வாக்கியங்களை இணைக்கும்.",
     "complexity": 2
   },
   {
@@ -6198,8 +6200,8 @@ window.theniWords = [
     "word_en": "ideophone",
     "word_ta": "இரட்டைக்கிளவி",
     "image_word": "ideophone",
-    "sentence_en": "The ideophone in the song is very loud.",
-    "sentence_ta": "பாடலில் உள்ள இரட்டைக்கிளவி மிகவும் அதிக சத்தமானது.",
+    "sentence_en": "'Kala kala' is an ideophone.",
+    "sentence_ta": "'கலகல' என்பது ஒரு இரட்டைக்கிளவி.",
     "complexity": 2
   },
   {
@@ -6210,8 +6212,8 @@ window.theniWords = [
     "word_en": "double word",
     "word_ta": "அடுக்குத் தொடர்",
     "image_word": "double word",
-    "sentence_en": "A double word is a two-word phrase.",
-    "sentence_ta": "ஒரு அடுக்குத் தொடர் இரண்டு சொற்களின் பகுதி ஆகும்.",
+    "sentence_en": "Double word is repeating the same word.",
+    "sentence_ta": "அடுக்குத் தொடர் ஒரே சொல்லை மீண்டும் கூறுவது.",
     "complexity": 2
   },
   {
@@ -6222,8 +6224,8 @@ window.theniWords = [
     "word_en": "noun denoting rational beings",
     "word_ta": "உயர்திணை",
     "image_word": "noun_denoting_rational_beings",
-    "sentence_en": "Humans are a noun denoting rational beings.",
-    "sentence_ta": "",
+    "sentence_en": "Humans belong to the rational class.",
+    "sentence_ta": "மனிதர்கள் உயர்திணையைச் சேர்ந்தவர்கள்.",
     "complexity": 1
   },
   {
@@ -6247,7 +6249,7 @@ window.theniWords = [
     "word_ta": "ஆலமரம்",
     "image_word": "banyan tree",
     "sentence_en": "The banyan tree is very beautiful.",
-    "sentence_ta": "ஆலமரம் என்பது சிறந்த அழகையுடையது.",
+    "sentence_ta": "ஆலமரம் மிகவும் அழகானது.",
     "complexity": 2
   },
   {
@@ -6259,7 +6261,7 @@ window.theniWords = [
     "word_ta": "தென்னைமரம்",
     "image_word": "coconut tree",
     "sentence_en": "The coconut tree is very tall.",
-    "sentence_ta": "தென்னைமரம் அதிக உயரம் வாய்ந்தது.",
+    "sentence_ta": "தென்னைமரம் மிகவும் உயரமானது.",
     "complexity": 1
   },
   {
@@ -6271,7 +6273,7 @@ window.theniWords = [
     "word_ta": "மாமரம்",
     "image_word": "mango tree",
     "sentence_en": "The mango tree is very tall.",
-    "sentence_ta": "மாங்கனி மரம் சிறப்பான தோற்றம் உடையது.",
+    "sentence_ta": "மாமரம் மிகவும் உயரமானது.",
     "complexity": 1
   },
   {
@@ -6283,7 +6285,7 @@ window.theniWords = [
     "word_ta": "வாழைமரம்",
     "image_word": "plantain tree",
     "sentence_en": "The plantain tree is a type of fruit-bearing tree.",
-    "sentence_ta": "வாழைமரம் ஒரு பழத்தோட்ட மரம்.",
+    "sentence_ta": "வாழைமரம் பழம் தரும் மரம்.",
     "complexity": 1
   },
   {
@@ -6295,7 +6297,7 @@ window.theniWords = [
     "word_ta": "பலாமரம்",
     "image_word": "jackfruit tree",
     "sentence_en": "The jackfruit tree is very tall and strong.",
-    "sentence_ta": "பலாமரம் மிக உயர்ந்தும் வீரியமான இடத்தைப் பிடித்துள்ளது.",
+    "sentence_ta": "பலாமரம் மிக உயரமான மற்றும் வலிமையான மரம்.",
     "complexity": 2
   },
   {
@@ -6606,8 +6608,8 @@ window.theniWords = [
     "word_en": "babool tree",
     "word_ta": "வேலமரம்",
     "image_word": "babool tree",
-    "sentence_en": "The babool tree has thick white spiky pods.",
-    "sentence_ta": "வேலமரத்தில் அடர் வெள்ளை பிசிக்குகள் உண்டு.",
+    "sentence_en": "The babool tree has thorns.",
+    "sentence_ta": "வேலமரத்தில் முட்கள் இருக்கும்.",
     "complexity": 1
   },
   {
@@ -6643,7 +6645,7 @@ window.theniWords = [
     "word_ta": "ஈட்டி மரம்",
     "image_word": "rosewood tree",
     "sentence_en": "The rosewood tree is very big and old.",
-    "sentence_ta": "ஈட்டி மரம் என்பது அற்புதமாக பெரியது மற்றும் பழமையானது.",
+    "sentence_ta": "ஈட்டி மரம் மிகவும் பெரியது மற்றும் பழமையானது.",
     "complexity": 1
   },
   {
@@ -6679,7 +6681,7 @@ window.theniWords = [
     "word_ta": "நெல்லி மரம்",
     "image_word": "gooseberry tree",
     "sentence_en": "The gooseberry tree is a good source of vitamins.",
-    "sentence_ta": "நெல்லி மரம் குறிப்பிடத்தக்க ஊட்டச்சத்து வளமான இடம்.",
+    "sentence_ta": "நெல்லி மரம் சத்து நிறைந்தது.",
     "complexity": 1
   },
   {
@@ -6691,7 +6693,7 @@ window.theniWords = [
     "word_ta": "இலந்தை மரம்",
     "image_word": "gulmohar tree",
     "sentence_en": "The gulmohar tree is very beautiful.",
-    "sentence_ta": "இலந்தை மரம் அற்புதமானது.",
+    "sentence_ta": "இலந்தை மரம் மிகவும் அழகானது.",
     "complexity": 2
   },
   {
@@ -6703,7 +6705,7 @@ window.theniWords = [
     "word_ta": "கொன்றை மரம்",
     "image_word": "golden shower tree",
     "sentence_en": "The golden shower tree has beautiful yellow flowers.",
-    "sentence_ta": "கொன்றை மரத்தில் அடர் பூச்செடி இருந்தது.",
+    "sentence_ta": "கொன்றை மரத்தில் அழகான மஞ்சள் பூக்கள் பூக்கும்.",
     "complexity": 2
   },
   {
@@ -6714,8 +6716,8 @@ window.theniWords = [
     "word_en": "spanish cherry tree",
     "word_ta": "மகிழமரம்",
     "image_word": "spanish cherry tree",
-    "sentence_en": "The Spanish cherry tree is also called மகிழமரம்.",
-    "sentence_ta": "எசுப்பேனிய வாணலிமரம் மகிழமரத்தையும் குறிக்கின்றது.",
+    "sentence_en": "The spanish cherry tree has fragrant flowers.",
+    "sentence_ta": "மகிழமரம் வாசனையான பூக்களைக் கொண்டது.",
     "complexity": 2
   },
   {
@@ -6727,7 +6729,7 @@ window.theniWords = [
     "word_ta": "மேல்",
     "image_word": "top",
     "sentence_en": "The book is at the top of the shelf.",
-    "sentence_ta": "நூல் அடியவும் மேலும்தான் செல்கிறது.",
+    "sentence_ta": "புத்தகம் அலமாரியின் மேல் உள்ளது.",
     "complexity": 2
   },
   {
@@ -6739,7 +6741,7 @@ window.theniWords = [
     "word_ta": "கீழ்",
     "image_word": "bottom",
     "sentence_en": "The bottom of the pool was very slippery.",
-    "sentence_ta": "குளத்தின் மேல் பகுதி மிகவும் சுருள்படுநிலை.",
+    "sentence_ta": "குளத்தின் அடிப்பகுதி வழுக்கலாக இருந்தது.",
     "complexity": 1
   },
   {
@@ -6751,7 +6753,7 @@ window.theniWords = [
     "word_ta": "நண்பன்",
     "image_word": "friend",
     "sentence_en": "My friend is very happy today.",
-    "sentence_ta": "என் நண்பன் இன்று மிகவும் சலித்துக் கொண்டிருக்கிறான்.",
+    "sentence_ta": "என் நண்பன் இன்று மகிழ்ச்சியாக இருக்கிறான்.",
     "complexity": 2
   },
   {
@@ -6763,7 +6765,7 @@ window.theniWords = [
     "word_ta": "எதிரி",
     "image_word": "enemy",
     "sentence_en": "My biggest enemy was my own laziness.",
-    "sentence_ta": "என் பெரிய எதிரி தானே ஓய்வு அற்ற தன்மை.",
+    "sentence_ta": "என் சோம்பேறித்தனமே எனக்கு பெரிய எதிரி.",
     "complexity": 2
   },
   {
@@ -6835,7 +6837,7 @@ window.theniWords = [
     "word_ta": "கடைசி",
     "image_word": "last",
     "sentence_en": "The last book on the shelf was interesting.",
-    "sentence_ta": "நீல் அடுக்குமுறை ஆயிரத்தின் கடைசி புத்தகம் நாவலும்.",
+    "sentence_ta": "அடுக்கில் இருந்த கடைசி புத்தகம் சுவாரஸ்யமாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -6859,7 +6861,7 @@ window.theniWords = [
     "word_ta": "கெட்டது",
     "image_word": "bad",
     "sentence_en": "The bad weather ruined our picnic.",
-    "sentence_ta": "தீய மழை, உங்கள் பிடிக்கேற்ற விருந்தினை அழித்தது.",
+    "sentence_ta": "மோசமான வானிலை எங்கள் சுற்றுலாவை கெடுத்தது.",
     "complexity": 2
   },
   {
@@ -6871,7 +6873,7 @@ window.theniWords = [
     "word_ta": "அங்கே",
     "image_word": "there",
     "sentence_en": "I can see the book over there.",
-    "sentence_ta": "நீ அங்கே புத்தகம் பார்க்கிறாய்",
+    "sentence_ta": "என்னால் அந்தப் புத்தகத்தை அங்கே பார்க்க முடிகிறது.",
     "complexity": 2
   },
   {
@@ -6883,7 +6885,7 @@ window.theniWords = [
     "word_ta": "இங்கே",
     "image_word": "here",
     "sentence_en": "I can help you here.",
-    "sentence_ta": "நீங்கள் உதவி யாரும் இங்கே எனக்கு உதவிசெய்யுங்கள்.",
+    "sentence_ta": "நான் உங்களுக்கு இங்கே உதவ முடியும்.",
     "complexity": 2
   },
   {
@@ -6895,7 +6897,7 @@ window.theniWords = [
     "word_ta": "உள்ளே",
     "image_word": "inside",
     "sentence_en": "The cat is sleeping inside the house.",
-    "sentence_ta": "நாய் வீட்டு உள்ளே தூங்கிக் கொண்டிருக்கிறது.",
+    "sentence_ta": "பூனை வீட்டுக்குள் தூங்குகிறது.",
     "complexity": 1
   },
   {
@@ -6907,7 +6909,7 @@ window.theniWords = [
     "word_ta": "வெளியே",
     "image_word": "outside",
     "sentence_en": "I like to play outside in the park.",
-    "sentence_ta": "நான் பூங்காவில் வெளியே விளையாடும் பற்றி நான் சார்புக்கு உட்படுகிறேன்.",
+    "sentence_ta": "நான் பூங்காவில் விளையாட விரும்புகிறேன்.",
     "complexity": 2
   },
   {
@@ -6919,7 +6921,7 @@ window.theniWords = [
     "word_ta": "உண்மை",
     "image_word": "truth",
     "sentence_en": "The truth is always more important than lies.",
-    "sentence_ta": "உண்மை எப்போதும் கொலையே அதிகமான பெரிய சீயை விட உண்மை",
+    "sentence_ta": "பொய்யை விட உண்மையே முக்கியம்.",
     "complexity": 2
   },
   {
@@ -6931,7 +6933,7 @@ window.theniWords = [
     "word_ta": "பொய்",
     "image_word": "lie",
     "sentence_en": "She told the lie about her age.",
-    "sentence_ta": "அவள் தன் வயதுக்குப் பொய் சொன்னாள்.",
+    "sentence_ta": "அவள் தன் வயதைப் பற்றி பொய் சொன்னாள்.",
     "complexity": 2
   },
   {
@@ -6943,7 +6945,7 @@ window.theniWords = [
     "word_ta": "திற",
     "image_word": "open",
     "sentence_en": "The door is open now.",
-    "sentence_ta": "வாயில் திற இப்போது.",
+    "sentence_ta": "கதவு திறந்திருக்கிறது.",
     "complexity": 1
   },
   {
@@ -6955,7 +6957,7 @@ window.theniWords = [
     "word_ta": "மூடு",
     "image_word": "close",
     "sentence_en": "Please close the door.",
-    "sentence_ta": "வாயிலை மூடு",
+    "sentence_ta": "தயவுசெய்து கதவை மூடு.",
     "complexity": 1
   },
   {
@@ -6978,8 +6980,8 @@ window.theniWords = [
     "word_en": "diversity",
     "word_ta": "வேற்றுமை",
     "image_word": "diversity",
-    "sentence_en": "The school values the diversity of its students.",
-    "sentence_ta": "",
+    "sentence_en": "We value diversity.",
+    "sentence_ta": "நாங்கள் வேற்றுமையில் ஒற்றுமையை போற்றுகிறோம்.",
     "complexity": 1
   },
   {
@@ -6991,7 +6993,7 @@ window.theniWords = [
     "word_ta": "அருகில்",
     "image_word": "near",
     "sentence_en": "The city is located near the sea.",
-    "sentence_ta": "நகரம் கடலோடு அருகில் உள்ளது.",
+    "sentence_ta": "நகரம் கடலுக்கு அருகில் உள்ளது.",
     "complexity": 1
   },
   {
@@ -7003,7 +7005,7 @@ window.theniWords = [
     "word_ta": "தொலைவில்",
     "image_word": "far",
     "sentence_en": "The house is far from my home.",
-    "sentence_ta": "வீடு என் வீட்டில் தொலைவில் உள்ளது.",
+    "sentence_ta": "அந்த வீடு என் வீட்டை விட்டு தொலைவில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -7015,7 +7017,7 @@ window.theniWords = [
     "word_ta": "விரைவாக",
     "image_word": "fast",
     "sentence_en": "She runs fast every morning.",
-    "sentence_ta": "அவள் பொதுவாக விரைவாக எல்லா காலையும் ஓடுகிறாள்.",
+    "sentence_ta": "அவள் தினமும் காலையில் வேகமாக ஓடுவாள்.",
     "complexity": 2
   },
   {
@@ -7051,7 +7053,7 @@ window.theniWords = [
     "word_ta": "காவலன்",
     "image_word": "police",
     "sentence_en": "The police helped the people in the emergency.",
-    "sentence_ta": "காவலர்கள் நேரமிடத்தை மக்களுக்கு உதவி செய்தனர்.",
+    "sentence_ta": "காவலர்கள் மக்களுக்கு உதவினர்.",
     "complexity": 1
   },
   {
@@ -7063,7 +7065,7 @@ window.theniWords = [
     "word_ta": "சமாதானம்",
     "image_word": "peace",
     "sentence_en": "She wants to have peace in her life.",
-    "sentence_ta": "அவள் தனக்கு சமாதானம் வேண்டும்.",
+    "sentence_ta": "அவள் அமைதியை விரும்புகிறாள்.",
     "complexity": 1
   },
   {
@@ -7074,8 +7076,8 @@ window.theniWords = [
     "word_en": "fight",
     "word_ta": "சண்டை",
     "image_word": "fight",
-    "sentence_en": "I will fight in the upcoming school sports competition.",
-    "sentence_ta": "நான் வருங்கால பள்ளிச் சமைக்கோட்டையில் சண்டை போட வேண்டும்.",
+    "sentence_en": "Soldiers fight for the country.",
+    "sentence_ta": "வீரர்கள் நாட்டிற்காக போரிடுகிறார்கள்.",
     "complexity": 2
   },
   {
@@ -7099,7 +7101,7 @@ window.theniWords = [
     "word_ta": "பலவீனம்",
     "image_word": "weakness",
     "sentence_en": "His weakness in maths is very obvious.",
-    "sentence_ta": "அவருடைய பலவீனம் தவிர்க்க இயலாத ஒன்றாக உள்ளது.",
+    "sentence_ta": "கணிதத்தில் அவனது பலவீனம் வெளிப்படையானது.",
     "complexity": 2
   },
   {
@@ -7123,7 +7125,7 @@ window.theniWords = [
     "word_ta": "சத்தம்",
     "image_word": "noise",
     "sentence_en": "The loud noise was disturbing my study.",
-    "sentence_ta": "கெட்ட சத்தம் எனது படிப்பைக் கவர்ந்தது.",
+    "sentence_ta": "சத்தம் என் படிப்பை தொந்தரவு செய்தது.",
     "complexity": 2
   },
   {
@@ -7135,7 +7137,7 @@ window.theniWords = [
     "word_ta": "இளமை",
     "image_word": "young",
     "sentence_en": "The young girl is very happy today.",
-    "sentence_ta": "இளமை கொண்ட பெண் இன்று மிகவும் சந்தோஷமாக உள்ளார்.",
+    "sentence_ta": "அந்த இளம் பெண் மகிழ்ச்சியாக இருக்கிறாள்.",
     "complexity": 2
   },
   {
@@ -7147,7 +7149,7 @@ window.theniWords = [
     "word_ta": "முதுமை",
     "image_word": "elder",
     "sentence_en": "My elder brother helped me with my homework.",
-    "sentence_ta": "என் முதுமையாளர் என்னிடம் படிக்க உதவினார்",
+    "sentence_ta": "என் அண்ணன் வீட்டுப்பாடம் செய்ய உதவினார்.",
     "complexity": 1
   },
   {
@@ -7183,7 +7185,7 @@ window.theniWords = [
     "word_ta": "ஏற்றுமதி",
     "image_word": "export",
     "sentence_en": "We will export the goods to other countries.",
-    "sentence_ta": "நாம் பிற நாடுகளுக்கு உப்புத் தொழில்நுட்பங்களை ஏற்றுமதி செய்வோம்.",
+    "sentence_ta": "நாங்கள் பொருட்களை ஏற்றுமதி செய்வோம்.",
     "complexity": 2
   },
   {
@@ -7243,7 +7245,7 @@ window.theniWords = [
     "word_ta": "மணிகள்",
     "image_word": "beads",
     "sentence_en": "She likes to play with colorful beads.",
-    "sentence_ta": "அவள் நிறமுடைய மணிகளோடு ஆடத் திருப்புகிறாள்.",
+    "sentence_ta": "அவள் வண்ண மணிகளுடன் விளையாட விரும்புகிறாள்.",
     "complexity": 2
   },
   {
@@ -7255,7 +7257,7 @@ window.theniWords = [
     "word_ta": "கயிறு",
     "image_word": "rope",
     "sentence_en": "The rope was tied to the post.",
-    "sentence_ta": "கயிறு போஸ்டுக்கு தொங்கியிருந்தது",
+    "sentence_ta": "கயிறு கம்பத்தில் கட்டப்பட்டிருந்தது.",
     "complexity": 1
   },
   {
@@ -7291,7 +7293,7 @@ window.theniWords = [
     "word_ta": "மத்தளம்",
     "image_word": "drum",
     "sentence_en": "The boy hit the drum loudly.",
-    "sentence_ta": "ஆண்கள் அடித்த மத்தளம் ஒலி வாயும்.",
+    "sentence_ta": "சிறுவன் மத்தளத்தை சத்தமாக அடித்தான்.",
     "complexity": 2
   },
   {
@@ -7302,8 +7304,8 @@ window.theniWords = [
     "word_en": "snake charmer&#x27;s flute",
     "word_ta": "மகுடி",
     "image_word": "snake charmer&#x27;s flute",
-    "sentence_en": "The snake charmer's flute is very melodious.",
-    "sentence_ta": "மகுடி சூத்திரர் அழைப்பான புல்லாங்குழல் என்பது வியக்கத்தக்கது.",
+    "sentence_en": "Snake charmer's flute sounds melodious.",
+    "sentence_ta": "மகுடியின் ஓசை இனிமையானது.",
     "complexity": 2
   },
   {
@@ -7315,7 +7317,7 @@ window.theniWords = [
     "word_ta": "கடம்",
     "image_word": "percussion pot",
     "sentence_en": "She used the percussion pot as her drum.",
-    "sentence_ta": "அவள் கடம்புக்கானது ஒரு அசையும் இசைக்கருவியாக நிறுத்தினாள்.",
+    "sentence_ta": "அவள் கடத்தை மத்தளமாக பயன்படுத்தினாள்.",
     "complexity": 1
   },
   {
@@ -7327,7 +7329,7 @@ window.theniWords = [
     "word_ta": "கலை",
     "image_word": "art",
     "sentence_en": "Art is a way to express oneself.",
-    "sentence_ta": "கலை ஒரு முறை தான் எழுத்தெழுதுவது.",
+    "sentence_ta": "கலை தன்னை வெளிப்படுத்தும் ஒரு வழி.",
     "complexity": 1
   },
   {
@@ -7351,7 +7353,7 @@ window.theniWords = [
     "word_ta": "காகித விசிறி",
     "image_word": "paper fan",
     "sentence_en": "The paper fan is very helpful during summer.",
-    "sentence_ta": "காகித விசிறி அது மீன்யூன் போது உதவியாக இருக்கிறது.",
+    "sentence_ta": "காகித விசிறி கோடைகாலத்தில் மிகவும் உதவும்.",
     "complexity": 1
   },
   {
@@ -7362,8 +7364,8 @@ window.theniWords = [
     "word_en": "dancer",
     "word_ta": "நடனக் கலைஞர்",
     "image_word": "dancer",
-    "sentence_en": "The dancer performed a beautiful ballet routine.",
-    "sentence_ta": "நடனக் கலைஞர் அழகிய பாள்ளி வகுப்பை ஆடினார்.",
+    "sentence_en": "The dancer danced beautifully.",
+    "sentence_ta": "நடனக் கலைஞர் அழகாக நடனமாடினார்.",
     "complexity": 2
   },
   {
@@ -7399,7 +7401,7 @@ window.theniWords = [
     "word_ta": "ஓவியம்",
     "image_word": "drawing/painting",
     "sentence_en": "Drawing is an important part of art education.",
-    "sentence_ta": "ஓவியம் கலை கற்றலின் அடிப்படை ஒரு சிறப்பான பகுதி.",
+    "sentence_ta": "ஓவியம் கலைக் கல்வியின் முக்கிய அங்கம்.",
     "complexity": 2
   },
   {
@@ -7411,7 +7413,7 @@ window.theniWords = [
     "word_ta": "சிற்பம்",
     "image_word": "sculpture",
     "sentence_en": "The sculpture is made of white marble.",
-    "sentence_ta": "சிற்பம் வெள்ளை கடல் மணற்கற்களால் உருவாக்கப்பட்டுள்ளது.",
+    "sentence_ta": "சிற்பம் வெள்ளை பளிங்கு கல்லால் ஆனது.",
     "complexity": 1
   },
   {
@@ -7434,8 +7436,8 @@ window.theniWords = [
     "word_en": "cartoonist",
     "word_ta": "கேலிச்சித்திர ஓவியர்",
     "image_word": "cartoonist",
-    "sentence_en": "The cartoonist is very talented and creative.",
-    "sentence_ta": "கேலிச்சித்திர ஓவியர் மிகவும் புத்திசாலி மற்றும் உணர்ச்சி வெளிப்படுத்தும்.",
+    "sentence_en": "The cartoonist is talented.",
+    "sentence_ta": "கேலிச்சித்திர ஓவியர் மிகவும் திறமையானவர்.",
     "complexity": 2
   },
   {
@@ -7459,7 +7461,7 @@ window.theniWords = [
     "word_ta": "சங்கு மாலை",
     "image_word": "conch chain",
     "sentence_en": "The conch chain is a beautiful souvenir.",
-    "sentence_ta": "சங்கு மாலை அழகான சிறுபத்திரிகை.",
+    "sentence_ta": "சங்கு மாலை ஒரு அழகான நினைவுப்பரிசு.",
     "complexity": 1
   },
   {
@@ -7470,8 +7472,8 @@ window.theniWords = [
     "word_en": "craft",
     "word_ta": "கைவினை",
     "image_word": "craft",
-    "sentence_en": "She loves to learn various crafts at school.",
-    "sentence_ta": "அவர் பல்வேறு கைவினைகளைக் கற்றுக்கொண்டார்.",
+    "sentence_en": "She likes to make crafts.",
+    "sentence_ta": "அவள் கைவினைப் பொருட்கள் செய்ய விரும்புகிறாள்.",
     "complexity": 2
   },
   {
@@ -7483,7 +7485,7 @@ window.theniWords = [
     "word_ta": "களிமண் பொம்மை",
     "image_word": "clay doll",
     "sentence_en": "The child played with the clay doll.",
-    "sentence_ta": "குழந்தை களிமண் பொம்மையைச் சுற்றி விளையாடினார்.",
+    "sentence_ta": "குழந்தை களிமண் பொம்மையுடன் விளையாடியது.",
     "complexity": 2
   },
   {
@@ -7494,8 +7496,8 @@ window.theniWords = [
     "word_en": "musical instrument",
     "word_ta": "இசைக் கருவி",
     "image_word": "musical instrument",
-    "sentence_en": "The guitar is an example of a musical instrument.",
-    "sentence_ta": "கிட்டார் ஒரு இசைக் கருவி என்ற உதாரணம்.",
+    "sentence_en": "Guitar is a musical instrument.",
+    "sentence_ta": "கிட்டார் ஒரு இசைக் கருவி.",
     "complexity": 2
   },
   {
@@ -7507,7 +7509,7 @@ window.theniWords = [
     "word_ta": "மெழுகு பொம்மை",
     "image_word": "wax doll",
     "sentence_en": "The wax doll is very realistic.",
-    "sentence_ta": "மெழுகு பொம்மை மிக நிஜத் தன்மையுடையது.",
+    "sentence_ta": "மெழுகு பொம்மை தத்ரூபமாக உள்ளது.",
     "complexity": 2
   },
   {
@@ -7531,7 +7533,7 @@ window.theniWords = [
     "word_ta": "காகித முகமூடி",
     "image_word": "paper mask",
     "sentence_en": "The paper mask is very easy to put on.",
-    "sentence_ta": "காகித முகமூடி ஒரு சுலபமானது.",
+    "sentence_ta": "காகித முகமூடியை அணிவது சுலபம்.",
     "complexity": 1
   },
   {
@@ -7543,7 +7545,7 @@ window.theniWords = [
     "word_ta": "நகைகள் செய்தல்",
     "image_word": "jewelry making",
     "sentence_en": "Jewelry making is an interesting hobby for many girls.",
-    "sentence_ta": "நகைகள் செய்தல் பலருக்கும் ஒரு பிடித்த பாதுகாப்பான விளையாட்டு.",
+    "sentence_ta": "நகை செய்தல் ஒரு சுவாரஸ்யமான பொழுதுபோக்கு.",
     "complexity": 2
   },
   {
@@ -7555,7 +7557,7 @@ window.theniWords = [
     "word_ta": "மூங்கில் கூடை",
     "image_word": "bamboo basket",
     "sentence_en": "The vendor used a bamboo basket to carry vegetables.",
-    "sentence_ta": "வியாபாரி கூட்டுத் தானியங்களை எடுத்துச் செல்லப் பயன்படுத்திய மூங்கில் கூடை",
+    "sentence_ta": "வியாபாரி காய்கறிகளை எடுத்துச் செல்ல மூங்கில் கூடையை பயன்படுத்தினார்.",
     "complexity": 2
   },
   {
@@ -7567,7 +7569,7 @@ window.theniWords = [
     "word_ta": "மணி மாலை",
     "image_word": "bead chain",
     "sentence_en": "She wore a beautiful bead chain around her neck.",
-    "sentence_ta": "அவர் தனது கழுத்தில் இந்த செறிவான மணி மாலையைப் போர்த்திக் கொண்டார்.",
+    "sentence_ta": "அவள் கழுத்தில் மணி மாலையை அணிந்திருந்தாள்.",
     "complexity": 2
   },
   {
@@ -7579,7 +7581,7 @@ window.theniWords = [
     "word_ta": "பனை ஓலைத் தொப்பி",
     "image_word": "palm leaf hat",
     "sentence_en": "She wore a traditional palm leaf hat.",
-    "sentence_ta": "அவள் ஒரு பனை ஓலைத் தொப்பியை உடுத்திக் கொண்டிருந்தாள்.",
+    "sentence_ta": "அவள் பனை ஓலைத் தொப்பியை அணிந்திருந்தாள்.",
     "complexity": 1
   },
   {
@@ -7591,7 +7593,7 @@ window.theniWords = [
     "word_ta": "சணல் வேலை",
     "image_word": "jute work",
     "sentence_en": "The jute work was very interesting to learn about.",
-    "sentence_ta": "சணல் வேலை குறித்து படிக்கவும் நாம் ஆர்வம் கொள்ளுங்கள்.",
+    "sentence_ta": "சணல் வேலைப்பாடு மிகவும் சுவாரஸ்யமானது.",
     "complexity": 2
   },
   {
@@ -7795,7 +7797,7 @@ window.theniWords = [
     "word_ta": "கிளிஞ்சல் பூச்சி",
     "image_word": "shellfish",
     "sentence_en": "Shellfish are an important food source for many people.",
-    "sentence_ta": "",
+    "sentence_ta": "கிளிஞ்சல் பூச்சிகள் பலருக்கு முக்கிய உணவாக விளங்குகின்றன.",
     "complexity": 1
   },
   {
@@ -7807,7 +7809,7 @@ window.theniWords = [
     "word_ta": "சங்கு",
     "image_word": "conch",
     "sentence_en": "The conch shell is often used for blowing.",
-    "sentence_ta": "சங்கு என்ற முடியும் அழகோர் பல முறை ஒலி எடுத்தால்.",
+    "sentence_ta": "சங்கு ஊதுவதற்கு பயன்படுத்தப்படுகிறது.",
     "complexity": 2
   },
   {
@@ -7819,7 +7821,7 @@ window.theniWords = [
     "word_ta": "கடல் நீர் நாய்",
     "image_word": "seal",
     "sentence_en": "The seal was swimming near the ocean.",
-    "sentence_ta": "பொதுமற்ற கடல் நீர் நாய் விரிகுடாவின் அருகில் உள்ளது.",
+    "sentence_ta": "கடல் நாய் கடலில் நீந்திக் கொண்டிருந்தது.",
     "complexity": 2
   },
   {
@@ -7830,8 +7832,8 @@ window.theniWords = [
     "word_en": "tunafish",
     "word_ta": "சூரை மீன்",
     "image_word": "tunafish",
-    "sentence_en": "Tunafish is a type of edible fish.",
-    "sentence_ta": "சூரை மீன் உண்டாகும் பொதுவான ஒரு மீன் சாதிகளில் ஒன்றாகும்.",
+    "sentence_en": "Tunafish is an edible fish.",
+    "sentence_ta": "சூரை மீன் ஒரு உணவு மீன்.",
     "complexity": 2
   },
   {
@@ -7843,7 +7845,7 @@ window.theniWords = [
     "word_ta": "கடல் பாசி",
     "image_word": "seaweed",
     "sentence_en": "Seaweed grows near the ocean shore.",
-    "sentence_ta": "கடல் பாசி ஓரளவு நீண்ட கடற்கரையின் அருகே மட்டுமே வளர்கிறது.",
+    "sentence_ta": "கடல் பாசி கடற்கரையோரம் வளரும்.",
     "complexity": 1
   },
   {
@@ -7867,7 +7869,7 @@ window.theniWords = [
     "word_ta": "மட்டி",
     "image_word": "clam",
     "sentence_en": "The clam is a type of shellfish that lives in water.",
-    "sentence_ta": "மட்டி ஒரு விதமான பாசிரையற் கணுக்கலாகும். அது நீரில் வாழ்கிறது.",
+    "sentence_ta": "மட்டி நீரில் வாழும் ஒரு வகை கிளிஞ்சல்.",
     "complexity": 2
   },
   {
@@ -7879,7 +7881,7 @@ window.theniWords = [
     "word_ta": "தூண்டில் மீன்",
     "image_word": "angler fish",
     "sentence_en": "The angler fish has a long fishing rod.",
-    "sentence_ta": "தூண்டில் மீனுக்கு நீளமான தொழிற் பிசி உள்ளது.",
+    "sentence_ta": "தூண்டில் மீனுக்கு ஒரு தூண்டில் உள்ளது.",
     "complexity": 1
   },
   {
@@ -7891,7 +7893,7 @@ window.theniWords = [
     "word_ta": "பனிப்பாடி",
     "image_word": "penguin",
     "sentence_en": "The penguin is very good at swimming.",
-    "sentence_ta": "பெண்டுவின் சரியாக நீரில் உள்ளது.",
+    "sentence_ta": "பனிப்பாடி நன்றாக நீந்தும்.",
     "complexity": 2
   },
   {
@@ -7903,7 +7905,7 @@ window.theniWords = [
     "word_ta": "கடல் கன்னி",
     "image_word": "mermaid",
     "sentence_en": "The mermaid is swimming in the ocean.",
-    "sentence_ta": "மேர்மெயிட் கடலில் நீந்துகிறது.",
+    "sentence_ta": "கடல் கன்னி கடலில் நீந்துகிறாள்.",
     "complexity": 1
   },
   {
@@ -7927,7 +7929,7 @@ window.theniWords = [
     "word_ta": "நெத்திலி மீன்",
     "image_word": "anchovies",
     "sentence_en": "Anchovies are often used in Mediterranean cuisine.",
-    "sentence_ta": "நெத்திலி மீன் பொதுவாக மத்தியதரைக் கடலில் அருந்துவர்.",
+    "sentence_ta": "நெத்திலி மீன் மத்தியதரைக்கடல் சமையலில் பயன்படுத்தப்படுகிறது.",
     "complexity": 2
   },
   {
@@ -7951,7 +7953,7 @@ window.theniWords = [
     "word_ta": "சீலா மீன்",
     "image_word": "barracuda",
     "sentence_en": "Barracudas are known to be fierce predators.",
-    "sentence_ta": "",
+    "sentence_ta": "சீலா மீன் ஒரு ஆக்ரோஷமான வேட்டை மீன்.",
     "complexity": 2
   },
   {
@@ -7974,8 +7976,8 @@ window.theniWords = [
     "word_en": "catfish",
     "word_ta": "கெளுத்தி மீன்",
     "image_word": "catfish",
-    "sentence_en": "Catfish are good for eating in soups.",
-    "sentence_ta": "\"கெளுத்தி மீன்\" சாற்றில் சாப்பிடுவது நல்லது.",
+    "sentence_en": "Catfish curry is tasty.",
+    "sentence_ta": "கெளுத்தி மீன் குழம்பு சுவையாக இருக்கும்.",
     "complexity": 2
   },
   {
@@ -7987,7 +7989,7 @@ window.theniWords = [
     "word_ta": "விலாங்கு மீன்",
     "image_word": "eel",
     "sentence_en": "The eel is a long, slender fish.",
-    "sentence_ta": "\"விலாங்கு மீன்\" நீண்ட, சிறப்புக்குரிய மீன் ஆகும்.",
+    "sentence_ta": "விலாங்கு மீன் ஒரு நீண்ட, மெல்லிய மீன்.",
     "complexity": 2
   },
   {
@@ -7999,7 +8001,7 @@ window.theniWords = [
     "word_ta": "இழுது மீன்",
     "image_word": "jellyfish",
     "sentence_en": "A jellyfish swam near the coral reef.",
-    "sentence_ta": "ஒரு இழுது மீன் கடற்புறாவின் அருகில் சென்றது.",
+    "sentence_ta": "இழுது மீன் பவளப்பாறையின் அருகில் நீந்தியது.",
     "complexity": 2
   },
   {
@@ -8011,7 +8013,7 @@ window.theniWords = [
     "word_ta": "வஞ்சர மீன்",
     "image_word": "kingfish",
     "sentence_en": "The kingfish is a popular fish to eat in many countries.",
-    "sentence_ta": "வஞ்சர மீன் பல நாடுகளில் உண்பதற்குத் தெளிவான மீன் ஆகும்.",
+    "sentence_ta": "வஞ்சர மீன் பல நாடுகளில் பிரபலமான உணவு.",
     "complexity": 2
   },
   {
@@ -8023,7 +8025,7 @@ window.theniWords = [
     "word_ta": "சிங்கி இறால்",
     "image_word": "lobster",
     "sentence_en": "The lobster is a delicious seafood.",
-    "sentence_ta": "சிங்கி இறால் ஒரு வாட்டுத்தூள் உணவாகும்.",
+    "sentence_ta": "சிங்கி இறால் ஒரு சுவையான கடல் உணவு.",
     "complexity": 1
   },
   {
@@ -8035,7 +8037,7 @@ window.theniWords = [
     "word_ta": "கெண்டை மீன்",
     "image_word": "mullet",
     "sentence_en": "The mullet is a type of fish.",
-    "sentence_ta": "முல்லெட் என்பது ஒரு காற்றியங்கி வகை மீன் ஆகும்.",
+    "sentence_ta": "கெண்டை மீன் ஒரு வகை மீன்.",
     "complexity": 1
   },
   {
@@ -8047,7 +8049,7 @@ window.theniWords = [
     "word_ta": "கிளி மூக்கு மீன்",
     "image_word": "parrotfish",
     "sentence_en": "Parrotfish are colorful marine animals.",
-    "sentence_ta": "கிளி மூக்கு மீன் நிறமாலை வடிவ உண்ணி ஆகும்.",
+    "sentence_ta": "கிளி மூக்கு மீன் வண்ணமயமான கடல் மீன்.",
     "complexity": 1
   },
   {
@@ -8071,7 +8073,7 @@ window.theniWords = [
     "word_ta": "வாலை மீன்",
     "image_word": "ribbonfish",
     "sentence_en": "Ribbonfish have colorful stripes on their bodies.",
-    "sentence_ta": "வாலை மீன்கள் அவற்றின் உடல்பகுதிகளில் நிறமாலைகளைக் கொண்டிருக்கின்றன.",
+    "sentence_ta": "வாலை மீன் உடலில் வண்ண வரிகள் இருக்கும்.",
     "complexity": 2
   },
   {
@@ -8083,7 +8085,7 @@ window.theniWords = [
     "word_ta": "கோலா மீன்",
     "image_word": "sawfish",
     "sentence_en": "The sawfish is a rare species of fish.",
-    "sentence_ta": "கோலா மீன் ஒரு அரிய இரசிப்பவை.",
+    "sentence_ta": "கோலா மீன் ஒரு அரிய வகை மீன்.",
     "complexity": 1
   },
   {
@@ -8095,7 +8097,7 @@ window.theniWords = [
     "word_ta": "கொடுவா மீன்",
     "image_word": "seabass",
     "sentence_en": "The seabass is a type of fish found in the ocean.",
-    "sentence_ta": "கொடுவா மீன் ஒரு வகையான பூச்சியாகும் இது உலக வளாகிறது.",
+    "sentence_ta": "கொடுவா மீன் கடலில் காணப்படும் ஒரு வகை மீன்.",
     "complexity": 2
   },
   {
@@ -8107,7 +8109,7 @@ window.theniWords = [
     "word_ta": "கணவாய் மீன்",
     "image_word": "cuttlefish",
     "sentence_en": "The cuttlefish is a type of cephalopod.",
-    "sentence_ta": "கணவாய் மீன் ஒரு சிறப்புடைய தலைச்சூளு உயிரினம்.",
+    "sentence_ta": "கணவாய் மீன் தலைக்காலி வகையைச் சேர்ந்தது.",
     "complexity": 2
   },
   {
@@ -8142,8 +8144,8 @@ window.theniWords = [
     "word_en": "yellow tuna",
     "word_ta": "கீரை மீன்",
     "image_word": "yellow tuna",
-    "sentence_en": "The yellow tuna was my favorite at the restaurant.",
-    "sentence_ta": "அந்த விருப்பமான உணவு என்பது பெரிய கீரை மீன்",
+    "sentence_en": "I liked yellow tuna at the restaurant.",
+    "sentence_ta": "எனக்கு உணவகத்தில் மஞ்சள் சூரை மீன் மிகவும் பிடித்திருந்தது.",
     "complexity": 1
   },
   {
@@ -8155,7 +8157,7 @@ window.theniWords = [
     "word_ta": "கடல் குளவி",
     "image_word": "seawasp",
     "sentence_en": "The seawasp is a type of sea snake.",
-    "sentence_ta": "\"கடல் குளவி\" ஒருவகை கடல் புழுக்கை.",
+    "sentence_ta": "கடல் குளவி ஒரு வகை கடல் உயிரினம்.",
     "complexity": 1
   },
   {
@@ -8202,8 +8204,8 @@ window.theniWords = [
     "word_en": "interview",
     "word_ta": "நேர்காணல்",
     "image_word": "interview",
-    "sentence_en": "The journalist gave an interview to the famous singer.",
-    "sentence_ta": "விமர்சகர் பிரபல பாடகருக்கு நேர்காணல் கொடுத்தார்.",
+    "sentence_en": "The journalist interviewed the famous singer.",
+    "sentence_ta": "பத்திரிகையாளர் பிரபல பாடகரை நேர்காணல் செய்தார்.",
     "complexity": 2
   },
   {
@@ -8215,7 +8217,7 @@ window.theniWords = [
     "word_ta": "குடியேற்றம்",
     "image_word": "immigration",
     "sentence_en": "Immigration laws are strict for most countries.",
-    "sentence_ta": "பெரும்பாலான நாடுகளில் குடியேற்றம் சட்டங்கள் அடிப்படை.",
+    "sentence_ta": "பெரும்பாலான நாடுகளில் குடியேற்ற சட்டங்கள் கடுமையானவை.",
     "complexity": 2
   },
   {
@@ -8227,7 +8229,7 @@ window.theniWords = [
     "word_ta": "விண்ணப்பம்",
     "image_word": "application",
     "sentence_en": "She submitted her college application.",
-    "sentence_ta": "அவள் தன்னுடைய கல்லூரி விண்ணப்பம் செய்தாள்",
+    "sentence_ta": "அவள் தன் கல்லூரி விண்ணப்பத்தை சமர்ப்பித்தாள்.",
     "complexity": 2
   },
   {
@@ -8239,7 +8241,7 @@ window.theniWords = [
     "word_ta": "நுழைவுச் சான்று",
     "image_word": "visa",
     "sentence_en": "She needs a visa to travel to that country.",
-    "sentence_ta": "அவர் அந்த நாடுக்கு பின்வரும் நுழைவுச் சான்று தேவை.",
+    "sentence_ta": "அவளுக்கு அந்த நாட்டிற்குச் செல்ல விசா தேவை.",
     "complexity": 2
   },
   {
@@ -8263,7 +8265,7 @@ window.theniWords = [
     "word_ta": "சுங்கம்",
     "image_word": "customs",
     "sentence_en": "The customs office handles imports and exports carefully.",
-    "sentence_ta": "சுங்கம் அலுவலகம் தேவையான பணிகளை நல்ல விதத்தில் செய்கிறது.",
+    "sentence_ta": "சுங்க அலுவலகம் ஏற்றுமதி இறக்குமதியை கவனிக்கிறது.",
     "complexity": 2
   },
   {
@@ -8286,8 +8288,8 @@ window.theniWords = [
     "word_en": "migration",
     "word_ta": "இடம் பெயர்வு",
     "image_word": "migration",
-    "sentence_en": "Migration is the movement of animals.",
-    "sentence_ta": "இடம் பெயர்வு நிலவியல் உயிரினங்கள் செல்லுதலாகும்.",
+    "sentence_en": "Animal migration is called Valasai pothal.",
+    "sentence_ta": "விலங்குகள் இடம்பெயர்தலை வலசை போதல் என்பர்.",
     "complexity": 2
   },
   {
@@ -8299,7 +8301,7 @@ window.theniWords = [
     "word_ta": "நாட்டினம்",
     "image_word": "nationality",
     "sentence_en": "Her nationality is American, she loves her country.",
-    "sentence_ta": "அவருடைய நாட்டினம் அமெரிக்கம், அவள் தன் தாயகத்தை கறுப்பி எண்ணுகிறாள்.",
+    "sentence_ta": "அவள் அமெரிக்க நாட்டைச் சேர்ந்தவள், அவள் தன் நாட்டை நேசிக்கிறாள்.",
     "complexity": 2
   },
   {
@@ -8311,7 +8313,7 @@ window.theniWords = [
     "word_ta": "குடியேறிடம்",
     "image_word": "port of departure",
     "sentence_en": "The port of departure was very crowded that day.",
-    "sentence_ta": "குடியேறிடம் புகுத்திச் சென்ற அந்த நாள் எல்லாம் நிரம்பி விட்டது.",
+    "sentence_ta": "புறப்படும் துறைமுகத்தில் அன்று கூட்டம் அதிகமாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -8323,7 +8325,7 @@ window.theniWords = [
     "word_ta": "குடி நுழைவிடம்",
     "image_word": "port of entry",
     "sentence_en": "The customs office is the port of entry.",
-    "sentence_ta": "குடிநோன்பு அலுவலகம் குடி நுழைவிடம் ஆகும்.",
+    "sentence_ta": "நுழைவாயில் துறைமுகம் சுங்க அலுவலகம் ஆகும்.",
     "complexity": 1
   },
   {
@@ -8347,7 +8349,7 @@ window.theniWords = [
     "word_ta": "குடியேறல்",
     "image_word": "emigration",
     "sentence_en": "Emigration is the act of leaving one's country.",
-    "sentence_ta": "குடியேறல் என்பது ஒருவர் தம் நாட்டை விட்டு செல்வது.",
+    "sentence_ta": "குடிபெயர்தல் என்பது சொந்த நாட்டை விட்டு வெளியேறுவது.",
     "complexity": 1
   },
   {
@@ -8359,7 +8361,7 @@ window.theniWords = [
     "word_ta": "அனுமதி",
     "image_word": "permission",
     "sentence_en": "She needs permission to play outside",
-    "sentence_ta": "அவளுக்கு புறத்தே விளையாட அனுமதி தேவை",
+    "sentence_ta": "அவளுக்கு வெளியே விளையாட அனுமதி தேவை.",
     "complexity": 1
   },
   {
@@ -8383,7 +8385,7 @@ window.theniWords = [
     "word_ta": "தண்டனை",
     "image_word": "penalty",
     "sentence_en": "The team will pay the penalty for late submission.",
-    "sentence_ta": "அணி தண்டனை காரணமாக விலங்கு கஷ்டப்படும்.",
+    "sentence_ta": "தாமதத்திற்கு அணி அபராதம் செலுத்தும்.",
     "complexity": 1
   },
   {
@@ -8395,7 +8397,7 @@ window.theniWords = [
     "word_ta": "நிராகரிப்பு",
     "image_word": "rejection",
     "sentence_en": "The company's rejection of the offer was disappointing.",
-    "sentence_ta": "நிறுவனத்தின் அருகி படுதல் வீணாயிருந்தது .",
+    "sentence_ta": "நிறுவனத்தின் நிராகரிப்பு ஏமாற்றமளித்தது.",
     "complexity": 2
   },
   {
@@ -8407,7 +8409,7 @@ window.theniWords = [
     "word_ta": "வெளிநாட்டுக் கொள்கை",
     "image_word": "foreign policy",
     "sentence_en": "The government's foreign policy is very important.",
-    "sentence_ta": "அரசின் வெளிநாட்டுக் கொள்கை மிகவும் போதுமானது.",
+    "sentence_ta": "அரசின் வெளியுறவுக் கொள்கை மிகவும் முக்கியமானது.",
     "complexity": 2
   },
   {
@@ -8431,7 +8433,7 @@ window.theniWords = [
     "word_ta": "புகலிடம்",
     "image_word": "asylum",
     "sentence_en": "The refugee family found safety in the asylum.",
-    "sentence_ta": "புகலிடத்தை விட்டு ஓடிய அந்த பார்வையற்ற குடும்பம் சாதி முறையில் ஏற்பட்ட பின்னணியில் அங்கு நிலைத்தது.",
+    "sentence_ta": "அகதி குடும்பம் புகலிடத்தில் பாதுகாப்பு பெற்றது.",
     "complexity": 3
   },
   {
@@ -8443,7 +8445,7 @@ window.theniWords = [
     "word_ta": "சுங்கச் சாற்றுரை",
     "image_word": "customs declaration",
     "sentence_en": "The customs declaration form must be filled carefully.",
-    "sentence_ta": "சுங்கச் சாற்றுரை வடிவம் தெளிவான முறையில் நிரப்ப வேண்டும்.",
+    "sentence_ta": "சுங்க அறிவிப்புப் படிவத்தை கவனமாக நிரப்ப வேண்டும்.",
     "complexity": 2
   },
   {
@@ -8455,7 +8457,7 @@ window.theniWords = [
     "word_ta": "சுங்கத் தீர்வை",
     "image_word": "customs duty",
     "sentence_en": "The government collects customs duty from imported goods.",
-    "sentence_ta": "அரசு விநியோகிக்கப்படும் பொருள்களுக்கு சுங்கத் தீர்வை எடுக்கிறது.",
+    "sentence_ta": "இறக்குமதி செய்யப்படும் பொருட்களுக்கு அரசு சுங்க வரி வசூலிக்கிறது.",
     "complexity": 2
   },
   {
@@ -8467,7 +8469,7 @@ window.theniWords = [
     "word_ta": "சாற்றுதல்",
     "image_word": "declaration",
     "sentence_en": "The official declaration was made at the conference.",
-    "sentence_ta": "காந்திய வேறுபாடு அறிவிப்பு மாநாட்டில் செய்யப்பட்டது.",
+    "sentence_ta": "மாநாட்டில் அதிகாரப்பூர்வ அறிவிப்பு வெளியிடப்பட்டது.",
     "complexity": 2
   },
   {
@@ -8503,7 +8505,7 @@ window.theniWords = [
     "word_ta": "பொது மன்னிப்பு",
     "image_word": "amnesty",
     "sentence_en": "The government announced an amnesty for all crimes.",
-    "sentence_ta": "அரசு மொத்த பொது மன்னிப்பு குற்றங்களுக்கு அறிவித்தது.",
+    "sentence_ta": "அரசு அனைத்து குற்றங்களுக்கும் பொது மன்னிப்பு அறிவித்தது.",
     "complexity": 1
   },
   {
@@ -8515,7 +8517,7 @@ window.theniWords = [
     "word_ta": "வேலை அனுமதி",
     "image_word": "work permit",
     "sentence_en": "She needs a work permit to start her new job.",
-    "sentence_ta": "அவர் ஒரு புதிய உத்தியோகத்தில் செல்ல வேலை அனுமதி எடுக்க வேண்டும்.",
+    "sentence_ta": "அவளுக்கு புதிய வேலையைத் தொடங்க வேலை அனுமதி தேவை.",
     "complexity": 2
   },
   {
@@ -8527,7 +8529,7 @@ window.theniWords = [
     "word_ta": "மீள் குடியேற்றம்",
     "image_word": "resettlement",
     "sentence_en": "The refugees got help from the government for resettlement.",
-    "sentence_ta": "புதிய வீட்டுக் குழுமங்களைக் கண்டறிந்து அரசால் உதவி பெறும் வழியில் இருந்து மீள் குடியேற்றம்.",
+    "sentence_ta": "அகதிகளுக்கு மீள்குடியேற்றத்திற்காக அரசிடம் இருந்து உதவி கிடைத்தது.",
     "complexity": 2
   },
   {
@@ -8575,7 +8577,7 @@ window.theniWords = [
     "word_ta": "கடத்தல்",
     "image_word": "smuggle",
     "sentence_en": "She tried to smuggle the phone into the school.",
-    "sentence_ta": "அவள் பெட்டி கல்லூரியின் சுற்றுப்புறங்களுக்கு மாண்டோவை கடத்தல் செய்ய முயன்றாள்.",
+    "sentence_ta": "அவள் பள்ளிக்கு போனை கடத்திச் செல்ல முயன்றாள்.",
     "complexity": 2
   },
   {
@@ -8587,7 +8589,7 @@ window.theniWords = [
     "word_ta": "ஆட்கடத்தல்",
     "image_word": "traffick",
     "sentence_en": "The police are investigating the traffick of animals.",
-    "sentence_ta": "கொண்டு வரப்படும் விலங்குகள் சார்ந்த ஆட்கடத்தல் குறித்து காவல்துறை ஆய்வு நடத்தி உள்ளன.",
+    "sentence_ta": "விலங்குகள் கடத்தல் குறித்து காவல்துறை விசாரிக்கிறது.",
     "complexity": 2
   },
   {
@@ -8623,7 +8625,7 @@ window.theniWords = [
     "word_ta": "தாய்நாடு",
     "image_word": "homeland",
     "sentence_en": "She loves her homeland very much.",
-    "sentence_ta": "அவள் தாய்நாடு மிகவும் இனிமையாக பிடித்தது.",
+    "sentence_ta": "அவள் தன் தாய்நாட்டை மிகவும் நேசிக்கிறாள்.",
     "complexity": 2
   },
   {
@@ -8635,7 +8637,7 @@ window.theniWords = [
     "word_ta": "அகதிகள் முகாம்",
     "image_word": "refugee camp",
     "sentence_en": "The refugee camp was built quickly in the countryside.",
-    "sentence_ta": "நாடு கடத்தப்பட்டவர்கள் முகாம் வேகமாக நாட்டுப்பகுதியில் கட்டப்பட்டது.",
+    "sentence_ta": "அகதிகள் முகாம் கிராமப்புறத்தில் வேகமாக கட்டப்பட்டது.",
     "complexity": 2
   },
   {
@@ -8659,7 +8661,7 @@ window.theniWords = [
     "word_ta": "நெல்",
     "image_word": "paddy",
     "sentence_en": "The farmer harvested fresh paddy from the field.",
-    "sentence_ta": "விவசாயி நெல் குறைத்தளத்தில் மூட்டாய்ப் பருப்பு எடுத்தார்.",
+    "sentence_ta": "விவசாயி வயலில் இருந்து நெல் அறுவடை செய்தார்.",
     "complexity": 2
   },
   {
@@ -8671,7 +8673,7 @@ window.theniWords = [
     "word_ta": "கோதுமை",
     "image_word": "wheat",
     "sentence_en": "Wheat is an important crop in many countries.",
-    "sentence_ta": "கோதுமை பல நாடுகளில் சிறந்த ஒரு பயிர் ஆகும்.",
+    "sentence_ta": "கோதுமை பல நாடுகளில் முக்கியமான பயிர்.",
     "complexity": 2
   },
   {
@@ -8683,7 +8685,7 @@ window.theniWords = [
     "word_ta": "மக்காச் சோளம்",
     "image_word": "corn",
     "sentence_en": "I love eating corn on the cob.",
-    "sentence_ta": "நான் கோப்பி மக்காச் சோளத்தில் உண்ணுவதை விரும்புகிறேன்.",
+    "sentence_ta": "எனக்கு சோளக்கருது சாப்பிட பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -8695,7 +8697,7 @@ window.theniWords = [
     "word_ta": "காட்டு அரிசி",
     "image_word": "wild rice",
     "sentence_en": "Wild rice is an important crop in many regions.",
-    "sentence_ta": "வில்டு ரைஸ் பல பிராந்தியங்களில் முக்கியமான ஒரு பயிராகும்.",
+    "sentence_ta": "காட்டு அரிசி பல பகுதிகளில் முக்கியமான பயிர்.",
     "complexity": 2
   },
   {
@@ -8707,7 +8709,7 @@ window.theniWords = [
     "word_ta": "பழுப்பு அரிசி",
     "image_word": "brown rice",
     "sentence_en": "Brown rice is a healthy food option.",
-    "sentence_ta": "பழுப்பு அரிசி ஒரு ஆரோக்கியமான உணவு தேர்ந்தெடுப்பு.",
+    "sentence_ta": "பழுப்பு அரிசி ஒரு ஆரோக்கியமான உணவு.",
     "complexity": 2
   },
   {
@@ -8719,7 +8721,7 @@ window.theniWords = [
     "word_ta": "மூங்கில் அரிசி",
     "image_word": "bamboo rice",
     "sentence_en": "Bamboo rice is often served at Asian restaurants.",
-    "sentence_ta": "மூங்கில் அரிசி ஆசிய உணவு வங்கிகளில் பொதுவாக பரிமாறப்படுகின்றது.",
+    "sentence_ta": "மூங்கில் அரிசி ஆசிய உணவகங்களில் பரிமாறப்படுகிறது.",
     "complexity": 2
   },
   {
@@ -8731,7 +8733,7 @@ window.theniWords = [
     "word_ta": "சிறு தானியம்",
     "image_word": "millet",
     "sentence_en": "Millet is an important crop for farmers.",
-    "sentence_ta": "மில்லெட் ஒரு அவசியமான பயிர், விவசாயிகளுக்கு.",
+    "sentence_ta": "சிறுதானியம் விவசாயிகளுக்கு முக்கியமான பயிர்.",
     "complexity": 2
   },
   {
@@ -8743,7 +8745,7 @@ window.theniWords = [
     "word_ta": "தாமரை விதை",
     "image_word": "lotus seed",
     "sentence_en": "The lotus seed is a nutritious food source.",
-    "sentence_ta": "தாமரை விதை ஒரு உணவளிக்கும் பலனாகும்.",
+    "sentence_ta": "தாமரை விதை சத்தான உணவு.",
     "complexity": 2
   },
   {
@@ -8755,7 +8757,7 @@ window.theniWords = [
     "word_ta": "கொத்தமல்லி விதை",
     "image_word": "coriander seed",
     "sentence_en": "Coriander seed has a distinct flavor.",
-    "sentence_ta": "கொத்தமல்லி விதை புளிய சுவையுடன் இருக்கும்.",
+    "sentence_ta": "கொத்தமல்லி விதை தனித்துவமான சுவை கொண்டது.",
     "complexity": 2
   },
   {
@@ -8767,7 +8769,7 @@ window.theniWords = [
     "word_ta": "சூரியகாந்தி விதை",
     "image_word": "sunflower seed",
     "sentence_en": "The sunflower seed has a hard outer shell.",
-    "sentence_ta": "சூரியகாந்தி விதையில் ஒரு மென்மையற்ற புற அடையாளம் உள்ளது.",
+    "sentence_ta": "சூரியகாந்தி விதை கடினமான ஓடு கொண்டது.",
     "complexity": 1
   },
   {
@@ -8779,7 +8781,7 @@ window.theniWords = [
     "word_ta": "பூசணி விதை",
     "image_word": "pumpkin seed",
     "sentence_en": "Pumpkin seeds are a good source of protein.",
-    "sentence_ta": "பூசணி விதைகள் நன்றான மேலாண்மை ஆஸ்டராய்டு.",
+    "sentence_ta": "பூசணி விதையில் புரதச்சத்து உள்ளது.",
     "complexity": 2
   },
   {
@@ -8803,7 +8805,7 @@ window.theniWords = [
     "word_ta": "கடலைப் பருப்பு",
     "image_word": "split chickpeas",
     "sentence_en": "I'm going to cook split chickpeas for my lunch.",
-    "sentence_ta": "நான் உணவு சூட்ட கடலைப் பருப்பு எடுத்துக்கொள்கிறேன்.",
+    "sentence_ta": "சமையலுக்கு கடலைப் பருப்பு பயன்படுத்தப் போகிறேன்.",
     "complexity": 2
   },
   {
@@ -8923,7 +8925,7 @@ window.theniWords = [
     "word_ta": "கொள்ளு",
     "image_word": "horse gram",
     "sentence_en": "Horse gram is a good source of protein.",
-    "sentence_ta": "",
+    "sentence_ta": "கொள்ளு புரதச் சத்து நிறைந்த உணவு.",
     "complexity": 1
   },
   {
@@ -9006,8 +9008,8 @@ window.theniWords = [
     "word_en": "flax seed",
     "word_ta": "ஆளி விதை",
     "image_word": "flax seed",
-    "sentence_en": "Flax seed is good for digestive health.",
-    "sentence_ta": "ஆளி விதை சிறந்த உணர்ச்சியுடன் பாதுகாக்கிறது.",
+    "sentence_en": "Flax seeds are good for health.",
+    "sentence_ta": "ஆளி விதைகள் உடல் நலத்திற்கு நல்லது.",
     "complexity": 2
   },
   {
@@ -9030,8 +9032,8 @@ window.theniWords = [
     "word_en": "barley",
     "word_ta": "வாற்கோதுமை",
     "image_word": "barley",
-    "sentence_en": "Barley is a type of cereal grain.",
-    "sentence_ta": "வாற்கோதுமை ஒரு சில பயன்பாட்டிற்குரிய பயிர் மணி.",
+    "sentence_en": "Barley is a nutritious grain.",
+    "sentence_ta": "வாற்கோதுமை ஒரு சத்தான தானியம்.",
     "complexity": 2
   },
   {
@@ -9042,8 +9044,8 @@ window.theniWords = [
     "word_en": "quinoa",
     "word_ta": "சீமைத்தினை",
     "image_word": "quinoa",
-    "sentence_en": "Quinoa is a nutritious food for my family.",
-    "sentence_ta": "சீமைத்தினை என்பது என் குடும்பத்திற்கு உணவளிக்கும் சாத்தியமான உணவாகும்.",
+    "sentence_en": "Quinoa is a healthy food choice.",
+    "sentence_ta": "சீமைத்தினை ஒரு ஆரோக்கியமான உணவுத் தேர்வு.",
     "complexity": 3
   },
   {
@@ -9054,8 +9056,8 @@ window.theniWords = [
     "word_en": "sorghum",
     "word_ta": "சோளம்",
     "image_word": "sorghum",
-    "sentence_en": "Sorghum is similar to maize.",
-    "sentence_ta": "சோளம் மாவிற்குப் பொருந்தும்.",
+    "sentence_en": "Sorghum is a drought-resistant crop.",
+    "sentence_ta": "சோளம் வறட்சியைத் தாங்கி வளரக்கூடிய பயிர்.",
     "complexity": 1
   },
   {
@@ -9088,10 +9090,10 @@ window.theniWords = [
     "category_ta": "விதைமணிகள்",
     "difficulty": "D2",
     "word_en": "hemp seed",
-    "word_ta": "கணக்கு விதை",
+    "word_ta": "சணல் விதை",
     "image_word": "hemp seed",
-    "sentence_en": "Hemp seed is a nutritious food for many people.",
-    "sentence_ta": "\"கணக்கு விதை\" பலருக்கு உணவாக நன்மை செய்கிறது.",
+    "sentence_en": "Hemp seeds are very nutritious.",
+    "sentence_ta": "சணல் விதைகள் மிகவும் சத்தானவை.",
     "complexity": 2
   },
   {
@@ -9102,8 +9104,8 @@ window.theniWords = [
     "word_en": "poppy seed",
     "word_ta": "கசகசா",
     "image_word": "poppy seed",
-    "sentence_en": "The poppy seed cake is very delicious.",
-    "sentence_ta": "பொப்பி விதை மேஜை கூழ் கசகசா",
+    "sentence_en": "Poppy seeds are used in cooking.",
+    "sentence_ta": "கசகசா சமையலில் பயன்படுத்தப்படுகிறது.",
     "complexity": 2
   },
   {
@@ -9126,8 +9128,8 @@ window.theniWords = [
     "word_en": "sidewalk",
     "word_ta": "நடைபாதை",
     "image_word": "sidewalk",
-    "sentence_en": "The sidewalk is very slippery in the morning.",
-    "sentence_ta": "சூரிய மாலை நேரத்தில் நடைபாதை மிக மென்மையாக உள்ளது.",
+    "sentence_en": "The sidewalk is safe for walking.",
+    "sentence_ta": "நடைபாதை நடப்பதற்குப் பாதுகாப்பானது.",
     "complexity": 2
   },
   {
@@ -9138,8 +9140,8 @@ window.theniWords = [
     "word_en": "school zone",
     "word_ta": "பள்ளிப் பகுதி",
     "image_word": "school zone",
-    "sentence_en": "Be careful when driving in the school zone.",
-    "sentence_ta": "பள்ளிப் பகுதியில் வாகனம் ஓட்டும்போது சிரித்துக் கொள.",
+    "sentence_en": "Drive slowly in the school zone.",
+    "sentence_ta": "பள்ளிப் பகுதியில் மெதுவாக வாகனம் ஓட்டவும்.",
     "complexity": 2
   },
   {
@@ -9162,8 +9164,8 @@ window.theniWords = [
     "word_en": "subway",
     "word_ta": "சுரங்கப் பாதை",
     "image_word": "subway",
-    "sentence_en": "I love taking the subway to school.",
-    "sentence_ta": "பள்ளிக்கு சுரங்கப் பாதை எடுக்க நான் விரும்புகிறேன்.",
+    "sentence_en": "I use the subway to go to school.",
+    "sentence_ta": "நான் பள்ளிக்குச் செல்ல சுரங்கப் பாதையைப் பயன்படுத்துகிறேன்.",
     "complexity": 1
   },
   {
@@ -9186,8 +9188,8 @@ window.theniWords = [
     "word_en": "speed bump",
     "word_ta": "வேகத் தடை",
     "image_word": "speed bump",
-    "sentence_en": "The speed bump slowed down the car's speed.",
-    "sentence_ta": "வேகத் தடை சரக்கு வாகனம் வேகத்தை நிறுத்தியது.",
+    "sentence_en": "The speed bump slowed down the car.",
+    "sentence_ta": "வேகத் தடை காரின் வேகத்தைக் குறைத்தது.",
     "complexity": 2
   },
   {
@@ -9222,8 +9224,8 @@ window.theniWords = [
     "word_en": "traffic",
     "word_ta": "போக்குவரத்து",
     "image_word": "traffic",
-    "sentence_en": "Traffic is very heavy during peak hours.",
-    "sentence_ta": "போக்குவரத்து மிகவும் அதிகம் உயர்ந்த ஓராயிரம்.",
+    "sentence_en": "Traffic is heavy during peak hours.",
+    "sentence_ta": "பீக் ஹவர்ஸில் போக்குவரத்து நெரிசல் அதிகமாக இருக்கும்.",
     "complexity": 2
   },
   {
@@ -9234,8 +9236,8 @@ window.theniWords = [
     "word_en": "stop sign",
     "word_ta": "நில் பலகை",
     "image_word": "stop sign",
-    "sentence_en": "The stop sign is near my house.",
-    "sentence_ta": "நிறுத்த அசைவட்டை என் இல்லம் அருகில் உள்ளது",
+    "sentence_en": "Stop the vehicle at the stop sign.",
+    "sentence_ta": "நில் பலகையைப் பார்த்ததும் வண்டியை நிறுத்தவும்.",
     "complexity": 2
   },
   {
@@ -9246,8 +9248,8 @@ window.theniWords = [
     "word_en": "roundabout",
     "word_ta": "வட்டச் சாலை",
     "image_word": "roundabout",
-    "sentence_en": "The traffic flows smoothly through the roundabout.",
-    "sentence_ta": "வெளிப்படையாக, முறையான சாலை இதுபோன்ற வட்டச் சாலையினூடு ஓடுகிறது.",
+    "sentence_en": "Traffic flows smoothly in the roundabout.",
+    "sentence_ta": "வட்டச் சாலையில் போக்குவரத்து சீராக உள்ளது.",
     "complexity": 2
   },
   {
@@ -9304,10 +9306,10 @@ window.theniWords = [
     "category_ta": "சாலை வழி",
     "difficulty": "D1",
     "word_en": "toll",
-    "word_ta": "சுங்கம்",
+    "word_ta": "சுங்கச் சாவடி",
     "image_word": "toll",
-    "sentence_en": "The highway has a toll booth.",
-    "sentence_ta": "நெடுஞ்சாலை ஒரு சுங்கம் அறையைக் கொண்டிருக்கிறது.",
+    "sentence_en": "There is a toll booth on the highway.",
+    "sentence_ta": "நெடுஞ்சாலையில் சுங்கச் சாவடி உள்ளது.",
     "complexity": 1
   },
   {
@@ -9318,8 +9320,8 @@ window.theniWords = [
     "word_en": "overtake/pass",
     "word_ta": "முந்திச் செல்லுதல்",
     "image_word": "overtake/pass",
-    "sentence_en": "The car will overtake the truck on the highway.",
-    "sentence_ta": "வாகனம் பேருந்தை சாலையில் முந்திச் செல்லுதல்.",
+    "sentence_en": "The car overtakes the truck.",
+    "sentence_ta": "கார் லாரியை முந்திச் செல்கிறது.",
     "complexity": 2
   },
   {
@@ -9330,8 +9332,8 @@ window.theniWords = [
     "word_en": "speed limit",
     "word_ta": "வேக வரம்பு",
     "image_word": "speed limit",
-    "sentence_en": "The speed limit is 60 kilometers per hour.",
-    "sentence_ta": "வேக வரம்பு 60 கிலோமீட்டர் ஒரே மணி நேரத்திற்கு.",
+    "sentence_en": "The speed limit is 60 km per hour.",
+    "sentence_ta": "வேக வரம்பு மணிக்கு 60 கிலோமீட்டர்.",
     "complexity": 2
   },
   {
@@ -9342,8 +9344,8 @@ window.theniWords = [
     "word_en": "bridge",
     "word_ta": "பாலம்",
     "image_word": "bridge",
-    "sentence_en": "The bridge is very strong and safe.",
-    "sentence_ta": "பாலம் நிலையானது மற்றும் சிறந்த ஒன்று.",
+    "sentence_en": "Calculate the strength of the bridge.",
+    "sentence_ta": "இந்தப் பாலம் மிகவும் உறுதியானது.",
     "complexity": 1
   },
   {
@@ -9355,7 +9357,7 @@ window.theniWords = [
     "word_ta": "நடப்போர் கடப்பிடம்",
     "image_word": "pedestrian crossing",
     "sentence_en": "Be careful at the pedestrian crossing.",
-    "sentence_ta": "நடப்போர் கடப்பிடத்தில் மாட்டுவிடக் கூடாது.",
+    "sentence_ta": "சாலையைக் கடக்கும் போது கவனம் தேவை.",
     "complexity": 1
   },
   {
@@ -9366,8 +9368,8 @@ window.theniWords = [
     "word_en": "lane merge",
     "word_ta": "பாதை இணைப்பு",
     "image_word": "lane merge",
-    "sentence_en": "The lane merge will be done carefully on the road.",
-    "sentence_ta": "போக்குவரத்து விளைவாக, சாலையின் பாதை இணைப்பு மிக நடுந்தரமாக ஆற்றப்படும்.",
+    "sentence_en": "The two lanes merge ahead.",
+    "sentence_ta": "முன்னால் இரு பாதைகளும் ஒன்றாக இணைகின்றன.",
     "complexity": 2
   },
   {
@@ -9388,10 +9390,10 @@ window.theniWords = [
     "category_ta": "சாலை வழி",
     "difficulty": "D2",
     "word_en": "yield",
-    "word_ta": "இசைந்து கொடு",
+    "word_ta": "வழி விடு",
     "image_word": "yield",
-    "sentence_en": "The plant will yield flowers very soon.",
-    "sentence_ta": "மேலும் சிறிது நேரத்தில், புள்ளி மலர்களை இசைந்து கொடுக்கும்.",
+    "sentence_en": "Yield to oncoming traffic.",
+    "sentence_ta": "எதிரே வரும் வாகனங்களுக்கு வழி விடுங்கள்.",
     "complexity": 1
   },
   {
@@ -9403,7 +9405,7 @@ window.theniWords = [
     "word_ta": "பாதசாரி",
     "image_word": "pedestrian",
     "sentence_en": "A pedestrian must follow traffic rules carefully.",
-    "sentence_ta": "பாதசாரிக்கு வழி மீறல் செய்வது அனுமதிக்கப்படாது.",
+    "sentence_ta": "பாதசாரிகள் சாலை விதிகளை மதிக்க வேண்டும்.",
     "complexity": 2
   },
   {
@@ -9414,8 +9416,8 @@ window.theniWords = [
     "word_en": "construction",
     "word_ta": "கட்டுமானம்",
     "image_word": "construction",
-    "sentence_en": "The construction of the new school building started yesterday.",
-    "sentence_ta": "புதிய பள்ளி கட்டிடம் கட்டுமானம் இன்றைய நாள் ஆரம்பித்தது.",
+    "sentence_en": "The construction of the new building started yesterday.",
+    "sentence_ta": "புதிய கட்டிட வேலை நேற்று தொடங்கியது.",
     "complexity": 2
   },
   {
@@ -9426,8 +9428,8 @@ window.theniWords = [
     "word_en": "entry ramp",
     "word_ta": "நுழைவு சரிவுப் பாதை",
     "image_word": "entry ramp",
-    "sentence_en": "The entry ramp is very steep in this parking lot.",
-    "sentence_ta": "இந்த போக்குவரத்து நிலையத்தில் நுழைவு சரிவுப் பாதை மிகவும் உயர்ந்தது.",
+    "sentence_en": "The entry ramp is steep.",
+    "sentence_ta": "நுழைவுச் சரிவுப் பாதை செங்குத்தாக உள்ளது.",
     "complexity": 2
   },
   {
@@ -9462,8 +9464,8 @@ window.theniWords = [
     "word_en": "lane change",
     "word_ta": "பாதை மாற்றம்",
     "image_word": "lane change",
-    "sentence_en": "The driver did a lane change to overtake the car.",
-    "sentence_ta": "வீரர் ஒரு பாதை மாற்றம் செய்து காரை நேரிட தள்ளினார்.",
+    "sentence_en": "The driver changed lanes safely.",
+    "sentence_ta": "ஓட்டுநர் பாதுகாப்பாகப் பாதை மாறினார்.",
     "complexity": 2
   },
   {
@@ -9474,8 +9476,8 @@ window.theniWords = [
     "word_en": "median",
     "word_ta": "சாலை இடைநிலை",
     "image_word": "median",
-    "sentence_en": "",
-    "sentence_ta": "",
+    "sentence_en": "The median separates the lanes.",
+    "sentence_ta": "சாலை இடைநிலை பாதைகளைப் பிரிக்கிறது.",
     "complexity": 1
   },
   {
@@ -9486,8 +9488,8 @@ window.theniWords = [
     "word_en": "curbside",
     "word_ta": "சாலை ஓரம்",
     "image_word": "curbside",
-    "sentence_en": "The recycling bins are placed curbside every week.",
-    "sentence_ta": "புத்திச் சட்டங்களை எல்லாம் நாள்தோறும் சாலை ஓரம் வைப்பார்கள்.",
+    "sentence_en": "Trash cans are placed curbside.",
+    "sentence_ta": "குப்பைத் தொட்டிகள் சாலை ஓரத்தில் வைக்கப்பட்டுள்ளன.",
     "complexity": 2
   },
   {
@@ -9510,8 +9512,8 @@ window.theniWords = [
     "word_en": "pull-over",
     "word_ta": "சாலை ஓர நிறுத்தம்",
     "image_word": "pull-over",
-    "sentence_en": "Please pull-over at the traffic stop",
-    "sentence_ta": "சாலை ஓர நிறுத்தம் அருகில் பயணி வாகனம் உட்கார",
+    "sentence_en": "The police asked to pull over.",
+    "sentence_ta": "காவலர் காரை ஓரமாக நிறுத்தச் சொன்னார்.",
     "complexity": 1
   },
   {
@@ -9522,8 +9524,8 @@ window.theniWords = [
     "word_en": "road shoulder",
     "word_ta": "சாலை ஓரப் பகுதி",
     "image_word": "road shoulder",
-    "sentence_en": "The road shoulder is very narrow here.",
-    "sentence_ta": "இங்கு சாலை ஓரப் பகுதி மிகவும் நன்கு இயற்றப்பட்டது.",
+    "sentence_en": "The road shoulder is narrow.",
+    "sentence_ta": "சாலையின் ஓரம் மிகவும் குறுகலாக உள்ளது.",
     "complexity": 2
   },
   {
@@ -9534,8 +9536,8 @@ window.theniWords = [
     "word_en": "reserved parking",
     "word_ta": "முன்பதிவு செய்யப்பட்ட நிறுத்துமிடம்",
     "image_word": "reserved parking",
-    "sentence_en": "This space is reserved parking for authorized personnel only.",
-    "sentence_ta": "இந்த வெளி, ஒழுங்குமுறைப்படியான அலுவலர்களுக்கு மட்டும் உரிமையுள்ள நிறுத்துமிடம்.",
+    "sentence_en": "This is reserved parking.",
+    "sentence_ta": "இது முன்பதிவு செய்யப்பட்ட நிறுத்துமிடம்.",
     "complexity": 2
   },
   {
@@ -9546,8 +9548,8 @@ window.theniWords = [
     "word_en": "traffic jam",
     "word_ta": "போக்குவரத்து நெரிசல்",
     "image_word": "traffic jam",
-    "sentence_en": "There was a big traffic jam on the highway.",
-    "sentence_ta": "ஹைவேயில் போக்குவரத்து நெரிசல் அதிக மட்டத்திற்கு உள்ளது.",
+    "sentence_en": "There is a traffic jam usually.",
+    "sentence_ta": "வழக்கமாகப் போக்குவரத்து நெரிசல் இருக்கும்.",
     "complexity": 2
   },
   {
@@ -9570,8 +9572,8 @@ window.theniWords = [
     "word_en": "distracted driving",
     "word_ta": "கவனச்சிதறலுடன் வாகனம் ஓட்டுதல்",
     "image_word": "distracted driving",
-    "sentence_en": "Distracted driving can cause serious accidents anytime.",
-    "sentence_ta": "கவனச்சிதறலுடன் வாகனம் ஓட்டுதல் எப்போதும் மிகவும் சரி.",
+    "sentence_en": "Distracted driving is dangerous.",
+    "sentence_ta": "கவனச்சிதறலுடன் வாகனம் ஓட்டுவது ஆபத்தானது.",
     "complexity": 2
   },
   {
@@ -9582,8 +9584,8 @@ window.theniWords = [
     "word_en": "parking garage",
     "word_ta": "வாகன நிறுத்துமிடம்",
     "image_word": "parking garage",
-    "sentence_en": "The school has a large parking garage.",
-    "sentence_ta": "பாடசாலை ஒரு பெரிய வாகன நிறுத்துமிடம் உள்ளது.",
+    "sentence_en": "The mall has a parking garage.",
+    "sentence_ta": "வணிக வளாகத்தில் வாகன நிறுத்துமிடம் உள்ளது.",
     "complexity": 2
   },
   {
