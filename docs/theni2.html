@@ -43,32 +43,29 @@
                 </div>
             </div>
             <div class="control-row">
-                <span class="control-label">Gemini AI API Key:</span>
-                <div style="flex: 1; display: flex; gap: 10px;">
-                    <input type="password" id="apiKeyInput" placeholder="Enter Gemini API Key"
-                        style="padding: 6px 10px; border-radius: 6px; border: 1px solid #ddd; width: 200px; font-size: 0.85em;"
-                        onchange="saveApiKey(this.value)">
-                    <span id="keyStatus" style="font-size: 0.8em; color: #2da44e; align-self: center; display: none;">✓
-                        Saved</span>
-                </div>
-            </div>
-            <div class="control-row">
                 <span class="control-label">Sequence:</span>
                 <div class="pill-group">
                     <button class="action-button" onclick="shuffleSlides()"><span>🔀</span> Shuffle</button>
                     <button class="action-button" onclick="resetSequence()"><span>↩️</span> Reset</button>
                 </div>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Progress:</span>
-                <span class="progress-info" id="progressInfo">Loading...</span>
-                <div style="margin-left: auto; display: flex; gap: 20px;">
+                <div style="margin-left: auto; display: flex; gap: 15px;">
                     <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
                         <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()" checked> ⏱️ Timer (20s)
                     </label>
                     <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
                         <input type="checkbox" id="audioToggle" onchange="toggleAudio()"> 🔊 Audio
                     </label>
+                </div>
+            </div>
+            <div class="control-row">
+                <span class="control-label">Progress:</span>
+                <span class="progress-info" id="progressInfo">Loading...</span>
+                <div style="margin-left: auto; display: flex; align-items: center; gap: 6px;">
+                    <span style="font-size: 0.8em;">🔑 Gemini AI API:</span>
+                    <input type="password" id="apiKeyInput" placeholder="Enter API Key"
+                        style="padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.15); color: white; width: 140px; font-size: 0.8em;"
+                        onchange="saveApiKey(this.value)">
+                    <span id="keyStatus" style="font-size: 0.75em; color: #90EE90; display: none;">✓</span>
                 </div>
             </div>
             <div class="control-row"
