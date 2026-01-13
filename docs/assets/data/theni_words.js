@@ -93,7 +93,7 @@ window.theniWords = [
     "word_ta": "பல்",
     "image_word": "teeth",
     "sentence_en": "I have clean teeth every morning.",
-    "sentence_ta": "நான் தினமும் காலையில் பற்களை சுத்தம் செய்வேன்.",
+    "sentence_ta": "எனக்கு தினமும் காலையில் சுத்தமான பற்கள் இருக்கும்.",
     "complexity": 1
   },
   {
@@ -225,7 +225,7 @@ window.theniWords = [
     "word_ta": "தொடை",
     "image_word": "thigh",
     "sentence_en": "The doctor examined her thigh carefully.",
-    "sentence_ta": "நிபுணர் அவள் தொடையை மூன்று வேலைகளை பார்த்தார்.",
+    "sentence_ta": "மருத்துவர் அவள் தொடையை கவனமாக பரிசோதித்தார்.",
     "complexity": 2
   },
   {
@@ -237,7 +237,7 @@ window.theniWords = [
     "word_ta": "நெற்றி",
     "image_word": "forehead",
     "sentence_en": "The sweat on her forehead was very visible.",
-    "sentence_ta": "அவள் முகத்தின் நெற்றி பரந்த இருப்பு காட்சியளித்தது.",
+    "sentence_ta": "அவள் நெற்றியில் இருந்த வியர்வை நன்றாகத் தெரிந்தது.",
     "complexity": 2
   },
   {
@@ -249,7 +249,7 @@ window.theniWords = [
     "word_ta": "நுரையீரல்",
     "image_word": "lungs",
     "sentence_en": "The lungs are essential for our breathing process.",
-    "sentence_ta": "நுரையீரல் எமது சுவாச செயல்பாட்டிற்கு அடிப்படை.",
+    "sentence_ta": "நாம் சுவாசிக்க நுரையீரல் அவசியம்.",
     "complexity": 2
   },
   {
@@ -261,7 +261,7 @@ window.theniWords = [
     "word_ta": "இமை",
     "image_word": "eyelid",
     "sentence_en": "The eyelid of the eye helps to protect it.",
-    "sentence_ta": "",
+    "sentence_ta": "கண் இமை கண்ணைப் பாதுகாக்க உதவுகிறது.",
     "complexity": 1
   },
   {
@@ -272,8 +272,8 @@ window.theniWords = [
     "word_en": "heart",
     "word_ta": "இதயம்",
     "image_word": "heart",
-    "sentence_en": "The heart of the city is very beautiful.",
-    "sentence_ta": "நகரின் இதயம் செவ்வினுள் அழகானது",
+    "sentence_en": "The heart pumps blood to the body.",
+    "sentence_ta": "இதயம் உடலுக்கு ரத்தத்தை அனுப்புகிறது.",
     "complexity": 2
   },
   {
@@ -285,7 +285,7 @@ window.theniWords = [
     "word_ta": "குடல்",
     "image_word": "intestine",
     "sentence_en": "The intestine absorbs nutrients from the food we eat.",
-    "sentence_ta": "நம் உண்ணும் உணவிலிருந்து குடல் ஊக்கி எடுக்கிறது.",
+    "sentence_ta": "நாம் உண்ணும் உணவிலிருந்து சத்துக்களை குடல் உறிஞ்சுகிறது.",
     "complexity": 2
   },
   {
@@ -297,7 +297,7 @@ window.theniWords = [
     "word_ta": "தோள்",
     "image_word": "shoulder",
     "sentence_en": "The backpack weighed heavily on her shoulder.",
-    "sentence_ta": "அந்த மோசமான பிடி அவள் தோளில் இருந்தது",
+    "sentence_ta": "புத்தகப்பை அவள் தோளில் கனமாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -309,7 +309,7 @@ window.theniWords = [
     "word_ta": "மூச்சுக் குழாய்",
     "image_word": "bronchialtube",
     "sentence_en": "The bronchial tube helps us breathe easily.",
-    "sentence_ta": "மூச்சுக் குழாய் எளிதாக ஓரடி வாங்குவதற்கு உதவுகின்றது.",
+    "sentence_ta": "மூச்சுக் குழாய் நாம் எளிதாக சுவாசிக்க உதவுகிறது.",
     "complexity": 1
   },
   {
@@ -321,7 +321,7 @@ window.theniWords = [
     "word_ta": "பாதம்",
     "image_word": "foot",
     "sentence_en": "The athlete fell on his foot.",
-    "sentence_ta": "விளையாட்டுக் குழுதி தன் பாதம் சரிந்தாள்",
+    "sentence_ta": "விளையாட்டு வீரர் தன் பாதத்தின் மீது விழுந்தார்.",
     "complexity": 1
   },
   {
@@ -333,7 +333,7 @@ window.theniWords = [
     "word_ta": "உள்ளங்கை",
     "image_word": "palm",
     "sentence_en": "The palm of her hand was warm.",
-    "sentence_ta": "அவள் உள்ளங்கையின் சுடர் நெறி மிகவும் இருந்தது.",
+    "sentence_ta": "அவள் உள்ளங்கை கதகதப்பாக இருந்தது.",
     "complexity": 1
   },
   {
@@ -345,7 +345,7 @@ window.theniWords = [
     "word_ta": "கைரேகை",
     "image_word": "fingerprint",
     "sentence_en": "The police took her fingerprint at the crime scene.",
-    "sentence_ta": "குற்ற இடத்தில் அவரைச் சும்மான பதிவிட்டனர்.",
+    "sentence_ta": "காவல்துறை குற்ற இடத்தில் அவள் கைரேகையைப் பதிவு செய்தது.",
     "complexity": 2
   },
   {
@@ -357,7 +357,7 @@ window.theniWords = [
     "word_ta": "கன்னம்",
     "image_word": "cheek",
     "sentence_en": "She touched my cheek with her finger.",
-    "sentence_ta": "அவள் என் கன்னத்தில் ஒரு முழங்கை ஊட்டியாள்.",
+    "sentence_ta": "அவள் தன் விரலால் என் கன்னத்தைத் தொட்டாள்.",
     "complexity": 2
   },
   {
@@ -369,7 +369,7 @@ window.theniWords = [
     "word_ta": "முழங்கை",
     "image_word": "elbow",
     "sentence_en": "I need to bend my elbow to reach the top shelf.",
-    "sentence_ta": "நான் முழங்கையை பிறக்க வேண்டிய உயரத்தில் அடுக்குக்கு செல்ல வேண்டும்.",
+    "sentence_ta": "மேல் அடுக்கை அடைய நான் என் முழங்கையை வளைக்க வேண்டும்.",
     "complexity": 2
   },
   {
@@ -381,7 +381,7 @@ window.theniWords = [
     "word_ta": "எலும்பு",
     "image_word": "bone",
     "sentence_en": "The bone is a hard part of the body.",
-    "sentence_ta": "எலும்பு உடலின் ஒரு கடுமையான பகுதி.",
+    "sentence_ta": "எலும்பு உடலின் ஒரு கடினமான பகுதி.",
     "complexity": 1
   },
   {
@@ -393,7 +393,7 @@ window.theniWords = [
     "word_ta": "இடுப்பு",
     "image_word": "hip",
     "sentence_en": "She has a small injury on her hip.",
-    "sentence_ta": "அவள் ஒரு சிறிய காயம் இடுப்பில் உள்ளது.",
+    "sentence_ta": "அவள் இடுப்பில் ஒரு சிறிய காயம் உள்ளது.",
     "complexity": 1
   },
   {
@@ -405,7 +405,7 @@ window.theniWords = [
     "word_ta": "முதுகெலும்பு",
     "image_word": "spine",
     "sentence_en": "The human body has a strong backbone spine.",
-    "sentence_ta": "மனித உடலில் ஒரு செறிவாக பின்புற எலும்பு முதுகெலும்பு உள்ளது.",
+    "sentence_ta": "மனித உடலில் வலுவான முதுகெலும்பு உள்ளது.",
     "complexity": 1
   },
   {
@@ -416,8 +416,8 @@ window.theniWords = [
     "word_en": "toe",
     "word_ta": "கால்விரல்",
     "image_word": "toe",
-    "sentence_en": "I stepped on my big toe.",
-    "sentence_ta": "நான் என் பெரிய கால்விரலை தடுமாறி விழுந்தேன்.",
+    "sentence_en": "She stepped on my toe.",
+    "sentence_ta": "அவள் என் கால்விரலை மிதித்தாள்.",
     "complexity": 2
   },
   {
@@ -441,7 +441,7 @@ window.theniWords = [
     "word_ta": "தொண்டை",
     "image_word": "throat",
     "sentence_en": "She has a sore throat.",
-    "sentence_ta": "பைக உல்டத் பாபுமன஬.",
+    "sentence_ta": "அவளுக்கு தொண்டை வலி உள்ளது.",
     "complexity": 2
   },
   {
@@ -453,7 +453,7 @@ window.theniWords = [
     "word_ta": "மூளை",
     "image_word": "brain",
     "sentence_en": "The brain helps us to think and learn.",
-    "sentence_ta": "மூளை நாம் புரிந்துகொள்வது மற்றும் கற்றுக்கொள்வதில் உதவுகிறது.",
+    "sentence_ta": "நாம் சிந்திக்கவும் கற்றுக்கொள்ளவும் மூளை உதவுகிறது.",
     "complexity": 2
   },
   {
@@ -477,7 +477,7 @@ window.theniWords = [
     "word_ta": "முழங்கால்",
     "image_word": "knee",
     "sentence_en": "I bent my knee to scratch an itch.",
-    "sentence_ta": "நான் தம்பி எடுக்க ஒரு சிறிய இழைத்தீட்டுவதற்கு என் முழங்காலை பக்குவப்படுத்தி.",
+    "sentence_ta": "அரிப்பை சொறிய நான் என் முழங்காலை மடக்கினேன்.",
     "complexity": 2
   },
   {
@@ -489,7 +489,7 @@ window.theniWords = [
     "word_ta": "அரிசி",
     "image_word": "rice",
     "sentence_en": "She ate rice for her lunch.",
-    "sentence_ta": "அவள் தனது உணவில் அரிசி காய்ந்தது.",
+    "sentence_ta": "அவள் மதிய உணவிற்கு சோறு சாப்பிட்டாள்.",
     "complexity": 1
   },
   {
@@ -501,7 +501,7 @@ window.theniWords = [
     "word_ta": "பருப்பு",
     "image_word": "lentil",
     "sentence_en": "Lentil is an important food in many cultures.",
-    "sentence_ta": "பருப்பு நீண்ட காலம் தேவையான உணவு ஆகும்.",
+    "sentence_ta": "பல கலாச்சாரங்களில் பருப்பு ஒரு முக்கியமான உணவு.",
     "complexity": 2
   },
   {
@@ -513,7 +513,7 @@ window.theniWords = [
     "word_ta": "பால்",
     "image_word": "milk",
     "sentence_en": "She drinks cold milk every morning.",
-    "sentence_ta": "அவள் பொதுச்சில்லா பால் ஒவ்வோர் காலையும் குடிக்கிறாள்.",
+    "sentence_ta": "அவள் தினமும் காலையில் குளிர்ந்த பால் குடிக்கிறாள்.",
     "complexity": 2
   },
   {
@@ -525,7 +525,7 @@ window.theniWords = [
     "word_ta": "தயிர்",
     "image_word": "yogurt",
     "sentence_en": "Yogurt is a healthy breakfast option.",
-    "sentence_ta": "தயிர் ஒரு ஆரோக்கியமான விடியற்காலை வகை.",
+    "sentence_ta": "தயிர் ஒரு ஆரோக்கியமான காலை உணவு.",
     "complexity": 1
   },
   {
@@ -537,7 +537,7 @@ window.theniWords = [
     "word_ta": "சர்க்கரை",
     "image_word": "sugar",
     "sentence_en": "Add sugar to your tea.",
-    "sentence_ta": "தேயிலைக்கு சர்க்கரை சேர்க்க.",
+    "sentence_ta": "தேநீரில் சர்க்கரை சேர்க்கவும்.",
     "complexity": 1
   },
   {
@@ -549,7 +549,7 @@ window.theniWords = [
     "word_ta": "உப்பு",
     "image_word": "salt",
     "sentence_en": "We need to add salt to the recipe.",
-    "sentence_ta": "நாம் செய்திடுக்கோலில் உப்பு தேவை",
+    "sentence_ta": "சமையல் குறிப்பில் நாம் உப்பு சேர்க்க வேண்டும்.",
     "complexity": 1
   },
   {
@@ -561,7 +561,7 @@ window.theniWords = [
     "word_ta": "முட்டை",
     "image_word": "egg",
     "sentence_en": "The bird laid an egg on the tree.",
-    "sentence_ta": "பறவை முட்டையை காடுக்கு ஒரு முட்டை விட்டது.",
+    "sentence_ta": "பறவை மரத்தின் மீது முட்டையிட்டது.",
     "complexity": 1
   },
   {
@@ -585,7 +585,7 @@ window.theniWords = [
     "word_ta": "மாமிசம்",
     "image_word": "meat",
     "sentence_en": "Meat is an essential part of our diet.",
-    "sentence_ta": "\"மாமிசம்\" எங்கள் உணவுப் பழக்கத்தில் அடிப்படையான ஒன்றாகும்.",
+    "sentence_ta": "மாமிசம் எங்கள் உணவின் ஒரு முக்கிய பகுதியாகும்.",
     "complexity": 2
   },
   {
@@ -597,7 +597,7 @@ window.theniWords = [
     "word_ta": "மோர்",
     "image_word": "buttermilk",
     "sentence_en": "Buttermilk is a good substitute for regular milk.",
-    "sentence_ta": "ஆன்மீக விலங்கு நீர் போல சிறந்த மோர்",
+    "sentence_ta": "வழக்கமான பாலுக்கு மோர் ஒரு நல்ல மாற்றாகும்.",
     "complexity": 2
   },
   {
@@ -609,7 +609,7 @@ window.theniWords = [
     "word_ta": "எண்ணெய்",
     "image_word": "oil",
     "sentence_en": "The car runs on oil",
-    "sentence_ta": "வாகனம் எண்ணெய்ப் படி நடக்கிறது",
+    "sentence_ta": "கார் எண்ணெய்யில் ஓடுகிறது.",
     "complexity": 1
   },
   {
@@ -621,7 +621,7 @@ window.theniWords = [
     "word_ta": "வெண்ணெய்",
     "image_word": "butter",
     "sentence_en": "Butter is used to make toast tasty.",
-    "sentence_ta": "வெண்ணெய் டேஸ்டு சுவைக்கு பயன்படுத்தப்படுகிறது.",
+    "sentence_ta": "ரொட்டியை சுவையாக மாற்ற வெண்ணெய் பயன்படுகிறது.",
     "complexity": 1
   },
   {
@@ -633,7 +633,7 @@ window.theniWords = [
     "word_ta": "மாவு",
     "image_word": "flour",
     "sentence_en": "The baker uses flour to make bread.",
-    "sentence_ta": "மேவர் பொதியில் மாவுக்கு மாவு செய்கிறார்.",
+    "sentence_ta": "ரொட்டி செய்ய மாவு பயன்படுகிறது.",
     "complexity": 2
   },
   {
@@ -644,8 +644,7 @@ window.theniWords = [
     "word_en": "mustard",
     "word_ta": "கடுகு",
     "image_word": "mustard",
-    "sentence_en": "I love eating food seasoned with yellow mustard.",
-    "sentence_ta": "நான் பொடிவைத்த மஞ்சள் கடுகு மிகவும் விரும்புகிறேன்.",
+    "sentence_ta": "எனக்கு கடுகு சேர்த்த உணவு மிகவும் பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -657,7 +656,7 @@ window.theniWords = [
     "word_ta": "புளி",
     "image_word": "tamarind",
     "sentence_en": "The fruit of the tamarind tree is sour.",
-    "sentence_ta": "தாமரிப்புளி காய் மிகவும் கசப்பு.",
+    "sentence_ta": "புளியம்பழம் புளிப்பாக இருக்கும்.",
     "complexity": 2
   },
   {
@@ -669,7 +668,7 @@ window.theniWords = [
     "word_ta": "ஊறுகாய்",
     "image_word": "pickle",
     "sentence_en": "The pickle is a type of fermented food.",
-    "sentence_ta": "ஊறுகாய் ஒரு வகை மசித்த உணவு.",
+    "sentence_ta": "ஊறுகாய் பலவகைச் சுவைகளில் கிடைக்கிறது.",
     "complexity": 1
   },
   {
@@ -681,7 +680,7 @@ window.theniWords = [
     "word_ta": "தின்பண்டங்கள்",
     "image_word": "snacks",
     "sentence_en": "She ate some snacks before her lunch.",
-    "sentence_ta": "அவள் தின்பண்டங்களை உண்டு தன் ஊட்டச்சத்து சாப்பிட்டார்.",
+    "sentence_ta": "மதிய உணவிற்கு முன் அவள் சில தின்பண்டங்களைச் சாப்பிட்டாள்.",
     "complexity": 1
   },
   {
@@ -693,7 +692,7 @@ window.theniWords = [
     "word_ta": "இனிப்புகள்",
     "image_word": "sweets",
     "sentence_en": "I love eating different types of sweets.",
-    "sentence_ta": "நான் வேறு வகையான மிட்டாய்களை சாப்பிடுவதை காண்கிறேன்.",
+    "sentence_ta": "எனக்கு இனிப்பு வகைகள் சாப்பிடப் பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -704,8 +703,7 @@ window.theniWords = [
     "word_en": "jaggery",
     "word_ta": "வெல்லம்",
     "image_word": "jaggery",
-    "sentence_en": "Jaggery is a sweetener made from sugarcane",
-    "sentence_ta": "வெல்லம் சர்க்கரை துணையான இருக்கிறது.",
+    "sentence_ta": "கரும்பிலிருந்து வெல்லம் தயாரிக்கப்படுகிறது.",
     "complexity": 2
   },
   {
@@ -717,7 +715,7 @@ window.theniWords = [
     "word_ta": "மிட்டாய்",
     "image_word": "candy",
     "sentence_en": "She ate a sweet candy.",
-    "sentence_ta": "அவள் ஒரு சில்லாட்டிய மிட்டாய் சாப்பிட்டாள்",
+    "sentence_ta": "அவள் ஒரு இனிப்பு மிட்டாய் சாப்பிட்டாள்.",
     "complexity": 1
   },
   {
@@ -729,7 +727,7 @@ window.theniWords = [
     "word_ta": "பஞ்சுமிட்டாய்",
     "image_word": "cotton candy",
     "sentence_en": "Cotton candy is sweet and colorful.",
-    "sentence_ta": "பஞ்சுமிட்டாய் வென்றும் நிறம்கலந்தது.",
+    "sentence_ta": "பஞ்சுமிட்டாய் இனிப்பாகவும் வண்ணமயமாகவும் இருக்கும்.",
     "complexity": 2
   },
   {
@@ -741,7 +739,7 @@ window.theniWords = [
     "word_ta": "கஞ்சி",
     "image_word": "porridge",
     "sentence_en": "She ate the warm porridge for breakfast.",
-    "sentence_ta": "அவள் சூட்டு கஞ்சியை காலையில் சாப்பிட்டார்.",
+    "sentence_ta": "அவள் காலையில் சூடான கஞ்சி குடித்தாள்.",
     "complexity": 2
   },
   {
@@ -753,7 +751,7 @@ window.theniWords = [
     "word_ta": "வடிசாறு",
     "image_word": "soup",
     "sentence_en": "The delicious soup was served hot yesterday.",
-    "sentence_ta": "விரும்பத்தக்க வடிசாறு நேரடி வெயில் அன்று கிடைத்தது.",
+    "sentence_ta": "நேற்று சுவையான சூடான சூப் பரிமாறப்பட்டது.",
     "complexity": 2
   },
   {
@@ -765,7 +763,7 @@ window.theniWords = [
     "word_ta": "ரொட்டித்துண்டு",
     "image_word": "bread slice",
     "sentence_en": "A toasted bread slice is very delicious.",
-    "sentence_ta": "ஒரு காய்ந்த பிரெட் சில்லை மிகவும் சுவையானது.",
+    "sentence_ta": "வாட்டிய ரொட்டித் துண்டு மிகவும் சுவையானது.",
     "complexity": 2
   },
   {
@@ -777,7 +775,7 @@ window.theniWords = [
     "word_ta": "பழக்கூட்டு",
     "image_word": "jam",
     "sentence_en": "She spread the jam on her toast.",
-    "sentence_ta": "அவள் தங்கியிருந்த பழக்கூட்டுக்கு சாம்பலை விரித்தாள்.",
+    "sentence_ta": "அவள் ரொட்டித் துண்டின் மேல் பழக்கூட்டைத் தடவினாள்.",
     "complexity": 2
   },
   {
@@ -789,7 +787,7 @@ window.theniWords = [
     "word_ta": "தேநீர்",
     "image_word": "tea",
     "sentence_en": "I love drinking hot tea every morning.",
-    "sentence_ta": "நான் பொழுதுபோக்கில் வெப்ப தேநீர் குடிப்பதை விரும்புகிறேன்.",
+    "sentence_ta": "நான் தினமும் காலையில் சூடான தேநீர் அருந்துவேன்.",
     "complexity": 2
   },
   {
@@ -813,7 +811,7 @@ window.theniWords = [
     "word_ta": "வெந்நீர்",
     "image_word": "hot water",
     "sentence_en": "We need hot water for drinking.",
-    "sentence_ta": "நாங்கள் வெந்நீருக்கான தேவை உண்டு.",
+    "sentence_ta": "குடிக்க வெந்நீர் வேண்டும்.",
     "complexity": 1
   },
   {
@@ -825,7 +823,7 @@ window.theniWords = [
     "word_ta": "இளநீர்",
     "image_word": "tender coconut water",
     "sentence_en": "Tender coconut water is very refreshing.",
-    "sentence_ta": "தேன்மாவில் இளநீர் மிகவும் ஆற்றலானது.",
+    "sentence_ta": "இளநீர் மிகவும் புத்துணர்ச்சியானது.",
     "complexity": 2
   },
   {
@@ -837,7 +835,7 @@ window.theniWords = [
     "word_ta": "காலை உணவு",
     "image_word": "breakfast",
     "sentence_en": "I love eating breakfast every morning.",
-    "sentence_ta": "நான் காலை உணவு எடுத்து கொள்ள விரும்புகிறேன்.",
+    "sentence_ta": "எனக்கு தினமும் காலை உணவு சாப்பிடப் பிடிக்கும்.",
     "complexity": 2
   },
   {
@@ -861,7 +859,7 @@ window.theniWords = [
     "word_ta": "இரவு உணவு",
     "image_word": "dinner",
     "sentence_en": "The family will have dinner together tonight.",
-    "sentence_ta": "இரவு உணவிற்கு அனைவரும் சேர நினைக்கிறார்கள்.",
+    "sentence_ta": "குடும்பத்தினர் இன்று இரவு ஒன்றாக அமர்ந்து சாப்பிடுவார்கள்.",
     "complexity": 1
   },
   {
@@ -909,7 +907,7 @@ window.theniWords = [
     "word_ta": "மஞ்சள்",
     "image_word": "turmeric",
     "sentence_en": "Turmeric is an important spice in Indian cooking.",
-    "sentence_ta": "துருமெரிக் இந்திய சமையலில் முக்கிய பசலை என்றும் வழங்கப்படுகிறது.",
+    "sentence_ta": "இந்திய சமையலில் மஞ்சள் ஒரு முக்கியமான மசாலா.",
     "complexity": 2
   },
   {
@@ -921,7 +919,7 @@ window.theniWords = [
     "word_ta": "மிளகாய்த்தூள்",
     "image_word": "chili powder",
     "sentence_en": "Chili powder makes the curry very spicy.",
-    "sentence_ta": "சிலி தூள் குழம்புக்கு அதிக சுரப்பியை ஆட்கொள்வது.",
+    "sentence_ta": "மிளகாய்த்தூள் குழம்பை மிகவும் காரமாக்கும்.",
     "complexity": 2
   },
   {
@@ -933,7 +931,7 @@ window.theniWords = [
     "word_ta": "இஞ்சி",
     "image_word": "ginger",
     "sentence_en": "Ginger adds flavor to the tea.",
-    "sentence_ta": "இஞ்சி மணம் கொடுப்பது வலிமை உள்ள சாறு.",
+    "sentence_ta": "இஞ்சி தேநீருக்கு சுவை சேர்க்கிறது.",
     "complexity": 1
   },
   {
@@ -944,8 +942,8 @@ window.theniWords = [
     "word_en": "almond",
     "word_ta": "வாதுமைப் பருப்பு",
     "image_word": "almond",
-    "sentence_en": "The almond is often eaten with வாதுமைப் பருப்பு",
-    "sentence_ta": "அரிசி போன்ற அல்மண்டு பொதுவாக வாதுமைப் பருப்பு",
+    "sentence_en": "Almonds are a healthy snack.",
+    "sentence_ta": "பாதாம் பருப்பு ஒரு சத்தான சிற்றுண்டி.",
     "complexity": 1
   },
   {
@@ -957,7 +955,7 @@ window.theniWords = [
     "word_ta": "வேர்க்கடலை",
     "image_word": "peanut",
     "sentence_en": "The peanut is a type of legume.",
-    "sentence_ta": "வேர்க்கடலை ஒரு தானிய வகை.",
+    "sentence_ta": "வேர்க்கடலை உடலுக்கு நல்லது.",
     "complexity": 1
   },
   {
@@ -969,7 +967,7 @@ window.theniWords = [
     "word_ta": "இல்லம்",
     "image_word": "home",
     "sentence_en": "I will be going home after school today.",
-    "sentence_ta": "நான் பள்ளிக்குப் பிறகு இல்லத்தை செல்வேன்.",
+    "sentence_ta": "நான் பள்ளி முடிந்து வீட்டிற்குச் செல்வேன்.",
     "complexity": 2
   },
   {
@@ -1017,7 +1015,7 @@ window.theniWords = [
     "word_ta": "நாற்காலி",
     "image_word": "chair",
     "sentence_en": "The chair is very comfortable to sit on.",
-    "sentence_ta": "நாற்காலி மிகவும் அதிகமான சூரிய ஒளியால் புகுக்கும்.",
+    "sentence_ta": "இந்த நாற்காலி அமர மிகவும் வசதியானது.",
     "complexity": 1
   },
   {
@@ -1041,7 +1039,7 @@ window.theniWords = [
     "word_ta": "கட்டில்",
     "image_word": "bed",
     "sentence_en": "The bed is very comfortable to sleep on.",
-    "sentence_ta": "கட்டில் மிகவும் உறங்க போது சாத்தியமான அருகாமை.",
+    "sentence_ta": "இந்த கட்டில் இது தூங்க மிகவும் வசதியானது.",
     "complexity": 1
   },
   {
@@ -1053,7 +1051,7 @@ window.theniWords = [
     "word_ta": "மாடி",
     "image_word": "upstairs",
     "sentence_en": "I went upstairs to my room.",
-    "sentence_ta": "நான் மேல்கட்டிலே என் அறைக்குச் சென்றேன்.",
+    "sentence_ta": "நான் மாடியில் உள்ள என் அறைக்குச் சென்றேன்.",
     "complexity": 2
   },
   {
@@ -1065,7 +1063,7 @@ window.theniWords = [
     "word_ta": "தட்டு",
     "image_word": "plate",
     "sentence_en": "She put the fruit salad on a clean plate.",
-    "sentence_ta": "அவர் ஒரு சுத்தமான தட்டில் கனி சலாட்‌டை வைத்தார்.",
+    "sentence_ta": "அவர் ஒரு சுத்தமான தட்டில் பழக்கலவையை வைத்தார்.",
     "complexity": 1
   },
   {
@@ -1077,7 +1075,7 @@ window.theniWords = [
     "word_ta": "கரண்டி",
     "image_word": "spoon",
     "sentence_en": "I'm eating my food with a spoon.",
-    "sentence_ta": "நான் உணவை ஒரு கரண்டியில் சாப்பிட்டுக்கொள்கிறேன்.",
+    "sentence_ta": "நான் கரண்டியால் சாப்பிடுகிறேன்.",
     "complexity": 2
   },
   {
@@ -1113,7 +1111,7 @@ window.theniWords = [
     "word_ta": "பாத்திரம்",
     "image_word": "pot",
     "sentence_en": "The pot is very dirty.",
-    "sentence_ta": "பொட்டு அரிதாம்.",
+    "sentence_ta": "அந்தப் பானை மிகவும் அழுக்காக உள்ளது.",
     "complexity": 1
   },
   {
@@ -1125,7 +1123,7 @@ window.theniWords = [
     "word_ta": "கிண்ணம்",
     "image_word": "bowl",
     "sentence_en": "The big green bowl is sitting on the table.",
-    "sentence_ta": "பெரிய விதை நிற கிண்ணம் அடுப்பில் சேர்ந்துள்ளது",
+    "sentence_ta": "மேசையின் மேல் பெரிய பச்சை நிற கிண்ணம் உள்ளது.",
     "complexity": 1
   },
   {
@@ -1137,7 +1135,7 @@ window.theniWords = [
     "word_ta": "கத்தி",
     "image_word": "knife",
     "sentence_en": "I am holding the knife carefully.",
-    "sentence_ta": "நான் கத்தியை பராமரித்து வகையற்று வைத்திருக்கிறேன்.",
+    "sentence_ta": "நான் கத்தியை கவனமாக வைத்திருக்கிறேன்.",
     "complexity": 2
   },
   {
@@ -1149,7 +1147,7 @@ window.theniWords = [
     "word_ta": "கூடை",
     "image_word": "basket",
     "sentence_en": "She carried the basket to her room.",
-    "sentence_ta": "அவள் கூடையினை அவளுடைய மாடத்துக்கு எடுத்துச் சென்றாள்.",
+    "sentence_ta": "அவள் கூடையை தன் அறைக்கு எடுத்துச் சென்றாள்.",
     "complexity": 1
   },
   {
@@ -1173,7 +1171,7 @@ window.theniWords = [
     "word_ta": "குடை",
     "image_word": "umbrella",
     "sentence_en": "She carried an umbrella with her every day.",
-    "sentence_ta": "அவர் தினமும் ஒரு குடையைச் செல்லும் போது கொண்டிருந்தார்.",
+    "sentence_ta": "அவள் தினமும் குடை எடுத்துச் செல்வாள்.",
     "complexity": 2
   },
   {
@@ -1185,7 +1183,7 @@ window.theniWords = [
     "word_ta": "விசிறி",
     "image_word": "fan",
     "sentence_en": "The fan is used to cool the room.",
-    "sentence_ta": "விசிறி அடுப்பில் இருந்து குளிர்ச்சி ஏற்படும்.",
+    "sentence_ta": "அறையை குளிர்விக்க விசிறி பயன்படுகிறது.",
     "complexity": 2
   },
   {
@@ -1197,7 +1195,7 @@ window.theniWords = [
     "word_ta": "பாய்",
     "image_word": "mat",
     "sentence_en": "She sat on the mat quietly.",
-    "sentence_ta": "அவள் பாய்மீது ஆரம்பிக்கும் சூடான நிலையில் இருந்தாள்.",
+    "sentence_ta": "அவள் பாயில் அமைதியாக அமர்ந்தாள்.",
     "complexity": 2
   },
   {
@@ -1233,7 +1231,7 @@ window.theniWords = [
     "word_ta": "மின்விசிறி",
     "image_word": "electric fan",
     "sentence_en": "The electric fan is very helpful during summer.",
-    "sentence_ta": "மின்விசிறி ஒரு கூட வெயில் நேரத்தில் உதவியாக இருக்கும்.",
+    "sentence_ta": "கோடை காலத்தில் மின்விசிறி மிகவும் உதவும்.",
     "complexity": 1
   },
   {
@@ -1245,7 +1243,7 @@ window.theniWords = [
     "word_ta": "தண்ணீர்க்குழாய்",
     "image_word": "water pipe",
     "sentence_en": "The water pipe was very dirty yesterday.",
-    "sentence_ta": "தண்ணீர்க்குழாய் நினைத்துப்பாரேன், நீங்க வஞ்சகமா.",
+    "sentence_ta": "நேற்று தண்ணீர் குழாய் மிகவும் அழுக்காக இருந்தது.",
     "complexity": 1
   },
   {
@@ -1257,7 +1255,7 @@ window.theniWords = [
     "word_ta": "கணினி",
     "image_word": "computer",
     "sentence_en": "The computer is very useful for learning.",
-    "sentence_ta": "கணினி பலமை வாய்ந்தது, அறிவூர்த்திக்கு உதவும்.",
+    "sentence_ta": "கணினி கற்க மிகவும் பயனுள்ளது.",
     "complexity": 2
   },
   {
@@ -1281,7 +1279,7 @@ window.theniWords = [
     "word_ta": "குளியலறை",
     "image_word": "bathroom",
     "sentence_en": "The bathroom is next to my bedroom.",
-    "sentence_ta": "என் இருக்கையின் பக்கம் குளியலறை உள்ளது",
+    "sentence_ta": "குளியலறை என் படுக்கையறைக்கு அருகில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -1293,7 +1291,7 @@ window.theniWords = [
     "word_ta": "படுக்கையறை",
     "image_word": "bedroom",
     "sentence_en": "The bedroom is usually very quiet at night.",
-    "sentence_ta": "படுக்கையறை அதிகம் இரவில் ஓசை குன்றியதாக இருக்கும்.",
+    "sentence_ta": "இரவில் படுக்கையறை மிகவும் அமைதியாக இருக்கும்.",
     "complexity": 1
   },
   {
@@ -1305,7 +1303,7 @@ window.theniWords = [
     "word_ta": "நிலைக்கண்ணாடி",
     "image_word": "mirror",
     "sentence_en": "The mirror is hanging on the wall.",
-    "sentence_ta": "நிலைக்கண்ணாடி இரும்புத் தகட்டின் மீது அறையில் வைக்கப்பட்டுள்ளது.",
+    "sentence_ta": "கண்ணாடி சுவற்றில் மாற்றப்பட்டுள்ளது.",
     "complexity": 1
   },
   {
@@ -1317,7 +1315,7 @@ window.theniWords = [
     "word_ta": "தொலைபேசி",
     "image_word": "telephone",
     "sentence_en": "I picked up the telephone to answer the call.",
-    "sentence_ta": "நான் ஒரு தொலைபேசியைப் பிடித்தேன் அழைப்பை பதில் கூற.",
+    "sentence_ta": "அழைப்பை ஏற்க நான் தொலைபேசியை எடுத்தேன்.",
     "complexity": 2
   },
   {
@@ -1329,7 +1327,7 @@ window.theniWords = [
     "word_ta": "தொலைகாட்சிப்பெட்டி",
     "image_word": "television",
     "sentence_en": "The television is in the living room.",
-    "sentence_ta": "தொலைகாட்சிப்பெட்டி வீட்டின் உள்வாயில் இருக்கிறது.",
+    "sentence_ta": "தொலைக்காட்சி பெட்டி வரவேற்பறையில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -1341,7 +1339,7 @@ window.theniWords = [
     "word_ta": "வானொலி",
     "image_word": "radio",
     "sentence_en": "I listen to the radio every morning.",
-    "sentence_ta": "நான் எப்போதும் காலையில் வானொலி கேட்பது.",
+    "sentence_ta": "நான் தினமும் காலையில் வானொலி கேட்பேன்.",
     "complexity": 2
   },
   {
@@ -1353,7 +1351,7 @@ window.theniWords = [
     "word_ta": "கைப்பேசி",
     "image_word": "mobile",
     "sentence_en": "My mobile phone is very useful for me.",
-    "sentence_ta": "என் கைப்பேசி என்றுக்கு மிகவும் பயனுள்ளது.",
+    "sentence_ta": "என் கைப்பேசி எனக்கு மிகவும் பயனுள்ளதாக இருக்கிறது.",
     "complexity": 2
   },
   {
@@ -1365,7 +1363,7 @@ window.theniWords = [
     "word_ta": "மின்விளக்கு",
     "image_word": "electric light",
     "sentence_en": "The electric light is very useful for studying.",
-    "sentence_ta": "மின்விளக்கு பலனானது, நோக்கர் ஆகும்.",
+    "sentence_ta": "படிக்க மின்விளக்கு மிகவும் அவசியம்.",
     "complexity": 2
   },
   {
@@ -1377,7 +1375,7 @@ window.theniWords = [
     "word_ta": "சரவிளக்கு",
     "image_word": "chandelier",
     "sentence_en": "The chandelier hung beautifully in the living room.",
-    "sentence_ta": "சரவிளக்கு அறையில் இனிமையான நிலையில் தங்கியிருந்தது.",
+    "sentence_ta": "சரவிளக்கு வரவேற்பறையில் அழகாகத் தொங்கியது.",
     "complexity": 2
   },
   {
@@ -1389,7 +1387,7 @@ window.theniWords = [
     "word_ta": "புகைப்படம்",
     "image_word": "photograph",
     "sentence_en": "The photograph shows a happy family smiling.",
-    "sentence_ta": "புகைப்படம் அன்புள்ள குடும்பத்தின் மகிழ்ச்சி காண்பிக்கிறது.",
+    "sentence_ta": "புகைப்படம் மகிழ்ச்சியான குடும்பத்தைக் காட்டுகிறது.",
     "complexity": 2
   },
   {
@@ -1401,7 +1399,7 @@ window.theniWords = [
     "word_ta": "கத்தரிக்கோல்",
     "image_word": "scissors",
     "sentence_en": "She is using the scissors to cut this paper.",
-    "sentence_ta": "அவள் இந்தக் காகிதத்தை வெட்ட பயன்படுத்தும் கத்தரிக்கோல்.",
+    "sentence_ta": "அவள் காகிதத்தை வெட்ட கத்தரிக்கோலைப் பயன்படுத்துகிறாள்.",
     "complexity": 1
   },
   {
@@ -1413,7 +1411,7 @@ window.theniWords = [
     "word_ta": "தாழ்ப்பாள்",
     "image_word": "latch",
     "sentence_en": "The door has a small metal latch.",
-    "sentence_ta": "துவாரம் சிறிய உலோக தாழ்ப்பாளைக் கொண்டிருந்தது.",
+    "sentence_ta": "கதவில் சிறிய உலோகத் தாழ்ப்பாள் உள்ளது.",
     "complexity": 2
   },
   {
@@ -1425,7 +1423,7 @@ window.theniWords = [
     "word_ta": "தலையணை",
     "image_word": "pillow",
     "sentence_en": "She rested her head on the pillow.",
-    "sentence_ta": "அவள் தலையணையில் தனது தலையை சமாளித்தாள்.",
+    "sentence_ta": "அவள் தலையணையில் தலை வைத்தாள்.",
     "complexity": 2
   },
   {
@@ -1449,7 +1447,7 @@ window.theniWords = [
     "word_ta": "பள்ளி",
     "image_word": "school",
     "sentence_en": "I am going to my school.",
-    "sentence_ta": "நான் என்னை விடுதியை செல்கிறேன்.",
+    "sentence_ta": "நான் பள்ளிக்குச் செல்கிறேன்.",
     "complexity": 1
   },
   {
@@ -1461,7 +1459,7 @@ window.theniWords = [
     "word_ta": "ஆசிரியர்",
     "image_word": "teacher",
     "sentence_en": "The teacher is very helpful to her students.",
-    "sentence_ta": "ஆசிரியர் அவளுடைய மாணவர்களுக்கு உதவி புரிந்து கொள்கிறார்.",
+    "sentence_ta": "ஆசிரியர் மாணவர்களுக்கு உதவுகிறார்.",
     "complexity": 2
   },
   {
@@ -1473,7 +1471,7 @@ window.theniWords = [
     "word_ta": "புத்தகம்",
     "image_word": "book",
     "sentence_en": "The book is lying on the table.",
-    "sentence_ta": "புத்தகம் அட்டையில் விழுந்துள்ளது.",
+    "sentence_ta": "புத்தகம் மேசையில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -1485,7 +1483,7 @@ window.theniWords = [
     "word_ta": "எழுதுகோல்",
     "image_word": "pen",
     "sentence_en": "She used the pen to write her essay.",
-    "sentence_ta": "அவள் எழுதுகோல்களின் பயனாக அவளது செய்தி எழுதினாள்.",
+    "sentence_ta": "அவள் பேனாவால் கட்டுரை எழுதினாள்.",
     "complexity": 2
   },
   {
@@ -1497,7 +1495,7 @@ window.theniWords = [
     "word_ta": "புத்தகப்பை",
     "image_word": "book bag",
     "sentence_en": "She carries her book bag to school every day.",
-    "sentence_ta": "அவள் தனது புத்தகப்பையை ஆசிரியர் மாணவர் பலகூடங்களுக்கு இருக்கும்.",
+    "sentence_ta": "அவள் தினமும் புத்தகப்பையை பள்ளிக்கு எடுத்துச் செல்கிறாள்.",
     "complexity": 2
   },
   {
@@ -1533,7 +1531,7 @@ window.theniWords = [
     "word_ta": "தேர்வு",
     "image_word": "exam",
     "sentence_en": "The exam is very important for the student.",
-    "sentence_ta": "இந்த தேர்வு மிக அவசியம் என்பது ஒரு மாணவருக்கு.",
+    "sentence_ta": "மாணவருக்கு தேர்வு மிக முக்கியம்.",
     "complexity": 1
   },
   {
