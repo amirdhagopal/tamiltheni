@@ -103,8 +103,9 @@
                         <div style="margin-left: auto; display: flex; gap: 10px; align-items: center;">
                             <label style="font-size: 0.85em; display: flex; align-items: center; gap: 6px;">🔑 Gemini AI API:</label>
                             <input type="password" id="apiKeyInput" placeholder="Enter API Key" 
-                                   style="padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 0.85em; width: 120px;"
+                                   style="padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.15); color: white; font-size: 0.85em; width: 140px;"
                                    onchange="saveApiKey(this.value)">
+                            <style>#apiKeyInput::placeholder { color: rgba(255,255,255,0.7); font-style: italic; }</style>
                         </div>
                     </div>
                 `,
