@@ -441,3 +441,97 @@ button.nav-btn {
         margin-top: 1px;
     }
 }
+
+/* --- PWA Update Banner --- */
+.pwa-update-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+    font-family: var(--font-main);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.pwa-update-banner.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.pwa-update-icon {
+    font-size: 1.3rem;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pwa-update-text {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.pwa-update-btn {
+    background: white;
+    color: var(--primary);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.pwa-update-btn:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.pwa-update-close {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.pwa-update-close:hover {
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .pwa-update-banner {
+        left: 10px;
+        right: 10px;
+        transform: translateX(0) translateY(100px);
+        bottom: 10px;
+    }
+
+    .pwa-update-banner.show {
+        transform: translateX(0) translateY(0);
+    }
+
+    .pwa-update-text {
+        font-size: 0.85rem;
+    }
+}

@@ -16,7 +16,7 @@
         "fetna"
     ],
     "author": "Peoria Tamil School",
-    "license": "UNLICENSED",
+    "license": "CC-BY-4.0",
     "private": true,
     "devDependencies": {
         "eslint": "^9.18.0",
