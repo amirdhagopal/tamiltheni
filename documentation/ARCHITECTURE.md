@@ -143,6 +143,12 @@ tamiltheni/
 │   ├── data/                # JSON data files (Single Source of Truth)
 │   └── types/               # TypeScript interface definitions
 ├── html/                    # HTML entry points for each module
+├── test/                    # Test files
+│   ├── bat/                 # Build Acceptance Tests
+│   └── unit/                # Unit tests
+├── documentation/           # Project documentation
+│   ├── ARCHITECTURE.md      # This file
+│   └── REQUIREMENTS.md      # Product requirements
 ├── index.html               # Main entry point
 ├── docs/                    # Production build output (GitHub Pages root)
 ```

@@ -31,6 +31,13 @@ The app includes study modules for five competition categories:
 
 3. Open the provided localhost URL (usually http://localhost:5173/) in your browser.
 
+## 📖 Documentation
+
+| Document | Description |
+|----------|-------------|
+| [ARCHITECTURE.md](documentation/ARCHITECTURE.md) | System architecture, diagrams, and technical decisions |
+| [REQUIREMENTS.md](documentation/REQUIREMENTS.md) | Business and technical requirements |
+
 ## 📁 Project Structure
 
 ```
@@ -51,6 +58,12 @@ tamiltheni/
 │   ├── theni2.html
 │   ├── theni34.html
 │   └── theni5.html
+├── test/                    # Test files
+│   ├── bat/                 # Build Acceptance Tests
+│   └── unit/                # Unit tests
+├── documentation/           # Project documentation
+│   ├── ARCHITECTURE.md
+│   └── REQUIREMENTS.md
 ├── index.html               # Home page
 ├── vite.config.ts           # Vite Build configuration
 ├── tsconfig.json            # TypeScript config
@@ -73,6 +86,7 @@ tamiltheni/
 | `npm run preview` | Preview production build locally |
 | `npm run lint` | Run ESLint on TypeScript files |
 | `npm run format` | Format code with Prettier |
+| `npm test` | Run unit and BAT tests with Vitest |
 
 ### Scripts (Python)
 
