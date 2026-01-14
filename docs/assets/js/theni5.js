@@ -42,7 +42,7 @@
 
     function init() {
         updateSlideRange();
-        if (window.TheniTimer) window.TheniTimer.init(60);
+        if (window.TheniTimer) window.TheniTimer.init(window.TheniConfig.timerDurations.theni5);
         renderSlide();
 
         // Event Listeners
@@ -65,6 +65,7 @@
 
             if (!isClickInsidePanel) {
                 panel.classList.add('collapsed');
+                document.body.classList.remove('panel-expanded');
             }
 
             // Interaction for slide advancement
@@ -73,6 +74,7 @@
                     nextSlide();
                 } else {
                     panel.classList.add('collapsed');
+                    document.body.classList.remove('panel-expanded');
                 }
             }
         });
@@ -137,8 +139,7 @@
     }
 
     function updateUI() {
-        document.getElementById('slideIndicator').innerText = `${currentSlide + 1} / ${totalPages || 1}`;
-        document.getElementById('progressBar').style.width = `${((currentSlide + 1) / totalPages) * 100}%`;
+        window.TheniUtils.updateProgress(currentSlide, totalPages, 'progressBar', 'counter');
 
         document.getElementById('prevBtn').disabled = currentSlide === 0;
         document.getElementById('nextBtn').disabled = (currentSlide === totalPages - 1);
@@ -147,10 +148,7 @@
     }
 
     function shuffleWords() {
-        for (let i = activeWords.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [activeWords[i], activeWords[j]] = [activeWords[j], activeWords[i]];
-        }
+        window.TheniUtils.shuffleArray(activeWords);
         currentSlide = 0;
         renderSlide();
     }
@@ -162,9 +160,6 @@
         currentSlide = 0;
         renderSlide();
     }
-
-    // Timer Logic deferred to timer.js
-
 
     function applyFilters() {
         updateSlideRange();
@@ -181,11 +176,75 @@
     window.prevSlide = prevSlide;
     window.totalPages = totalPages;
 
+    // Timer duration setter
+    window.setTimerDuration = function (seconds) {
+        // Update pill button states
+        document.querySelectorAll('#timer30, #timer60, #timer120').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.getElementById(`timer${seconds}`);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        // Set timer duration
+        if (window.TheniTimer) {
+            window.TheniTimer.setDuration(seconds);
+            if (document.getElementById('showTimer').checked) {
+                window.TheniTimer.restart();
+            }
+        }
+    };
+
+    // Control panel toggle for layout.js onclick handler
+    window.toggleControlPanel = function () {
+        const panel = document.getElementById('controlPanel');
+        if (panel) {
+            panel.classList.toggle('collapsed');
+            // Sync body class for layout adjustments
+            if (panel.classList.contains('collapsed')) {
+                document.body.classList.remove('panel-expanded');
+            } else {
+                document.body.classList.add('panel-expanded');
+            }
+        }
+    };
+
+    // Navigation functions for layout.js (maps to theni5's slide functions)
+    window.goToFirst = () => goToSlide(0);
+    window.goToLast = () => goToSlide(totalPages - 1);
+    window.changeSlide = (dir) => { if (dir > 0) nextSlide(); else prevSlide(); };
+    window.handleNextAction = nextSlide;
+
     // Make totalPages accessible dynamically
     Object.defineProperty(window, 'totalPages', {
         get: () => totalPages
     });
 
     // Initialize
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+        if (window.TheniLayout) {
+            window.TheniLayout.init({
+                title: "Theni 5 Mastery",
+                contentHTML: `
+                     <div class="control-row">
+                        <span class="control-label">Range:</span>
+                        <input type="number" id="startRange" value="1" min="1" max="250" style="width: 70px; padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
+                        <span style="margin: 0 10px;">to</span>
+                        <input type="number" id="endRange" value="250" min="1" max="250" style="width: 70px; padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
+                        <button class="action-button" onclick="window.applyFilters()" style="margin-left: 10px;">Apply</button>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Actions:</span>
+                        <button class="action-button" onclick="window.shuffleWords()"><span>🔀</span> Shuffle</button>
+                        <button class="action-button" onclick="window.resetWords()"><span>↩️</span> Reset</button>
+                        <div style="margin-left: auto; display: flex; gap: 15px;">
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85rem;">
+                                <input type="checkbox" id="showTimer" onchange="window.toggleTimerVisibility()" checked> Timer (1m)
+                            </label>
+                        </div>
+                    </div>
+                `,
+                timerDisplay: "01:00",
+                injectNavigation: true
+            });
+        }
+            init();
+        });
 })();

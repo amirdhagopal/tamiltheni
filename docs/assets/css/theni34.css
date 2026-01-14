@@ -1,0 +1,22 @@
+/* Theni 3 & 4 Specific Overrides */
+.word-en,
+.word-ta {
+    font-size: 2em;
+    /* Reduced from 3em for sentences */
+    margin: 10px 0;
+    /* Override large margins */
+}
+
+.slide {
+    justify-content: center;
+    /* Center content vertically */
+    gap: 20px;
+    /* Control gap between elements */
+}
+
+.word-ta {
+    margin-top: 0;
+    /* Remove auto margin */
+    margin-bottom: 0;
+    /* Remove large bottom margin */
+}

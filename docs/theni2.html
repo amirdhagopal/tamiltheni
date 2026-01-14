@@ -5,78 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TamilTheni - Theni 2</title>
-    <link rel="stylesheet" href="assets/css/theni2.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=7">
+    <link rel="stylesheet" href="assets/css/theni2.css?v=7">
 </head>
 
 <body>
-
-    <div class="control-panel" id="controlPanel">
-        <div class="control-header" onclick="toggleControlPanel()">
-            <h3><span>⚙️</span> பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 2</h3>
-            <span class="toggle-icon">▼</span>
-        </div>
-        <div class="control-content">
-            <div class="control-row">
-                <span class="control-label">Categories:</span>
-                <div class="category-dropdown">
-                    <button class="dropdown-button" onclick="toggleDropdown(event)">
-                        <span id="selectedCatText">All Categories</span>
-                        <span>▼</span>
-                    </button>
-                    <div class="dropdown-menu" id="categoryMenu">
-                        <div class="dropdown-item header" onclick="toggleAllCategories(event)">
-                            <input type="checkbox" id="selectAllCats" checked>
-                            <span>Select All / None</span>
-                        </div>
-                        <div id="categoryList">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Difficulty:</span>
-                <div class="pill-group">
-                    <button class="pill-button active" onclick="filterDifficulty('all')" id="filterAll">All</button>
-                    <button class="pill-button" onclick="filterDifficulty('D1')" id="filterD1">D1 Only</button>
-                    <button class="pill-button" onclick="filterDifficulty('D2')" id="filterD2">D2 Only</button>
-                </div>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Sequence:</span>
-                <div class="pill-group">
-                    <button class="action-button" onclick="shuffleSlides()"><span>🔀</span> Shuffle</button>
-                    <button class="action-button" onclick="resetSequence()"><span>↩️</span> Reset</button>
-                </div>
-                <div style="margin-left: auto; display: flex; gap: 15px;">
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
-                        <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()" checked> ⏱️ Timer (20s)
-                    </label>
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
-                        <input type="checkbox" id="audioToggle" onchange="toggleAudio()"> 🔊 Audio
-                    </label>
-                </div>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Progress:</span>
-                <span class="progress-info" id="progressInfo">Loading...</span>
-                <div style="margin-left: auto; display: flex; align-items: center; gap: 6px;">
-                    <span style="font-size: 0.8em;">🔑 Gemini AI API:</span>
-                    <input type="password" id="apiKeyInput" placeholder="Enter API Key"
-                        style="padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.15); color: white; width: 140px; font-size: 0.8em;"
-                        onchange="saveApiKey(this.value)">
-                    <span id="keyStatus" style="font-size: 0.75em; color: #90EE90; display: none;">✓</span>
-                </div>
-            </div>
-            <div class="control-row"
-                style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
-                <a href="index.html" class="action-button"
-                    style="text-decoration: none; background: rgba(255,255,255,0.1); width: 100%; justify-content: center;">
-                    <span>🏠</span> Back to Portal Home
-                </a>
-            </div>
-        </div>
-    </div>
 
     <div class="slide-container">
         <div class="progress" id="progressBar" style="width: 0%"></div>
@@ -84,7 +17,7 @@
         <div id="slides-wrapper" class="dual-mode">
 
             <!-- Dual View Container -->
-            <div id="dualViewContainer" style="padding-bottom: 160px;">
+            <div id="dualViewContainer" style="padding-bottom: 20px;">
                 <!-- AI Generator Section (Side-by-Side) -->
                 <div
                     style="margin-bottom: 20px; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 20px; width: 100%; max-width: 800px; flex-wrap: wrap;">
@@ -132,33 +65,17 @@
                     </div>
                 </div>
             </div>
-
-            <div class="navigation">
-                <button id="firstBtn" onclick="goToFirst(); event.stopPropagation();" disabled
-                    title="First Slide (Home)">⏮</button>
-                <button id="prevBtn" onclick="changeSlide(-1); event.stopPropagation();" disabled
-                    title="Previous Slide (←)">◀</button>
-                <span style="align-self: center; color: #757575; font-weight: 600; min-width: 80px; text-align: center;"
-                    id="counter">1 / 800</span>
-                <button id="nextBtn" onclick="handleNextAction(); event.stopPropagation();"
-                    title="Next / Reveal (→, Space)">▶</button>
-                <button id="lastBtn" onclick="goToLast(); event.stopPropagation();" title="Last Slide (End)">⏭</button>
-            </div>
-
-            <div class="circular-timer" id="timerPill" style="display:none;">
-                <div class="timer-visual" id="timerPie"></div>
-                <div class="timer-content">
-                    <div class="timer-display" id="timerDisplay">00:20</div>
-                    <button class="timer-btn" id="timerBtn" onclick="toggleTimer()">▶</button>
-                </div>
-            </div>
-
+            <!-- Navigation injected by layout.js -->
         </div>
     </div>
 
-    <script src="assets/data/theni_words.js"></script>
-    <script src="assets/js/timer.js"></script>
-    <script src="assets/js/theni2.js" defer></script>
+    <script src="assets/data/theni_words.js?v=7"></script>
+    <script src="assets/js/config.js?v=7"></script>
+    <script src="assets/js/utils.js?v=7"></script>
+    <script src="assets/js/audio_manager.js?v=7"></script>
+    <script src="assets/js/timer.js?v=7"></script>
+    <script src="assets/js/layout.js?v=7"></script>
+    <script src="assets/js/theni2.js?v=7" defer></script>
 </body>
 
 </html>

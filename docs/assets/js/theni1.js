@@ -8,7 +8,8 @@
     let currentSlide = 0;
     let audioEnabled = true;
     let audioTimeout = null;
-    const synth = window.speechSynthesis;
+    // synth removed - using TheniAudio
+
 
     // Filter and sequence state
     let currentFilter = 'all';
@@ -220,10 +221,7 @@
         });
 
         if (isShuffled) {
-            for (let i = filteredSlides.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [filteredSlides[i], filteredSlides[j]] = [filteredSlides[j], filteredSlides[i]];
-            }
+            window.TheniUtils.shuffleArray(filteredSlides);
         }
 
         if (resetToStart) currentSlide = 0;
@@ -347,16 +345,8 @@
     }
 
     // Audio
-    function speakWord(word) {
-        if (!audioEnabled || !word || !synth) return;
-        synth.cancel();
+    // speakWord removed - using TheniAudio.speak
 
-        const utterance = new SpeechSynthesisUtterance(word);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.9;
-        utterance.pitch = 1;
-        synth.speak(utterance);
-    }
 
     function toggleAudio() {
         const audioCheckbox = document.getElementById('audioToggle');
@@ -366,7 +356,7 @@
             const currentElement = filteredSlides[currentSlide];
             if (currentElement) {
                 const wordEn = currentElement.querySelector('.word-en');
-                if (wordEn) speakWord(wordEn.textContent);
+                if (wordEn) window.TheniAudio.speak(wordEn.textContent, 'en-US');
             }
         } else {
             if (audioTimeout) clearTimeout(audioTimeout);
@@ -397,7 +387,7 @@
                     if (audioTimeout) clearTimeout(audioTimeout);
                     if (audioEnabled) {
                         audioTimeout = setTimeout(() => {
-                            if (audioEnabled) speakWord(wordEn.textContent);
+                            if (audioEnabled) window.TheniAudio.speak(wordEn.textContent, 'en-US');
                         }, 300);
                     }
                 }
@@ -415,10 +405,7 @@
         document.getElementById('nextBtn').disabled = currentSlide === filteredSlides.length - 1;
         document.getElementById('lastBtn').disabled = currentSlide === filteredSlides.length - 1;
 
-        document.getElementById('counter').innerText = `${currentSlide + 1} / ${filteredSlides.length}`;
-
-        const progress = ((currentSlide + 1) / filteredSlides.length) * 100;
-        document.getElementById('progressBar').style.width = `${progress}%`;
+        window.TheniUtils.updateProgress(currentSlide, filteredSlides.length, 'progressBar', 'counter');
 
         updateProgress();
 
@@ -528,18 +515,71 @@
 
     // Initialize on DOM ready
     document.addEventListener('DOMContentLoaded', () => {
-        generateSlides();
-        populateCategories();
-        updateProgress();
-        updateProgress();
-        if (window.TheniTimer) {
-            window.TheniTimer.init(8);
+        if (window.TheniLayout) {
+            window.TheniLayout.init({
+                title: "பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 1",
+                contentHTML: `
+                    <div class="control-row">
+                        <span class="control-label">Categories:</span>
+                        <div class="category-dropdown">
+                            <button class="dropdown-button" onclick="toggleDropdown(event)">
+                                <span id="selectedCatText">All Categories</span>
+                                <span>▼</span>
+                            </button>
+                            <div class="dropdown-menu" id="categoryMenu">
+                                <div class="dropdown-item header" onclick="toggleAllCategories(event)">
+                                    <input type="checkbox" id="selectAllCats" checked>
+                                    <span>Select All / None</span>
+                                </div>
+                                <div id="categoryList"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Difficulty:</span>
+                        <div class="pill-group">
+                            <button class="pill-button active" onclick="filterDifficulty('all')" id="filterAll">All</button>
+                            <button class="pill-button" onclick="filterDifficulty('D1')" id="filterD1">D1 Only</button>
+                            <button class="pill-button" onclick="filterDifficulty('D2')" id="filterD2">D2 Only</button>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Sequence:</span>
+                        <div class="pill-group">
+                            <button class="action-button" onclick="shuffleSlides()"><span>🔀</span> Shuffle</button>
+                            <button class="action-button" onclick="resetSequence()"><span>↩️</span> Reset</button>
+                        </div>
+                        <div style="margin-left: auto; display: flex; gap: 15px;">
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                                <input type="checkbox" id="showTimer" onchange="window.toggleTimerVisibility()" checked> ⏱️ Timer (8s)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                                <input type="checkbox" id="audioToggle" onchange="window.toggleAudio()" checked> 🔊 Audio
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Progress:</span>
+                        <span class="progress-info" id="progressInfo">Loading...</span>
+                    </div>
+                `,
+                timerDisplay: "00:08",
+                injectNavigation: true
+            });
         }
 
-        if (window.location.hash) {
-            handleHashChange();
-        } else {
-            updateUI();
-        }
-    });
+            generateSlides();
+            populateCategories();
+            updateProgress();
+            updateProgress();
+            if (window.TheniTimer) {
+                window.TheniTimer.init(window.TheniConfig.timerDurations.theni1);
+            }
+
+            if (window.location.hash) {
+                handleHashChange();
+            } else {
+                updateUI();
+            }
+        });
 })();

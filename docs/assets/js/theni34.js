@@ -177,10 +177,7 @@
         });
 
         if (isShuffled) {
-            for (let i = filteredSlides.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [filteredSlides[i], filteredSlides[j]] = [filteredSlides[j], filteredSlides[i]];
-            }
+            window.TheniUtils.shuffleArray(filteredSlides);
         }
 
         if (resetToStart) currentSlide = 0;
@@ -221,7 +218,7 @@
     // Level Control
     function setTheniLevel(level) {
         currentLevel = level;
-        timerDuration = (level === 4) ? 40 : 15;
+        timerDuration = (level === 4) ? window.TheniConfig.timerDurations.theni4 : window.TheniConfig.timerDurations.theni3;
 
         // Update Buttons
         document.querySelectorAll('.pill-button').forEach(btn => btn.classList.remove('active'));
@@ -269,8 +266,7 @@
 
         document.getElementById('counter').innerText = `${currentSlide + 1} / ${filteredSlides.length}`;
 
-        const progress = ((currentSlide + 1) / filteredSlides.length) * 100;
-        document.getElementById('progressBar').style.width = `${progress}%`;
+        window.TheniUtils.updateProgress(currentSlide, filteredSlides.length, 'progressBar', 'counter');
 
         updateProgress();
 
@@ -380,24 +376,81 @@
 
     // Initialize on DOM ready
     document.addEventListener('DOMContentLoaded', () => {
-        generateSlides();
-        populateCategories();
-        updateProgress();
-        updateProgress();
-        // Default to Level 3 (Timer handled inside setTheniLevel -> global timer)
-        setTheniLevel(3);
 
-        // Ensure timer is init if setTheniLevel didn't fully (redundant but safe)
-        if (window.TheniTimer && window.TheniTimer.duration === 15) {
-            // Already set by setTheniLevel(3)
-        } else if (window.TheniTimer) {
-            window.TheniTimer.init(15);
+        if (window.TheniLayout) {
+            window.TheniLayout.init({
+                title: "பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 3 & 4",
+                contentHTML: `
+                    <div class="control-row">
+                        <span class="control-label">Level:</span>
+                        <div class="pill-group">
+                            <button class="pill-button active" onclick="setTheniLevel(3)" id="level3">Theni 3</button>
+                            <button class="pill-button" onclick="setTheniLevel(4)" id="level4">Theni 4</button>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Categories:</span>
+                        <div class="category-dropdown">
+                            <button class="dropdown-button" onclick="toggleDropdown(event)">
+                                <span id="selectedCatText">All Categories</span>
+                                <span>▼</span>
+                            </button>
+                            <div class="dropdown-menu" id="categoryMenu">
+                                <div class="dropdown-item header" onclick="toggleAllCategories(event)">
+                                    <input type="checkbox" id="selectAllCats" checked>
+                                    <span>Select All / None</span>
+                                </div>
+                                <div id="categoryList"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Difficulty:</span>
+                        <div class="pill-group">
+                            <button class="pill-button active" onclick="filterDifficulty('all')" id="filterAll">All</button>
+                            <button class="pill-button" onclick="filterDifficulty('D1')" id="filterD1">D1 Only</button>
+                            <button class="pill-button" onclick="filterDifficulty('D2')" id="filterD2">D2 Only</button>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Sequence:</span>
+                        <div class="pill-group">
+                            <button class="action-button" onclick="shuffleSlides()"><span>🔀</span> Shuffle</button>
+                            <button class="action-button" onclick="resetSequence()"><span>↩️</span> Reset</button>
+                        </div>
+                        <div style="margin-left: auto; display: flex; gap: 15px;">
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                                <input type="checkbox" id="showTimer" onchange="window.toggleTimerVisibility()" checked> <span id="timerLabel">Timer (15s)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <span class="control-label">Progress:</span>
+                        <span class="progress-info" id="progressInfo">Loading...</span>
+                    </div>
+                `,
+                timerDisplay: "00:15",
+                injectNavigation: true
+            });
         }
 
-        if (window.location.hash) {
-            handleHashChange();
-        } else {
-            updateUI();
-        }
-    });
+            generateSlides();
+            populateCategories();
+            updateProgress();
+            // Default to Level 3 (Timer handled inside setTheniLevel -> global timer)
+            setTheniLevel(3);
+
+            // Ensure timer is init if setTheniLevel didn't fully (redundant but safe)
+            if (window.TheniTimer && window.TheniTimer.duration === 15) {
+                // Already set by setTheniLevel(3)
+            } else if (window.TheniTimer) {
+                window.TheniTimer.init(15);
+            }
+
+            if (window.location.hash) {
+                handleHashChange();
+            } else {
+                updateUI();
+            }
+        });
 })();

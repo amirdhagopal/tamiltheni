@@ -5,71 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TamilTheni - Theni 1</title>
-    <link rel="stylesheet" href="assets/css/theni1.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=7">
+    <link rel="stylesheet" href="assets/css/theni1.css?v=7">
 </head>
 
 <body>
-
-    <div class="control-panel" id="controlPanel">
-        <div class="control-header" onclick="toggleControlPanel()">
-            <h3><span>⚙️</span> பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 1</h3>
-            <span class="toggle-icon">▼</span>
-        </div>
-        <div class="control-content">
-            <div class="control-row">
-                <span class="control-label">Categories:</span>
-                <div class="category-dropdown">
-                    <button class="dropdown-button" onclick="toggleDropdown(event)">
-                        <span id="selectedCatText">All Categories</span>
-                        <span>▼</span>
-                    </button>
-                    <div class="dropdown-menu" id="categoryMenu">
-                        <div class="dropdown-item header" onclick="toggleAllCategories(event)">
-                            <input type="checkbox" id="selectAllCats" checked>
-                            <span>Select All / None</span>
-                        </div>
-                        <div id="categoryList">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Difficulty:</span>
-                <div class="pill-group">
-                    <button class="pill-button active" onclick="filterDifficulty('all')" id="filterAll">All</button>
-                    <button class="pill-button" onclick="filterDifficulty('D1')" id="filterD1">D1 Only</button>
-                    <button class="pill-button" onclick="filterDifficulty('D2')" id="filterD2">D2 Only</button>
-                </div>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Sequence:</span>
-                <div class="pill-group">
-                    <button class="action-button" onclick="shuffleSlides()"><span>🔀</span> Shuffle</button>
-                    <button class="action-button" onclick="resetSequence()"><span>↩️</span> Reset</button>
-                </div>
-                <div style="margin-left: auto; display: flex; gap: 15px;">
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
-                        <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()" checked> ⏱️ Timer (8s)
-                    </label>
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
-                        <input type="checkbox" id="audioToggle" onchange="toggleAudio()" checked> 🔊 Audio
-                    </label>
-                </div>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Progress:</span>
-                <span class="progress-info" id="progressInfo">Loading...</span>
-            </div>
-            <div class="control-row"
-                style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
-                <a href="index.html" class="action-button"
-                    style="text-decoration: none; background: rgba(255,255,255,0.1); width: 100%; justify-content: center;">
-                    <span>🏠</span> Back to Portal Home
-                </a>
-            </div>
-        </div>
-    </div>
 
     <div class="slide-container">
         <div class="progress" id="progressBar" style="width: 0%"></div>
@@ -84,30 +24,16 @@
         <div id="slides-wrapper">
             <!-- Slides generated dynamically from theni1_data.js -->
         </div>
-
-        <div class="navigation">
-            <button id="firstBtn" onclick="goToFirst(); event.stopPropagation();" title="First Slide (Home)">⏮</button>
-            <button id="prevBtn" onclick="changeSlide(-1); event.stopPropagation();"
-                title="Previous Slide (←)">◀</button>
-            <span style="align-self: center; color: #757575; font-weight: 600; min-width: 80px; text-align: center;"
-                id="counter"></span>
-            <button id="nextBtn" onclick="handleNextAction(); event.stopPropagation();"
-                title="Next / Reveal (→, Space)">▶</button>
-            <button id="lastBtn" onclick="goToLast(); event.stopPropagation();" title="Last Slide (End)">⏭</button>
-        </div>
+        <!-- Navigation injected by layout.js -->
     </div>
 
-    <div class="circular-timer" id="timerPill" title="Study Timer (8s)">
-        <div class="timer-visual" id="timerPie"></div>
-        <div class="timer-content">
-            <span class="timer-display" id="timerDisplay">00:08</span>
-            <button class="timer-btn" id="timerBtn" onclick="toggleTimer(); event.stopPropagation();">▶</button>
-        </div>
-    </div>
-
-    <script src="assets/data/theni_words.js"></script>
-    <script src="assets/js/timer.js"></script>
-    <script src="assets/js/theni1.js"></script>
+    <script src="assets/data/theni_words.js?v=7"></script>
+    <script src="assets/js/config.js?v=7"></script>
+    <script src="assets/js/utils.js?v=7"></script>
+    <script src="assets/js/audio_manager.js?v=7"></script>
+    <script src="assets/js/timer.js?v=7"></script>
+    <script src="assets/js/layout.js?v=7"></script>
+    <script src="assets/js/theni1.js?v=7"></script>
 </body>
 
 </html>

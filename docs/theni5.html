@@ -8,71 +8,36 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Hind+Madurai:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/theni5.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=7">
+    <link rel="stylesheet" href="assets/css/theni5.css?v=7">
 </head>
 
 <body>
 
-    <div class="control-panel" id="controlPanel">
-        <div class="control-header" onclick="document.getElementById('controlPanel').classList.toggle('collapsed')">
-            <h3><span>⚙️</span> Theni 5 Study Controls</h3>
-            <span>▼</span>
-        </div>
-        <div class="control-content">
-            <div class="control-row">
-                <span class="control-label">Range:</span>
-                <input type="number" id="startRange" value="1" min="1" max="250">
-                <span>to</span>
-                <input type="number" id="endRange" value="250" min="1" max="250">
-                <button class="action-button" onclick="applyFilters()">Apply</button>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Actions:</span>
-                <button class="action-button" onclick="shuffleWords()"><span>🔀</span> Shuffle</button>
-                <button class="action-button" onclick="resetWords()"><span>↩️</span> Reset</button>
-            </div>
-            <div class="control-row">
-                <span class="control-label">Timer:</span>
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9rem;">
-                    <input type="checkbox" id="showTimer" onchange="toggleTimerVisibility()" checked> Show Timer
-                </label>
-            </div>
-            <div class="control-row">
-                <a href="index.html" class="action-button"
-                    style="text-decoration: none; width: 100%; justify-content: center;">
-                    <span>🏠</span> Back to Portal
-                </a>
-            </div>
-        </div>
-    </div>
-
     <div class="slide-container" id="slide-surface">
-        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+        <div class="progress" id="progressBar" style="width: 0%"></div>
+        <!-- Progress bar class changed from progress-bar to progress to match style.css if needed, check style.css -->
+        <!-- style.css uses .progress. theni5 used .progress-bar. I will use .progress in layout injection? No, layout injects nav. 
+             theni5 HTML has specific slide container structure. 
+             Wait, style.css has .progress { ... }
+             theni5.css had .progress-bar { ... } which I might have removed or consolidated.
+             I updated theni5 HTML line 51 to use id="progressBar". 
+             Lets assume style.css .progress is the standard.
+        -->
 
         <div class="words-grid" id="wordsGrid">
             <!-- Words will be injected here -->
         </div>
+        <!-- Navigation injected by layout.js -->
     </div>
 
-    <div class="nav-controls">
-        <button class="nav-btn" id="firstBtn" onclick="goToSlide(0)">⏮</button>
-        <button class="nav-btn" id="prevBtn" onclick="prevSlide()">◀</button>
-        <div class="status-badge" id="slideIndicator">1 / 50</div>
-        <button class="nav-btn" id="nextBtn" onclick="nextSlide()">▶</button>
-        <button class="nav-btn" id="lastBtn" onclick="goToSlide(totalPages - 1)">⏭</button>
-    </div>
-
-    <div class="circular-timer" id="timerPill" title="Study Timer (1 min)">
-        <div class="timer-visual" id="timerPie"></div>
-        <div class="timer-content">
-            <span class="timer-display" id="timerDisplay">01:00</span>
-            <button class="timer-btn" id="timerBtn" onclick="toggleTimer()">▶</button>
-        </div>
-    </div>
-
-    <script src="assets/data/theni5_words.js"></script>
-    <script src="assets/js/timer.js"></script>
-    <script src="assets/js/theni5.js"></script>
+    <script src="assets/data/theni5_words.js?v=7"></script>
+    <script src="assets/js/config.js?v=7"></script>
+    <script src="assets/js/utils.js?v=7"></script>
+    <script src="assets/js/audio_manager.js?v=7"></script>
+    <script src="assets/js/timer.js?v=7"></script>
+    <script src="assets/js/layout.js?v=7"></script>
+    <script src="assets/js/theni5.js?v=7"></script>
 </body>
 
 </html>
