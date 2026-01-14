@@ -267,7 +267,7 @@ function setTheniLevel(level: number) {
     // Update Timer Label
     const timerLabel = document.getElementById('timerLabel');
     if (timerLabel) {
-        timerLabel.innerText = `Timer (${timerDuration}s)`;
+        timerLabel.textContent = `Timer (${timerDuration}s)`;
     }
 
     // Update Timer handled by shared module
@@ -305,7 +305,7 @@ function updateUI() {
     (document.getElementById('lastBtn') as HTMLButtonElement).disabled = currentSlide === filteredSlides.length - 1;
 
     const counter = document.getElementById('counter');
-    if (counter) counter.innerText = `${currentSlide + 1} / ${filteredSlides.length}`;
+    if (counter) counter.textContent = `${currentSlide + 1} / ${filteredSlides.length}`;
 
     Utils.updateProgress(currentSlide, filteredSlides.length, 'progressBar', 'counter');
     updateProgress();
@@ -372,7 +372,7 @@ function handleHashChange() {
 }
 
 // Initialization on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
+export function init() {
 
     Layout.init({
         title: "பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 3 & 4",
@@ -483,4 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         updateUI();
     }
-});
+}
+
+// Initialization on DOM ready
+document.addEventListener('DOMContentLoaded', init);

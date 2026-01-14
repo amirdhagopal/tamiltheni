@@ -13,10 +13,35 @@ export const AudioManager = {
                 this.getVoice('ta-IN');
             };
         }
+        this.setupAudioUnlock();
+    },
+
+    setupAudioUnlock: function (): void {
+        const unlock = () => {
+            // Unlock TTS
+            if (this.synth.paused) this.synth.resume();
+            // Play silent utterance to unlock iOS/Chrome strict policies
+            const u = new SpeechSynthesisUtterance('');
+            u.volume = 0; // Silent
+            this.synth.speak(u);
+
+            document.removeEventListener('click', unlock, { capture: true });
+            document.removeEventListener('keydown', unlock);
+            document.removeEventListener('touchstart', unlock, { capture: true });
+            console.log('[AudioManager] Audio unlock triggered.');
+        };
+
+        document.addEventListener('click', unlock, { capture: true });
+        document.addEventListener('keydown', unlock);
+        document.addEventListener('touchstart', unlock, { capture: true });
     },
 
     speak: function (text: string, lang = 'ta-IN'): void {
-        if (this.isMuted) return;
+        console.log(`[AudioManager] Request to speak: "${text}" in ${lang}`);
+        if (this.isMuted) {
+            console.log('[AudioManager] Speaker is muted.');
+            return;
+        }
         if (this.synth.speaking) this.synth.cancel();
 
         const utterance = new SpeechSynthesisUtterance(text);
@@ -25,16 +50,30 @@ export const AudioManager = {
 
         // Try to pick a specific voice if available
         const voice = this.getVoice(lang);
-        if (voice) utterance.voice = voice;
+        if (voice) {
+            utterance.voice = voice;
+            console.log(`[AudioManager] Using voice: ${voice.name}`);
+        } else {
+            console.warn(`[AudioManager] No specific voice found for ${lang}, using browser default.`);
+        }
+
+        utterance.onerror = (e) => console.error('[AudioManager] Utterance error:', e);
 
         this.synth.speak(utterance);
     },
 
     getVoice: function (lang: string): SpeechSynthesisVoice | undefined {
         const voices = this.synth.getVoices();
-        // Prefer Google Tamil, then any Tamil, then fallback
-        return voices.find(v => v.lang === lang && v.name.includes('Google')) ||
-            voices.find(v => v.lang === lang);
+        // 1. Exact match with Google
+        let voice = voices.find(v => v.lang === lang && v.name.includes('Google'));
+        // 2. Exact match any
+        if (!voice) voice = voices.find(v => v.lang === lang);
+        // 3. Base language match (e.g. 'en' for 'en-US')
+        if (!voice && lang.includes('-')) {
+            const baseLang = lang.split('-')[0];
+            voice = voices.find(v => v.lang.startsWith(baseLang));
+        }
+        return voice;
     },
 
     toggleMute: function (): boolean {

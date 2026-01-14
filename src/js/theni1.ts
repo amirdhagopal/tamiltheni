@@ -12,6 +12,7 @@ let audioEnabled = true;
 let voiceEnabled = false;
 let audioTimeout: ReturnType<typeof setTimeout> | null = null;
 
+
 // Filter and sequence state
 let currentFilter = 'all';
 let selectedCategories: string[] = [];
@@ -433,14 +434,17 @@ function toggleVoice() {
 }
 
 // UI Update
-function updateUI() {
+function updateUI(shouldSpeak = true) {
     allSlides.forEach(s => {
         s.classList.remove('active');
         s.style.display = 'none';
+        s.style.visibility = 'hidden'; // Ensure hidden completely
     });
 
     filteredSlides.forEach((s, idx) => {
         s.style.display = idx === currentSlide ? 'flex' : 'none';
+        s.style.visibility = idx === currentSlide ? 'visible' : 'hidden'; // Explicit visibility update
+
         if (idx === currentSlide) {
             s.classList.add('active');
 
@@ -453,7 +457,9 @@ function updateUI() {
             const wordEn = s.querySelector('.word-en');
             if (wordEn && wordEn.textContent) {
                 if (audioTimeout) clearTimeout(audioTimeout);
-                if (audioEnabled) {
+
+                // Speak if enabled explicitly for this update (e.g. navigation)
+                if (audioEnabled && shouldSpeak) {
                     audioTimeout = setTimeout(() => {
                         if (audioEnabled && wordEn.textContent) AudioManager.speak(wordEn.textContent, 'en-US');
                     }, 300);
@@ -474,13 +480,6 @@ function updateUI() {
     Utils.updateProgress(currentSlide, filteredSlides.length, 'progressBar', 'counter');
     updateProgressInfo();
 
-    if (filteredSlides[currentSlide]) {
-        const slideId = filteredSlides[currentSlide].id.replace('slide-', '');
-        const hash = `#${parseInt(slideId) + 1}`;
-        if (window.location.hash !== hash) {
-            window.history.replaceState(null, '', hash);
-        }
-    }
 
     if ((document.getElementById('showTimer') as HTMLInputElement).checked) {
         Timer.restart();
@@ -510,6 +509,8 @@ function changeSlide(direction: number) {
     }
 }
 
+// Navigation Action
+// Navigation Action
 function handleNextAction() {
     if (!filteredSlides[currentSlide]) return;
 
@@ -535,7 +536,7 @@ function handleHashChange() {
 }
 
 // Initialization
-document.addEventListener('DOMContentLoaded', () => {
+export function init() {
     // 1. Init Layout
     Layout.init({
         title: "பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 1",
@@ -611,6 +612,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('nextBtn')?.addEventListener('click', (e) => { e.stopPropagation(); handleNextAction(); });
     document.getElementById('lastBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToLast(); });
 
+    document.getElementById('slides-wrapper')?.addEventListener('click', (e) => {
+        // Prevent triggering when clicking buttons or inputs
+        if (!(e.target as Element).closest('button, input, .control-panel')) {
+            handleNextAction();
+        }
+    });
+
     // Global Click Listener for Dropdowns
     document.addEventListener('click', (e) => {
         if (!(e.target as Element).closest('.category-dropdown')) {
@@ -651,6 +659,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.hash) {
         handleHashChange();
     } else {
-        updateUI();
+        updateUI(true); // Audio enabled on load
     }
-});
+}
+
+// Initialization
+document.addEventListener('DOMContentLoaded', init);

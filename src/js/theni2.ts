@@ -13,7 +13,7 @@ import { Word } from '../types';
 let currentSlide = 0;
 
 // Audio state
-let audioEnabled = false; // Default to off
+let audioEnabled = true; // Default to on
 let audioTimeout: ReturnType<typeof setTimeout> | null = null;
 // synth removed - using AudioManager
 
@@ -77,12 +77,12 @@ function generateSlides() {
 
         // Add badges for filtering logic to work (start with string)
         el.innerHTML = `
-    < div class="category-badge" > ${item.category} </div>
-        < div class="category-badge-ta" > ${item.category_ta} </div>
-            < div class="difficulty-badge" > ${item.difficulty} </div>
-                < div class="word-en" > ${item.word_en} </div>
-                    < div class="word-ta" > ${item.word_ta} </div>
-                        `;
+            <div class="category-badge">${item.category}</div>
+            <div class="category-badge-ta">${item.category_ta}</div>
+            <div class="difficulty-badge">${item.difficulty}</div>
+            <div class="word-en">${item.word_en}</div>
+            <div class="word-ta">${item.word_ta}</div>
+        `;
         return el;
     });
 
@@ -644,7 +644,7 @@ function handleHashChange() {
 }
 
 // Initialization and Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
+export function init() {
     // 1. Layout Init
     Layout.init({
         title: "பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 2",
@@ -757,4 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Init App Logic
     loadSavedApiKey();
     initApp();
-});
+}
+
+// Initialization and Event Listeners
+document.addEventListener('DOMContentLoaded', init);

@@ -9,7 +9,8 @@
         "lint": "eslint docs/assets/js/**/*.js",
         "lint:fix": "eslint docs/assets/js/**/*.js --fix",
         "format": "prettier --write \"docs/**/*.{js,css,html}\"",
-        "format:check": "prettier --check \"docs/**/*.{js,css,html}\""
+        "format:check": "prettier --check \"docs/**/*.{js,css,html}\"",
+        "test": "vitest"
     },
     "keywords": [
         "tamil",
@@ -23,9 +24,11 @@
     "devDependencies": {
         "@types/node": "^25.0.8",
         "eslint": "^9.18.0",
+        "jsdom": "^27.4.0",
         "prettier": "^3.4.2",
         "typescript": "^5.9.3",
         "vite": "^7.3.1",
-        "vite-plugin-pwa": "^1.2.0"
+        "vite-plugin-pwa": "^1.2.0",
+        "vitest": "^4.0.17"
     }
 }

@@ -178,7 +178,7 @@ export function setTimerDuration(seconds: number) {
 }
 
 // Initialization and Event Listeners
-document.addEventListener('DOMContentLoaded', () => {
+export function initAll() {
     Layout.init({
         title: "Theni 5 Mastery",
         contentHTML: `
@@ -216,4 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('lastBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToSlide(totalPages - 1); });
 
     init();
-});
+}
+
+// Initialization and Event Listeners
+document.addEventListener('DOMContentLoaded', initAll);

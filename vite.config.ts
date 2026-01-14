@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
@@ -65,5 +66,10 @@ export default defineConfig({
                 enabled: true
             }
         })
-    ]
+    ],
+    test: {
+        environment: 'jsdom',
+        globals: true,
+        setupFiles: []
+    }
 });
