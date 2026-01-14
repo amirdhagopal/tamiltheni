@@ -38,12 +38,17 @@
             slide.id = `slide-${index}`;
 
             slide.innerHTML = `
-                <div class="category-badge">${item.category}</div>
-                <div class="category-badge-ta">${item.category_ta}</div>
-                <div class="sno-badge">${index + 1}</div>
-                <div class="difficulty-badge">${item.difficulty}</div>
-                <div class="word-en">${item.sentence_en || item.word_en}</div>
-                <div class="word-ta">${item.sentence_ta || item.word_ta}</div>
+                <div class="card-footer">
+                    <div class="footer-left">
+                        <span class="category-badge">${item.category}</span>
+                        <span class="category-badge-ta">${item.category_ta}</span>
+                        <span class="difficulty-badge">${item.difficulty}</span>
+                    </div>
+                </div>
+                <div class="slide-content">
+                    <div class="word-en">${item.sentence_en || item.word_en}</div>
+                    <div class="word-ta">${item.sentence_ta || item.word_ta}</div>
+                </div>
             `;
 
             wrapper.appendChild(slide);
@@ -218,7 +223,7 @@
     // Level Control
     function setTheniLevel(level) {
         currentLevel = level;
-        timerDuration = (level === 4) ? window.TheniConfig.timerDurations.theni4 : window.TheniConfig.timerDurations.theni3;
+        const timerDuration = (level === 4) ? window.TheniConfig.timerDurations.theni4 : window.TheniConfig.timerDurations.theni3;
 
         // Update Buttons
         document.querySelectorAll('.pill-button').forEach(btn => btn.classList.remove('active'));
@@ -227,6 +232,12 @@
 
         // Restore difficulty filter button state
         document.getElementById(`filter${currentFilter === 'all' ? 'All' : currentFilter}`).classList.add('active');
+
+        // Update Timer Label
+        const timerLabel = document.getElementById('timerLabel');
+        if (timerLabel) {
+            timerLabel.innerText = `Timer (${timerDuration}s)`;
+        }
 
         // Update Timer handled by shared module
         if (window.TheniTimer) {
@@ -434,23 +445,23 @@
             });
         }
 
-            generateSlides();
-            populateCategories();
-            updateProgress();
-            // Default to Level 3 (Timer handled inside setTheniLevel -> global timer)
-            setTheniLevel(3);
+        generateSlides();
+        populateCategories();
+        updateProgress();
+        // Default to Level 3 (Timer handled inside setTheniLevel -> global timer)
+        setTheniLevel(3);
 
-            // Ensure timer is init if setTheniLevel didn't fully (redundant but safe)
-            if (window.TheniTimer && window.TheniTimer.duration === 15) {
-                // Already set by setTheniLevel(3)
-            } else if (window.TheniTimer) {
-                window.TheniTimer.init(15);
-            }
+        // Ensure timer is init if setTheniLevel didn't fully (redundant but safe)
+        if (window.TheniTimer && window.TheniTimer.duration === 15) {
+            // Already set by setTheniLevel(3)
+        } else if (window.TheniTimer) {
+            window.TheniTimer.init(15);
+        }
 
-            if (window.location.hash) {
-                handleHashChange();
-            } else {
-                updateUI();
-            }
-        });
+        if (window.location.hash) {
+            handleHashChange();
+        } else {
+            updateUI();
+        }
+    });
 })();
