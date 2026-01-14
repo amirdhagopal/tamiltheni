@@ -61,7 +61,24 @@ tamiltheni/
 ### Prerequisites
 
 - Python 3.x (for local server and scripts)
+- Node.js 20+ (for linting and formatting)
 - Modern web browser
+
+### Setup
+
+```bash
+npm install
+```
+
+### NPM Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start local development server on port 8888 |
+| `npm run lint` | Run ESLint on JavaScript files |
+| `npm run lint:fix` | Run ESLint and auto-fix issues |
+| `npm run format` | Format code with Prettier |
+| `npm run format:check` | Check code formatting |
 
 ### Scripts
 
