@@ -7,6 +7,7 @@
     // State variables
     let currentSlide = 0;
     let audioEnabled = true;
+    let voiceEnabled = false;
     let audioTimeout = null;
     // synth removed - using TheniAudio
 
@@ -76,18 +77,25 @@
             slide.id = `slide-${index}`;
 
             slide.innerHTML = `
-                <div class="category-badge">${item.category}</div>
-                <div class="category-badge-ta">${item.category_ta}</div>
-                <div class="sno-badge">${index + 1}</div>
-                <div class="difficulty-badge">${item.difficulty}</div>
-                <div class="word-en">${item.word_en}</div>
                 <div class="image-container">
                     <img src="https://placehold.co/400x300?text=Loading..." 
                          data-word="${item.image_word}" 
                          alt="${item.word_en}" 
                          class="slide-image">
                 </div>
+                <div class="word-row">
+                    <div class="word-en">${item.word_en}</div>
+                    <button class="mic-button-inline" onclick="toggleVoiceRecognition(); event.stopPropagation();" title="Voice Validation">🎤</button>
+                    <span class="voice-feedback-inline"></span>
+                </div>
                 <div class="word-ta">${item.word_ta}</div>
+                <div class="card-footer">
+                    <div class="footer-left">
+                        <span class="category-badge">${item.category}</span>
+                        <span class="category-badge-ta">${item.category_ta}</span>
+                        <span class="difficulty-badge">${item.difficulty}</span>
+                    </div>
+                </div>
             `;
 
             wrapper.appendChild(slide);
@@ -289,9 +297,12 @@
         try {
             recognition.start();
             isRecording = true;
-            const micBtn = document.getElementById('micBtn');
-            micBtn.classList.add('recording');
-            micBtn.title = "Voice Validation is ACTIVE - Click to Stop Listening";
+            const currentElement = filteredSlides[currentSlide];
+            const micBtn = currentElement?.querySelector('.mic-button-inline');
+            if (micBtn) {
+                micBtn.classList.add('recording');
+                micBtn.title = "Voice Validation is ACTIVE - Click to Stop Listening";
+            }
             showFeedback("Listening for Tamil...", "success");
         } catch (e) {
             console.error('Recognition start error:', e);
@@ -303,11 +314,11 @@
             recognition.stop();
         }
         isRecording = false;
-        const micBtn = document.getElementById('micBtn');
-        if (micBtn) {
-            micBtn.classList.remove('recording');
-            micBtn.title = "Voice Validation is IDLE - Click to Start Listening";
-        }
+        // Remove recording class from all mic buttons
+        document.querySelectorAll('.mic-button-inline.recording').forEach(btn => {
+            btn.classList.remove('recording');
+            btn.title = "Voice Validation - Click to Start Listening";
+        });
     }
 
     function validateVoiceResult(spokenText) {
@@ -331,14 +342,19 @@
     }
 
     function showFeedback(text, type) {
-        const feedback = document.getElementById('voiceFeedback');
+        // Use inline feedback in current slide
+        const currentElement = filteredSlides[currentSlide];
+        const feedback = currentElement?.querySelector('.voice-feedback-inline');
+        if (!feedback) return;
+
         feedback.textContent = text;
-        feedback.className = `voice-feedback ${type}`;
+        feedback.className = `voice-feedback-inline ${type}`;
 
         if (type !== 'recording' && !text.includes("Listening")) {
             setTimeout(() => {
                 if (feedback.textContent === text) {
-                    feedback.className = 'voice-feedback';
+                    feedback.className = 'voice-feedback-inline';
+                    feedback.textContent = '';
                 }
             }, 4000);
         }
@@ -361,6 +377,25 @@
         } else {
             if (audioTimeout) clearTimeout(audioTimeout);
             if (synth) synth.cancel();
+        }
+    }
+
+    function toggleVoice() {
+        const voiceCheckbox = document.getElementById('voiceToggle');
+        voiceEnabled = voiceCheckbox.checked;
+
+        // Show/hide all mic buttons based on toggle
+        document.querySelectorAll('.mic-button-inline').forEach(btn => {
+            btn.style.display = voiceEnabled ? 'flex' : 'none';
+        });
+
+        // Also hide inline feedback if voice is disabled
+        if (!voiceEnabled) {
+            document.querySelectorAll('.voice-feedback-inline').forEach(fb => {
+                fb.textContent = '';
+                fb.className = 'voice-feedback-inline';
+            });
+            stopRecording();
         }
     }
 
@@ -505,6 +540,7 @@
     window.resetSequence = resetSequence;
     window.toggleVoiceRecognition = toggleVoiceRecognition;
     window.toggleAudio = toggleAudio;
+    window.toggleVoice = toggleVoice;
     window.toggleTimer = () => window.TheniTimer && window.TheniTimer.toggle();
     window.toggleTimerVisibility = () => window.TheniTimer && window.TheniTimer.toggleVisibility();
     window.resetTimer = () => window.TheniTimer && window.TheniTimer.reset();
@@ -556,6 +592,9 @@
                             <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
                                 <input type="checkbox" id="audioToggle" onchange="window.toggleAudio()" checked> 🔊 Audio
                             </label>
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                                <input type="checkbox" id="voiceToggle" onchange="window.toggleVoice()"> 🎤 Voice
+                            </label>
                         </div>
                     </div>
                     <div class="control-row">
@@ -568,18 +607,18 @@
             });
         }
 
-            generateSlides();
-            populateCategories();
-            updateProgress();
-            updateProgress();
-            if (window.TheniTimer) {
-                window.TheniTimer.init(window.TheniConfig.timerDurations.theni1);
-            }
+        generateSlides();
+        populateCategories();
+        updateProgress();
+        updateProgress();
+        if (window.TheniTimer) {
+            window.TheniTimer.init(window.TheniConfig.timerDurations.theni1);
+        }
 
-            if (window.location.hash) {
-                handleHashChange();
-            } else {
-                updateUI();
-            }
-        });
+        if (window.location.hash) {
+            handleHashChange();
+        } else {
+            updateUI();
+        }
+    });
 })();

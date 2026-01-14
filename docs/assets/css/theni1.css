@@ -1,10 +1,10 @@
-/* Theni 1 Specific Styles - Single Card View */
+/* Theni 1 Specific Styles - Single Card View - Option 3 Layout */
 
 /* Card Container */
 .slide-container {
     width: 90%;
-    max-width: 900px;
-    height: 600px;
+    max-width: 600px;
+    min-height: 550px;
     background: var(--card-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -27,8 +27,8 @@
     align-items: center;
     animation: fadeIn 0.5s ease;
     position: relative;
-    padding: 40px;
-    padding-top: 100px;
+    padding: 30px;
+    padding-bottom: 80px;
     box-sizing: border-box;
 }
 
@@ -48,12 +48,12 @@
     }
 }
 
-/* Image & Text */
+/* Image Container */
 .image-container {
     width: 100%;
-    max-width: 400px;
-    height: 300px;
-    margin: 20px auto;
+    max-width: 350px;
+    height: 250px;
+    margin: 40px auto 20px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -74,17 +74,79 @@
     transform: scale(1.05);
 }
 
-.word-en {
-    font-size: 3em;
-    font-weight: 700;
-    color: #212121;
+/* Word Row - English word with mic button */
+.word-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
     margin-bottom: 10px;
-    line-height: 1.2;
-    margin-top: 0;
 }
 
+.word-en {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #212121;
+    line-height: 1.2;
+}
+
+/* Inline Mic Button - hidden by default until Voice toggle is enabled */
+.mic-button-inline {
+    background-color: #2196F3;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    padding: 0;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    color: white;
+    flex-shrink: 0;
+}
+
+.mic-button-inline:hover {
+    transform: scale(1.1);
+    background-color: #1976D2;
+}
+
+.mic-button-inline.recording {
+    background-color: #ff9800;
+    animation: pulse 1.5s infinite;
+}
+
+/* Inline Voice Feedback - next to mic button */
+.voice-feedback-inline {
+    font-size: 0.9em;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 16px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.voice-feedback-inline:empty {
+    display: none;
+}
+
+.voice-feedback-inline.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+}
+
+.voice-feedback-inline.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 2px solid #c62828;
+}
+
+/* Tamil Word */
 .word-ta {
-    font-size: 3em;
+    font-size: 2.5em;
     color: #d32f2f;
     line-height: 1.2;
     opacity: 0;
@@ -92,8 +154,7 @@
     transition: all 0.3s ease;
     filter: blur(5px);
     cursor: pointer;
-    margin-top: auto;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .slide.revealed .word-ta {
@@ -102,37 +163,83 @@
     filter: blur(0);
 }
 
-/* Voice feedback specific positioning if needed, else inherit from style.css */
-/* Kept generic in style.css */
-
-/* Microphone Button */
-.mic-button {
+/* Card Footer - Category and Difficulty badges (positioned top-left) */
+.card-footer {
     position: absolute;
-    top: 30px;
-    right: 180px;
-    background-color: #2196F3;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    top: 15px;
+    left: 20px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.footer-left {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.footer-right {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    padding: 0;
-    transition: all 0.3s ease;
-    z-index: 20;
-    border: none;
-    cursor: pointer;
-    color: white;
 }
 
-.mic-button.recording {
-    background-color: #ff9800;
-    animation: pulse 1.5s infinite;
+/* Badge Styles - Override global absolute positioning */
+.card-footer .category-badge,
+.card-footer .category-badge-ta,
+.card-footer .difficulty-badge,
+.card-footer .sno-badge {
+    position: static;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
 }
 
-.mic-button:hover {
-    transform: scale(1.1);
+.category-badge {
+    background: #e3f2fd;
+    color: #1565c0;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.category-badge-ta {
+    background: #ffebee;
+    color: #c62828;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.difficulty-badge {
+    background: #fff3e0;
+    color: #ef6c00;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.sno-badge {
+    background: #f3e5f5;
+    color: #7b1fa2;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: 600;
+    width: auto;
+    height: auto;
+    display: inline-block;
+}
+
+/* Hidden standalone mic button (superseded by inline mic) */
+.mic-button {
+    display: none;
 }
 
 @keyframes pulse {
@@ -152,11 +259,12 @@
 /* Voice Feedback */
 .voice-feedback {
     position: absolute;
-    top: 90px;
-    right: 20px;
-    padding: 10px 20px;
-    border-radius: 20px;
+    top: 10px;
+    right: 10px;
+    padding: 8px 16px;
+    border-radius: 16px;
     font-weight: 700;
+    font-size: 0.9em;
     display: none;
     animation: slideInRight 0.3s ease;
     z-index: 10;
