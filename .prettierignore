@@ -1,0 +1,5 @@
+node_modules
+docs/assets/images
+docs/assets/data
+*.min.js
+*.min.css
