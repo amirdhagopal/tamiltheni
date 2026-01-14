@@ -600,6 +600,14 @@
 
             const slide2 = filteredSlides[randomIdx];
 
+            // Preload partner image in background using getSafeFilename
+            const partnerImg = slide2.querySelector('.slide-image');
+            const partnerWord = partnerImg?.dataset.word || slide2.querySelector('.word-en')?.textContent?.toLowerCase();
+            if (partnerWord) {
+                const preloadImg = new Image();
+                preloadImg.src = `assets/images/theni12/${getSafeFilename(partnerWord)}.jpg`;
+            }
+
             // Update Card 1
             updateCard(1, slide1);
 
