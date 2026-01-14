@@ -1,0 +1,176 @@
+/**
+ * TamilTheni Design Tokens
+ * Centralized design system variables for consistent styling
+ * Import this file FIRST in any HTML page
+ */
+
+:root {
+    /* ==================== COLORS ==================== */
+
+    /* Primary Brand Colors */
+    --color-primary: #667eea;
+    --color-primary-light: #8795f0;
+    --color-primary-dark: #4a5ecc;
+
+    /* Secondary Brand Colors */
+    --color-secondary: #764ba2;
+    --color-secondary-light: #9567b8;
+    --color-secondary-dark: #5a3580;
+
+    /* Accent Colors */
+    --color-accent: #ff7675;
+    --color-accent-light: #ff9897;
+    --color-accent-dark: #e35554;
+
+    /* Semantic Colors */
+    --color-success: #00b894;
+    --color-success-light: #55efc4;
+    --color-warning: #fdcb6e;
+    --color-warning-dark: #f39c12;
+    --color-error: #e74c3c;
+    --color-error-light: #ff6b6b;
+
+    /* Neutral Colors */
+    --color-text: #2d3436;
+    --color-text-secondary: #636e72;
+    --color-text-light: #b2bec3;
+    --color-bg: #f5f7fa;
+    --color-bg-alt: #dfe6e9;
+    --color-card: #ffffff;
+    --color-border: #e0e0e0;
+
+    /* Category Colors (for badges) */
+    --color-category-bg: #e3f2fd;
+    --color-category-text: #1565c0;
+    --color-category-ta-bg: #ffebee;
+    --color-category-ta-text: #c62828;
+    --color-difficulty-bg: #fff3e0;
+    --color-difficulty-text: #ef6c00;
+    --color-sno-bg: #eeeeee;
+    --color-sno-text: #616161;
+
+    /* ==================== TYPOGRAPHY ==================== */
+
+    /* Font Families */
+    --font-main: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+    --font-tamil: 'Noto Sans Tamil', 'Latha', 'Vijaya', sans-serif;
+    --font-mono: 'Fira Code', 'Consolas', monospace;
+
+    /* Font Sizes */
+    --text-xs: 0.75rem;
+    /* 12px */
+    --text-sm: 0.875rem;
+    /* 14px */
+    --text-base: 1rem;
+    /* 16px */
+    --text-lg: 1.125rem;
+    /* 18px */
+    --text-xl: 1.25rem;
+    /* 20px */
+    --text-2xl: 1.5rem;
+    /* 24px */
+    --text-3xl: 1.875rem;
+    /* 30px */
+    --text-4xl: 2.25rem;
+    /* 36px */
+    --text-5xl: 3rem;
+    /* 48px */
+
+    /* Font Weights */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* Line Heights */
+    --leading-tight: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.75;
+
+    /* ==================== SPACING ==================== */
+
+    --space-0: 0;
+    --space-1: 0.25rem;
+    /* 4px */
+    --space-2: 0.5rem;
+    /* 8px */
+    --space-3: 0.75rem;
+    /* 12px */
+    --space-4: 1rem;
+    /* 16px */
+    --space-5: 1.25rem;
+    /* 20px */
+    --space-6: 1.5rem;
+    /* 24px */
+    --space-8: 2rem;
+    /* 32px */
+    --space-10: 2.5rem;
+    /* 40px */
+    --space-12: 3rem;
+    /* 48px */
+    --space-16: 4rem;
+    /* 64px */
+
+    /* ==================== BORDERS & RADIUS ==================== */
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    --radius-full: 9999px;
+
+    --border-thin: 1px;
+    --border-medium: 2px;
+    --border-thick: 3px;
+
+    /* ==================== SHADOWS ==================== */
+
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-inset: inset 0 0 20px rgba(0, 0, 0, 0.05);
+
+    /* ==================== TRANSITIONS ==================== */
+
+    --transition-fast: all 0.15s ease;
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s ease;
+
+    /* ==================== Z-INDEX LAYERS ==================== */
+
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 500;
+    --z-modal: 1000;
+    --z-tooltip: 1100;
+    --z-overlay: 1200;
+
+    /* ==================== LAYOUT ==================== */
+
+    --slide-width: 800px;
+    --slide-height: 600px;
+    --control-panel-height: auto;
+    --nav-button-size: 44px;
+
+    /* ==================== GRADIENTS ==================== */
+
+    --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    --gradient-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --gradient-success: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-light) 100%);
+    --gradient-error: linear-gradient(135deg, var(--color-error) 0%, var(--color-error-light) 100%);
+}
+
+/* ==================== LEGACY COMPATIBILITY ==================== */
+/* Maps old variable names to new tokens for backward compatibility */
+:root {
+    --primary: var(--color-primary);
+    --secondary: var(--color-secondary);
+    --accent: var(--color-accent);
+    --bg: var(--color-bg);
+    --card-bg: var(--color-card);
+    --text: var(--color-text);
+    --shadow: var(--shadow-lg);
+    --transition: var(--transition-base);
+    --font-main: var(--font-main);
+}
