@@ -5,20 +5,17 @@ import requests
 import urllib.parse
 
 # Configuration
-HTML_FILE = 'docs/theni12.html'
-ASSETS_DIR = 'docs/assets/images/theni12'
+SOURCE_FILE = 'src/js/theni_words.ts'
+ASSETS_DIR = 'public/assets/images/theni12'
 WIKIPEDIA_API_URL = "https://en.wikipedia.org/w/api.php"
 
-def get_words_from_html(file_path):
+def get_words_from_source(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Simple regex to find data-word="..."
-    # Matches data-word="some word"
-    words = re.findall(r'data-word="([^"]+)"', content)
-    # Deduplicate but keep order if possible, though set is fine
-    import html
-    words = [html.unescape(w) for w in words]
+    # Regex to find "image_word": "some word" in TS file
+    words = re.findall(r'"image_word":\s*"([^"]+)"', content)
+    
     return list(set(words))
 
 def download_image(word, output_dir, force=False, source_preference='all', strict=False, exclude_sources=None):
@@ -195,8 +192,8 @@ def main():
     
     args = parser.parse_args()
 
-    if not os.path.exists(HTML_FILE):
-        print(f"Error: {HTML_FILE} not found.")
+    if not os.path.exists(SOURCE_FILE):
+        print(f"Error: {SOURCE_FILE} not found.")
         return
 
     if not os.path.exists(ASSETS_DIR):
@@ -207,8 +204,8 @@ def main():
         words = args.words
         print(f"Processing {len(words)} specific words provided via arguments.")
     else:
-        words = get_words_from_html(HTML_FILE)
-        print(f"Found {len(words)} unique words in HTML.")
+        words = get_words_from_source(SOURCE_FILE)
+        print(f"Found {len(words)} unique words in source file.")
     
     count = 0
     for word in words:

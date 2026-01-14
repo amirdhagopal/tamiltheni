@@ -1,0 +1,312 @@
+/* Theni 2 Specific Styles - Dual Card View */
+
+.slide-container {
+    width: 90%;
+    max-width: 900px;
+    height: 600px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    margin-top: 60px;
+}
+
+#slides-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    animation: fadeIn 0.5s ease;
+    position: relative;
+    padding: 40px;
+    padding-top: 100px;
+    box-sizing: border-box;
+}
+
+.slide.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Single Slide Mode (hidden when dual view active) */
+.image-container {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.slide-image:hover {
+    transform: scale(1.05);
+}
+
+.word-en {
+    font-size: 3em;
+    font-weight: 700;
+    color: #212121;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    margin-top: 0;
+}
+
+.word-ta {
+    font-size: 3em;
+    color: #d32f2f;
+    line-height: 1.2;
+    /* Opacity handled by revealed class in common styles? No, specific here */
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: 40px;
+}
+
+/* Dual Image View Styles */
+.dual-view-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.dual-word-card {
+    flex: 1;
+    max-width: 400px;
+    background: #fafafa;
+    border-radius: 16px;
+    padding: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.dual-word-card:hover {
+    border-color: #667eea;
+    transform: translateY(-4px);
+}
+
+.dual-word-card .card-image {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f0f0f0;
+    margin-bottom: 15px;
+}
+
+.dual-word-card .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.dual-word-card .word-en {
+    font-size: 1.8em;
+    margin: 10px 0 5px;
+}
+
+.dual-word-card .word-ta {
+    font-size: 1.6em;
+    margin: 5px 0;
+    opacity: 0;
+    filter: blur(5px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.dual-word-card.revealed .word-ta {
+    opacity: 1;
+    filter: blur(0);
+}
+
+.dual-word-card .card-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.dual-word-card .category-label {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.dual-word-card .category-label-ta {
+    background: #ffebee;
+    color: #c62828;
+    margin-left: 5px;
+}
+
+.dual-word-card .difficulty-badge-corner {
+    position: absolute;
+    bottom: 10px;
+    background: #fff3e0;
+    color: #ef6c00;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 0.8em;
+}
+
+.dual-word-card .difficulty-badge-corner.left {
+    left: 10px;
+}
+
+.dual-word-card .difficulty-badge-corner.right {
+    right: 10px;
+}
+
+/* Hide original slide content in dual mode */
+.dual-mode .slide {
+    display: none !important;
+}
+
+.dual-mode #dualViewContainer {
+    display: flex !important;
+}
+
+#dualViewContainer {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 40px 20px 120px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+/* AI Generation UI */
+.ai-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centered */
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .ai-section {
+        flex-direction: row;
+        justify-content: flex-start; /* Left aligned on desktop if needed, or keep centered */
+        align-items: flex-start;
+    }
+}
+
+.ai-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    width: auto;
+    padding: 12px 24px;
+    font-weight: 600;
+    white-space: nowrap;
+    height: auto;
+    min-height: 50px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.ai-btn:active {
+    transform: translateY(0);
+}
+
+.ai-result-box {
+    flex: 1;
+    min-width: 300px;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.98);
+    border-radius: 12px;
+    display: none; /* Hidden by default */
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid rgba(118, 75, 162, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Better shadow */
+    min-height: 50px;
+    transition: all 0.3s ease;
+}
+
+.ai-result-box.show {
+    display: flex;
+    animation: slideIn 0.3s ease-out;
+}
+
+.ai-text-ta {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    text-align: left;
+}
+
+.ai-text-en {
+    font-size: 0.95em;
+    color: #666;
+    font-style: italic;
+    text-align: left;
+}
+
+.ai-error-message {
+    color: #e53935;
+    font-weight: 600;
+    padding: 10px;
+    background: #ffebee;
+    border-radius: 8px;
+    border: 1px solid #ffcdd2;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}

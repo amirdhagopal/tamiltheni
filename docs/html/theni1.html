@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- Icons -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐝</text></svg>">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="../manifest.json">
+    <title>TamilTheni - Theni 1</title>
+  <script type="module" crossorigin src="/tamiltheni/assets/theni1-DVCLlblg.js"></script>
+  <link rel="modulepreload" crossorigin href="/tamiltheni/assets/pwa-BpJqPPdR.js">
+  <link rel="modulepreload" crossorigin href="/tamiltheni/assets/config-U83h9fBs.js">
+  <link rel="modulepreload" crossorigin href="/tamiltheni/assets/audio_manager-scbDJZwj.js">
+  <link rel="modulepreload" crossorigin href="/tamiltheni/assets/theni_words-xXaqkVpm.js">
+  <link rel="stylesheet" crossorigin href="/tamiltheni/assets/pwa-CyULuHxC.css">
+  <link rel="stylesheet" crossorigin href="/tamiltheni/assets/config-BHSFEdW1.css">
+  <link rel="stylesheet" crossorigin href="/tamiltheni/assets/theni1-BTNRySTu.css">
+<link rel="manifest" href="/tamiltheni/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/tamiltheni/registerSW.js"></script></head>
+
+<body>
+
+    <div class="slide-container">
+        <div class="progress" id="progressBar" style="width: 0%"></div>
+
+        <button id="micBtn" class="mic-button" onclick="toggleVoiceRecognition(); event.stopPropagation();"
+            title="Voice Validation is IDLE - Click to Start Listening">
+            🎤
+        </button>
+
+        <div id="voiceFeedback" class="voice-feedback"></div>
+
+        <div id="slides-wrapper">
+            <!-- Slides generated dynamically from theni1_data.js -->
+        </div>
+        <!-- Navigation injected by layout.js -->
+    </div>
+
+    <!-- Main Module Entry Point -->
+</body>
+
+</html>

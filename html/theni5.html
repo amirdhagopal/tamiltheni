@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- Icons -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐝</text></svg>">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="../manifest.json">
+    <title>TamilTheni - Theni 5 Mastery</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Hind+Madurai:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/css/tokens.css">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/theni5.css">
+</head>
+
+<body>
+
+    <div class="slide-container" id="slide-surface">
+        <div class="progress" id="progressBar" style="width: 0%"></div>
+        <!-- Progress bar class changed from progress-bar to progress to match style.css if needed, check style.css -->
+        <!-- style.css uses .progress. theni5 used .progress-bar. I will use .progress in layout injection? No, layout injects nav. 
+             theni5 HTML has specific slide container structure. 
+             Wait, style.css has .progress { ... }
+             theni5.css had .progress-bar { ... } which I might have removed or consolidated.
+             I updated theni5 HTML line 51 to use id="progressBar". 
+             Lets assume style.css .progress is the standard.
+        -->
+
+        <div class="words-grid" id="wordsGrid">
+            <!-- Words will be injected here -->
+        </div>
+        <!-- Navigation injected by layout.js -->
+    </div>
+
+    <script type="module" src="/src/js/theni5.ts"></script>
+    <script type="module" src="/src/js/pwa.ts"></script>
+</body>
+
+</html>

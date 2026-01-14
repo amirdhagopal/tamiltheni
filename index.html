@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="description" content="Tamil language learning app for the FETNA Tamil Theni competition">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TamilTheni">
+    <!-- Icons -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐝</text></svg>">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <title>TamilTheni (தமிழ்த்தேனி) - Home</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Hind+Madurai:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/src/css/tokens.css">
+    <link rel="stylesheet" href="/src/css/index.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>TamilTheni <span class="tamil-title">தமிழ்த்தேனி 2026</span></h1>
+        <p>பியோரியா தமிழ்ப் பள்ளி - Peoria Tamil School</p>
+    </header>
+
+    <main class="grid">
+        <!-- Theni 1 -->
+        <a href="html/theni1.html" class="card">
+            <div class="card-icon">🐝</div>
+            <h2>Theni 1 <span>தேனி 1</span></h2>
+            <p><strong>Tell the Tamil word for the picture shown.</strong><br>படங்களை பார்த்து அவற்றுக்கு இணையான
+                தமிழ்ச் சொல்லைக் கூறுதல்.</p>
+            <div class="badge active">Ready to Study</div>
+        </a>
+
+        <!-- Theni 2 -->
+        <a href="html/theni2.html" class="card">
+            <div class="card-icon">🦜</div>
+            <h2>Theni 2 <span>தேனி 2</span></h2>
+            <p><strong>Form a sentence using the pictures.</strong><br>படங்களை கொண்டு வாக்கியம் அமைக்கவும்.</p>
+            <div class="badge active">Ready to Study</div>
+        </a>
+
+        <!-- Theni 3 & 4 -->
+        <a href="html/theni34.html" class="card">
+            <div class="card-icon">🦋</div>
+            <h2>Theni 3 & 4 <span>தேனி 3 மற்றும் 4</span></h2>
+            <p><strong>Translate English sentences to Tamil.</strong><br>ஆங்கில வாக்கியங்களைத் தமிழில் மொழிபெயர்த்தல்.
+            </p>
+            <div class="badge active">Ready to Study</div>
+        </a>
+
+        <!-- Theni 5 -->
+        <a href="html/theni5.html" class="card">
+            <div class="card-icon">🏹</div>
+            <h2>Theni 5 <span>தேனி 5</span></h2>
+            <p><strong>Find word using clue words.</strong><br>ஒரு வார்த்தை ஒரு லட்சம் வடிவத்திலான போட்டி.</p>
+            <div class="badge active">Ready to Study</div>
+        </a>
+    </main>
+
+    <footer class="footer">
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/" target="_blank"
+            style="color: inherit; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <img alt="Creative Commons License" style="border-width:0"
+                src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
+        </a>
+        <br />
+        <span style="font-size: 0.9em;">© 2026 Peoria Tamil School. Licensed under <a rel="license"
+                href="http://creativecommons.org/licenses/by/4.0/" target="_blank"
+                style="color: inherit; text-decoration: underline;">CC BY 4.0</a>.</span>
+    </footer>
+
+    <!-- PWA Registration with Update Notifications -->
+    <script type="module" src="/src/js/pwa.ts"></script>
+</body>
+
+</html>

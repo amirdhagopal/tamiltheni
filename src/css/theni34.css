@@ -1,0 +1,125 @@
+/* Theni 3 & 4 Specific Overrides */
+/* Ensure height is passed down for centering */
+.slide-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+}
+
+#slides-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.word-en {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    padding: 0 40px;
+    line-height: 1.4;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.slide-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 30px;
+}
+
+.slide-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.word-ta {
+    font-size: 2.2em;
+    margin-top: 10px;
+    color: #e74c3c;
+    /* Hidden by default until revealed */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+    filter: blur(5px);
+}
+
+.slide.revealed .word-ta {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Vertical Center */
+    align-items: center;
+    /* Horizontal Center */
+    padding-top: 50px;
+    /* Top padding to offset header badges */
+    text-align: center;
+    /* Text Center */
+    flex: 1;
+    /* Ensure fill height for vertical centering */
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    /* Include padding in height calculation */
+}
+
+/* Reusing card-footer from theni1 style but adapting */
+/* Header badges inside the card */
+.slide-header {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 0;
+}
+
+/* Ensure badges look right */
+.category-badge,
+.category-badge-ta,
+.difficulty-badge {
+    position: static !important;
+    /* Override global absolute */
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.category-badge {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.category-badge-ta {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.difficulty-badge {
+    background: #fff3e0;
+    color: #ef6c00;
+}

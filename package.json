@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "description": "Tamil language learning web application for the FETNA Tamil Theni competition",
     "scripts": {
-        "dev": "python3 -m http.server 8888 -d docs",
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
         "lint": "eslint docs/assets/js/**/*.js",
         "lint:fix": "eslint docs/assets/js/**/*.js --fix",
         "format": "prettier --write \"docs/**/*.{js,css,html}\"",
@@ -19,7 +21,11 @@
     "license": "CC-BY-4.0",
     "private": true,
     "devDependencies": {
+        "@types/node": "^25.0.8",
         "eslint": "^9.18.0",
-        "prettier": "^3.4.2"
+        "prettier": "^3.4.2",
+        "typescript": "^5.9.3",
+        "vite": "^7.3.1",
+        "vite-plugin-pwa": "^1.2.0"
     }
 }

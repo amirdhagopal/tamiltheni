@@ -1,0 +1,83 @@
+{
+    "name": "TamilTheni - தமிழ்த்தேனி",
+    "short_name": "TamilTheni",
+    "description": "Tamil language learning app for the FETNA Tamil Theni competition",
+    "start_url": "/tamiltheni/",
+    "scope": "/tamiltheni/",
+    "display": "standalone",
+    "background_color": "#f5f7fa",
+    "theme_color": "#667eea",
+    "orientation": "any",
+    "categories": [
+        "education",
+        "language"
+    ],
+    "lang": "ta",
+    "icons": [
+        {
+            "src": "assets/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "screenshots": [],
+    "shortcuts": [
+        {
+            "name": "Theni 1 - Word Identification",
+            "short_name": "Theni 1",
+            "url": "/tamiltheni/theni1.html",
+            "icons": [
+                {
+                    "src": "assets/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Theni 2 - Sentence Building",
+            "short_name": "Theni 2",
+            "url": "/tamiltheni/theni2.html",
+            "icons": [
+                {
+                    "src": "assets/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Theni 3 & 4 - Translation",
+            "short_name": "Theni 3&4",
+            "url": "/tamiltheni/theni34.html",
+            "icons": [
+                {
+                    "src": "assets/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Theni 5 - Word Discovery",
+            "short_name": "Theni 5",
+            "url": "/tamiltheni/theni5.html",
+            "icons": [
+                {
+                    "src": "assets/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ]
+}

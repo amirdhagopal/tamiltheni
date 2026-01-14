@@ -19,84 +19,70 @@ The app includes study modules for five competition categories:
 
 ## 🚀 Running Locally
 
-1. Navigate to the `docs` directory:
+1. Install dependencies:
    ```bash
-   cd docs
+   npm install
    ```
 
-2. Start a local HTTP server:
+2. Start a local development server:
    ```bash
-   python3 -m http.server 8888
+   npm run dev
    ```
 
-3. Open http://localhost:8888 in your browser
+3. Open the provided localhost URL (usually http://localhost:5173/) in your browser.
 
 ## 📁 Project Structure
 
 ```
 tamiltheni/
-├── docs/                    # Web application (GitHub Pages root)
-│   ├── index.html           # Home page
-│   ├── theni1.html          # Theni 1 module
-│   ├── theni2.html          # Theni 2 module
-│   ├── theni34.html         # Theni 3 & 4 module
-│   ├── theni5.html          # Theni 5 module
-│   └── assets/
-│       ├── css/             # Stylesheets
-│       ├── js/              # JavaScript modules
-│       ├── data/            # Word data (theni_words.js, theni5_words.js)
-│       └── images/          # Image assets
-├── scripts/                 # Python utility scripts
-│   ├── images/              # Image management scripts
-│   ├── data/                # Data processing scripts
-│   └── agents/              # Conversion tool scripts
-├── pdf_parser/              # PDF extraction utilities
-├── slide_builder/           # Slide generation utilities
-├── resources/               # Input resources and artifacts
-└── bump-version.sh          # Version bump script
+├── public/                  # Static assets (images, fonts, manifest)
+│   ├── assets/
+│   │   ├── images/
+│   │   └── icons/
+│   └── manifest.json
+├── src/                     # Source code (TypeScript/CSS)
+│   ├── css/                 # Stylesheets
+│   ├── js/                  # TypeScript Logic
+│   ├── data/                # JSON Data Files
+│   ├── types/               # Type definitions
+│   └── vite-env.d.ts        # Vite env definitions
+├── html/                    # Game Module Pages
+│   ├── theni1.html
+│   ├── theni2.html
+│   ├── theni34.html
+│   └── theni5.html
+├── index.html               # Home page
+├── vite.config.ts           # Vite Build configuration
+├── tsconfig.json            # TypeScript config
+└── package.json             # Dependencies and scripts
 ```
 
 ## 🛠️ Development
 
 ### Prerequisites
 
-- Python 3.x (for local server and scripts)
-- Node.js 20+ (for linting and formatting)
+- Node.js 20+
 - Modern web browser
-
-### Setup
-
-```bash
-npm install
-```
 
 ### NPM Scripts
 
 | Script | Description |
 |--------|-------------|
-| `npm run dev` | Start local development server on port 8888 |
-| `npm run lint` | Run ESLint on JavaScript files |
-| `npm run lint:fix` | Run ESLint and auto-fix issues |
+| `npm run dev` | Start local Vite development server |
+| `npm run build` | Type-check (tsc) and build production artifacts to `docs/` |
+| `npm run preview` | Preview production build locally |
+| `npm run lint` | Run ESLint on TypeScript files |
 | `npm run format` | Format code with Prettier |
-| `npm run format:check` | Check code formatting |
 
-### Scripts
+### Scripts (Python)
 
-The `scripts/` folder contains utility scripts organized by category:
+The `scripts/` folder contains Python utility scripts for data processing and image management. The build pipeline converts raw data into the JSON files found in `src/data/`.
 
 ```
 scripts/
-├── images/          # Image management
-│   ├── download_theni12_images.py
-│   ├── fix_bad_images.py
-│   ├── check_missing_images.py
-│   └── replace_theni12_image.py
-├── data/            # Data processing
-│   ├── augment_words.py
-│   └── validate_and_fix.py
+├── images/          # Image management (downloading, fixing)
+├── data/            # Data processing (augmentation, validation)
 └── agents/          # Conversion tools
-    ├── csv_to_html_agent.py
-    └── pdf_parse_agent.py
 ```
 
 ## 📄 License
