@@ -64,69 +64,17 @@ TamilTheni is a Tamil language learning web application designed for the FETNA T
 
 ## Architecture Diagram
 
-```mermaid
-graph TB
-    subgraph "User Interface Layer"
-        INDEX[index.html<br/>Portal Home]
-        T1[theni1.html<br/>Word Identification]
-        T2[theni2.html<br/>Sentence Building]
-        T34[theni34.html<br/>Translation]
-        T5[theni5.html<br/>Word Discovery]
-    end
+### Application Layer
 
-    subgraph "TypeScript Logic Layer"
-        CONFIG[config.ts<br/>App Configuration]
-        UTILS[utils.ts<br/>Shared Utilities]
-        LAYOUT[layout.ts<br/>UI Components]
-        TIMER[timer.ts<br/>Timer Engine]
-        AUDIO[audio_manager.ts<br/>TTS Handler]
-        
-        T1JS[theni1.ts]
-        T2JS[theni2.ts]
-        T34JS[theni34.ts]
-        T5JS[theni5.ts]
-    end
+![Application Layer](diagrams/app_layer.png)
 
-    subgraph "Data Layer"
-        WORDS[theni_words.json<br/>800 Words]
-        T5WORDS[theni5_words.json<br/>50 Clues]
-    end
+### Shared Infrastructure
 
-    subgraph "CSS Design System"
-        TOKENS[tokens.css<br/>Design Tokens]
-        STYLE[style.css<br/>Shared Styles]
-        T1CSS[theni1.css]
-        T2CSS[theni2.css]
-        T34CSS[theni34.css]
-        T5CSS[theni5.css]
-    end
+![Shared Infrastructure](diagrams/shared_infra.png)
 
-    subgraph "External Services"
-        WIKI[Wikipedia API<br/>Images]
-        GEMINI[Gemini AI<br/>Sentence Generation]
-        TTS[Web Speech API<br/>Text-to-Speech]
-    end
+### Data Flow
 
-    INDEX --> T1 & T2 & T34 & T5
-    
-    T1 --> T1JS --> CONFIG & UTILS & LAYOUT & TIMER & AUDIO
-    T2 --> T2JS --> CONFIG & UTILS & LAYOUT & TIMER
-    T34 --> T34JS --> CONFIG & UTILS & LAYOUT & TIMER
-    T5 --> T5JS --> CONFIG & UTILS & LAYOUT & TIMER
-
-    T1JS & T2JS & T34JS --> WORDS
-    T5JS --> T5WORDS
-    
-    T1JS & T2JS --> WIKI
-    T2JS --> GEMINI
-    T1JS --> TTS
-    
-    T1 & T2 & T34 & T5 --> TOKENS & STYLE
-    T1 --> T1CSS
-    T2 --> T2CSS
-    T34 --> T34CSS
-    T5 --> T5CSS
-```
+![Data Flow](diagrams/data_flow.png)
 
 ---
 
@@ -223,19 +171,8 @@ Data is stored in standard JSON format, allowing easy manipulation by Python scr
 
 ### Pipeline Overview
 
-```mermaid
-flowchart LR
-    PDF[PDF Word Lists<br/>FETNA Source] --> PARSER[pdf_parser/<br/>extractor.py]
-    PARSER --> CSV[Intermediate CSV]
-    CSV --> BUILDER[slide_builder/<br/>generator.py]
-    BUILDER --> HTML[Output HTML]
-    
-    CSV --> AUGMENT[scripts/data/<br/>augment_words.py]
-    AUGMENT --> JSON[src/data/theni_words.json]
-    
-    JSON --> IMAGES[scripts/images/<br/>download_theni12_images.py]
-    IMAGES --> JPEG[Image Assets]
-```
+![Python Tooling Pipeline](diagrams/pipeline.png)
+
 
 ---
 

@@ -1,0 +1,23 @@
+graph LR
+    subgraph Data_Files["Data Files"]
+        WORDS[theni_words.json]
+        T5WORDS[theni5_words.json]
+    end
+
+    subgraph External_APIs["External APIs"]
+        WIKI[Wikipedia API]
+        GEMINI[Gemini AI]
+        TTS[Web Speech API]
+    end
+
+    subgraph Modules["Modules"]
+        T1JS[theni1.ts]
+        T2JS[theni2.ts]
+        T34JS[theni34.ts]
+        T5JS[theni5.ts]
+    end
+
+    WORDS --> T1JS & T2JS & T34JS
+    T5WORDS --> T5JS
+    T1JS --> WIKI & TTS
+    T2JS --> WIKI & GEMINI

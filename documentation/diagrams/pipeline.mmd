@@ -1,0 +1,11 @@
+flowchart LR
+    PDF[PDF Word Lists] --> PARSER[pdf_parser]
+    PARSER --> CSV[Intermediate CSV]
+    CSV --> BUILDER[slide_builder]
+    BUILDER --> HTML[Output HTML]
+    
+    CSV --> AUGMENT[augment_words.py]
+    AUGMENT --> JSON[theni_words.json]
+    
+    JSON --> IMAGES[download_images.py]
+    IMAGES --> JPEG[Image Assets]

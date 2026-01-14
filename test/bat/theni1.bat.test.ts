@@ -75,7 +75,7 @@ describe('Theni 1 BAT', () => {
     it('should navigate to next slide', () => {
         init();
         // Assuming slide 0 starts active
-        const slides = document.querySelectorAll('.slide');
+        const slides = document.querySelectorAll('.slide') as NodeListOf<HTMLElement>;
         if (slides.length > 1) {
             const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
             nextBtn.click();

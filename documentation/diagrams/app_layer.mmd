@@ -1,0 +1,21 @@
+graph LR
+    subgraph HTML_Pages["HTML Pages"]
+        INDEX[index.html]
+        T1[theni1.html]
+        T2[theni2.html]
+        T34[theni34.html]
+        T5[theni5.html]
+    end
+
+    subgraph Module_TypeScript["Module TypeScript"]
+        T1JS[theni1.ts]
+        T2JS[theni2.ts]
+        T34JS[theni34.ts]
+        T5JS[theni5.ts]
+    end
+
+    INDEX --> T1 & T2 & T34 & T5
+    T1 --> T1JS
+    T2 --> T2JS
+    T34 --> T34JS
+    T5 --> T5JS

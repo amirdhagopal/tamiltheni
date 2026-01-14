@@ -1,0 +1,20 @@
+graph LR
+    subgraph Shared_Modules["Shared Modules"]
+        CONFIG[config.ts]
+        UTILS[utils.ts]
+        LAYOUT[layout.ts]
+        TIMER[timer.ts]
+        AUDIO[audio_manager.ts]
+    end
+
+    subgraph Module_TS["Module TypeScript"]
+        T1JS[theni1.ts]
+        T2JS[theni2.ts]
+        T34JS[theni34.ts]
+        T5JS[theni5.ts]
+    end
+
+    T1JS --> CONFIG & UTILS & LAYOUT & TIMER & AUDIO
+    T2JS --> CONFIG & UTILS & LAYOUT & TIMER
+    T34JS --> CONFIG & UTILS & LAYOUT & TIMER
+    T5JS --> CONFIG & UTILS & LAYOUT & TIMER
