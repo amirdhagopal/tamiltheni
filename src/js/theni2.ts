@@ -109,6 +109,15 @@ export function toggleControlPanel() {
     }
 }
 
+function collapsePanel() {
+    const panel = document.getElementById('controlPanel');
+    if (panel && !panel.classList.contains('collapsed')) {
+        panel.classList.add('collapsed');
+        document.dispatchEvent(new CustomEvent('panelCollapsed'));
+    }
+    document.getElementById('categoryMenu')?.classList.remove('show');
+}
+
 function toggleDropdown(event: Event) {
     event.stopPropagation();
     document.getElementById('categoryMenu')?.classList.toggle('show');
@@ -609,6 +618,7 @@ function updateCard(cardNum: number, slide: HTMLDivElement) {
 
 function goToFirst() {
     if (filteredSlides.length > 0) {
+        collapsePanel();
         currentSlide = 0;
         updateUI();
     }
@@ -616,6 +626,7 @@ function goToFirst() {
 
 function goToLast() {
     if (filteredSlides.length > 0) {
+        collapsePanel();
         currentSlide = filteredSlides.length - 1;
         updateUI();
     }
@@ -624,6 +635,7 @@ function goToLast() {
 function changeSlide(direction: number) {
     const newIndex = currentSlide + direction;
     if (newIndex >= 0 && newIndex < filteredSlides.length) {
+        collapsePanel();
         currentSlide = newIndex;
         updateUI();
     }
@@ -769,15 +781,34 @@ export function init() {
     document.getElementById('aiBtn')?.addEventListener('click', generateSentence);
 
     // Global Click Listener for Dropdowns
+    // Global Click Listener for Dropdowns & Reveal Logic
     document.addEventListener('click', (e) => {
-        if (!(e.target as Element).closest('.category-dropdown')) {
+        const target = e.target as HTMLElement;
+
+        // 1. Handle Dropdown closing
+        if (!target.closest('.category-dropdown')) {
             document.getElementById('categoryMenu')?.classList.remove('show');
         }
-        if (!(e.target as Element).closest('.control-panel')) {
-            const panel = document.getElementById('controlPanel');
-            if (panel && !panel.classList.contains('collapsed')) {
-                panel.classList.add('collapsed');
-            }
+
+        // 2. Handle Panel closing (if clicked outside)
+        if (!target.closest('.control-panel')) {
+            collapsePanel();
+        }
+
+        // 3. Click-to-Reveal Logic
+        // Check if click is on an interactive element or the control panel
+        const isInteractive =
+            target.closest('button') ||
+            target.closest('a') ||
+            target.closest('input') ||
+            target.closest('.control-panel') ||
+            target.closest('.category-dropdown') ||
+            target.closest('.modal') || // Keyboard help modal
+            target.closest('.keyboard-help-modal');
+
+        if (!isInteractive) {
+            // Treat background/card clicks as "Next Action"
+            handleNextAction();
         }
     });
 
