@@ -73,6 +73,7 @@ tamiltheni/
 ├── src/                     # Source code (TypeScript/CSS)
 │   ├── css/                 # Stylesheets
 │   ├── js/                  # TypeScript Logic
+│   │   ├── agents/          # Client-side AI Agents
 │   ├── data/                # JSON Data Files
 │   ├── types/               # Type definitions
 │   └── vite-env.d.ts        # Vite env definitions

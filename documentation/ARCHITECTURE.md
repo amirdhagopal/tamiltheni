@@ -16,10 +16,11 @@
 6. [Python Tooling Pipeline](#python-tooling-pipeline)
 7. [Deployment Architecture](#deployment-architecture)
 8. [Module Deep Dives](#module-deep-dives)
-9. [Design System](#design-system)
-10. [Development Workflow](#development-workflow)
-11. [Security Considerations](#security-considerations)
-12. [Future Considerations](#future-considerations)
+9. [Agentic Architecture](#agentic-architecture)
+10. [Design System](#design-system)
+11. [Development Workflow](#development-workflow)
+12. [Security Considerations](#security-considerations)
+13. [Future Considerations](#future-considerations)
 
 ---
 
@@ -204,6 +205,24 @@ Configurable countdown timer with visual pie-chart representation and audio feed
 
 Injects common UI elements (headers, navigation, sidebars) into each HTML page at runtime, ensuring consistency. It also manages the **Control Panel toggle** and **Global Keyboard Shortcuts** (including the Help Modal).
 
+---
+    
+## Agentic Architecture
+
+To provide intelligent feedback without a backend, we use **Client-Side Micro-Agents**. These are TypeScript classes that wrap the Gemini API with specific roles, prompts, and behaviors.
+    
+### Infrastructure (`src/js/agents/`)
+    
+- **BaseAgent**: Abstract class handling API communication, error handling, and JSON parsing.
+- **Specific Agents**: Subclasses like `SentenceConstructorAgent` that implement specific learning logic (prompt engineering, caching, context).
+    
+### Workflow
+    
+1.  **User Action**: User interacts with UI (e.g., clicks "Generate Sentence").
+2.  **UI Delegation**: View layer calls the specific Agent.
+3.  **Agent Processing**: Agent constructs prompt, checks local cache, calls `GeminiService`.
+4.  **Response**: Agent parses JSON response and returns typed data to UI.
+    
 ---
 
 ## Security Considerations

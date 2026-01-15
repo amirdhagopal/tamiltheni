@@ -3,7 +3,7 @@ import { Timer } from './timer';
 import { AudioManager } from './audio_manager';
 import { Layout } from './layout';
 import { config } from './config';
-import { GeminiService } from './gemini_service';
+import { SentenceConstructorAgent } from './agents/sentence_agent';
 import theniWords from '../data/theni_words.json';
 import { Word } from '../types';
 
@@ -27,7 +27,7 @@ let filteredSlides: HTMLDivElement[] = [];
 // let originalOrder = []; // Not used?
 let isShuffled = false;
 let viewedPartners: Record<number, number> = {}; // Stores index -> partnerIndex mapping for persistence
-const sentenceCache: Record<string, { tamil: string; english: string }> = {}; // Stores "word1|word2" -> {tamil, english}
+// sentenceCache moved to Agent
 const imageCache: Record<string, string> = {}; // Cache for images to avoid re-fetching
 
 // Timer state handled by Timer module
@@ -366,19 +366,11 @@ async function generateSentence() {
         return;
     }
 
+
     // Use the available key
     const validKey = apiKey;
 
     if (!resultDiv || !resultText || !resultTextEn) return;
-
-    const cacheKey = `${word1}|${word2}`;
-
-    // Check Cache
-    if (sentenceCache[cacheKey]) {
-        const json = sentenceCache[cacheKey];
-        renderResult(json);
-        return;
-    }
 
     // Loading State
     if (aiBtn) {
@@ -392,22 +384,9 @@ async function generateSentence() {
     resultText!.textContent = '';
     resultTextEn!.textContent = '';
 
-    const prompt = `Generate a simple Tamil sentence using these two words: "${word1}" and "${word2}".
-    Provide the response in JSON format: { "tamil": "tamil sentence", "english": "english meaning" }
-    IMPORTANT: Use the exact Tamil words provided. Keep it simple.`;
-
     try {
-        // Set API key and use dynamic model selection
-        GeminiService.setApiKey(validKey);
-        const text = await GeminiService.generateContent(prompt);
-
-        // cleanup markdown code blocks if present
-        const cleanText = text.replace(/```json\n?|\n?```/g, '').trim();
-        const json = JSON.parse(cleanText);
-
-        // Cache it
-        sentenceCache[cacheKey] = json;
-
+        const sentenceAgent = new SentenceConstructorAgent();
+        const json = await sentenceAgent.generateSentence(word1, word2, validKey);
         renderResult(json);
     } catch (e: unknown) {
         const errorMessage = e instanceof Error ? e.message : 'Unknown error';
