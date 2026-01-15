@@ -114,14 +114,15 @@ test.describe('TamilTheni E2E Suite', () => {
         await page.waitForTimeout(300);
 
         // Now click normal (no force needed if panel is closed)
-        await slide0.click();
+        // We must click the content area now, not just the container
+        await slide0.locator('.slide-content').click();
         await page.waitForTimeout(300);
 
         // Verify "revealed"
         await expect(slide0).toHaveClass(/revealed/);
 
         // 3. Next Slide
-        await slide0.click();
+        await slide0.locator('.slide-content').click();
 
         const slide1 = page.locator('#slide-1');
         await expect(slide1).toHaveClass(/active/);

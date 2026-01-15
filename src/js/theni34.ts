@@ -509,7 +509,9 @@ export function init() {
     });
 
     document.getElementById('slides-wrapper')?.addEventListener('click', (e) => {
-        if (!(e.target as Element).closest('button')) {
+        const target = e.target as Element;
+        // Only trigger if clicking actual slide content (the card), not the background
+        if (target.closest('.slide-content') && !target.closest('button')) {
             handleNextAction();
         }
     });
