@@ -12,7 +12,9 @@
         "format": "prettier --write \"src/**/*.{ts,html,css}\" \"test/**/*.ts\" \"documentation/**/*.md\" \"*.{js,json,md}\"",
         "format:check": "prettier --check \"src/**/*.{ts,html,css}\" \"test/**/*.ts\" \"documentation/**/*.md\" \"*.{js,json,md}\"",
         "test": "vitest",
-        "check-all": "npm run format:check && npm run lint && npm run test -- --run && npm run build"
+        "test:e2e": "playwright test",
+        "test:e2e:ui": "playwright test --ui",
+        "check-all": "npm run format:check && npm run lint && npm run test -- --run && npm run test:e2e && npm run build"
     },
     "keywords": [
         "tamil",
@@ -24,6 +26,7 @@
     "license": "CC-BY-4.0",
     "private": true,
     "devDependencies": {
+        "@playwright/test": "^1.57.0",
         "@types/node": "^25.0.8",
         "@typescript-eslint/eslint-plugin": "^8.53.0",
         "@typescript-eslint/parser": "^8.53.0",
