@@ -51,7 +51,6 @@ export class SentenceConstructorAgent extends BaseAgent {
             // Cache the valid result
             this.cache[cacheKey] = json;
             return json;
-
         } catch (error) {
             console.error('[SentenceAgent] Error generating sentence:', error);
             throw error;

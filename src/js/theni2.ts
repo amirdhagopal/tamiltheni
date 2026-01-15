@@ -366,7 +366,6 @@ async function generateSentence() {
         return;
     }
 
-
     // Use the available key
     const validKey = apiKey;
 

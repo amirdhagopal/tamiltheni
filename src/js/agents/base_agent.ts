@@ -1,7 +1,7 @@
 import { GeminiService } from '../gemini_service';
 
 export abstract class BaseAgent {
-    constructor(protected systemPrompt: string) { }
+    constructor(protected systemPrompt: string) {}
 
     /**
      * Common method to call GeminiService.
@@ -16,14 +16,15 @@ export abstract class BaseAgent {
                 return await GeminiService.generateContent(prompt);
             } catch (error: any) {
                 attempts++;
-                const isOverloaded = error.message?.toLowerCase().includes('overloaded') ||
+                const isOverloaded =
+                    error.message?.toLowerCase().includes('overloaded') ||
                     error.message?.includes('503') ||
                     error.message?.includes('429');
 
                 if (isOverloaded && attempts < maxRetries) {
                     const waitTime = Math.pow(2, attempts - 1) * 1000; // 1s, 2s, 4s...
                     console.warn(`[BaseAgent] Model overloaded. Retrying in ${waitTime}ms... (Attempt ${attempts})`);
-                    await new Promise(resolve => setTimeout(resolve, waitTime));
+                    await new Promise((resolve) => setTimeout(resolve, waitTime));
                     continue;
                 }
 
