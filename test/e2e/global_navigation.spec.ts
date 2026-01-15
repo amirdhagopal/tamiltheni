@@ -108,13 +108,18 @@ test.describe('TamilTheni E2E Suite', () => {
         // Verify English Sentence visible
         await expect(slide0.locator('.word-en')).toBeVisible();
 
-        // 2. Reveal
-        // Ensure panel is closed first so we can click cleanly
-        await page.keyboard.press('Escape');
-        await page.waitForTimeout(300);
+        // 2. Reveal Logic (Panel Interaction Check)
+        // Panel starts open. First click should CLOSE panel and NOT reveal.
+        const panel = page.locator('#controlPanel');
+        await expect(panel).not.toHaveClass(/collapsed/);
 
-        // Now click normal (no force needed if panel is closed)
-        // We must click the content area now, not just the container
+        // First Click -> Should close panel
+        await slide0.locator('.slide-content').click();
+        await page.waitForTimeout(300);
+        await expect(panel).toHaveClass(/collapsed/);
+        await expect(slide0).not.toHaveClass(/revealed/); // Should NOT be revealed yet
+
+        // Second Click -> Should Reveal
         await slide0.locator('.slide-content').click();
         await page.waitForTimeout(300);
 

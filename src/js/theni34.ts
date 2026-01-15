@@ -77,17 +77,7 @@ function toggleDropdown(event: Event) {
 }
 
 // Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-    if (!(e.target as Element).closest('.category-dropdown')) {
-        document.getElementById('categoryMenu')?.classList.remove('show');
-    }
-    if (!(e.target as Element).closest('.control-panel')) {
-        const panel = document.getElementById('controlPanel');
-        if (panel && !panel.classList.contains('collapsed')) {
-            panel.classList.add('collapsed');
-        }
-    }
-});
+// Unified click listener is now inside init() to handle interaction order correctly
 
 function populateCategories() {
     const catMap = new Map();
@@ -508,13 +498,7 @@ export function init() {
         goToLast();
     });
 
-    document.getElementById('slides-wrapper')?.addEventListener('click', (e) => {
-        const target = e.target as Element;
-        // Only trigger if clicking actual slide content (the card), not the background
-        if (target.closest('.slide-content') && !target.closest('button')) {
-            handleNextAction();
-        }
-    });
+
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') changeSlide(-1);
@@ -528,6 +512,44 @@ export function init() {
         if (e.key === 'a' || e.key === 'A') filterDifficulty('all');
         if (e.key === 's' || e.key === 'S') shuffleSlides();
         if (e.key === 'r' || e.key === 'R') resetSequence();
+    });
+
+    // Unified Global Click Listener (Handles Dropdowns, Panel Closing, and Slide Interaction in order)
+    document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        let pannedClosed = false;
+
+        // 1. Handle Dropdown closing
+        if (!target.closest('.category-dropdown')) {
+            document.getElementById('categoryMenu')?.classList.remove('show');
+        }
+
+        // 2. Handle Panel closing (if clicked outside)
+        if (!target.closest('.control-panel')) {
+            const panel = document.getElementById('controlPanel');
+            if (panel && !panel.classList.contains('collapsed')) {
+                panel.classList.add('collapsed');
+                pannedClosed = true;
+            }
+        }
+
+        // 3. Click-to-Reveal Logic
+        const isInteractive =
+            target.closest('button') ||
+            target.closest('a') ||
+            target.closest('input') ||
+            target.closest('.control-panel') ||
+            target.closest('.category-dropdown') ||
+            target.closest('.modal') ||
+            target.closest('.keyboard-help-modal');
+
+        if (!isInteractive && !pannedClosed && target.closest('#slides-wrapper')) {
+            // Only trigger if clicking actual slide content (the card), not the background
+            // And ensuring we didn't just close the panel
+            if (target.closest('.slide-content')) {
+                handleNextAction();
+            }
+        }
     });
 
     window.addEventListener('hashchange', handleHashChange);
