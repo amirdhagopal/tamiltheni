@@ -40,10 +40,16 @@ export const Timer = {
         this.toggleVisibility(); // Check initial checkbox state
 
         // Attach event listeners if elements exist
-        const btn = document.getElementById(this.elements.btn);
-        if (btn) {
-            btn.onclick = (e) => {
-                this.toggle();
+        const pill = document.getElementById(this.elements.pill);
+        if (pill) {
+            pill.style.cursor = 'pointer';
+            pill.onclick = (e) => {
+                // If alarm is ringing (pill has 'alarm' class), reset. Otherwise toggle.
+                if (this.timeLeft === 0 && pill.classList.contains('alarm')) {
+                    this.reset();
+                } else {
+                    this.toggle();
+                }
                 e.stopPropagation();
             };
         }
@@ -105,11 +111,6 @@ export const Timer = {
         const btn = document.getElementById(this.elements.btn);
         if (btn) {
             btn.innerText = '▶';
-            // Re-bind click to toggle (in case it was set to reset during alarm)
-            btn.onclick = (e) => {
-                this.toggle();
-                e.stopPropagation();
-            };
         }
 
         const pill = document.getElementById(this.elements.pill);
@@ -176,10 +177,6 @@ export const Timer = {
         const btn = document.getElementById(this.elements.btn);
         if (btn) {
             btn.innerText = '↺';
-            btn.onclick = (e) => {
-                this.reset();
-                e.stopPropagation();
-            };
         }
 
         const pill = document.getElementById(this.elements.pill);
