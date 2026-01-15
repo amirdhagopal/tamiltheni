@@ -602,7 +602,7 @@ export function init() {
             <div class="control-row">
                 <span class="control-label">Categories:</span>
                 <div class="category-dropdown">
-                    <button class="dropdown-button" id="cat-dropdown-btn">
+                    <button class="dropdown-button" id="cat-dropdown-btn" title="Select word categories to display">
                         <span id="selectedCatText">All Categories</span>
                         <span>▼</span>
                     </button>
@@ -619,26 +619,26 @@ export function init() {
                 <span class="control-label">Difficulty:</span>
                 <div class="pill-group">
                 <div class="pill-group">
-                    <button class="pill-button active" id="filterAll" aria-pressed="true">All</button>
-                    <button class="pill-button" id="filterD1" aria-pressed="false">D1 Only</button>
-                    <button class="pill-button" id="filterD2" aria-pressed="false">D2 Only</button>
+                    <button class="pill-button active" id="filterAll" title="Show all difficulty levels" aria-pressed="true">All</button>
+                    <button class="pill-button" id="filterD1" title="Show only Difficulty 1 words" aria-pressed="false">D1 Only</button>
+                    <button class="pill-button" id="filterD2" title="Show only Difficulty 2 words" aria-pressed="false">D2 Only</button>
                 </div>
                 </div>
             </div>
             <div class="control-row">
                 <span class="control-label">Sequence:</span>
                 <div class="pill-group">
-                    <button class="action-button" id="btn-shuffle" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
-                    <button class="action-button" id="btn-reset-seq"><span aria-hidden="true">↩️</span> Reset</button>
+                    <button class="action-button" id="btn-shuffle" title="Randomize slide order" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                    <button class="action-button" id="btn-reset-seq" title="Reset to original order"><span aria-hidden="true">↩️</span> Reset</button>
                 </div>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                    <label title="Show/hide countdown timer" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
                         <input type="checkbox" id="showTimer" checked> ⏱️ Timer (8s)
                     </label>
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                    <label title="Enable/disable word pronunciation" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
                         <input type="checkbox" id="audioToggle" checked> 🔊 Audio
                     </label>
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                    <label title="Enable/disable voice recognition" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
                         <input type="checkbox" id="voiceToggle"> 🎤 Voice
                     </label>
                 </div>

@@ -192,17 +192,17 @@ export function initAll() {
         contentHTML: `
              <div class="control-row">
                 <span class="control-label">Range:</span>
-                <input type="number" id="startRange" value="1" min="1" max="250" style="width: 70px; padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
+                <input type="number" id="startRange" value="1" min="1" max="250" title="Starting word number" style="width: 70px; padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
                 <span style="margin: 0 10px;">to</span>
-                <input type="number" id="endRange" value="250" min="1" max="250" style="width: 70px; padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
-                <button class="action-button" id="applyBtn" style="margin-left: 10px;">Apply</button>
+                <input type="number" id="endRange" value="250" min="1" max="250" title="Ending word number" style="width: 70px; padding: 5px; border-radius: 4px; border: 1px solid #ddd;">
+                <button class="action-button" id="applyBtn" title="Apply the selected word range" style="margin-left: 10px;">Apply</button>
             </div>
             <div class="control-row">
                 <span class="control-label">Actions:</span>
-                <button class="action-button" id="shuffleBtn" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
-                <button class="action-button" id="resetBtn"><span aria-hidden="true">↩️</span> Reset</button>
+                <button class="action-button" id="shuffleBtn" title="Randomize word order" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                <button class="action-button" id="resetBtn" title="Reset to original order"><span aria-hidden="true">↩️</span> Reset</button>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85rem;">
+                    <label title="Show/hide countdown timer" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85rem;">
                         <input type="checkbox" id="showTimer" checked> Timer (1m)
                     </label>
                 </div>

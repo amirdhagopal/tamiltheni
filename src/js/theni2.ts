@@ -678,7 +678,7 @@ export function init() {
             <div class="control-row">
                 <span class="control-label">Categories:</span>
                 <div class="category-dropdown">
-                    <button class="dropdown-button" id="cat-dropdown-btn">
+                    <button class="dropdown-button" id="cat-dropdown-btn" title="Select word categories to display">
                         <span id="selectedCatText">All Categories</span>
                         <span>▼</span>
                     </button>
@@ -694,22 +694,22 @@ export function init() {
             <div class="control-row">
                 <span class="control-label">Difficulty:</span>
                 <div class="pill-group">
-                    <button class="pill-button active" id="filterAll" aria-pressed="true">All</button>
-                    <button class="pill-button" id="filterD1" aria-pressed="false">D1 Only</button>
-                    <button class="pill-button" id="filterD2" aria-pressed="false">D2 Only</button>
+                    <button class="pill-button active" id="filterAll" title="Show all difficulty levels" aria-pressed="true">All</button>
+                    <button class="pill-button" id="filterD1" title="Show only Difficulty 1 words" aria-pressed="false">D1 Only</button>
+                    <button class="pill-button" id="filterD2" title="Show only Difficulty 2 words" aria-pressed="false">D2 Only</button>
                 </div>
             </div>
             <div class="control-row">
                 <span class="control-label">Sequence:</span>
                 <div class="pill-group">
-                    <button class="action-button" id="btn-shuffle" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
-                    <button class="action-button" id="btn-reset-seq"><span aria-hidden="true">↩️</span> Reset</button>
+                    <button class="action-button" id="btn-shuffle" title="Randomize slide order" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                    <button class="action-button" id="btn-reset-seq" title="Reset to original order"><span aria-hidden="true">↩️</span> Reset</button>
                 </div>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                    <label title="Show/hide countdown timer" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
                         <input type="checkbox" id="showTimer" checked> ⏱️ Timer (20s)
                     </label>
-                    <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
+                    <label title="Enable/disable word pronunciation" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
                         <input type="checkbox" id="audioToggle"> 🔊 Audio
                     </label>
                 </div>
@@ -718,8 +718,8 @@ export function init() {
                 <span class="control-label">Progress:</span>
                 <span class="progress-info" id="progressInfo">Loading...</span>
                 <div style="margin-left: auto; display: flex; gap: 10px; align-items: center;">
-                    <label style="font-size: 0.85em; display: flex; align-items: center; gap: 6px;">🔑 Gemini AI API:</label>
-                    <input type="password" id="apiKeyInput" placeholder="Enter API Key" 
+                    <label title="API key for AI sentence generation" style="font-size: 0.85em; display: flex; align-items: center; gap: 6px;">🔑 Gemini AI API:</label>
+                    <input type="password" id="apiKeyInput" placeholder="Enter API Key" title="Enter your Gemini API key for AI features"
                            style="padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.15); color: white; font-size: 0.85em; width: 140px;">
                     <style>#apiKeyInput::placeholder { color: rgba(255,255,255,0.7); font-style: italic; }</style>
                 </div>
