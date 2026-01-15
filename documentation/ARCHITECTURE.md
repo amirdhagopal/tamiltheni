@@ -238,9 +238,7 @@ The Theni 2 module uses the Gemini AI API. Keys are stored in `localStorage` by 
 
 ## Future Considerations
 
-1. **PWA Enhancements**: Improve offline capabilities.
-2. **Backend**: Optional backend for user progress tracking.
-3. **Testing**: Add unit tests (Vitest) and E2E tests (Playwright).
+1. **Backend**: Optional backend for user progress tracking.
 
 ---
 

@@ -1,10 +1,10 @@
 # TamilTheni (தமிழ்த்தேனி)
 
-A Tamil language learning web application for the FETNA Tamil Theni competition (https://tamiltheni.org/) developed by the Peoria Tamil School.
+A Tamil language learning web application for the [FETNA Tamil Theni competition](https://tamiltheni.org/) developed by the Peoria Tamil School.
 
 ## 🌐 Live Site
 
-Visit the application at: https://amirdhagopal.github.io/tamiltheni/
+Visit the application at: [https://amirdhagopal.github.io/tamiltheni/](https://amirdhagopal.github.io/tamiltheni/)
 
 ## 📚 Features
 
@@ -64,38 +64,37 @@ The application supports global keyboard shortcuts for improved accessibility an
 ## 📁 Project Structure
 
 ```text
-├── config/ # Configuration files
-│ ├── vite.config.ts
-│ ├── playwright.config.ts
-│ └── .prettierrc
-├── scripts/ # Utility Scripts (Python)
-│ ├── agents/
-│ ├── data/
-│ ├── images/
-│ ├── pdf_parser/
-│ └── slide_builder/
-├── src/ # Source code (TypeScript/CSS)
-│ ├── css/ # Stylesheets
-│ ├── js/ # TypeScript Logic
-│ │ ├── agents/ # Client-side AI Agents
-│ ├── data/ # JSON Data Files
-│ ├── types/ # Type definitions
-│ └── vite-env.d.ts # Vite env definitions
-├── html/ # Game Module Pages
-│ ├── theni1.html
-│ ├── theni2.html
-│ ├── theni34.html
-│ └── theni5.html
-├── test/ # Test files
-│ ├── bat/ # Build Acceptance Tests
-│ └── unit/ # Unit tests
-├── documentation/ # Project documentation
-│ ├── ARCHITECTURE.md
-│ └── REQUIREMENTS.md
-├── index.html # Home page
-├── tsconfig.json # TypeScript config
-└── package.json # Dependencies and scripts
-
+├── config/             # Configuration files
+│   ├── vite.config.ts
+│   ├── playwright.config.ts
+│   └── .prettierrc
+├── scripts/            # Utility Scripts (Python)
+│   ├── agents/
+│   ├── data/
+│   ├── images/
+│   ├── pdf_parser/
+│   └── slide_builder/
+├── src/                # Source code (TypeScript/CSS)
+│   ├── css/            # Stylesheets
+│   ├── js/             # TypeScript Logic
+│   │   ├── agents/    # Client-side AI Agents
+│   ├── data/           # JSON Data Files
+│   ├── types/          # Type definitions
+│   └── vite-env.d.ts   # Vite env definitions
+├── html/               # Game Module Pages
+│   ├── theni1.html
+│   ├── theni2.html
+│   ├── theni34.html
+│   └── theni5.html
+├── test/               # Test files
+│   ├── bat/            # Build Acceptance Tests
+│   └── unit/           # Unit tests
+├── documentation/      # Project documentation
+│   ├── ARCHITECTURE.md
+│   └── REQUIREMENTS.md
+├── index.html          # Home page
+├── tsconfig.json       # TypeScript config
+└── package.json        # Dependencies and scripts
 ```
 
 ## 🛠️ Development
@@ -122,10 +121,9 @@ The `scripts/` folder contains Python utility scripts for data processing and im
 
 ```text
 scripts/
-├── images/ # Image management (downloading, fixing)
-├── data/ # Data processing (augmentation, validation)
-└── agents/ # Conversion tools
-
+├── images/     # Image management (downloading, fixing)
+├── data/       # Data processing (augmentation, validation)
+└── agents/     # Conversion tools
 ```
 
 ## 📄 License
