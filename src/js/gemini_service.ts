@@ -92,7 +92,7 @@ export const GeminiService = {
      * Extract version number from model name (e.g., "models/gemini-2.5-flash" -> 2.5)
      */
     extractVersion(modelName: string): number {
-        const match = modelName.match(/gemini-(\d+\.?\d*)/);
+        const match = modelName.match(/[a-z]-(\d+\.?\d*)/i) || modelName.match(/-(\d+\.?\d*)/);
         return match ? parseFloat(match[1]) : 0;
     },
 
