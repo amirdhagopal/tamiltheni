@@ -810,8 +810,8 @@ export function init() {
             target.closest('.modal') || // Keyboard help modal
             target.closest('.keyboard-help-modal');
 
-        if (!isInteractive && !pannedClosed) {
-            // Treat background/card clicks as "Next Action"
+        if (!isInteractive && !pannedClosed && target.closest('.slide-container')) {
+            // Treat card clicks as "Next Action" (Reveal / Next)
             handleNextAction();
         }
     });
