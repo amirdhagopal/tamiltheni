@@ -84,8 +84,8 @@ function generateSlides() {
             </div>
             <div class="word-row">
                 <div class="word-en">${item.word_en}</div>
-                <button class="mic-button-inline" id="mic-btn-${index}" title="Voice Validation">🎤</button>
-                <span class="voice-feedback-inline"></span>
+                <button class="mic-button-inline" id="mic-btn-${index}" title="Voice Validation" aria-label="Start Voice Validation">🎤</button>
+                <span class="voice-feedback-inline" role="status" aria-live="polite"></span>
             </div>
             <div class="word-ta">${item.word_ta}</div>
             <div class="card-footer">
@@ -176,6 +176,17 @@ function populateCategories() {
             toggleCategory(cat);
         });
 
+        // Keyboard support for dropdown item
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'checkbox');
+        item.setAttribute('aria-checked', 'true');
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleCategory(cat);
+            }
+        });
+
         list.appendChild(item);
     });
 
@@ -192,6 +203,17 @@ function toggleCategory(category: string) {
 
     const checkbox = document.getElementById(`cat-${category}`) as HTMLInputElement;
     if (checkbox) checkbox.checked = selectedCategories.includes(category);
+
+    // Update ARIA state on parent item if possible, or we rely on checkbox state?
+    // Let's find the parent item by ID if we gave it one, or query.
+    // Since we didn't give ID to item, we can't easily update aria-checked on div without traversal.
+    // But we can iterate.
+    const items = document.querySelectorAll('#categoryList .dropdown-item');
+    items.forEach((it) => {
+        if (it.textContent === category) {
+            it.setAttribute('aria-checked', selectedCategories.includes(category).toString());
+        }
+    });
 
     updateCategoryText();
     applyFilters();
@@ -260,20 +282,35 @@ function applyFilters(resetToStart = true) {
 
 function filterDifficulty(difficulty: string) {
     currentFilter = difficulty;
-    document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
-    document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`)?.classList.add('active');
+    document.querySelectorAll('.pill-button').forEach((btn) => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    });
+    const activeBtn = document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`);
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.setAttribute('aria-pressed', 'true');
+    }
     applyFilters();
 }
 
 function shuffleSlides() {
     isShuffled = true;
-    document.getElementById('btn-shuffle')?.classList.add('active');
+    const btn = document.getElementById('btn-shuffle');
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+    }
     applyFilters();
 }
 
 function resetSequence() {
     isShuffled = false;
-    document.getElementById('btn-shuffle')?.classList.remove('active');
+    const btn = document.getElementById('btn-shuffle');
+    if (btn) {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    }
     applyFilters();
 }
 
@@ -581,16 +618,18 @@ export function init() {
             <div class="control-row">
                 <span class="control-label">Difficulty:</span>
                 <div class="pill-group">
-                    <button class="pill-button active" id="filterAll">All</button>
-                    <button class="pill-button" id="filterD1">D1 Only</button>
-                    <button class="pill-button" id="filterD2">D2 Only</button>
+                <div class="pill-group">
+                    <button class="pill-button active" id="filterAll" aria-pressed="true">All</button>
+                    <button class="pill-button" id="filterD1" aria-pressed="false">D1 Only</button>
+                    <button class="pill-button" id="filterD2" aria-pressed="false">D2 Only</button>
+                </div>
                 </div>
             </div>
             <div class="control-row">
                 <span class="control-label">Sequence:</span>
                 <div class="pill-group">
-                    <button class="action-button" id="btn-shuffle"><span>🔀</span> Shuffle</button>
-                    <button class="action-button" id="btn-reset-seq"><span>↩️</span> Reset</button>
+                    <button class="action-button" id="btn-shuffle" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                    <button class="action-button" id="btn-reset-seq"><span aria-hidden="true">↩️</span> Reset</button>
                 </div>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
                     <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">

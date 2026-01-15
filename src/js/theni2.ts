@@ -154,6 +154,17 @@ function populateCategories() {
                 toggleCategory(cat);
             }); // prevent bubbling twice if needed
 
+            // Keyboard support for dropdown item
+            item.setAttribute('tabindex', '0');
+            item.setAttribute('role', 'checkbox');
+            item.setAttribute('aria-checked', 'true');
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleCategory(cat);
+                }
+            });
+
             list.appendChild(item);
         });
     }
@@ -248,22 +259,36 @@ function filterDifficulty(difficulty: string) {
     currentFilter = difficulty;
 
     // Update button states
-    document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
+    document.querySelectorAll('.pill-button').forEach((btn) => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    });
     const btn = document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`);
-    if (btn) btn.classList.add('active');
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+    }
 
     applyFilters();
 }
 
 function shuffleSlides() {
     isShuffled = true;
-    document.getElementById('btn-shuffle')?.classList.add('active');
+    const btn = document.getElementById('btn-shuffle');
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+    }
     applyFilters();
 }
 
 function resetSequence() {
     isShuffled = false;
-    document.getElementById('btn-shuffle')?.classList.remove('active');
+    const btn = document.getElementById('btn-shuffle');
+    if (btn) {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    }
     applyFilters();
 }
 
@@ -685,16 +710,16 @@ export function init() {
             <div class="control-row">
                 <span class="control-label">Difficulty:</span>
                 <div class="pill-group">
-                    <button class="pill-button active" id="filterAll">All</button>
-                    <button class="pill-button" id="filterD1">D1 Only</button>
-                    <button class="pill-button" id="filterD2">D2 Only</button>
+                    <button class="pill-button active" id="filterAll" aria-pressed="true">All</button>
+                    <button class="pill-button" id="filterD1" aria-pressed="false">D1 Only</button>
+                    <button class="pill-button" id="filterD2" aria-pressed="false">D2 Only</button>
                 </div>
             </div>
             <div class="control-row">
                 <span class="control-label">Sequence:</span>
                 <div class="pill-group">
-                    <button class="action-button" id="btn-shuffle"><span>🔀</span> Shuffle</button>
-                    <button class="action-button" id="btn-reset-seq"><span>↩️</span> Reset</button>
+                    <button class="action-button" id="btn-shuffle" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                    <button class="action-button" id="btn-reset-seq"><span aria-hidden="true">↩️</span> Reset</button>
                 </div>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
                     <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">

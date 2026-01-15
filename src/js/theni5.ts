@@ -139,7 +139,11 @@ function updateUI() {
 function shuffleWords() {
     Utils.shuffleArray(activeWords);
     currentSlide = 0;
-    document.getElementById('shuffleBtn')?.classList.add('active');
+    const btn = document.getElementById('shuffleBtn');
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+    }
     renderSlide();
 }
 
@@ -152,7 +156,11 @@ function resetWords() {
 
     activeWords = rawWords.filter((w) => w.s >= start && w.s <= end);
     currentSlide = 0;
-    document.getElementById('shuffleBtn')?.classList.remove('active');
+    const btn = document.getElementById('shuffleBtn');
+    if (btn) {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    }
     renderSlide();
 }
 
@@ -191,8 +199,8 @@ export function initAll() {
             </div>
             <div class="control-row">
                 <span class="control-label">Actions:</span>
-                <button class="action-button" id="shuffleBtn"><span>🔀</span> Shuffle</button>
-                <button class="action-button" id="resetBtn"><span>↩️</span> Reset</button>
+                <button class="action-button" id="shuffleBtn" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                <button class="action-button" id="resetBtn"><span aria-hidden="true">↩️</span> Reset</button>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
                     <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85rem;">
                         <input type="checkbox" id="showTimer" checked> Timer (1m)

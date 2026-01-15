@@ -548,3 +548,39 @@ button.nav-btn {
         font-size: 0.85rem;
     }
 }
+
+/* --- Accessibility / Focus Styles --- */
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Fix for control header inside dark panel */
+.control-header:focus-visible {
+    outline: 2px solid white;
+    outline-offset: -2px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Interactive elements inside dark panels need lighter focus */
+.pill-button:focus-visible,
+.action-button:focus-visible,
+.dropdown-button:focus-visible,
+#apiKeyInput:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+/* Dropdown items */
+.dropdown-item:focus-visible {
+    background: #f0f0f0;
+    outline: 2px solid var(--primary);
+    outline-offset: -2px;
+}
+
+/* Links */
+a:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}

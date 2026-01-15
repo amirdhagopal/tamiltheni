@@ -18,15 +18,15 @@ export const Layout = {
     injectControlPanel: function (title: string, contentHTML: string): void {
         const panelStr = `
             <div class="control-panel" id="controlPanel">
-                <div class="control-header" onclick="document.getElementById('controlPanel').classList.toggle('collapsed')">
-                    <h3><span>⚙️</span> ${title}</h3>
-                    <span class="toggle-icon">▼</span>
+                <div class="control-header" role="button" tabindex="0" aria-expanded="false" aria-controls="controlContent" onclick="document.getElementById('controlPanel').classList.toggle('collapsed'); this.setAttribute('aria-expanded', !document.getElementById('controlPanel').classList.contains('collapsed'))" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); this.click(); }">
+                    <h3><span aria-hidden="true">⚙️</span> ${title}</h3>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
                 </div>
-                <div class="control-content">
+                <div class="control-content" id="controlContent">
                     ${contentHTML}
                     <div class="control-row" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
                         <a href="../index.html" class="action-button" style="text-decoration: none; background: rgba(255,255,255,0.1); width: 100%; justify-content: center;">
-                            <span>🏠</span> Back to Portal Home
+                            <span aria-hidden="true">🏠</span> Back to Portal Home
                         </a>
                     </div>
                 </div>
@@ -37,11 +37,13 @@ export const Layout = {
 
     injectCircularTimer: function (initialDisplay = '00:15'): void {
         const timerStr = `
-            <div class="circular-timer" id="timerPill" title="Study Timer">
-                <div class="timer-visual" id="timerPie"></div>
+            <div class="circular-timer" id="timerPill" role="region" aria-label="Study Timer">
+                <div class="timer-visual" id="timerPie" aria-hidden="true"></div>
                 <div class="timer-content">
-                    <span class="timer-display" id="timerDisplay">${initialDisplay}</span>
-                    <button class="timer-btn" id="timerBtn" title="Play/Pause">▶</button>
+                    <span class="timer-display" id="timerDisplay" aria-live="off">${initialDisplay}</span>
+                    <button class="timer-btn" id="timerBtn" aria-label="Play or Pause Timer">
+                        <span aria-hidden="true">▶</span>
+                    </button>
                 </div>
             </div>
         `;
@@ -50,12 +52,20 @@ export const Layout = {
 
     injectNavigation: function (): void {
         const navStr = `
-            <div class="navigation">
-                <button class="nav-btn" id="firstBtn" title="First Slide (Home)">⏮</button>
-                <button class="nav-btn" id="prevBtn" title="Previous Slide (←)">◀</button>
-                <span style="align-self: center; color: #757575; font-weight: 600; min-width: 80px; text-align: center;" id="counter"></span>
-                <button class="nav-btn" id="nextBtn" title="Next / Reveal (→, Space)">▶</button>
-                <button class="nav-btn" id="lastBtn" title="Last Slide (End)">⏭</button>
+            <div class="navigation" role="navigation" aria-label="Slide Navigation">
+                <button class="nav-btn" id="firstBtn" aria-label="First Slide">
+                    <span aria-hidden="true">⏮</span>
+                </button>
+                <button class="nav-btn" id="prevBtn" aria-label="Previous Slide">
+                    <span aria-hidden="true">◀</span>
+                </button>
+                <span style="align-self: center; color: #757575; font-weight: 600; min-width: 80px; text-align: center;" id="counter" aria-live="polite"></span>
+                <button class="nav-btn" id="nextBtn" aria-label="Next Slide">
+                    <span aria-hidden="true">▶</span>
+                </button>
+                <button class="nav-btn" id="lastBtn" aria-label="Last Slide">
+                    <span aria-hidden="true">⏭</span>
+                </button>
             </div>
         `;
         // Check if slide container exists to append to, otherwise append to body?

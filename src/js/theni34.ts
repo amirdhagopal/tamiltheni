@@ -130,6 +130,17 @@ function populateCategories() {
             toggleCategory(cat);
         });
 
+        // Keyboard support for dropdown item
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'checkbox');
+        item.setAttribute('aria-checked', 'true');
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleCategory(cat);
+            }
+        });
+
         list.appendChild(item);
     });
 
@@ -213,25 +224,44 @@ function applyFilters(resetToStart = true) {
 
 function filterDifficulty(difficulty: string) {
     currentFilter = difficulty;
-    document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
-    document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`)?.classList.add('active');
+    document.querySelectorAll('.pill-button').forEach((btn) => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    });
+    const diffBtn = document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`);
+    if (diffBtn) {
+        diffBtn.classList.add('active');
+        diffBtn.setAttribute('aria-pressed', 'true');
+    }
 
-    // Ensure active level button stays active
+    // Ensure active level button styles and ARIA are correct
+    // (Actually setTheniLevel re-renders logic or just updates state? Here we just update classes)
     const activeLevelBtn = document.getElementById(`level${currentLevel}`);
-    if (activeLevelBtn) activeLevelBtn.classList.add('active');
+    if (activeLevelBtn) {
+        activeLevelBtn.classList.add('active');
+        activeLevelBtn.setAttribute('aria-pressed', 'true');
+    }
 
     applyFilters();
 }
 
 function shuffleSlides() {
     isShuffled = true;
-    document.getElementById('btn-shuffle')?.classList.add('active');
+    const btn = document.getElementById('btn-shuffle');
+    if (btn) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+    }
     applyFilters();
 }
 
 function resetSequence() {
     isShuffled = false;
-    document.getElementById('btn-shuffle')?.classList.remove('active');
+    const btn = document.getElementById('btn-shuffle');
+    if (btn) {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    }
     applyFilters();
 }
 
@@ -263,17 +293,25 @@ function setTheniLevel(level: number) {
     const timerDuration = level === 4 ? config.timerDurations.theni4 || 15 : config.timerDurations.theni3 || 15;
 
     // Update Buttons
-    document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
+    document.querySelectorAll('.pill-button').forEach((btn) => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+    });
 
     // We should keep the currently selected filter active visually?
-    // The original code reset logic was a bit mixed.
     // Let's just activate the correct Level button
     const activeBtn = document.getElementById(`level${level}`);
-    if (activeBtn) activeBtn.classList.add('active');
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+        activeBtn.setAttribute('aria-pressed', 'true');
+    }
 
     // And ensure current difficulty filter button is also active
     const diffBtn = document.getElementById(`filter${currentFilter === 'all' ? 'All' : currentFilter}`);
-    if (diffBtn) diffBtn.classList.add('active');
+    if (diffBtn) {
+        diffBtn.classList.add('active');
+        diffBtn.setAttribute('aria-pressed', 'true');
+    }
 
     // Update Timer Label
     const timerLabel = document.getElementById('timerLabel');
@@ -389,8 +427,8 @@ export function init() {
             <div class="control-row">
                 <span class="control-label">Level:</span>
                 <div class="pill-group">
-                    <button class="pill-button active" id="level3">Theni 3</button>
-                    <button class="pill-button" id="level4">Theni 4</button>
+                    <button class="pill-button active" id="level3" aria-pressed="true">Theni 3</button>
+                    <button class="pill-button" id="level4" aria-pressed="false">Theni 4</button>
                 </div>
             </div>
             <div class="control-row">
@@ -412,16 +450,16 @@ export function init() {
             <div class="control-row">
                 <span class="control-label">Difficulty:</span>
                 <div class="pill-group">
-                    <button class="pill-button active" id="filterAll">All</button>
-                    <button class="pill-button" id="filterD1">D1 Only</button>
-                    <button class="pill-button" id="filterD2">D2 Only</button>
+                    <button class="pill-button active" id="filterAll" aria-pressed="true">All</button>
+                    <button class="pill-button" id="filterD1" aria-pressed="false">D1 Only</button>
+                    <button class="pill-button" id="filterD2" aria-pressed="false">D2 Only</button>
                 </div>
             </div>
             <div class="control-row">
                 <span class="control-label">Sequence:</span>
                 <div class="pill-group">
-                    <button class="action-button" id="btn-shuffle"><span>🔀</span> Shuffle</button>
-                    <button class="action-button" id="btn-reset-seq"><span>↩️</span> Reset</button>
+                    <button class="action-button" id="btn-shuffle" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                    <button class="action-button" id="btn-reset-seq"><span aria-hidden="true">↩️</span> Reset</button>
                 </div>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
                     <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
