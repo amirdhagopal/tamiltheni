@@ -1,4 +1,4 @@
-import"./pwa-DOeEgxuH.js";import{L as P,T as g,c as w,U as D}from"./config-C3I2BK1r.js";import{t as T}from"./theni_words-xXaqkVpm.js";let i=0,$=3,r="all",d=[],m=[],k=[],l=[],y=!1;function q(){const e=document.getElementById("slides-wrapper");e&&(e.innerHTML="",T.forEach((t,n)=>{const s=document.createElement("div");s.className=n===0?"slide active":"slide",s.id=`slide-${n}`;const a=t.sentence_en||t.word_en,o=t.sentence_ta||t.word_ta;s.innerHTML=`
+import"./pwa-DOeEgxuH.js";import{L as P,T as g,c as w,U as D}from"./config-DFT19Oel.js";import{t as T}from"./theni_words-xXaqkVpm.js";let i=0,$=3,r="all",d=[],m=[],k=[],l=[],y=!1;function q(){const e=document.getElementById("slides-wrapper");e&&(e.innerHTML="",T.forEach((t,n)=>{const s=document.createElement("div");s.className=n===0?"slide active":"slide",s.id=`slide-${n}`;const a=t.sentence_en||t.word_en,o=t.sentence_ta||t.word_ta;s.innerHTML=`
             <div class="slide-content">
                 <div class="slide-header">
                     <span class="category-badge">${t.category}</span>

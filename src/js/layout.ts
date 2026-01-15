@@ -108,12 +108,11 @@ export const Layout = {
                             <div class="shortcut-row"><kbd>End</kbd> / <kbd>]</kbd><span>Last slide</span></div>
                         </div>
                         <div class="shortcut-section">
-                            <h3>🎛️ Filters</h3>
-                            <div class="shortcut-row"><kbd>1</kbd><span>Filter D1 only</span></div>
-                            <div class="shortcut-row"><kbd>2</kbd><span>Filter D2 only</span></div>
-                            <div class="shortcut-row"><kbd>A</kbd><span>Show all difficulties</span></div>
+                            <h3>🎛️ Actions & Filters</h3>
+                            <div class="shortcut-row"><kbd>G</kbd><span>Generate Sentence (Theni 2)</span></div>
                             <div class="shortcut-row"><kbd>S</kbd><span>Shuffle slides</span></div>
                             <div class="shortcut-row"><kbd>R</kbd><span>Reset sequence</span></div>
+                            <div class="shortcut-row"><kbd>1</kbd> / <kbd>2</kbd> / <kbd>A</kbd><span>Filter D1 / D2 / All</span></div>
                         </div>
                         <div class="shortcut-section">
                             <h3>❓ Help & UI</h3>

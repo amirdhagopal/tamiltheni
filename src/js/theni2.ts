@@ -815,6 +815,7 @@ export function init() {
         if (e.key === 'a' || e.key === 'A') filterDifficulty('all');
         if (e.key === 's' || e.key === 'S') shuffleSlides();
         if (e.key === 'r' || e.key === 'R') resetSequence();
+        if (e.key === 'g' || e.key === 'G') generateSentence();
     });
 
     window.addEventListener('hashchange', handleHashChange);

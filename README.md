@@ -10,29 +10,33 @@ Visit the application at: https://amirdhagopal.github.io/tamiltheni/
 
 The app includes study modules for five competition categories:
 
-| Module          | Description                                         |
-| --------------- | --------------------------------------------------- |
-| **Theni 1**     | Tell the Tamil word for the picture shown           |
-| **Theni 2**     | Form a sentence using pictures (AI Powered)         |
-| **Theni 3 & 4** | Translate English sentences to Tamil                |
-| **Theni 5**     | Find word using clue words                          |
+| Module          | Description                                 |
+| --------------- | ------------------------------------------- |
+| **Theni 1**     | Tell the Tamil word for the picture shown   |
+| **Theni 2**     | Form a sentence using pictures (AI Powered) |
+| **Theni 3 & 4** | Translate English sentences to Tamil        |
+| **Theni 5**     | Find word using clue words                  |
 
 ## ⌨️ Keyboard Shortcuts
 
 The application supports global keyboard shortcuts for improved accessibility and navigation:
 
-| Key | Action |
-| --- | --- |
-| **?** | Show Keyboard Help Modal |
-| **C** | Toggle Control Panel |
-| **Esc** | Close Modal / Control Panel |
-| **H** | Go to Home Page |
-| **1 - 5** | Go to Theni 1-5 (Home Page) |
-| **Ctrl + 1-5** | Go to Theni 1-5 (Module Pages) |
-| **← / →** | Previous / Next Slide |
-| **Space / Enter** | Next Slide / Reveal |
-| **Home / [** | First Slide |
-| **End / ]** | Last Slide |
+| Key               | Action                         |
+| ----------------- | ------------------------------ |
+| **?**             | Show Keyboard Help Modal       |
+| **C**             | Toggle Control Panel           |
+| **Esc**           | Close Modal / Control Panel    |
+| **H**             | Go to Home Page                |
+| **1 - 5**         | Go to Theni 1-5 (Home Page)    |
+| **Ctrl + 1-5**    | Go to Theni 1-5 (Module Pages) |
+| **← / →**         | Previous / Next Slide          |
+| **Space / Enter** | Next Slide / Reveal            |
+| **Home / [**      | First Slide                    |
+| **End / ]**       | Last Slide                     |
+| **G**             | Generate Sentence (Theni 2)    |
+| **S**             | Shuffle Slides                 |
+| **R**             | Reset Sequence                 |
+| **A / 1 / 2**     | Filter All / D1 / D2           |
 
 ## 🚀 Running Locally
 

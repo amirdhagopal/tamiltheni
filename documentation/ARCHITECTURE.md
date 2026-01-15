@@ -121,14 +121,14 @@ The build process (`tsc && vite build`) transpiles this to optimized JavaScript 
 
 ### Shared Modules
 
-| Module             | Purpose                   | Key Exports          |
-| ------------------ | ------------------------- | -------------------- |
-| `config.ts`        | Centralized configuration | `config` object      |
-| `utils.ts`         | Utility functions         | `Utils` class        |
-| `layout.ts`        | UI component injection    | `Layout` class       |
-| `timer.ts`         | Countdown timer engine    | `Timer` class        |
-| `audio_manager.ts` | Text-to-Speech wrapper    | `AudioManager` class |
-| `gemini_service.ts`| AI API Integration        | `GeminiService` class|
+| Module              | Purpose                   | Key Exports           |
+| ------------------- | ------------------------- | --------------------- |
+| `config.ts`         | Centralized configuration | `config` object       |
+| `utils.ts`          | Utility functions         | `Utils` class         |
+| `layout.ts`         | UI component injection    | `Layout` class        |
+| `timer.ts`          | Countdown timer engine    | `Timer` class         |
+| `audio_manager.ts`  | Text-to-Speech wrapper    | `AudioManager` class  |
+| `gemini_service.ts` | AI API Integration        | `GeminiService` class |
 
 ---
 
