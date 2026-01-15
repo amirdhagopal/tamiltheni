@@ -47,9 +47,9 @@ TamilTheni is a Tamil language learning web application designed to help student
 
 The application must align with the official FETNA Tamil Theni competition format and word lists.
 
-| Attribute | Value          |
-| --------- | -------------- |
-| Priority  | Critical       |
+| Attribute | Value           |
+| --------- | --------------- |
+| Priority  | Critical        |
 | Status    | [x] Implemented |
 
 ### BR-002: Free and Accessible
@@ -59,7 +59,7 @@ The application must be freely accessible to all Tamil school students without r
 | Attribute      | Value                |
 | -------------- | -------------------- |
 | Priority       | Critical             |
-| Status         | [x] Implemented       |
+| Status         | [x] Implemented      |
 | Implementation | GitHub Pages hosting |
 
 ### BR-003: Five Competition Modules
@@ -73,9 +73,9 @@ The application must support all five categories of the Tamil Theni competition.
 | Theni 3 & 4 | English → Tamil Translation | Translate English sentences to Tamil               |
 | Theni 5     | Clue Words → Target Word    | Find the target word using clue words              |
 
-| Attribute | Value          |
-| --------- | -------------- |
-| Priority  | Critical       |
+| Attribute | Value           |
+| --------- | --------------- |
+| Priority  | Critical        |
 | Status    | [x] Implemented |
 
 ### BR-004: Difficulty Levels
@@ -87,27 +87,27 @@ The application must support two difficulty levels matching the competition stru
 | D1    | Easier words, suitable for younger students |
 | D2    | Advanced words, for older students          |
 
-| Attribute | Value          |
-| --------- | -------------- |
-| Priority  | High           |
+| Attribute | Value           |
+| --------- | --------------- |
+| Priority  | High            |
 | Status    | [x] Implemented |
 
 ### BR-005: Category Filtering
 
 Users must be able to filter content by word categories (Body Parts, Food, Animals, etc.).
 
-| Attribute | Value          |
-| --------- | -------------- |
-| Priority  | High           |
+| Attribute | Value           |
+| --------- | --------------- |
+| Priority  | High            |
 | Status    | [x] Implemented |
 
 ### BR-006: Progressive Web App (PWA)
 
 The application should be installable on mobile devices and work offline.
 
-| Attribute | Value          |
-| --------- | -------------- |
-| Priority  | Medium         |
+| Attribute | Value           |
+| --------- | --------------- |
+| Priority  | Medium          |
 | Status    | [x] Implemented |
 
 ---
@@ -456,8 +456,8 @@ The application should be installable on mobile devices and work offline.
 
 ## Issue Tracking (Resolved)
 
-| Issue                  | Description                        | Status                                   |
-| ---------------------- | ---------------------------------- | ---------------------------------------- |
+| Issue                  | Description                        | Status                                    |
+| ---------------------- | ---------------------------------- | ----------------------------------------- |
 | Theni 2 Display        | Words and images not showing       | [x] Fixed (malformed HTML template)       |
 | Consecutive Audio      | Audio not playing on slide changes | [x] Fixed                                 |
 | Browser Hung Processes | Test processes hanging             | [x] Fixed (process cleanup)               |
