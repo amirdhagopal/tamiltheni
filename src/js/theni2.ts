@@ -29,6 +29,7 @@ let isShuffled = false;
 let viewedPartners: Record<number, number> = {}; // Stores index -> partnerIndex mapping for persistence
 // sentenceCache moved to Agent
 const imageCache: Record<string, string> = {}; // Cache for images to avoid re-fetching
+const sentenceAgent = new SentenceConstructorAgent();
 
 // Timer state handled by Timer module
 
@@ -396,7 +397,6 @@ async function generateSentence() {
     resultTextEn!.textContent = '';
 
     try {
-        const sentenceAgent = new SentenceConstructorAgent();
         const json = await sentenceAgent.generateSentence(word1, word2, validKey);
         renderResult(json);
     } catch (e: unknown) {
