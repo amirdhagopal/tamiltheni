@@ -10,13 +10,19 @@ const PWAManager = {
             console.log('[PWA] Service workers not supported');
             return;
         }
-        // this.registerServiceWorker(); // Disabled: vite-plugin-pwa handles this
+        this.registerServiceWorker();
     },
 
     registerServiceWorker: function () {
-        const swUrl = `${import.meta.env.BASE_URL}sw.js`;
+        // Check if we are in a subdirectory (like /html/) to adjust relative paths
+        // This is robust for both root-served and base-served deployments using relative paths
+        const isHtmlSubdir = window.location.pathname.includes('/html/');
+        const pathPrefix = isHtmlSubdir ? '../' : './';
+        const swUrl = `${pathPrefix}sw.js`;
+
+        // Scope must also be adjusted to ensure the SW controls the whole app
         navigator.serviceWorker
-            .register(swUrl, { scope: import.meta.env.BASE_URL })
+            .register(swUrl, { scope: pathPrefix })
             .then((registration) => {
                 console.log('[PWA] SW registered:', registration.scope);
                 this.registration = registration;

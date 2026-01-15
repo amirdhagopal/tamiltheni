@@ -2,9 +2,10 @@
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig(({ command }) => ({
+export default defineConfig(({ command, isPreview }) => ({
     // When running from root with --config, root defaults to CWD (root).
-    base: command === 'build' ? '/tamiltheni/' : '/',
+    // Use relative paths to support both local preview at root and production deployment
+    base: './',
     build: {
         outDir: 'docs',
         emptyOutDir: true,
@@ -20,8 +21,10 @@ export default defineConfig(({ command }) => ({
     },
     plugins: [
         VitePWA({
-            registerType: 'autoUpdate',
-            includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
+            injectRegister: null, // Manual registration to handle relative paths correctly
+            manifestFilename: 'manifest.webmanifest',
+            // We specify the manifest content but disable injecting the link tag to HTML
+            // because vite-plugin-pwa doesn't handle subdirectories correctly with relative base
             manifest: {
                 name: 'TamilTheni - தமிழ்த்தேனி',
                 short_name: 'TamilTheni',
@@ -39,19 +42,24 @@ export default defineConfig(({ command }) => ({
                         type: 'image/png'
                     },
                     {
-                        src: 'assets/icons/icon-512.png',
+                        src: 'assets/icons/icon-maskable-512.png',
                         sizes: '512x512',
                         type: 'image/png',
-                        purpose: 'any maskable'
+                        purpose: 'maskable'
                     }
                 ]
             },
+            injectManifest: {
+                injectionPoint: undefined // Disable injection
+            },
             workbox: {
-                // We will refine this later if needed, but for now standard caching is fine
+                // Cache all static assets including images
                 globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+                // Exclude icons folder to prevent duplicate cache entries (icons are in manifest)
+                globIgnores: ['**/assets/icons/**'],
                 runtimeCaching: [
                     {
-                        urlPattern: ({ url }) => url.pathname.startsWith('/tamiltheni/images/'),
+                        urlPattern: ({ url }) => url.pathname.includes('/images/'),
                         handler: 'CacheFirst',
                         options: {
                             cacheName: 'images-cache',

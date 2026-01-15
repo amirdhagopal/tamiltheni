@@ -5,7 +5,8 @@
     "description": "Tamil language learning web application for the FETNA Tamil Theni competition",
     "scripts": {
         "dev": "vite --config config/vite.config.ts",
-        "build": "tsc && vite build --config config/vite.config.ts",
+        "build": "tsc && vite build --config config/vite.config.ts && npm run postbuild",
+        "postbuild": "sed -i '' 's/<link rel=\"manifest\" href=\"\\.\\/manifest\\.webmanifest\">//g' docs/html/*.html",
         "preview": "vite preview --config config/vite.config.ts",
         "lint": "eslint src/**/*.ts test/**/*.ts",
         "lint:fix": "eslint src/**/*.ts test/**/*.ts --fix",
@@ -14,7 +15,7 @@
         "test": "vitest -c config/vite.config.ts",
         "test:e2e": "playwright test --config config/playwright.config.ts",
         "test:e2e:ui": "playwright test --config config/playwright.config.ts --ui",
-        "check-all": "npm run format:check && npm run lint && npm run test -- --run && npm run test:e2e && npm run build"
+        "check-all": "npm run format:check && npm run lint && npm run test -- --run && npm run build && npm run test:e2e"
     },
     "keywords": [
         "tamil",

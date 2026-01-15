@@ -338,36 +338,19 @@ function fetchImage(word: string, imgElement: HTMLImageElement) {
         .replace(/[^a-zA-Z0-9 \-_]/g, '')
         .trim()
         .replace(/\s+/g, '_');
-    const localPath = `assets/images/theni12/${safeFilename}.jpg`; // Assuming path is still valid relative to build
+    const localPath = `assets/images/theni12/${safeFilename}.jpg`;
 
-    // Since we are checking if image exists via standard onerror, this logic remains okay.
-    // However, in Vite, assets handling is different if we want them hashed.
-    // For now, if images are in public/assets/images, this path works.
-    // If they are in src/assets/images, we need import.meta.glob or similar.
-    // Assuming they are in public/ for dynamic loading:
-
-    // Check if we need to adjust path for base url
-    // Check if we need to adjust path for base url
-    // console.log('DEBUG: BASE_URL:', import.meta.env.BASE_URL);
-    const finalPath = (import.meta.env?.BASE_URL || '') + localPath.replace(/^assets\//, 'assets/');
+    // Detect if we're in a subdirectory (like /html/) and adjust path accordingly
+    const isHtmlSubdir = window.location.pathname.includes('/html/');
+    const pathPrefix = isHtmlSubdir ? '../' : './';
+    const finalPath = pathPrefix + localPath;
 
     imgElement.onerror = function () {
         imgElement.onerror = null;
-        // Try fallback to relative path if absolute failed (helpful for some dev environments)
-        if (imgElement.src.includes(finalPath)) {
-            console.warn(`[ImageLoad] Failed absolute path: ${finalPath}. Retrying with relative...`);
-            imgElement.src = `../${localPath}`; // relative to html/ folder
-            return;
-        }
-
         console.warn(`Missing local image for: ${word} (${finalPath})`);
         imgElement.src = `https://placehold.co/400x300?text=${encodeURIComponent(word)}`;
     };
 
-    // To handle 'public' folder assets in Vite dev vs prod
-    // If in public/assets/..., just /assets/... works if root is set correctly.
-    // But localPath above includes 'assets/'.
-    // We use finalPath which relies on BASE_URL to be correct in all environments (dev/build).
     imgElement.src = finalPath;
 }
 

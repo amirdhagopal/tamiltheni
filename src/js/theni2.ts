@@ -597,18 +597,15 @@ function updateCard(cardNum: number, slide: HTMLDivElement) {
                 cardImg.src = imageCache[word];
             } else {
                 const localPath = `assets/images/theni12/${safeFilename}.jpg`;
-                const finalPath = (import.meta.env?.BASE_URL || '') + localPath;
+                // Detect if we're in a subdirectory (like /html/) and adjust path accordingly
+                const isHtmlSubdir = window.location.pathname.includes('/html/');
+                const pathPrefix = isHtmlSubdir ? '../' : './';
+                const finalPath = pathPrefix + localPath;
 
                 cardImg.src = finalPath;
 
                 cardImg.onerror = function () {
                     cardImg.onerror = null;
-                    // Try fallback to relative path if absolute failed
-                    if (cardImg.src.includes(finalPath)) {
-                        console.warn(`[ImageLoad] Failed absolute path: ${finalPath}. Retrying with relative...`);
-                        cardImg.src = `../${localPath}`; // relative to html/ folder
-                        return;
-                    }
                     cardImg.src = `https://placehold.co/300x180?text=${encodeURIComponent(wordEn)}`;
                 };
             }
