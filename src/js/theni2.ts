@@ -54,7 +54,7 @@ async function initApp() {
     if (window.location.hash) {
         handleHashChange();
     } else {
-        updateUI();
+        updateUI(false); // Audio disabled on primary load
     }
 
     // Attach AI Button Listener
@@ -475,7 +475,8 @@ function toggleAudio() {
     }
 }
 
-function updateUI() {
+// Update UI with current slide content
+function updateUI(shouldSpeak = true) {
     const aiResult = document.getElementById('aiResult');
     const aiText = document.getElementById('aiText');
     const aiTextEn = document.getElementById('aiTextEn');
@@ -540,7 +541,7 @@ function updateUI() {
 
     // Pronounce both words if audio is enabled
     // Call speech directly (no setTimeout) to maintain user gesture chain for strict browsers
-    if (audioEnabled) {
+    if (audioEnabled && shouldSpeak) {
         const word1 = slide1.querySelector('.word-en')?.textContent;
         const word2 = slide2.querySelector('.word-en')?.textContent;
         if (word1) {

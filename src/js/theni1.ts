@@ -731,7 +731,7 @@ export function init() {
     if (window.location.hash) {
         handleHashChange();
     } else {
-        updateUI(true); // Audio enabled on load
+        updateUI(false); // Audio disabled on initial load to prevent deprecation warning
     }
 }
 
