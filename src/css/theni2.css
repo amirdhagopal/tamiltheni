@@ -246,8 +246,10 @@
     border-radius: 12px;
     color: white;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -255,7 +257,7 @@
 
 .ai-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .ai-btn:active {
@@ -266,14 +268,14 @@
     flex: 1;
     min-width: 300px;
     padding: 15px 20px;
-    background: rgba(255,255,255,0.98);
+    background: rgba(255, 255, 255, 0.98);
     border-radius: 12px;
     display: none; /* Hidden by default */
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
     border: 1px solid rgba(118, 75, 162, 0.2);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Better shadow */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Better shadow */
     min-height: 50px;
     transition: all 0.3s ease;
 }

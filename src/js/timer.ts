@@ -29,7 +29,7 @@ export const Timer = {
         display: 'timerDisplay',
         pie: 'timerPie',
         checkbox: 'showTimer',
-        label: 'timerLabel' // Optional label to update text
+        label: 'timerLabel', // Optional label to update text
     } as TimerElements,
 
     init: function (duration = 15): void {
@@ -216,15 +216,17 @@ export const Timer = {
             if (this.audioCtx) {
                 const resumePromise = this.audioCtx.resume();
                 if (resumePromise) {
-                    resumePromise.then(() => {
-                        // Silent buffer to fully unlock
-                        if (!this.audioCtx) return;
-                        const silentBuffer = this.audioCtx.createBuffer(1, 1, 22050);
-                        const source = this.audioCtx.createBufferSource();
-                        source.buffer = silentBuffer;
-                        source.connect(this.audioCtx.destination);
-                        source.start(0);
-                    }).catch(console.warn);
+                    resumePromise
+                        .then(() => {
+                            // Silent buffer to fully unlock
+                            if (!this.audioCtx) return;
+                            const silentBuffer = this.audioCtx.createBuffer(1, 1, 22050);
+                            const source = this.audioCtx.createBufferSource();
+                            source.buffer = silentBuffer;
+                            source.connect(this.audioCtx.destination);
+                            source.start(0);
+                        })
+                        .catch(console.warn);
                 }
             }
             document.removeEventListener('click', unlock);
@@ -286,7 +288,7 @@ export const Timer = {
 
         notes.forEach((freq, i) => {
             if (!this.audioCtx) return;
-            const startTime = this.audioCtx.currentTime + (i * noteDelay);
+            const startTime = this.audioCtx.currentTime + i * noteDelay;
             const osc = this.audioCtx.createOscillator();
             const gain = this.audioCtx.createGain();
 
@@ -316,5 +318,5 @@ export const Timer = {
             osc2.start(startTime);
             osc2.stop(startTime + noteDuration);
         });
-    }
+    },
 };

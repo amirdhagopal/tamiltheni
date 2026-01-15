@@ -1,1 +1,75 @@
-if(!self.define){let s,e={};const i=(i,n)=>(i=new URL(i+".js",n).href,e[i]||new Promise(e=>{if("document"in self){const s=document.createElement("script");s.src=i,s.onload=e,document.head.appendChild(s)}else s=i,importScripts(i),e()}).then(()=>{let s=e[i];if(!s)throw new Error(`Module ${i} didn’t register its module`);return s}));self.define=(n,l)=>{const r=s||("document"in self?document.currentScript.src:"")||location.href;if(e[r])return;let t={};const a=s=>i(s,r),o={module:{uri:r},exports:t,require:a};e[r]=Promise.all(n.map(s=>o[s]||a(s))).then(s=>(l(...s),t))}}define(["./workbox-66610c77"],function(s){"use strict";self.skipWaiting(),s.clientsClaim(),s.precacheAndRoute([{url:"registerSW.js",revision:"d2abcf52fa7b2f334eb78b6c427fcb14"},{url:"manifest.json",revision:"e341acbda29764eed76c05ae09938fdf"},{url:"index.html",revision:"e6c0222bf701baa98a09392a77fbce68"},{url:"html/theni5.html",revision:"e7789377e2ad7d994066f4b1a5c18461"},{url:"html/theni34.html",revision:"fe6db80e27d2fc8a04a5900af381c717"},{url:"html/theni2.html",revision:"f5fa12d66e8711c112fd9aadf893f565"},{url:"html/theni1.html",revision:"23742c639d2524cdac8ffa7918f395d9"},{url:"assets/theni_words-xXaqkVpm.js",revision:null},{url:"assets/theni5-LovdsnQj.css",revision:null},{url:"assets/theni5-BnQQ7RAX.js",revision:null},{url:"assets/theni34-D2WX7B5Z.css",revision:null},{url:"assets/theni34-CdQ4tjyw.js",revision:null},{url:"assets/theni2-BvH-ZBpb.css",revision:null},{url:"assets/theni2-BniaxHXK.js",revision:null},{url:"assets/theni1-Dcx6bZbe.js",revision:null},{url:"assets/theni1-BTNRySTu.css",revision:null},{url:"assets/pwa-DOeEgxuH.js",revision:null},{url:"assets/pwa-CyULuHxC.css",revision:null},{url:"assets/index-DEJB2RZ_.css",revision:null},{url:"assets/config-U83h9fBs.js",revision:null},{url:"assets/config-BHSFEdW1.css",revision:null},{url:"assets/audio_manager-C32Gx6Zs.js",revision:null},{url:"assets/icons/icon-maskable-512.png",revision:null},{url:"assets/icons/icon-512.png",revision:null},{url:"assets/icons/icon-192.png",revision:null},{url:"assets/icons/icon-192.png",revision:"0efc0fa15e5a6628cfab3b00fa0fc474"},{url:"assets/icons/icon-512.png",revision:"2ecf115799506333f85a3a94b2b3e76a"},{url:"assets/icons/icon-maskable-512.png",revision:"2ecf115799506333f85a3a94b2b3e76a"},{url:"manifest.webmanifest",revision:"feb827409245fd2f274fc0fd78e00dca"}],{}),s.cleanupOutdatedCaches(),s.registerRoute(new s.NavigationRoute(s.createHandlerBoundToURL("index.html"))),s.registerRoute(({url:s})=>s.pathname.startsWith("/tamiltheni/images/"),new s.CacheFirst({cacheName:"images-cache",plugins:[new s.ExpirationPlugin({maxEntries:100,maxAgeSeconds:2592e3})]}),"GET")});
+if (!self.define) {
+    let s,
+        e = {};
+    const i = (i, n) => (
+        (i = new URL(i + '.js', n).href),
+        e[i] ||
+            new Promise((e) => {
+                if ('document' in self) {
+                    const s = document.createElement('script');
+                    ((s.src = i), (s.onload = e), document.head.appendChild(s));
+                } else ((s = i), importScripts(i), e());
+            }).then(() => {
+                let s = e[i];
+                if (!s) throw new Error(`Module ${i} didn’t register its module`);
+                return s;
+            })
+    );
+    self.define = (n, l) => {
+        const r = s || ('document' in self ? document.currentScript.src : '') || location.href;
+        if (e[r]) return;
+        let t = {};
+        const a = (s) => i(s, r),
+            o = { module: { uri: r }, exports: t, require: a };
+        e[r] = Promise.all(n.map((s) => o[s] || a(s))).then((s) => (l(...s), t));
+    };
+}
+define(['./workbox-66610c77'], function (s) {
+    'use strict';
+    (self.skipWaiting(),
+        s.clientsClaim(),
+        s.precacheAndRoute(
+            [
+                { url: 'registerSW.js', revision: 'd2abcf52fa7b2f334eb78b6c427fcb14' },
+                { url: 'manifest.json', revision: 'e341acbda29764eed76c05ae09938fdf' },
+                { url: 'index.html', revision: 'e6c0222bf701baa98a09392a77fbce68' },
+                { url: 'html/theni5.html', revision: 'e7789377e2ad7d994066f4b1a5c18461' },
+                { url: 'html/theni34.html', revision: 'fe6db80e27d2fc8a04a5900af381c717' },
+                { url: 'html/theni2.html', revision: 'f5fa12d66e8711c112fd9aadf893f565' },
+                { url: 'html/theni1.html', revision: '23742c639d2524cdac8ffa7918f395d9' },
+                { url: 'assets/theni_words-xXaqkVpm.js', revision: null },
+                { url: 'assets/theni5-LovdsnQj.css', revision: null },
+                { url: 'assets/theni5-BnQQ7RAX.js', revision: null },
+                { url: 'assets/theni34-D2WX7B5Z.css', revision: null },
+                { url: 'assets/theni34-CdQ4tjyw.js', revision: null },
+                { url: 'assets/theni2-BvH-ZBpb.css', revision: null },
+                { url: 'assets/theni2-BniaxHXK.js', revision: null },
+                { url: 'assets/theni1-Dcx6bZbe.js', revision: null },
+                { url: 'assets/theni1-BTNRySTu.css', revision: null },
+                { url: 'assets/pwa-DOeEgxuH.js', revision: null },
+                { url: 'assets/pwa-CyULuHxC.css', revision: null },
+                { url: 'assets/index-DEJB2RZ_.css', revision: null },
+                { url: 'assets/config-U83h9fBs.js', revision: null },
+                { url: 'assets/config-BHSFEdW1.css', revision: null },
+                { url: 'assets/audio_manager-C32Gx6Zs.js', revision: null },
+                { url: 'assets/icons/icon-maskable-512.png', revision: null },
+                { url: 'assets/icons/icon-512.png', revision: null },
+                { url: 'assets/icons/icon-192.png', revision: null },
+                { url: 'assets/icons/icon-192.png', revision: '0efc0fa15e5a6628cfab3b00fa0fc474' },
+                { url: 'assets/icons/icon-512.png', revision: '2ecf115799506333f85a3a94b2b3e76a' },
+                { url: 'assets/icons/icon-maskable-512.png', revision: '2ecf115799506333f85a3a94b2b3e76a' },
+                { url: 'manifest.webmanifest', revision: 'feb827409245fd2f274fc0fd78e00dca' },
+            ],
+            {}
+        ),
+        s.cleanupOutdatedCaches(),
+        s.registerRoute(new s.NavigationRoute(s.createHandlerBoundToURL('index.html'))),
+        s.registerRoute(
+            ({ url: s }) => s.pathname.startsWith('/tamiltheni/images/'),
+            new s.CacheFirst({
+                cacheName: 'images-cache',
+                plugins: [new s.ExpirationPlugin({ maxEntries: 100, maxAgeSeconds: 2592e3 })],
+            }),
+            'GET'
+        ));
+});

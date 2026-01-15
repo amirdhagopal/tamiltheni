@@ -15,8 +15,9 @@ const PWAManager = {
 
     registerServiceWorker: function () {
         const swUrl = `${import.meta.env.BASE_URL}sw.js`;
-        navigator.serviceWorker.register(swUrl, { scope: import.meta.env.BASE_URL })
-            .then(registration => {
+        navigator.serviceWorker
+            .register(swUrl, { scope: import.meta.env.BASE_URL })
+            .then((registration) => {
                 console.log('[PWA] SW registered:', registration.scope);
                 this.registration = registration;
 
@@ -39,7 +40,7 @@ const PWAManager = {
                     };
                 };
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error('[PWA] SW registration failed:', error);
             });
 
@@ -57,7 +58,8 @@ const PWAManager = {
         const notification = document.createElement('div');
         notification.id = 'pwa-update-notification';
         notification.className = 'pwa-update-banner'; // Ensure CSS exists for this or add inline
-        notification.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 15px; border-radius: 8px; z-index: 9999; display: flex; gap: 10px; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);';
+        notification.style.cssText =
+            'position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 15px; border-radius: 8px; z-index: 9999; display: flex; gap: 10px; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);';
 
         notification.innerHTML = `
             <span>🔄 New version available!</span>
@@ -78,7 +80,7 @@ const PWAManager = {
         document.getElementById('pwa-dismiss')?.addEventListener('click', () => {
             notification.remove();
         });
-    }
+    },
 };
 
 // Auto-init on DOM ready

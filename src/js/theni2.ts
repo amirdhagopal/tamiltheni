@@ -89,10 +89,13 @@ function generateSlides() {
     filteredSlides = [...allSlides];
 }
 
-
 function getSafeFilename(word: string) {
     if (!word) return '';
-    return word.replace(/[^a-zA-Z0-9 \-_]/g, '').trim().replace(/\s+/g, '_').toLowerCase();
+    return word
+        .replace(/[^a-zA-Z0-9 \-_]/g, '')
+        .trim()
+        .replace(/\s+/g, '_')
+        .toLowerCase();
 }
 
 // --- Logic Functions ---
@@ -112,7 +115,7 @@ function toggleDropdown(event: Event) {
 
 function populateCategories() {
     const catMap = new Map();
-    allSlides.forEach(slide => {
+    allSlides.forEach((slide) => {
         const en = slide.querySelector('.category-badge')?.textContent;
         const ta = slide.querySelector('.category-badge-ta')?.textContent;
         const key = `${en} - ${ta} `;
@@ -127,7 +130,7 @@ function populateCategories() {
     const list = document.getElementById('categoryList');
     if (list) {
         list.innerHTML = '';
-        availableCategories.forEach(cat => {
+        availableCategories.forEach((cat) => {
             const item = document.createElement('div');
             item.className = 'dropdown-item';
 
@@ -142,8 +145,14 @@ function populateCategories() {
             item.appendChild(checkbox);
             item.appendChild(label);
 
-            item.addEventListener('click', (e) => { e.stopPropagation(); toggleCategory(cat); });
-            checkbox.addEventListener('click', (e) => { e.stopPropagation(); toggleCategory(cat); }); // prevent bubbling twice if needed
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleCategory(cat);
+            });
+            checkbox.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleCategory(cat);
+            }); // prevent bubbling twice if needed
 
             list.appendChild(item);
         });
@@ -210,13 +219,13 @@ function updateCategoryText() {
 }
 
 function applyFilters(resetToStart = true) {
-    filteredSlides = allSlides.filter(slide => {
+    filteredSlides = allSlides.filter((slide) => {
         const diffBadge = slide.querySelector('.difficulty-badge')?.textContent;
         const catBadge = slide.querySelector('.category-badge')?.textContent;
         const catBadgeTa = slide.querySelector('.category-badge-ta')?.textContent;
         const catKey = `${catBadge} - ${catBadgeTa} `;
 
-        const difficultyMatch = (currentFilter === 'all' || diffBadge === currentFilter);
+        const difficultyMatch = currentFilter === 'all' || diffBadge === currentFilter;
         const categoryMatch = selectedCategories.includes(catKey);
 
         return difficultyMatch && categoryMatch;
@@ -239,7 +248,7 @@ function filterDifficulty(difficulty: string) {
     currentFilter = difficulty;
 
     // Update button states
-    document.querySelectorAll('.pill-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
     const btn = document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty} `);
     if (btn) btn.classList.add('active');
 
@@ -257,16 +266,19 @@ function resetSequence() {
 }
 
 function updateProgress() {
-    const currentFilteredD1 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D1').length;
-    const currentFilteredD2 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D2').length;
+    const currentFilteredD1 = filteredSlides.filter(
+        (s) => s.querySelector('.difficulty-badge')?.textContent === 'D1'
+    ).length;
+    const currentFilteredD2 = filteredSlides.filter(
+        (s) => s.querySelector('.difficulty-badge')?.textContent === 'D2'
+    ).length;
 
     const filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
     const shuffleText = isShuffled ? ' (Shuffled)' : '';
 
     const progressInfo = document.getElementById('progressInfo');
     if (progressInfo) {
-        progressInfo.textContent =
-            `${filteredSlides.length === 0 ? 0 : currentSlide + 1}/${filteredSlides.length} slides - Filter: ${filterText}${shuffleText} (Matches: D1=${currentFilteredD1}, D2=${currentFilteredD2})`;
+        progressInfo.textContent = `${filteredSlides.length === 0 ? 0 : currentSlide + 1}/${filteredSlides.length} slides - Filter: ${filterText}${shuffleText} (Matches: D1=${currentFilteredD1}, D2=${currentFilteredD2})`;
     }
 }
 
@@ -276,7 +288,7 @@ function saveApiKey(key: string) {
     const status = document.getElementById('keyStatus');
     if (status) {
         status.style.display = 'inline';
-        setTimeout(() => status.style.display = 'none', 3000);
+        setTimeout(() => (status.style.display = 'none'), 3000);
     }
 }
 
@@ -350,13 +362,16 @@ async function generateSentence() {
     IMPORTANT: Use the exact Tamil words provided. Keep it simple.`;
 
     try {
-        const response = await fetch(`${config.gemini.baseUrl}/${config.gemini.defaultModel}:generateContent?key=${validKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{ parts: [{ text: prompt }] }]
-            })
-        });
+        const response = await fetch(
+            `${config.gemini.baseUrl}/${config.gemini.defaultModel}:generateContent?key=${validKey}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                }),
+            }
+        );
 
         const data = await response.json();
 
@@ -377,14 +392,12 @@ async function generateSentence() {
         } else {
             throw new Error('No response text');
         }
-
     } catch (e: unknown) {
         const errorMessage = e instanceof Error ? e.message : 'Unknown error';
         console.error('AI Error:', e);
         alert('Error generating sentence: ' + errorMessage);
         // Restore UI state
         if (resultDiv) resultDiv.style.display = 'none';
-
     } finally {
         if (aiBtn) {
             aiBtn.disabled = false;
@@ -405,7 +418,6 @@ async function generateSentence() {
         }
     }
 }
-
 
 function toggleAudio() {
     const audioCheckbox = document.getElementById('audioToggle') as HTMLInputElement;
@@ -553,8 +565,10 @@ function updateCard(cardNum: number, slide: HTMLDivElement) {
         if (document.getElementById(prefix + 'En')) document.getElementById(prefix + 'En')!.textContent = wordEn;
         if (document.getElementById(prefix + 'Ta')) document.getElementById(prefix + 'Ta')!.textContent = wordTa;
         if (document.getElementById(prefix + 'Cat')) document.getElementById(prefix + 'Cat')!.textContent = category;
-        if (document.getElementById(prefix + 'CatTa')) document.getElementById(prefix + 'CatTa')!.textContent = categoryTa;
-        if (document.getElementById(prefix + 'Diff')) document.getElementById(prefix + 'Diff')!.textContent = difficulty;
+        if (document.getElementById(prefix + 'CatTa'))
+            document.getElementById(prefix + 'CatTa')!.textContent = categoryTa;
+        if (document.getElementById(prefix + 'Diff'))
+            document.getElementById(prefix + 'Diff')!.textContent = difficulty;
 
         // Load image
         const cardImg = document.getElementById(prefix + 'Img') as HTMLImageElement;
@@ -633,7 +647,7 @@ function handleHashChange() {
     const hash = window.location.hash.substring(1);
     const targetSlideId = `slide-${parseInt(hash) - 1}`;
 
-    const index = filteredSlides.findIndex(s => s.id === targetSlideId);
+    const index = filteredSlides.findIndex((s) => s.id === targetSlideId);
     if (index !== -1) {
         currentSlide = index;
         updateUI();
@@ -648,7 +662,7 @@ function handleHashChange() {
 export function init() {
     // 1. Layout Init
     Layout.init({
-        title: "பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 2",
+        title: 'பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 2',
         contentHTML: `
             <div class="control-row">
                 <span class="control-label">Categories:</span>
@@ -700,8 +714,8 @@ export function init() {
                 </div>
             </div>
         `,
-        timerDisplay: "00:20",
-        injectNavigation: true
+        timerDisplay: '00:20',
+        injectNavigation: true,
     });
 
     // 2. Attach Listeners
@@ -718,12 +732,26 @@ export function init() {
     document.getElementById('showTimer')?.addEventListener('change', Timer.toggleVisibility.bind(Timer));
     document.getElementById('audioToggle')?.addEventListener('change', toggleAudio);
 
-    document.getElementById('firstBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToFirst(); });
-    document.getElementById('prevBtn')?.addEventListener('click', (e) => { e.stopPropagation(); changeSlide(-1); });
-    document.getElementById('nextBtn')?.addEventListener('click', (e) => { e.stopPropagation(); handleNextAction(); });
-    document.getElementById('lastBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToLast(); });
+    document.getElementById('firstBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToFirst();
+    });
+    document.getElementById('prevBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeSlide(-1);
+    });
+    document.getElementById('nextBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleNextAction();
+    });
+    document.getElementById('lastBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToLast();
+    });
 
-    document.getElementById('apiKeyInput')?.addEventListener('change', (e) => saveApiKey((e.target as HTMLInputElement).value));
+    document
+        .getElementById('apiKeyInput')
+        ?.addEventListener('change', (e) => saveApiKey((e.target as HTMLInputElement).value));
     document.getElementById('aiBtn')?.addEventListener('click', generateSentence);
 
     // Global Click Listener for Dropdowns

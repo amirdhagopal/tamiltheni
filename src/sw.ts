@@ -37,17 +37,15 @@ const APP_SHELL = [
     './assets/data/theni5_words.js',
     './assets/icons/icon-192.png',
     './assets/icons/icon-512.png',
-    './manifest.json'
+    './manifest.json',
 ];
-
-
-
 
 // Install event - cache app shell
 self.addEventListener('install', ((event: ExtendableEvent) => {
     console.log('[SW] Installing service worker...');
     event.waitUntil(
-        caches.open(CACHE_NAME)
+        caches
+            .open(CACHE_NAME)
             .then((cache) => {
                 console.log('[SW] Caching app shell...');
                 return cache.addAll(APP_SHELL);
@@ -66,7 +64,8 @@ self.addEventListener('install', ((event: ExtendableEvent) => {
 self.addEventListener('activate', ((event: ExtendableEvent) => {
     console.log('[SW] Activating service worker...');
     event.waitUntil(
-        caches.keys()
+        caches
+            .keys()
             .then((cacheNames) => {
                 return Promise.all(
                     cacheNames
@@ -103,10 +102,12 @@ self.addEventListener('fetch', ((event: FetchEvent) => {
         event.respondWith(
             caches.open(CACHE_NAME).then((cache) => {
                 return cache.match(event.request).then((cachedResponse) => {
-                    const fetchPromise = fetch(event.request).then((networkResponse) => {
-                        cache.put(event.request, networkResponse.clone());
-                        return networkResponse;
-                    }).catch(() => cachedResponse);
+                    const fetchPromise = fetch(event.request)
+                        .then((networkResponse) => {
+                            cache.put(event.request, networkResponse.clone());
+                            return networkResponse;
+                        })
+                        .catch(() => cachedResponse);
 
                     return cachedResponse || fetchPromise;
                 });
@@ -143,35 +144,34 @@ self.addEventListener('fetch', ((event: FetchEvent) => {
 
     // Default strategy: cache-first for app shell
     event.respondWith(
-        caches.match(event.request)
-            .then((cachedResponse) => {
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
+        caches.match(event.request).then((cachedResponse) => {
+            if (cachedResponse) {
+                return cachedResponse;
+            }
 
-                // Not in cache, fetch from network
-                return fetch(event.request)
-                    .then((response) => {
-                        // Don't cache non-successful responses
-                        if (!response || response.status !== 200 || response.type !== 'basic') {
-                            return response;
-                        }
-
-                        // Cache the fetched resource
-                        const responseClone = response.clone();
-                        caches.open(CACHE_NAME).then((cache) => {
-                            cache.put(event.request, responseClone);
-                        });
-
+            // Not in cache, fetch from network
+            return fetch(event.request)
+                .then((response) => {
+                    // Don't cache non-successful responses
+                    if (!response || response.status !== 200 || response.type !== 'basic') {
                         return response;
-                    })
-                    .catch(() => {
-                        // If both cache and network fail, show offline page
-                        if (event.request.destination === 'document') {
-                            return caches.match('./index.html');
-                        }
+                    }
+
+                    // Cache the fetched resource
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseClone);
                     });
-            })
+
+                    return response;
+                })
+                .catch(() => {
+                    // If both cache and network fail, show offline page
+                    if (event.request.destination === 'document') {
+                        return caches.match('./index.html');
+                    }
+                });
+        })
     );
 }) as EventListener);
 

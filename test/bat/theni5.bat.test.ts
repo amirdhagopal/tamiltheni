@@ -26,8 +26,8 @@ vi.mock('../../src/js/layout', () => ({
             const surface = document.createElement('div');
             surface.id = 'slide-surface';
             document.body.appendChild(surface);
-        })
-    }
+        }),
+    },
 }));
 
 vi.mock('../../src/js/timer', () => ({
@@ -36,16 +36,16 @@ vi.mock('../../src/js/timer', () => ({
         toggleVisibility: vi.fn(),
         restart: vi.fn(),
         pause: vi.fn(),
-        setDuration: vi.fn()
-    }
+        setDuration: vi.fn(),
+    },
 }));
 
 // Mock Utils to avoid random shuffling during test unless needed
 vi.mock('../../src/js/utils', () => ({
     Utils: {
         updateProgress: vi.fn(),
-        shuffleArray: vi.fn((arr) => arr)
-    }
+        shuffleArray: vi.fn((arr) => arr),
+    },
 }));
 
 describe('Theni 5 BAT', () => {

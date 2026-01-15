@@ -92,7 +92,7 @@
 
 /* Inline Mic Button - hidden by default until Voice toggle is enabled */
 .mic-button-inline {
-    background-color: #2196F3;
+    background-color: #2196f3;
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -110,7 +110,7 @@
 
 .mic-button-inline:hover {
     transform: scale(1.1);
-    background-color: #1976D2;
+    background-color: #1976d2;
 }
 
 .mic-button-inline.recording {

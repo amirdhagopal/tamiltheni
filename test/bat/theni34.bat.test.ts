@@ -22,8 +22,8 @@ vi.mock('../../src/js/layout', () => ({
             const wrapper = document.createElement('div');
             wrapper.id = 'slides-wrapper';
             document.body.appendChild(wrapper);
-        })
-    }
+        }),
+    },
 }));
 
 // We need to spy on Timer.init to verify the duration passed
@@ -33,16 +33,16 @@ vi.mock('../../src/js/timer', () => ({
         toggleVisibility: vi.fn(),
         restart: vi.fn(),
         pause: vi.fn(),
-        setDuration: vi.fn() // Only used in Theni 5? Maybe used internally? Theni 34 uses Timer.init(duration) or setDuration?
+        setDuration: vi.fn(), // Only used in Theni 5? Maybe used internally? Theni 34 uses Timer.init(duration) or setDuration?
         // In Theni 34 script: `Timer.init(15)` and `Timer.setDuration(40)` if switching or re-init?
         // Let's check logic: setTheniLevel calls Timer.init or config?
-    }
+    },
 }));
 
 vi.mock('../../src/js/audio_manager', () => ({
     AudioManager: {
-        speak: vi.fn()
-    }
+        speak: vi.fn(),
+    },
 }));
 
 describe('Theni 3 & 4 BAT', () => {
@@ -66,7 +66,7 @@ describe('Theni 3 & 4 BAT', () => {
     it('should switch to Theni 4 and set timer to 40s', () => {
         init();
 
-        // This clears the initial init(15) call expectation potentially, 
+        // This clears the initial init(15) call expectation potentially,
         // but we are checking subsequent calls.
 
         // Click Level 4

@@ -4,14 +4,18 @@ import { AudioManager } from './audio_manager';
 import { Layout } from './layout';
 import { config } from './config';
 import theniWords from '../data/theni_words.json';
-import { Word, SpeechRecognitionInstance, SpeechRecognitionEventResult, SpeechRecognitionErrorEventResult } from '../types';
+import {
+    Word,
+    SpeechRecognitionInstance,
+    SpeechRecognitionEventResult,
+    SpeechRecognitionErrorEventResult,
+} from '../types';
 
 // State variables
 let currentSlide = 0;
 let audioEnabled = true;
 let voiceEnabled = false;
 let audioTimeout: ReturnType<typeof setTimeout> | null = null;
-
 
 // Filter and sequence state
 let currentFilter = 'all';
@@ -42,7 +46,7 @@ if (SpeechRecognitionClass) {
     recognition.onerror = (event: SpeechRecognitionErrorEventResult) => {
         if (event.error !== 'no-speech') {
             console.error('Speech recognition error:', event.error);
-            showFeedback("Error: " + event.error, "error");
+            showFeedback('Error: ' + event.error, 'error');
         }
         stopRecording();
     };
@@ -128,7 +132,7 @@ function toggleDropdown(event: Event) {
 // Category Management
 function populateCategories() {
     const catMap = new Map();
-    allSlides.forEach(slide => {
+    allSlides.forEach((slide) => {
         const en = slide.querySelector('.category-badge')?.textContent;
         const ta = slide.querySelector('.category-badge-ta')?.textContent;
         const key = `${en} - ${ta} `;
@@ -144,7 +148,7 @@ function populateCategories() {
     if (!list) return;
     list.innerHTML = '';
 
-    availableCategories.forEach(cat => {
+    availableCategories.forEach((cat) => {
         const item = document.createElement('div');
         item.className = 'dropdown-item';
 
@@ -233,13 +237,13 @@ function updateCategoryText() {
 }
 
 function applyFilters(resetToStart = true) {
-    filteredSlides = allSlides.filter(slide => {
+    filteredSlides = allSlides.filter((slide) => {
         const diffBadge = slide.querySelector('.difficulty-badge')?.textContent;
         const catBadge = slide.querySelector('.category-badge')?.textContent;
         const catBadgeTa = slide.querySelector('.category-badge-ta')?.textContent;
         const catKey = `${catBadge} - ${catBadgeTa} `;
 
-        const difficultyMatch = (currentFilter === 'all' || diffBadge === currentFilter);
+        const difficultyMatch = currentFilter === 'all' || diffBadge === currentFilter;
         const categoryMatch = selectedCategories.includes(catKey);
 
         return difficultyMatch && categoryMatch;
@@ -256,7 +260,7 @@ function applyFilters(resetToStart = true) {
 
 function filterDifficulty(difficulty: string) {
     currentFilter = difficulty;
-    document.querySelectorAll('.pill-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
     document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty} `)?.classList.add('active');
     applyFilters();
 }
@@ -272,8 +276,12 @@ function resetSequence() {
 }
 
 function updateProgressInfo() {
-    const currentFilteredD1 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D1').length;
-    const currentFilteredD2 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D2').length;
+    const currentFilteredD1 = filteredSlides.filter(
+        (s) => s.querySelector('.difficulty-badge')?.textContent === 'D1'
+    ).length;
+    const currentFilteredD2 = filteredSlides.filter(
+        (s) => s.querySelector('.difficulty-badge')?.textContent === 'D2'
+    ).length;
 
     const filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
     const shuffleText = isShuffled ? ' (Shuffled)' : '';
@@ -287,11 +295,14 @@ function updateProgressInfo() {
 function fetchImage(word: string, imgElement: HTMLImageElement) {
     if (!word) return;
 
-    const safeFilename = word.replace(/[^a-zA-Z0-9 \-_]/g, '').trim().replace(/\s+/g, '_');
+    const safeFilename = word
+        .replace(/[^a-zA-Z0-9 \-_]/g, '')
+        .trim()
+        .replace(/\s+/g, '_');
     const localPath = `assets/images/theni12/${safeFilename}.jpg`; // Assuming path is still valid relative to build
 
     // Since we are checking if image exists via standard onerror, this logic remains okay.
-    // However, in Vite, assets handling is different if we want them hashed. 
+    // However, in Vite, assets handling is different if we want them hashed.
     // For now, if images are in public/assets/images, this path works.
     // If they are in src/assets/images, we need import.meta.glob or similar.
     // Assuming they are in public/ for dynamic loading:
@@ -316,7 +327,7 @@ function fetchImage(word: string, imgElement: HTMLImageElement) {
 
     // To handle 'public' folder assets in Vite dev vs prod
     // If in public/assets/..., just /assets/... works if root is set correctly.
-    // But localPath above includes 'assets/'. 
+    // But localPath above includes 'assets/'.
     // We use finalPath which relies on BASE_URL to be correct in all environments (dev/build).
     imgElement.src = finalPath;
 }
@@ -324,7 +335,7 @@ function fetchImage(word: string, imgElement: HTMLImageElement) {
 // Voice Recognition
 function toggleVoiceRecognition() {
     if (!recognition) {
-        alert("Speech recognition is not supported in this browser.");
+        alert('Speech recognition is not supported in this browser.');
         return;
     }
     if (isRecording) {
@@ -343,9 +354,9 @@ function startRecording() {
         const micBtn = currentElement?.querySelector('.mic-button-inline');
         if (micBtn) {
             micBtn.classList.add('recording');
-            micBtn.setAttribute('title', "Voice Validation is ACTIVE - Click to Stop Listening");
+            micBtn.setAttribute('title', 'Voice Validation is ACTIVE - Click to Stop Listening');
         }
-        showFeedback("Listening for Tamil...", "success");
+        showFeedback('Listening for Tamil...', 'success');
     } catch (e) {
         console.error('Recognition start error:', e);
     }
@@ -356,9 +367,9 @@ function stopRecording() {
         recognition.stop();
     }
     isRecording = false;
-    document.querySelectorAll('.mic-button-inline.recording').forEach(btn => {
+    document.querySelectorAll('.mic-button-inline.recording').forEach((btn) => {
         btn.classList.remove('recording');
-        btn.setAttribute('title', "Voice Validation - Click to Start Listening");
+        btn.setAttribute('title', 'Voice Validation - Click to Start Listening');
     });
 }
 
@@ -366,17 +377,25 @@ function validateVoiceResult(spokenText: string) {
     const currentElement = filteredSlides[currentSlide];
     if (!currentElement) return;
 
-    const targetText = currentElement.querySelector('.word-ta')?.textContent?.trim() || "";
-    const normalize = (text: string) => text.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "").replace(/\s+/g, "");
+    const targetText = currentElement.querySelector('.word-ta')?.textContent?.trim() || '';
+    const normalize = (text: string) =>
+        text
+            .toLowerCase()
+            .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '')
+            .replace(/\s+/g, '');
 
     const normalizedSpoken = normalize(spokenText);
     const normalizedTarget = normalize(targetText);
 
-    if (normalizedSpoken === normalizedTarget || normalizedTarget.includes(normalizedSpoken) || normalizedSpoken.includes(normalizedTarget)) {
-        showFeedback(`Correct! ✅ (${spokenText})`, "success");
+    if (
+        normalizedSpoken === normalizedTarget ||
+        normalizedTarget.includes(normalizedSpoken) ||
+        normalizedSpoken.includes(normalizedTarget)
+    ) {
+        showFeedback(`Correct! ✅ (${spokenText})`, 'success');
         currentElement.classList.add('revealed');
     } else {
-        showFeedback(`Heard "${spokenText}" ❌`, "error");
+        showFeedback(`Heard "${spokenText}" ❌`, 'error');
     }
 
     stopRecording();
@@ -390,7 +409,7 @@ function showFeedback(text: string, type: string) {
     feedback.textContent = text;
     feedback.className = `voice-feedback-inline ${type}`;
 
-    if (type !== 'recording' && !text.includes("Listening")) {
+    if (type !== 'recording' && !text.includes('Listening')) {
         setTimeout(() => {
             if (feedback.textContent === text) {
                 feedback.className = 'voice-feedback-inline';
@@ -426,7 +445,7 @@ function toggleVoice() {
     });
 
     if (!voiceEnabled) {
-        document.querySelectorAll('.voice-feedback-inline').forEach(fb => {
+        document.querySelectorAll('.voice-feedback-inline').forEach((fb) => {
             fb.textContent = '';
             fb.className = 'voice-feedback-inline';
         });
@@ -436,7 +455,7 @@ function toggleVoice() {
 
 // UI Update
 function updateUI(shouldSpeak = true) {
-    allSlides.forEach(s => {
+    allSlides.forEach((s) => {
         s.classList.remove('active');
         s.style.display = 'none';
         s.style.visibility = 'hidden'; // Ensure hidden completely
@@ -452,7 +471,7 @@ function updateUI(shouldSpeak = true) {
             const img = s.querySelector('.slide-image') as HTMLImageElement;
             if (img && img.dataset.word && !img.dataset.loaded) {
                 fetchImage(img.dataset.word, img);
-                img.dataset.loaded = "true";
+                img.dataset.loaded = 'true';
             }
 
             const wordEn = s.querySelector('.word-en');
@@ -480,7 +499,6 @@ function updateUI(shouldSpeak = true) {
 
     Utils.updateProgress(currentSlide, filteredSlides.length, 'progressBar', 'counter');
     updateProgressInfo();
-
 
     if ((document.getElementById('showTimer') as HTMLInputElement).checked) {
         Timer.restart();
@@ -526,7 +544,7 @@ function handleHashChange() {
     const hash = window.location.hash.substring(1);
     const targetSlideId = `slide-${parseInt(hash) - 1}`;
 
-    const index = filteredSlides.findIndex(s => s.id === targetSlideId);
+    const index = filteredSlides.findIndex((s) => s.id === targetSlideId);
     if (index !== -1) {
         currentSlide = index;
         updateUI();
@@ -540,7 +558,7 @@ function handleHashChange() {
 export function init() {
     // 1. Init Layout
     Layout.init({
-        title: "பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 1",
+        title: 'பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 1',
         contentHTML: `
             <div class="control-row">
                 <span class="control-label">Categories:</span>
@@ -589,8 +607,8 @@ export function init() {
                 <span class="progress-info" id="progressInfo">Loading...</span>
             </div>
         `,
-        timerDisplay: "00:08",
-        injectNavigation: true
+        timerDisplay: '00:08',
+        injectNavigation: true,
     });
 
     // 2. Attach Event Listeners for Layout Elements
@@ -608,10 +626,22 @@ export function init() {
     document.getElementById('audioToggle')?.addEventListener('change', toggleAudio);
     document.getElementById('voiceToggle')?.addEventListener('change', toggleVoice);
 
-    document.getElementById('firstBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToFirst(); });
-    document.getElementById('prevBtn')?.addEventListener('click', (e) => { e.stopPropagation(); changeSlide(-1); });
-    document.getElementById('nextBtn')?.addEventListener('click', (e) => { e.stopPropagation(); handleNextAction(); });
-    document.getElementById('lastBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToLast(); });
+    document.getElementById('firstBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToFirst();
+    });
+    document.getElementById('prevBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeSlide(-1);
+    });
+    document.getElementById('nextBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleNextAction();
+    });
+    document.getElementById('lastBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToLast();
+    });
 
     document.getElementById('slides-wrapper')?.addEventListener('click', (e) => {
         // Prevent triggering when clicking buttons or inputs

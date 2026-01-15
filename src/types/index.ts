@@ -2,7 +2,7 @@ export interface Word {
     id: string | number;
     category: string;
     category_ta: string;
-    difficulty: "D1" | "D2" | "D3";
+    difficulty: 'D1' | 'D2' | 'D3';
     image_word?: string; // used for image filename
     word_en: string;
     word_ta: string;
@@ -72,7 +72,7 @@ export interface SpeechRecognitionInstance {
 }
 
 export interface SpeechRecognitionConstructor {
-    new(): SpeechRecognitionInstance;
+    new (): SpeechRecognitionInstance;
 }
 
 // Extend Window interface for our global objects

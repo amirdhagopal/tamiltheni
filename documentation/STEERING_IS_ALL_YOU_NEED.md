@@ -4,7 +4,7 @@
 
 ¹Peoria Tamil School, Illinois, USA
 
-*Correspondence: amirdhagopal@gmail.com*
+_Correspondence: amirdhagopal@gmail.com_
 
 ---
 
@@ -49,12 +49,12 @@ The application of transformer-based language models to code generation has prog
 
 Prior work on human-AI collaboration in creative and technical domains has identified several paradigms:
 
-| Paradigm | Human Role | AI Role | Outcome Quality |
-|----------|-----------|---------|-----------------|
-| **Autonomous** | Specification only | Full implementation | Variable, often poor integration |
-| **Supervised** | Review and approval | Implementation | Moderate, depends on review rigor |
-| **Collaborative** | Continuous guidance | Iterative generation | High, when steering is effective |
-| **Assistive** | Primary implementation | Suggestions only | Depends on human skill |
+| Paradigm          | Human Role             | AI Role              | Outcome Quality                   |
+| ----------------- | ---------------------- | -------------------- | --------------------------------- |
+| **Autonomous**    | Specification only     | Full implementation  | Variable, often poor integration  |
+| **Supervised**    | Review and approval    | Implementation       | Moderate, depends on review rigor |
+| **Collaborative** | Continuous guidance    | Iterative generation | High, when steering is effective  |
+| **Assistive**     | Primary implementation | Suggestions only     | Depends on human skill            |
 
 VCMS falls within the **Collaborative** paradigm, distinguished by its emphasis on continuous bidirectional communication.
 
@@ -76,7 +76,7 @@ The effectiveness of LLM code generation depends significantly on prompt quality
 We define Vibe Coding with Manual Steering as a tuple (H, A, C, I, V) where:
 
 - **H** = Human developer providing intent, review, and steering
-- **A** = AI assistant capable of code generation and analysis  
+- **A** = AI assistant capable of code generation and analysis
 - **C** = Codebase representing current project state
 - **I** = Interaction protocol governing H-A communication
 - **V** = Validation criteria for accepting generated code
@@ -88,6 +88,7 @@ cycle_t: (intent_t, context_t) → A → output_t → H → (accept | reject | r
 ```
 
 Where:
+
 - `intent_t`: Natural language description of desired change
 - `context_t`: Relevant codebase state and constraints
 - `output_t`: AI-generated code or analysis
@@ -98,6 +99,7 @@ Where:
 We identified five primary interaction patterns in VCMS:
 
 #### Pattern 1: Direct Implementation
+
 ```
 H: "Add a shuffle button that randomizes slide order"
 A: [Implements shuffle function with Fisher-Yates algorithm]
@@ -105,6 +107,7 @@ H: [Accepts]
 ```
 
 #### Pattern 2: Diagnostic Analysis
+
 ```
 H: "Words and images are not showing in Theni 2"
 A: [Analyzes code, identifies root cause in template formatting]
@@ -113,6 +116,7 @@ H: [Validates and accepts]
 ```
 
 #### Pattern 3: Iterative Refinement
+
 ```
 H: "The timer should be a circular countdown"
 A: [Implements basic circular timer]
@@ -122,6 +126,7 @@ H: [Accepts]
 ```
 
 #### Pattern 4: Architectural Guidance
+
 ```
 H: "Extract common UI components into a shared module"
 A: [Proposes layout.ts structure]
@@ -130,6 +135,7 @@ A: [Incorporates navigation, produces final implementation]
 ```
 
 #### Pattern 5: Recovery from Failure
+
 ```
 H: "Run the tests"
 A: [Tests hang indefinitely]
@@ -163,29 +169,29 @@ Where higher values of each factor correlate with better outcomes.
 
 TamilTheni is a Progressive Web Application for Tamil language learning, comprising:
 
-| Component | Quantity | Lines of Code | Description |
-|-----------|----------|---------------|-------------|
-| HTML Pages | 5 | ~400 | Entry points for each module |
-| TypeScript Modules | 9 | ~3,000 | Application logic |
-| CSS Files | 6 | ~1,700 | Styling (tokens + module-specific) |
-| JSON Data Files | 2 | ~9,600 | 850 total vocabulary records |
-| Test Files | 9 | ~510 | Unit and integration tests |
-| Documentation | 5 | ~1,500 | README, Architecture, Requirements, Methodology, Paper |
+| Component          | Quantity | Lines of Code | Description                                            |
+| ------------------ | -------- | ------------- | ------------------------------------------------------ |
+| HTML Pages         | 5        | ~400          | Entry points for each module                           |
+| TypeScript Modules | 9        | ~3,000        | Application logic                                      |
+| CSS Files          | 6        | ~1,700        | Styling (tokens + module-specific)                     |
+| JSON Data Files    | 2        | ~9,600        | 850 total vocabulary records                           |
+| Test Files         | 9        | ~510          | Unit and integration tests                             |
+| Documentation      | 5        | ~1,500        | README, Architecture, Requirements, Methodology, Paper |
 
 ### 4.2 Development Timeline
 
 Based on git commit history (January 8-14, 2026):
 
-| Date | Commits | Key Milestones |
-|------|---------|----------------|
-| Jan 8 | 16 | Initial commit, basic HTML/JS, audio, navigation, categories |
-| Jan 9 | 6 | Home page, Theni 5 implementation, control panel fixes |
-| Jan 10 | 9 | Local images, Wikipedia integration, image fixes |
-| Jan 11 | 6 | Image quality improvements, continued fixes |
-| Jan 12 | 12 | Timer improvements, split Theni 1/2, sentence generation |
-| Jan 13 | 17 | TypeScript migration, refactoring, shared modules |
-| Jan 14 | 13 | Testing, documentation, PWA, final polish |
-| **Total** | **79** | **5 working days from first commit to production** |
+| Date      | Commits | Key Milestones                                               |
+| --------- | ------- | ------------------------------------------------------------ |
+| Jan 8     | 16      | Initial commit, basic HTML/JS, audio, navigation, categories |
+| Jan 9     | 6       | Home page, Theni 5 implementation, control panel fixes       |
+| Jan 10    | 9       | Local images, Wikipedia integration, image fixes             |
+| Jan 11    | 6       | Image quality improvements, continued fixes                  |
+| Jan 12    | 12      | Timer improvements, split Theni 1/2, sentence generation     |
+| Jan 13    | 17      | TypeScript migration, refactoring, shared modules            |
+| Jan 14    | 13      | Testing, documentation, PWA, final polish                    |
+| **Total** | **79**  | **5 working days from first commit to production**           |
 
 Estimated traditional development time for equivalent scope: 8-12 weeks (10-15x longer)
 
@@ -193,28 +199,28 @@ Estimated traditional development time for equivalent scope: 8-12 weeks (10-15x 
 
 We logged all human steering interventions during development:
 
-| Intervention Type | Count | Percentage |
-|-------------------|-------|------------|
-| Acceptance (no modification) | 142 | 47.3% |
-| Minor correction | 89 | 29.7% |
-| Major redirection | 45 | 15.0% |
-| Complete rejection | 24 | 8.0% |
-| **Total** | **300** | 100% |
+| Intervention Type            | Count   | Percentage |
+| ---------------------------- | ------- | ---------- |
+| Acceptance (no modification) | 142     | 47.3%      |
+| Minor correction             | 89      | 29.7%      |
+| Major redirection            | 45      | 15.0%      |
+| Complete rejection           | 24      | 8.0%       |
+| **Total**                    | **300** | 100%       |
 
 ### 4.4 Failure Mode Analysis
 
 We categorized failures requiring human intervention:
 
-| Failure Mode | Occurrences | Example |
-|--------------|-------------|---------|
-| **Template/Syntax Errors** | 12 | Malformed HTML with extra spaces |
-| **Context Loss** | 18 | Forgetting project conventions |
-| **Integration Failures** | 9 | Code that doesn't fit architecture |
-| **Performance Issues** | 4 | Inefficient algorithms |
-| **Browser Compatibility** | 6 | Features not supported in Safari |
-| **Tool Failures** | 8 | Browser automation hanging |
-| **Incomplete Implementation** | 15 | Missing edge cases |
-| **Incorrect Assumptions** | 11 | Wrong interpretation of intent |
+| Failure Mode                  | Occurrences | Example                            |
+| ----------------------------- | ----------- | ---------------------------------- |
+| **Template/Syntax Errors**    | 12          | Malformed HTML with extra spaces   |
+| **Context Loss**              | 18          | Forgetting project conventions     |
+| **Integration Failures**      | 9           | Code that doesn't fit architecture |
+| **Performance Issues**        | 4           | Inefficient algorithms             |
+| **Browser Compatibility**     | 6           | Features not supported in Safari   |
+| **Tool Failures**             | 8           | Browser automation hanging         |
+| **Incomplete Implementation** | 15          | Missing edge cases                 |
+| **Incorrect Assumptions**     | 11          | Wrong interpretation of intent     |
 
 ---
 
@@ -224,24 +230,23 @@ We categorized failures requiring human intervention:
 
 Based on git statistics (79 commits, 5 working days, ~5,200 lines of application code):
 
-| Metric | VCMS (Actual) | Traditional (estimated) | Improvement |
-|--------|---------------|------------------------|-------------|
-| Total lines written | ~5,200 | ~5,200 | - |
-| Development time | 5 days | 8-12 weeks | **10-15x** |
-| Lines of code per day | ~1,040 | ~65-80 | **13-16x** |
-| Commits per day | 11-16 | 2-3 | **5-6x** |
-| Features per day | 3-4 | 0.3-0.5 | **8-10x** |
-| Documentation coverage | 95% | 40-60% | ~2x |
-
+| Metric                 | VCMS (Actual) | Traditional (estimated) | Improvement |
+| ---------------------- | ------------- | ----------------------- | ----------- |
+| Total lines written    | ~5,200        | ~5,200                  | -           |
+| Development time       | 5 days        | 8-12 weeks              | **10-15x**  |
+| Lines of code per day  | ~1,040        | ~65-80                  | **13-16x**  |
+| Commits per day        | 11-16         | 2-3                     | **5-6x**    |
+| Features per day       | 3-4           | 0.3-0.5                 | **8-10x**   |
+| Documentation coverage | 95%           | 40-60%                  | ~2x         |
 
 ### 5.2 Quality Metrics
 
-| Metric | Value | Assessment |
-|--------|-------|------------|
-| Bugs found in production | 3 | Low |
-| Test coverage (statements) | 68% | Moderate |
-| TypeScript strict mode | Enabled | High type safety |
-| Lighthouse PWA score | 92 | Good |
+| Metric                     | Value   | Assessment       |
+| -------------------------- | ------- | ---------------- |
+| Bugs found in production   | 3       | Low              |
+| Test coverage (statements) | 68%     | Moderate         |
+| TypeScript strict mode     | Enabled | High type safety |
+| Lighthouse PWA score       | 92      | Good             |
 
 ### 5.3 Steering Efficiency
 
@@ -255,11 +260,11 @@ Our overall steering efficiency was **η = 0.77**, indicating that 77% of AI gen
 
 Efficiency varied by task complexity:
 
-| Task Complexity | Steering Efficiency |
-|-----------------|---------------------|
-| Simple (single function) | 0.89 |
-| Moderate (multi-file) | 0.74 |
-| Complex (architectural) | 0.58 |
+| Task Complexity          | Steering Efficiency |
+| ------------------------ | ------------------- |
+| Simple (single function) | 0.89                |
+| Moderate (multi-file)    | 0.74                |
+| Complex (architectural)  | 0.58                |
 
 ---
 
@@ -300,12 +305,12 @@ VCMS showed limitations for:
 
 VCMS does not eliminate cognitive load but redistributes it:
 
-| Traditional Development | VCMS Development |
-|------------------------|------------------|
-| Implementation details | Intent expression |
-| Syntax memorization | Output evaluation |
-| Pattern recall | Context management |
-| Manual debugging | Failure mode recognition |
+| Traditional Development | VCMS Development         |
+| ----------------------- | ------------------------ |
+| Implementation details  | Intent expression        |
+| Syntax memorization     | Output evaluation        |
+| Pattern recall          | Context management       |
+| Manual debugging        | Failure mode recognition |
 
 Developers must acquire new skills in AI collaboration while potentially atrophying traditional implementation skills.
 
@@ -374,19 +379,19 @@ The successful application of VCMS requires recognizing that AI code generation 
 
 ## References
 
-Chen, M., Tworek, J., Jun, H., Yuan, Q., Pinto, H. P. D. O., Kaplan, J., ... & Zaremba, W. (2021). Evaluating Large Language Models Trained on Code. *arXiv preprint arXiv:2107.03374*.
+Chen, M., Tworek, J., Jun, H., Yuan, Q., Pinto, H. P. D. O., Kaplan, J., ... & Zaremba, W. (2021). Evaluating Large Language Models Trained on Code. _arXiv preprint arXiv:2107.03374_.
 
-Li, Y., Choi, D., Chung, J., Kushman, N., Schrittwieser, J., Leblond, R., ... & Vinyals, O. (2022). Competition-Level Code Generation with AlphaCode. *Science*, 378(6624), 1092-1097.
+Li, Y., Choi, D., Chung, J., Kushman, N., Schrittwieser, J., Leblond, R., ... & Vinyals, O. (2022). Competition-Level Code Generation with AlphaCode. _Science_, 378(6624), 1092-1097.
 
-Reynolds, L., & McDonell, K. (2021). Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm. *CHI Extended Abstracts*.
+Reynolds, L., & McDonell, K. (2021). Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm. _CHI Extended Abstracts_.
 
-Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention Is All You Need. *Advances in Neural Information Processing Systems*, 30.
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention Is All You Need. _Advances in Neural Information Processing Systems_, 30.
 
-Xu, F. F., Alon, U., Neubig, G., & Hellendoorn, V. J. (2022). A Systematic Evaluation of Large Language Models of Code. *Proceedings of the 6th ACM SIGPLAN International Symposium on Machine Programming*, 1-10.
+Xu, F. F., Alon, U., Neubig, G., & Hellendoorn, V. J. (2022). A Systematic Evaluation of Large Language Models of Code. _Proceedings of the 6th ACM SIGPLAN International Symposium on Machine Programming_, 1-10.
 
-Austin, J., Odena, A., Nye, M., Bosma, M., Michalewski, H., Dohan, D., ... & Sutton, C. (2021). Program Synthesis with Large Language Models. *arXiv preprint arXiv:2108.07732*.
+Austin, J., Odena, A., Nye, M., Bosma, M., Michalewski, H., Dohan, D., ... & Sutton, C. (2021). Program Synthesis with Large Language Models. _arXiv preprint arXiv:2108.07732_.
 
-Jiang, S., Armaly, A., & McMillan, C. (2017). Automatically Generating Commit Messages from Diffs using Neural Machine Translation. *Proceedings of the 32nd IEEE/ACM International Conference on Automated Software Engineering*, 135-146.
+Jiang, S., Armaly, A., & McMillan, C. (2017). Automatically Generating Commit Messages from Diffs using Neural Machine Translation. _Proceedings of the 32nd IEEE/ACM International Conference on Automated Software Engineering_, 135-146.
 
 ---
 
@@ -426,8 +431,8 @@ The following is an anonymized excerpt from the development log demonstrating a 
 ```
 [16:23:14] Human: "Theni 2 is not displaying any words. It appears broken."
 
-[16:23:18] AI: Analyzing theni2.ts... Found issue in generateSlides() 
-              function. The HTML template has malformed syntax with 
+[16:23:18] AI: Analyzing theni2.ts... Found issue in generateSlides()
+              function. The HTML template has malformed syntax with
               extra spaces inside tags (e.g., '< div class="..." >')
               causing querySelector() to return null.
 
@@ -442,17 +447,17 @@ The following is an anonymized excerpt from the development log demonstrating a 
 
 ## Appendix C: Technology Stack Details
 
-| Category | Technology | Version | Purpose |
-|----------|------------|---------|---------|
-| Runtime | Node.js | 20.x | Development environment |
-| Build | Vite | 5.x | Module bundling, HMR |
-| Language | TypeScript | 5.x | Type-safe development |
-| Testing | Vitest | 2.x | Unit and integration tests |
-| Linting | ESLint | 8.x | Code quality |
-| Formatting | Prettier | 3.x | Code style |
-| Data Processing | Python | 3.12 | Offline scripts |
-| Documentation | Pandoc | 3.x | PDF generation |
+| Category        | Technology | Version | Purpose                    |
+| --------------- | ---------- | ------- | -------------------------- |
+| Runtime         | Node.js    | 20.x    | Development environment    |
+| Build           | Vite       | 5.x     | Module bundling, HMR       |
+| Language        | TypeScript | 5.x     | Type-safe development      |
+| Testing         | Vitest     | 2.x     | Unit and integration tests |
+| Linting         | ESLint     | 8.x     | Code quality               |
+| Formatting      | Prettier   | 3.x     | Code style                 |
+| Data Processing | Python     | 3.12    | Offline scripts            |
+| Documentation   | Pandoc     | 3.x     | PDF generation             |
 
 ---
 
-*© 2026 Peoria Tamil School. This work is licensed under CC BY 4.0.*
+_© 2026 Peoria Tamil School. This work is licensed under CC BY 4.0._

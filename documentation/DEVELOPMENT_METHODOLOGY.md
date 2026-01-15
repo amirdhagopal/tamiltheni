@@ -40,13 +40,13 @@ The development team consisted of volunteers with varying technical expertise. T
 
 The methodology can be characterized as:
 
-| Aspect | Description |
-|--------|-------------|
-| **Intent Expression** | Developers describe desired functionality in natural language |
-| **Code Generation** | AI assistant produces implementation code |
-| **Review Cycle** | Human reviews, tests, and validates outputs |
-| **Course Correction** | Human redirects when AI produces incorrect or suboptimal solutions |
-| **Iterative Refinement** | Continuous dialogue refines implementation |
+| Aspect                   | Description                                                        |
+| ------------------------ | ------------------------------------------------------------------ |
+| **Intent Expression**    | Developers describe desired functionality in natural language      |
+| **Code Generation**      | AI assistant produces implementation code                          |
+| **Review Cycle**         | Human reviews, tests, and validates outputs                        |
+| **Course Correction**    | Human redirects when AI produces incorrect or suboptimal solutions |
+| **Iterative Refinement** | Continuous dialogue refines implementation                         |
 
 ### 2.2 Workflow Structure
 
@@ -76,11 +76,12 @@ Effective vibe coding required developing a communication style that balanced:
 - **Constraints**: Clear boundaries and requirements
 
 Example interaction:
-> *Human:* "Fix why words and images are not showing up in Theni 2."
-> 
-> *AI:* [Analyzes code, identifies malformed HTML template causing querySelector failures, proposes fix]
-> 
-> *Human:* [Validates fix works]
+
+> _Human:_ "Fix why words and images are not showing up in Theni 2."
+>
+> _AI:_ [Analyzes code, identifies malformed HTML template causing querySelector failures, proposes fix]
+>
+> _Human:_ [Validates fix works]
 
 ---
 
@@ -90,13 +91,13 @@ Example interaction:
 
 The project employed modern web technologies selected through collaborative decision-making:
 
-| Layer | Technology | Selection Rationale |
-|-------|------------|---------------------|
-| Build Tool | Vite | Fast HMR, optimized production builds |
-| Language | TypeScript | Static typing for maintainability |
-| Styling | CSS (modular) | Simplicity, no framework overhead |
-| Data | JSON | Structured, interoperable format |
-| Deployment | GitHub Pages | Free, simple, reliable hosting |
+| Layer      | Technology    | Selection Rationale                   |
+| ---------- | ------------- | ------------------------------------- |
+| Build Tool | Vite          | Fast HMR, optimized production builds |
+| Language   | TypeScript    | Static typing for maintainability     |
+| Styling    | CSS (modular) | Simplicity, no framework overhead     |
+| Data       | JSON          | Structured, interoperable format      |
+| Deployment | GitHub Pages  | Free, simple, reliable hosting        |
 
 ### 3.2 Architecture Evolution
 
@@ -285,29 +286,29 @@ AI workflows could leave artifacts requiring cleanup:
 Based on our experience, we recommend:
 
 1. **Start with Clear Architecture**
-   - Establish conventions before heavy AI involvement
-   - Document patterns for AI to follow
-   - Create templates for common file types
+    - Establish conventions before heavy AI involvement
+    - Document patterns for AI to follow
+    - Create templates for common file types
 
 2. **Implement Review Gates**
-   - Never auto-apply AI changes without review
-   - Test before committing
-   - Verify complex changes manually
+    - Never auto-apply AI changes without review
+    - Test before committing
+    - Verify complex changes manually
 
 3. **Maintain Human Expertise**
-   - Understand what the AI produces
-   - Don't delegate decisions that require domain knowledge
-   - Keep skills sharp for when AI fails
+    - Understand what the AI produces
+    - Don't delegate decisions that require domain knowledge
+    - Keep skills sharp for when AI fails
 
 4. **Document Continuously**
-   - Capture decisions as they're made
-   - Keep requirements updated
-   - Maintain architecture documentation
+    - Capture decisions as they're made
+    - Keep requirements updated
+    - Maintain architecture documentation
 
 5. **Plan for Cleanup**
-   - Schedule regular codebase hygiene sessions
-   - Remove dead code promptly
-   - Keep dependencies updated
+    - Schedule regular codebase hygiene sessions
+    - Remove dead code promptly
+    - Keep dependencies updated
 
 ---
 
@@ -323,26 +324,26 @@ As AI coding tools continue to evolve, we anticipate this collaborative model be
 
 ## Appendix A: Project Statistics
 
-| Metric | Value |
-|--------|-------|
-| Total Development Time | ~2 months |
-| Lines of TypeScript | ~4,000 |
-| Lines of CSS | ~1,500 |
-| Data Records | 800+ words, 50 clues |
-| Test Files | 9 (unit + BAT) |
-| Documentation Files | 3 (README, ARCHITECTURE, REQUIREMENTS) |
+| Metric                 | Value                                  |
+| ---------------------- | -------------------------------------- |
+| Total Development Time | ~2 months                              |
+| Lines of TypeScript    | ~4,000                                 |
+| Lines of CSS           | ~1,500                                 |
+| Data Records           | 800+ words, 50 clues                   |
+| Test Files             | 9 (unit + BAT)                         |
+| Documentation Files    | 3 (README, ARCHITECTURE, REQUIREMENTS) |
 
 ## Appendix B: Technology Inventory
 
-| Category | Technologies |
-|----------|--------------|
-| **Frontend** | TypeScript, HTML5, CSS3 |
-| **Build** | Vite, ESBuild |
-| **Testing** | Vitest |
-| **Data Processing** | Python, pandas |
-| **External APIs** | Wikipedia, Gemini AI, Web Speech API |
-| **Deployment** | GitHub Pages |
+| Category            | Technologies                         |
+| ------------------- | ------------------------------------ |
+| **Frontend**        | TypeScript, HTML5, CSS3              |
+| **Build**           | Vite, ESBuild                        |
+| **Testing**         | Vitest                               |
+| **Data Processing** | Python, pandas                       |
+| **External APIs**   | Wikipedia, Gemini AI, Web Speech API |
+| **Deployment**      | GitHub Pages                         |
 
 ---
 
-*© 2026 Peoria Tamil School. This document is licensed under CC BY 4.0.*
+_© 2026 Peoria Tamil School. This document is licensed under CC BY 4.0._

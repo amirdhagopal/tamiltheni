@@ -25,8 +25,8 @@ vi.mock('../../src/js/layout', () => ({
                 <div id="card2" class="card"><div id="card2En"></div><div id="card2Ta"></div></div>
             `;
             document.body.appendChild(cardContainer);
-        })
-    }
+        }),
+    },
 }));
 
 vi.mock('../../src/js/timer', () => ({
@@ -35,14 +35,14 @@ vi.mock('../../src/js/timer', () => ({
         toggleVisibility: vi.fn(),
         restart: vi.fn(),
         pause: vi.fn(),
-        setDuration: vi.fn()
-    }
+        setDuration: vi.fn(),
+    },
 }));
 
 vi.mock('../../src/js/audio_manager', () => ({
     AudioManager: {
-        speak: vi.fn()
-    }
+        speak: vi.fn(),
+    },
 }));
 
 const localStorageMock = (() => {
@@ -57,7 +57,7 @@ const localStorageMock = (() => {
         }),
         clear: vi.fn(() => {
             store = {};
-        })
+        }),
     };
 })();
 

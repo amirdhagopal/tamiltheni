@@ -64,5 +64,5 @@ export const Layout = {
         if (container) {
             container.insertAdjacentHTML('beforeend', navStr);
         }
-    }
+    },
 };

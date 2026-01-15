@@ -23,8 +23,8 @@ vi.mock('../../src/js/layout', () => ({
             const wrapper = document.createElement('div');
             wrapper.id = 'slides-wrapper';
             document.body.appendChild(wrapper);
-        })
-    }
+        }),
+    },
 }));
 
 vi.mock('../../src/js/timer', () => ({
@@ -32,14 +32,14 @@ vi.mock('../../src/js/timer', () => ({
         init: vi.fn(),
         toggleVisibility: vi.fn(),
         restart: vi.fn(),
-        pause: vi.fn()
-    }
+        pause: vi.fn(),
+    },
 }));
 
 vi.mock('../../src/js/audio_manager', () => ({
     AudioManager: {
-        speak: vi.fn()
-    }
+        speak: vi.fn(),
+    },
 }));
 
 describe('Theni 1 BAT', () => {
@@ -79,8 +79,8 @@ describe('Theni 1 BAT', () => {
             const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
             nextBtn.click();
 
-            // First click reveals (if hidden) or moves? 
-            // In Theni 1, click next moves if refined/revealed logic isn't blocking. 
+            // First click reveals (if hidden) or moves?
+            // In Theni 1, click next moves if refined/revealed logic isn't blocking.
             // Logic: if class 'revealed' present -> move. else -> add 'revealed'.
             // Initially not revealed.
 

@@ -54,8 +54,8 @@ function generateSlides() {
 
     // Initialize arrays
     allSlides = Array.from(document.querySelectorAll('.slide')) as HTMLDivElement[];
-    // Restore shuffling if active? 
-    // Usually level switch should reset sequence, so we can ignore shuffle preservation here 
+    // Restore shuffling if active?
+    // Usually level switch should reset sequence, so we can ignore shuffle preservation here
     // unless strictly needed. But applyFilters usually handles filteredSlides.
 
     // We just refreshed DOM, so allSlides is fresh.
@@ -92,7 +92,7 @@ document.addEventListener('click', (e) => {
 function populateCategories() {
     const catMap = new Map();
     // Use theniWords directly since slides might change
-    theniWords.forEach(item => {
+    theniWords.forEach((item) => {
         const key = `${item.category} - ${item.category_ta}`;
         if (!catMap.has(key)) {
             catMap.set(key, true);
@@ -106,7 +106,7 @@ function populateCategories() {
     if (!list) return;
     list.innerHTML = '';
 
-    availableCategories.forEach(cat => {
+    availableCategories.forEach((cat) => {
         const item = document.createElement('div');
         item.className = 'dropdown-item';
 
@@ -121,8 +121,14 @@ function populateCategories() {
         item.appendChild(checkbox);
         item.appendChild(label);
 
-        item.addEventListener('click', (e) => { e.stopPropagation(); toggleCategory(cat); });
-        checkbox.addEventListener('click', (e) => { e.stopPropagation(); toggleCategory(cat); });
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleCategory(cat);
+        });
+        checkbox.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleCategory(cat);
+        });
 
         list.appendChild(item);
     });
@@ -184,13 +190,13 @@ function updateCategoryText() {
 }
 
 function applyFilters(resetToStart = true) {
-    filteredSlides = allSlides.filter(slide => {
+    filteredSlides = allSlides.filter((slide) => {
         const diffBadge = slide.querySelector('.difficulty-badge')?.textContent;
         const catBadge = slide.querySelector('.category-badge')?.textContent;
         const catBadgeTa = slide.querySelector('.category-badge-ta')?.textContent;
         const catKey = `${catBadge} - ${catBadgeTa}`;
 
-        const difficultyMatch = (currentFilter === 'all' || diffBadge === currentFilter);
+        const difficultyMatch = currentFilter === 'all' || diffBadge === currentFilter;
         const categoryMatch = selectedCategories.includes(catKey);
 
         return difficultyMatch && categoryMatch;
@@ -207,7 +213,7 @@ function applyFilters(resetToStart = true) {
 
 function filterDifficulty(difficulty: string) {
     currentFilter = difficulty;
-    document.querySelectorAll('.pill-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
     document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`)?.classList.add('active');
 
     // Ensure active level button stays active
@@ -228,16 +234,19 @@ function resetSequence() {
 }
 
 function updateProgress() {
-    const currentFilteredD1 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D1').length;
-    const currentFilteredD2 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D2').length;
+    const currentFilteredD1 = filteredSlides.filter(
+        (s) => s.querySelector('.difficulty-badge')?.textContent === 'D1'
+    ).length;
+    const currentFilteredD2 = filteredSlides.filter(
+        (s) => s.querySelector('.difficulty-badge')?.textContent === 'D2'
+    ).length;
 
     const filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
     const shuffleText = isShuffled ? ' (Shuffled)' : '';
 
     const progressInfo = document.getElementById('progressInfo');
     if (progressInfo) {
-        progressInfo.textContent =
-            `${filteredSlides.length === 0 ? 0 : currentSlide + 1}/${filteredSlides.length} slides - Filter: ${filterText}${shuffleText} (Matches: D1=${currentFilteredD1}, D2=${currentFilteredD2})`;
+        progressInfo.textContent = `${filteredSlides.length === 0 ? 0 : currentSlide + 1}/${filteredSlides.length} slides - Filter: ${filterText}${shuffleText} (Matches: D1=${currentFilteredD1}, D2=${currentFilteredD2})`;
     }
 }
 
@@ -249,12 +258,12 @@ function setTheniLevel(level: number) {
     generateSlides();
 
     // We can assume config is correct or provide fallback
-    const timerDuration = (level === 4) ? (config.timerDurations.theni4 || 15) : (config.timerDurations.theni3 || 15);
+    const timerDuration = level === 4 ? config.timerDurations.theni4 || 15 : config.timerDurations.theni3 || 15;
 
     // Update Buttons
-    document.querySelectorAll('.pill-button').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
 
-    // We should keep the currently selected filter active visually? 
+    // We should keep the currently selected filter active visually?
     // The original code reset logic was a bit mixed.
     // Let's just activate the correct Level button
     const activeBtn = document.getElementById(`level${level}`);
@@ -282,10 +291,9 @@ function setTheniLevel(level: number) {
     applyFilters(true);
 }
 
-
 // UI Update
 function updateUI() {
-    allSlides.forEach(s => {
+    allSlides.forEach((s) => {
         s.classList.remove('active');
         s.style.display = 'none';
     });
@@ -361,7 +369,7 @@ function handleHashChange() {
     const hash = window.location.hash.substring(1);
     const targetSlideId = `slide-${parseInt(hash) - 1}`;
 
-    const index = filteredSlides.findIndex(s => s.id === targetSlideId);
+    const index = filteredSlides.findIndex((s) => s.id === targetSlideId);
     if (index !== -1) {
         currentSlide = index;
         updateUI();
@@ -373,9 +381,8 @@ function handleHashChange() {
 
 // Initialization on DOM ready
 export function init() {
-
     Layout.init({
-        title: "பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 3 & 4",
+        title: 'பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 3 & 4',
         contentHTML: `
             <div class="control-row">
                 <span class="control-label">Level:</span>
@@ -425,8 +432,8 @@ export function init() {
                 <span class="progress-info" id="progressInfo">Loading...</span>
             </div>
         `,
-        timerDisplay: "00:15",
-        injectNavigation: true
+        timerDisplay: '00:15',
+        injectNavigation: true,
     });
 
     // Event Listeners
@@ -444,10 +451,22 @@ export function init() {
     document.getElementById('btn-reset-seq')?.addEventListener('click', resetSequence);
     document.getElementById('showTimer')?.addEventListener('change', Timer.toggleVisibility.bind(Timer));
 
-    document.getElementById('firstBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToFirst(); });
-    document.getElementById('prevBtn')?.addEventListener('click', (e) => { e.stopPropagation(); changeSlide(-1); });
-    document.getElementById('nextBtn')?.addEventListener('click', (e) => { e.stopPropagation(); handleNextAction(); });
-    document.getElementById('lastBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToLast(); });
+    document.getElementById('firstBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToFirst();
+    });
+    document.getElementById('prevBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeSlide(-1);
+    });
+    document.getElementById('nextBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleNextAction();
+    });
+    document.getElementById('lastBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToLast();
+    });
 
     document.getElementById('slides-wrapper')?.addEventListener('click', (e) => {
         if (!(e.target as Element).closest('button')) {

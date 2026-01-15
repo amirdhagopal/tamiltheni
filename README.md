@@ -10,33 +10,35 @@ Visit the application at: https://amirdhagopal.github.io/tamiltheni/
 
 The app includes study modules for five competition categories:
 
-| Module | Description |
-|--------|-------------|
-| **Theni 1** | Tell the Tamil word for the picture shown |
-| **Theni 2** | Form a sentence using pictures |
-| **Theni 3 & 4** | Translate English sentences to Tamil |
-| **Theni 5** | Find word using clue words |
+| Module          | Description                               |
+| --------------- | ----------------------------------------- |
+| **Theni 1**     | Tell the Tamil word for the picture shown |
+| **Theni 2**     | Form a sentence using pictures            |
+| **Theni 3 & 4** | Translate English sentences to Tamil      |
+| **Theni 5**     | Find word using clue words                |
 
 ## 🚀 Running Locally
 
 1. Install dependencies:
-   ```bash
-   npm install
-   ```
+
+    ```bash
+    npm install
+    ```
 
 2. Start a local development server:
-   ```bash
-   npm run dev
-   ```
+
+    ```bash
+    npm run dev
+    ```
 
 3. Open the provided localhost URL (usually http://localhost:5173/) in your browser.
 
 ## 📖 Documentation
 
-| Document | Description |
-|----------|-------------|
+| Document                                         | Description                                            |
+| ------------------------------------------------ | ------------------------------------------------------ |
 | [ARCHITECTURE.md](documentation/ARCHITECTURE.md) | System architecture, diagrams, and technical decisions |
-| [REQUIREMENTS.md](documentation/REQUIREMENTS.md) | Business and technical requirements |
+| [REQUIREMENTS.md](documentation/REQUIREMENTS.md) | Business and technical requirements                    |
 
 ## 📁 Project Structure
 
@@ -79,14 +81,14 @@ tamiltheni/
 
 ### NPM Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start local Vite development server |
-| `npm run build` | Type-check (tsc) and build production artifacts to `docs/` |
-| `npm run preview` | Preview production build locally |
-| `npm run lint` | Run ESLint on TypeScript files |
-| `npm run format` | Format code with Prettier |
-| `npm test` | Run unit and BAT tests with Vitest |
+| Script            | Description                                                |
+| ----------------- | ---------------------------------------------------------- |
+| `npm run dev`     | Start local Vite development server                        |
+| `npm run build`   | Type-check (tsc) and build production artifacts to `docs/` |
+| `npm run preview` | Preview production build locally                           |
+| `npm run lint`    | Run ESLint on TypeScript files                             |
+| `npm run format`  | Format code with Prettier                                  |
+| `npm test`        | Run unit and BAT tests with Vitest                         |
 
 ### Scripts (Python)
 
@@ -100,13 +102,16 @@ scripts/
 ```
 
 ## 📄 License
+
 This project is licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0)** license.
 
 You are free to:
+
 - **Share** — copy and redistribute the material in any medium or format
 - **Adapt** — remix, transform, and build upon the material for any purpose, even commercially.
 
 Under the following terms:
+
 - **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
 
 [![CC BY 4.0][cc-by-image]][cc-by]

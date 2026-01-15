@@ -5,19 +5,17 @@ import { config } from './config';
 import theni5Words from '../data/theni5_words.json';
 import { Theni5Word } from '../types';
 
-
-
 // Assuming we have theni5Words exported or we need to define them.
 // The original `theni5.ts` referenced `window.theni5Words`.
-// We should probably convert that data file to a module too, but if it's large and specific to Theni5, 
-// maybe we can keep it or expect it locally. 
+// We should probably convert that data file to a module too, but if it's large and specific to Theni5,
+// maybe we can keep it or expect it locally.
 // For now, let's assume `window.theni5Words` is populated by another script OR we fetch it.
 // To be clean, we should probably fetch it or import it.
 // Let's assume there is a `theni5_words.ts` similar to `theni_words.ts` or we fetch it.
 // If it's not present, we will fallback to empty array or try to read from window if strictly needed (with typecast).
-// But for modularity, let's assume we import `theni5Words` if possible. 
-// Since I don't see `theni5_words.ts` in file list, I will cast window for now to avoid breaking if data file isn't converted yet. 
-// Ideally I would convert that too. 
+// But for modularity, let's assume we import `theni5Words` if possible.
+// Since I don't see `theni5_words.ts` in file list, I will cast window for now to avoid breaking if data file isn't converted yet.
+// Ideally I would convert that too.
 
 const rawWords: Theni5Word[] = theni5Words || [];
 let activeWords = [...rawWords];
@@ -74,7 +72,7 @@ function updateSlideRange() {
     const start = parseInt(startInput?.value) || 1;
     const end = parseInt(endInput?.value) || 250;
 
-    activeWords = rawWords.filter(w => w.s >= start && w.s <= end);
+    activeWords = rawWords.filter((w) => w.s >= start && w.s <= end);
     totalPages = Math.ceil(activeWords.length / 5);
     currentSlide = 0;
     renderSlide();
@@ -133,7 +131,7 @@ function updateUI() {
     Utils.updateProgress(currentSlide, totalPages, 'progressBar', 'counter');
 
     (document.getElementById('prevBtn') as HTMLButtonElement).disabled = currentSlide === 0;
-    (document.getElementById('nextBtn') as HTMLButtonElement).disabled = (currentSlide === totalPages - 1);
+    (document.getElementById('nextBtn') as HTMLButtonElement).disabled = currentSlide === totalPages - 1;
     (document.getElementById('firstBtn') as HTMLButtonElement).disabled = currentSlide === 0;
     (document.getElementById('lastBtn') as HTMLButtonElement).disabled = currentSlide === totalPages - 1;
 }
@@ -151,7 +149,7 @@ function resetWords() {
     const start = parseInt(startInput?.value) || 1;
     const end = parseInt(endInput?.value) || 250;
 
-    activeWords = rawWords.filter(w => w.s >= start && w.s <= end);
+    activeWords = rawWords.filter((w) => w.s >= start && w.s <= end);
     currentSlide = 0;
     renderSlide();
 }
@@ -163,7 +161,7 @@ function applyFilters() {
 // Timer logic
 export function setTimerDuration(seconds: number) {
     // Update pill button states
-    document.querySelectorAll('#timer30, #timer60, #timer120').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('#timer30, #timer60, #timer120').forEach((btn) => btn.classList.remove('active'));
     // Theni 5 might not have these specific buttons in this layout implementation but keeping logic generic
     // Actually looking at init layout, it doesn't have custom timer duration buttons exposed in the contentHTML I wrote below?
     // Oh, I should probably add them if they are needed, or rely on default config.
@@ -180,7 +178,7 @@ export function setTimerDuration(seconds: number) {
 // Initialization and Event Listeners
 export function initAll() {
     Layout.init({
-        title: "Theni 5 Mastery",
+        title: 'Theni 5 Mastery',
         contentHTML: `
              <div class="control-row">
                 <span class="control-label">Range:</span>
@@ -200,8 +198,8 @@ export function initAll() {
                 </div>
             </div>
         `,
-        timerDisplay: "01:00",
-        injectNavigation: true
+        timerDisplay: '01:00',
+        injectNavigation: true,
     });
 
     // Event Listeners
@@ -210,10 +208,22 @@ export function initAll() {
     document.getElementById('resetBtn')?.addEventListener('click', resetWords);
     document.getElementById('showTimer')?.addEventListener('change', Timer.toggleVisibility.bind(Timer));
 
-    document.getElementById('firstBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToSlide(0); });
-    document.getElementById('prevBtn')?.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); });
-    document.getElementById('nextBtn')?.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); });
-    document.getElementById('lastBtn')?.addEventListener('click', (e) => { e.stopPropagation(); goToSlide(totalPages - 1); });
+    document.getElementById('firstBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToSlide(0);
+    });
+    document.getElementById('prevBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prevSlide();
+    });
+    document.getElementById('nextBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextSlide();
+    });
+    document.getElementById('lastBtn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        goToSlide(totalPages - 1);
+    });
 
     init();
 }

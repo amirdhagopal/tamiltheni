@@ -1,84 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- PWA Meta Tags -->
+        <meta name="theme-color" content="#667eea" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <!-- Icons -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐝</text></svg>"
+        />
+        <link rel="apple-touch-icon" href="../assets/icons/icon-192.png" />
+        <!-- PWA Manifest -->
+        <link rel="manifest" href="../manifest.json" />
+        <title>TamilTheni - Theni 2</title>
+        <script type="module" crossorigin src="/tamiltheni/assets/theni2-BniaxHXK.js"></script>
+        <link rel="modulepreload" crossorigin href="/tamiltheni/assets/pwa-DOeEgxuH.js" />
+        <link rel="modulepreload" crossorigin href="/tamiltheni/assets/config-U83h9fBs.js" />
+        <link rel="modulepreload" crossorigin href="/tamiltheni/assets/audio_manager-C32Gx6Zs.js" />
+        <link rel="modulepreload" crossorigin href="/tamiltheni/assets/theni_words-xXaqkVpm.js" />
+        <link rel="stylesheet" crossorigin href="/tamiltheni/assets/pwa-CyULuHxC.css" />
+        <link rel="stylesheet" crossorigin href="/tamiltheni/assets/config-BHSFEdW1.css" />
+        <link rel="stylesheet" crossorigin href="/tamiltheni/assets/theni2-BvH-ZBpb.css" />
+        <link rel="manifest" href="/tamiltheni/manifest.webmanifest" />
+        <script id="vite-plugin-pwa:register-sw" src="/tamiltheni/registerSW.js"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#667eea">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <!-- Icons -->
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐝</text></svg>">
-    <link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="../manifest.json">
-    <title>TamilTheni - Theni 2</title>
-  <script type="module" crossorigin src="/tamiltheni/assets/theni2-BniaxHXK.js"></script>
-  <link rel="modulepreload" crossorigin href="/tamiltheni/assets/pwa-DOeEgxuH.js">
-  <link rel="modulepreload" crossorigin href="/tamiltheni/assets/config-U83h9fBs.js">
-  <link rel="modulepreload" crossorigin href="/tamiltheni/assets/audio_manager-C32Gx6Zs.js">
-  <link rel="modulepreload" crossorigin href="/tamiltheni/assets/theni_words-xXaqkVpm.js">
-  <link rel="stylesheet" crossorigin href="/tamiltheni/assets/pwa-CyULuHxC.css">
-  <link rel="stylesheet" crossorigin href="/tamiltheni/assets/config-BHSFEdW1.css">
-  <link rel="stylesheet" crossorigin href="/tamiltheni/assets/theni2-BvH-ZBpb.css">
-<link rel="manifest" href="/tamiltheni/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/tamiltheni/registerSW.js"></script></head>
+    <body>
+        <div class="slide-container">
+            <div class="progress" id="progressBar" style="width: 0%"></div>
 
-<body>
+            <div id="slides-wrapper" class="dual-mode">
+                <!-- Dual View Container -->
+                <div id="dualViewContainer" style="padding-bottom: 20px">
+                    <!-- AI Generator Section (Side-by-Side) -->
+                    <div class="ai-section">
+                        <button class="ai-btn" id="aiBtn"><span>✨</span> Generate Sentence</button>
 
-    <div class="slide-container">
-        <div class="progress" id="progressBar" style="width: 0%"></div>
+                        <div id="aiResult" class="ai-result-box">
+                            <div style="width: 100%">
+                                <div id="aiText" class="ai-text-ta"></div>
+                                <div id="aiTextEn" class="ai-text-en"></div>
+                            </div>
+                        </div>
+                    </div>
 
-        <div id="slides-wrapper" class="dual-mode">
-
-            <!-- Dual View Container -->
-            <div id="dualViewContainer" style="padding-bottom: 20px;">
-                <!-- AI Generator Section (Side-by-Side) -->
-                <div class="ai-section">
-                    <button class="ai-btn" id="aiBtn">
-                        <span>✨</span> Generate Sentence
-                    </button>
-
-                    <div id="aiResult" class="ai-result-box">
-                        <div style="width: 100%;">
-                            <div id="aiText" class="ai-text-ta"></div>
-                            <div id="aiTextEn" class="ai-text-en"></div>
+                    <div class="dual-view-container">
+                        <div class="dual-word-card" id="card1">
+                            <div class="card-image">
+                                <img id="card1Img" src="https://placehold.co/300x180?text=Loading..." alt="" />
+                            </div>
+                            <div class="word-en" id="card1En">Word 1</div>
+                            <div class="word-ta" id="card1Ta">சொல் 1</div>
+                            <div class="category-badges">
+                                <span class="card-badge category-label" id="card1Cat">Category</span>
+                                <span class="card-badge category-label-ta" id="card1CatTa">வகை</span>
+                            </div>
+                            <span class="card-badge difficulty-badge-corner left" id="card1Diff">D1</span>
+                        </div>
+                        <div class="dual-word-card" id="card2">
+                            <div class="card-image">
+                                <img id="card2Img" src="https://placehold.co/300x180?text=Loading..." alt="" />
+                            </div>
+                            <div class="word-en" id="card2En">Word 2</div>
+                            <div class="word-ta" id="card2Ta">சொல் 2</div>
+                            <div class="category-badges">
+                                <span class="card-badge category-label" id="card2Cat">Category</span>
+                                <span class="card-badge category-label-ta" id="card2CatTa">வகை</span>
+                            </div>
+                            <span class="card-badge difficulty-badge-corner right" id="card2Diff">D2</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="dual-view-container">
-                    <div class="dual-word-card" id="card1">
-                        <div class="card-image">
-                            <img id="card1Img" src="https://placehold.co/300x180?text=Loading..." alt="">
-                        </div>
-                        <div class="word-en" id="card1En">Word 1</div>
-                        <div class="word-ta" id="card1Ta">சொல் 1</div>
-                        <div class="category-badges">
-                            <span class="card-badge category-label" id="card1Cat">Category</span>
-                            <span class="card-badge category-label-ta" id="card1CatTa">வகை</span>
-                        </div>
-                        <span class="card-badge difficulty-badge-corner left" id="card1Diff">D1</span>
-                    </div>
-                    <div class="dual-word-card" id="card2">
-                        <div class="card-image">
-                            <img id="card2Img" src="https://placehold.co/300x180?text=Loading..." alt="">
-                        </div>
-                        <div class="word-en" id="card2En">Word 2</div>
-                        <div class="word-ta" id="card2Ta">சொல் 2</div>
-                        <div class="category-badges">
-                            <span class="card-badge category-label" id="card2Cat">Category</span>
-                            <span class="card-badge category-label-ta" id="card2CatTa">வகை</span>
-                        </div>
-                        <span class="card-badge difficulty-badge-corner right" id="card2Diff">D2</span>
-                    </div>
-                </div>
+                <!-- Navigation injected by layout.js -->
             </div>
-            <!-- Navigation injected by layout.js -->
         </div>
-    </div>
-
-</body>
-
+    </body>
 </html>

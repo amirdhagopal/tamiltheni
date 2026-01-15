@@ -25,5 +25,5 @@ export const Utils = {
     },
 
     saveLocal: (key: string, val: string): void => localStorage.setItem(key, val),
-    getLocal: (key: string): string | null => localStorage.getItem(key)
+    getLocal: (key: string): string | null => localStorage.getItem(key),
 };

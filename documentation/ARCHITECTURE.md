@@ -29,13 +29,13 @@ TamilTheni is a Tamil language learning web application designed for the FETNA T
 
 ### Key Architectural Decisions
 
-| Decision | Rationale |
-|----------|-----------|
-| **Vite** | Modern, fast build tool with instant HMR and optimized production builds |
-| **TypeScript** | Static typing for better maintainability and error catching |
-| **JSON Data** | Structured, interoperable data format separated from logic |
-| **CSS Modules** | Component-scoped styling (via standard CSS imports) |
-| **Python Tooling** | Offline data processing pipeline for content generation |
+| Decision           | Rationale                                                                |
+| ------------------ | ------------------------------------------------------------------------ |
+| **Vite**           | Modern, fast build tool with instant HMR and optimized production builds |
+| **TypeScript**     | Static typing for better maintainability and error catching              |
+| **JSON Data**      | Structured, interoperable data format separated from logic               |
+| **CSS Modules**    | Component-scoped styling (via standard CSS imports)                      |
+| **Python Tooling** | Offline data processing pipeline for content generation                  |
 
 ---
 
@@ -112,7 +112,7 @@ interface Word {
     category: string;
     word_en: string;
     word_ta: string;
-    difficulty: "D1" | "D2";
+    difficulty: 'D1' | 'D2';
     // ...other fields
 }
 ```
@@ -121,13 +121,13 @@ The build process (`tsc && vite build`) transpiles this to optimized JavaScript 
 
 ### Shared Modules
 
-| Module | Purpose | Key Exports |
-|--------|---------|-------------|
-| `config.ts` | Centralized configuration | `config` object |
-| `utils.ts` | Utility functions | `Utils` class |
-| `layout.ts` | UI component injection | `Layout` class |
-| `timer.ts` | Countdown timer engine | `Timer` class |
-| `audio_manager.ts` | Text-to-Speech wrapper | `AudioManager` class |
+| Module             | Purpose                   | Key Exports          |
+| ------------------ | ------------------------- | -------------------- |
+| `config.ts`        | Centralized configuration | `config` object      |
+| `utils.ts`         | Utility functions         | `Utils` class        |
+| `layout.ts`        | UI component injection    | `Layout` class       |
+| `timer.ts`         | Countdown timer engine    | `Timer` class        |
+| `audio_manager.ts` | Text-to-Speech wrapper    | `AudioManager` class |
 
 ---
 
@@ -144,18 +144,18 @@ Data is stored in standard JSON format, allowing easy manipulation by Python scr
 
 ```json
 [
-  {
-    "id": 1,
-    "category": "Body Parts",
-    "category_ta": "உடல் பகுதிகள்",
-    "difficulty": "D1",
-    "word_en": "ear",
-    "word_ta": "காது",
-    "image_word": "ear",
-    "sentence_en": "I have an <b>ear</b> infection.",
-    "sentence_ta": "எனக்கு காதில் தொற்று உள்ளது.",
-    "complexity": 2
-  }
+    {
+        "id": 1,
+        "category": "Body Parts",
+        "category_ta": "உடல் பகுதிகள்",
+        "difficulty": "D1",
+        "word_en": "ear",
+        "word_ta": "காது",
+        "image_word": "ear",
+        "sentence_en": "I have an <b>ear</b> infection.",
+        "sentence_ta": "எனக்கு காதில் தொற்று உள்ளது.",
+        "complexity": 2
+    }
 ]
 ```
 
@@ -172,7 +172,6 @@ Data is stored in standard JSON format, allowing easy manipulation by Python scr
 ### Pipeline Overview
 
 ![Python Tooling Pipeline](diagrams/pipeline.png)
-
 
 ---
 
@@ -197,9 +196,11 @@ Branch: publish (primary)
 ## Module Deep Dives
 
 ### Timer Module (`timer.ts`)
+
 Configurable countdown timer with visual pie-chart representation and audio feedback.
 
 ### Layout Module (`layout.ts`)
+
 Injects common UI elements (headers, navigation, sidebars) into each HTML page at runtime, ensuring consistency.
 
 ---
@@ -207,6 +208,7 @@ Injects common UI elements (headers, navigation, sidebars) into each HTML page a
 ## Security Considerations
 
 ### API Key Management
+
 The Theni 2 module uses the Gemini AI API. Keys are stored in `localStorage` by the user.
 
 > [!WARNING]
@@ -222,4 +224,4 @@ The Theni 2 module uses the Gemini AI API. Keys are stored in `localStorage` by 
 
 ---
 
-*This document is maintained alongside the codebase.*
+_This document is maintained alongside the codebase._

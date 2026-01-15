@@ -8,7 +8,7 @@ describe('Utils', () => {
             const original = [...array];
             Utils.shuffleArray(array);
 
-            // It's possible but unlikely it returns the same order, 
+            // It's possible but unlikely it returns the same order,
             // but we expect it to contain same elements
             expect(array).toHaveLength(original.length);
             expect(array.sort()).toEqual(original.sort());
@@ -23,7 +23,6 @@ describe('Utils', () => {
     });
 
     // getRandomItem does not exist in Utils currently
-
 
     describe('progress updates', () => {
         it('should update progress bar width', () => {

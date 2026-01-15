@@ -65,13 +65,13 @@ export const AudioManager = {
     getVoice: function (lang: string): SpeechSynthesisVoice | undefined {
         const voices = this.synth.getVoices();
         // 1. Exact match with Google
-        let voice = voices.find(v => v.lang === lang && v.name.includes('Google'));
+        let voice = voices.find((v) => v.lang === lang && v.name.includes('Google'));
         // 2. Exact match any
-        if (!voice) voice = voices.find(v => v.lang === lang);
+        if (!voice) voice = voices.find((v) => v.lang === lang);
         // 3. Base language match (e.g. 'en' for 'en-US')
         if (!voice && lang.includes('-')) {
             const baseLang = lang.split('-')[0];
-            voice = voices.find(v => v.lang.startsWith(baseLang));
+            voice = voices.find((v) => v.lang.startsWith(baseLang));
         }
         return voice;
     },
@@ -83,7 +83,7 @@ export const AudioManager = {
 
     setMuted: function (muted: boolean): void {
         this.isMuted = muted;
-    }
+    },
 };
 
 // Auto-init

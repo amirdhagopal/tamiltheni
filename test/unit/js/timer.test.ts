@@ -8,7 +8,7 @@ describe('Timer', () => {
         global.Audio = vi.fn().mockImplementation(() => ({
             play: vi.fn(),
             pause: vi.fn(),
-            currentTime: 0
+            currentTime: 0,
         }));
     });
 
@@ -37,7 +37,7 @@ describe('Timer', () => {
         expect(Timer.timeLeft).toBe(9);
     });
 
-    // Since Timer is a singleton and heavily DOM/Audio coupled, 
+    // Since Timer is a singleton and heavily DOM/Audio coupled,
     // we might need to mock DOM elements or refactor Timer to be more testable.
     // For now, basic state checks.
 });
