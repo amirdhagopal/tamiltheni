@@ -275,8 +275,8 @@ function updateProgressInfo() {
     const currentFilteredD1 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D1').length;
     const currentFilteredD2 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D2').length;
 
-    let filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
-    let shuffleText = isShuffled ? ' (Shuffled)' : '';
+    const filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
+    const shuffleText = isShuffled ? ' (Shuffled)' : '';
 
     const info = document.getElementById('progressInfo');
     if (info) {
@@ -287,7 +287,7 @@ function updateProgressInfo() {
 function fetchImage(word: string, imgElement: HTMLImageElement) {
     if (!word) return;
 
-    let safeFilename = word.replace(/[^a-zA-Z0-9 \-_]/g, '').trim().replace(/\s+/g, '_');
+    const safeFilename = word.replace(/[^a-zA-Z0-9 \-_]/g, '').trim().replace(/\s+/g, '_');
     const localPath = `assets/images/theni12/${safeFilename}.jpg`; // Assuming path is still valid relative to build
 
     // Since we are checking if image exists via standard onerror, this logic remains okay.

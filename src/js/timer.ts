@@ -16,10 +16,10 @@ interface TimerElements {
 export const Timer = {
     duration: 15, // default
     timeLeft: 15,
-    timerId: null as number | NodeJS.Timeout | null,
+    timerId: null as ReturnType<typeof setTimeout> | null,
     audioCtx: null as AudioContext | null,
     timerJustRestarted: false,
-    restartTimeoutId: null as number | NodeJS.Timeout | null,
+    restartTimeoutId: null as ReturnType<typeof setTimeout> | null,
     isSilent: false, // New property to mute audio
 
     // Configuration
@@ -89,7 +89,7 @@ export const Timer = {
         const btn = document.getElementById(this.elements.btn);
         const pill = document.getElementById(this.elements.pill);
         if (this.timerId) {
-            clearInterval(this.timerId as number);
+            clearInterval(this.timerId);
             this.timerId = null;
             if (btn) btn.innerText = '▶';
             if (pill) pill.classList.remove('alarm');
@@ -97,7 +97,7 @@ export const Timer = {
     },
 
     reset: function (): void {
-        if (this.timerId) clearInterval(this.timerId as number);
+        if (this.timerId) clearInterval(this.timerId);
         this.timerId = null;
         this.timeLeft = this.duration;
         this.updateDisplay();
@@ -118,7 +118,7 @@ export const Timer = {
 
     restart: function (): void {
         if (this.restartTimeoutId) {
-            clearTimeout(this.restartTimeoutId as number);
+            clearTimeout(this.restartTimeoutId);
         }
 
         // Only restart if visible/enabled
@@ -170,7 +170,7 @@ export const Timer = {
     },
 
     triggerAlarm: function (): void {
-        if (this.timerId) clearInterval(this.timerId as number);
+        if (this.timerId) clearInterval(this.timerId);
         this.timerId = null;
 
         const btn = document.getElementById(this.elements.btn);
@@ -211,7 +211,7 @@ export const Timer = {
     setupAudioUnlock: function (): void {
         const unlock = () => {
             if (!this.audioCtx) {
-                // @ts-ignore
+                // @ts-expect-error - webkitAudioContext is a vendor prefix for Safari
                 this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
             if (this.audioCtx) {
@@ -240,7 +240,7 @@ export const Timer = {
 
     playTickSound: function (): void {
         if (!this.audioCtx) {
-            // @ts-ignore
+            // @ts-expect-error - webkitAudioContext is a vendor prefix for Safari
             this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
         if (this.audioCtx && this.audioCtx.state === 'suspended') this.audioCtx.resume();
@@ -276,7 +276,7 @@ export const Timer = {
 
     playAlarmSound: function (): void {
         if (!this.audioCtx) {
-            // @ts-ignore
+            // @ts-expect-error - webkitAudioContext is a vendor prefix for Safari
             this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
         if (this.audioCtx && this.audioCtx.state === 'suspended') this.audioCtx.resume();

@@ -14,12 +14,11 @@ const PWAManager = {
     },
 
     registerServiceWorker: function () {
-        const self = this;
         const swUrl = `${import.meta.env.BASE_URL}sw.js`;
         navigator.serviceWorker.register(swUrl, { scope: import.meta.env.BASE_URL })
             .then(registration => {
                 console.log('[PWA] SW registered:', registration.scope);
-                self.registration = registration;
+                this.registration = registration;
 
                 // Check for updates
                 registration.onupdatefound = () => {
@@ -32,7 +31,7 @@ const PWAManager = {
                             if (navigator.serviceWorker.controller) {
                                 // New update available
                                 console.log('[PWA] New content is available; please refresh.');
-                                self.showUpdateNotification();
+                                this.showUpdateNotification();
                             } else {
                                 console.log('[PWA] Content is cached for offline use.');
                             }

@@ -14,7 +14,7 @@ let currentSlide = 0;
 
 // Audio state
 let audioEnabled = true; // Default to on
-let audioTimeout: ReturnType<typeof setTimeout> | null = null;
+const audioTimeout: ReturnType<typeof setTimeout> | null = null;
 // synth removed - using AudioManager
 
 // Filter and sequence state
@@ -26,7 +26,7 @@ let filteredSlides: HTMLDivElement[] = [];
 // let originalOrder = []; // Not used?
 let isShuffled = false;
 let viewedPartners: Record<number, number> = {}; // Stores index -> partnerIndex mapping for persistence
-let sentenceCache: Record<string, any> = {}; // Stores "word1|word2" -> {tamil, english}
+const sentenceCache: Record<string, any> = {}; // Stores "word1|word2" -> {tamil, english}
 const imageCache: Record<string, string> = {}; // Cache for images to avoid re-fetching
 
 // Timer state handled by Timer module
@@ -260,8 +260,8 @@ function updateProgress() {
     const currentFilteredD1 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D1').length;
     const currentFilteredD2 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D2').length;
 
-    let filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
-    let shuffleText = isShuffled ? ' (Shuffled)' : '';
+    const filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
+    const shuffleText = isShuffled ? ' (Shuffled)' : '';
 
     const progressInfo = document.getElementById('progressInfo');
     if (progressInfo) {

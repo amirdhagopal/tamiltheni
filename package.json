@@ -1,13 +1,14 @@
 {
     "name": "tamiltheni",
     "version": "1.0.0",
+    "type": "module",
     "description": "Tamil language learning web application for the FETNA Tamil Theni competition",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "lint": "eslint docs/assets/js/**/*.js",
-        "lint:fix": "eslint docs/assets/js/**/*.js --fix",
+        "lint": "eslint src/**/*.ts test/**/*.ts",
+        "lint:fix": "eslint src/**/*.ts test/**/*.ts --fix",
         "format": "prettier --write \"docs/**/*.{js,css,html}\"",
         "format:check": "prettier --check \"docs/**/*.{js,css,html}\"",
         "test": "vitest"
@@ -23,7 +24,10 @@
     "private": true,
     "devDependencies": {
         "@types/node": "^25.0.8",
+        "@typescript-eslint/eslint-plugin": "^8.53.0",
+        "@typescript-eslint/parser": "^8.53.0",
         "eslint": "^9.18.0",
+        "globals": "^17.0.0",
         "jsdom": "^27.4.0",
         "prettier": "^3.4.2",
         "typescript": "^5.9.3",

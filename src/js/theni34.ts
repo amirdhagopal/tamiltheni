@@ -231,8 +231,8 @@ function updateProgress() {
     const currentFilteredD1 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D1').length;
     const currentFilteredD2 = filteredSlides.filter(s => s.querySelector('.difficulty-badge')?.textContent === 'D2').length;
 
-    let filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
-    let shuffleText = isShuffled ? ' (Shuffled)' : '';
+    const filterText = currentFilter === 'all' ? 'All Difficulty' : currentFilter;
+    const shuffleText = isShuffled ? ' (Shuffled)' : '';
 
     const progressInfo = document.getElementById('progressInfo');
     if (progressInfo) {

@@ -1,46 +1,39 @@
 import js from "@eslint/js";
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsparser from "@typescript-eslint/parser";
+import globals from "globals";
 
 export default [
+    {
+        ignores: ["node_modules/**", "docs/**", "dev-dist/**", "*.config.js", "*.config.ts"],
+    },
     js.configs.recommended,
     {
+        files: ["src/**/*.ts", "test/**/*.ts"],
         languageOptions: {
-            ecmaVersion: 2022,
-            sourceType: "script",
+            parser: tsparser,
+            parserOptions: {
+                ecmaVersion: 2022,
+                sourceType: "module",
+            },
             globals: {
-                // Browser globals
-                window: "readonly",
-                document: "readonly",
-                console: "readonly",
-                setTimeout: "readonly",
-                clearTimeout: "readonly",
-                setInterval: "readonly",
-                clearInterval: "readonly",
-                alert: "readonly",
-                Audio: "readonly",
-                Image: "readonly",
-                speechSynthesis: "readonly",
-                SpeechSynthesisUtterance: "readonly",
-                SpeechRecognition: "readonly",
-                webkitSpeechRecognition: "readonly",
-                localStorage: "readonly",
-                // App globals
-                TheniLayout: "readonly",
-                TheniTimer: "readonly",
-                TheniAudio: "readonly",
-                TheniConfig: "readonly",
-                TheniUtils: "readonly",
-                theniWords: "readonly",
-                theni5Words: "readonly",
+                ...globals.browser,
+                ...globals.node,
+                NodeListOf: 'readonly',
             },
         },
+        plugins: {
+            "@typescript-eslint": tseslint,
+        },
         rules: {
-            "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+            ...tseslint.configs.recommended.rules,
+            "no-unused-vars": "off",
+            "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
             "no-console": "off",
             "prefer-const": "warn",
             "no-var": "warn",
+            "@typescript-eslint/no-explicit-any": "warn",
+            "no-useless-escape": "warn",
         },
-    },
-    {
-        ignores: ["node_modules/**", "docs/assets/data/**"],
     },
 ];
