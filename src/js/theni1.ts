@@ -667,6 +667,15 @@ export function init() {
     document.getElementById('audioToggle')?.addEventListener('change', toggleAudio);
     document.getElementById('voiceToggle')?.addEventListener('change', toggleVoice);
 
+    // Enable audio when panel collapses if audio checkbox is checked
+    document.addEventListener('panelCollapsed', () => {
+        const audioCheckbox = document.getElementById('audioToggle') as HTMLInputElement;
+        if (audioCheckbox?.checked && !audioEnabled) {
+            audioEnabled = true;
+            toggleAudio();
+        }
+    });
+
     document.getElementById('firstBtn')?.addEventListener('click', (e) => {
         e.stopPropagation();
         goToFirst();

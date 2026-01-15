@@ -18,7 +18,7 @@ export const Layout = {
     injectControlPanel: function (title: string, contentHTML: string): void {
         const panelStr = `
             <div class="control-panel" id="controlPanel">
-                <div class="control-header" role="button" tabindex="0" aria-expanded="false" aria-controls="controlContent" onclick="document.getElementById('controlPanel').classList.toggle('collapsed'); this.setAttribute('aria-expanded', !document.getElementById('controlPanel').classList.contains('collapsed'))" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); this.click(); }">
+                <div class="control-header" role="button" tabindex="0" aria-expanded="false" aria-controls="controlContent" onclick="const panel = document.getElementById('controlPanel'); const wasCollapsed = panel.classList.contains('collapsed'); panel.classList.toggle('collapsed'); this.setAttribute('aria-expanded', wasCollapsed); if (!wasCollapsed) { document.dispatchEvent(new CustomEvent('panelCollapsed')); }" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); this.click(); }">
                     <h3><span aria-hidden="true">⚙️</span> ${title}</h3>
                     <span class="toggle-icon" aria-hidden="true">▼</span>
                 </div>
