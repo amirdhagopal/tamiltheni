@@ -109,13 +109,16 @@ export function toggleControlPanel() {
     }
 }
 
-function collapsePanel() {
+function collapsePanel(): boolean {
     const panel = document.getElementById('controlPanel');
+    let collapsed = false;
     if (panel && !panel.classList.contains('collapsed')) {
         panel.classList.add('collapsed');
         document.dispatchEvent(new CustomEvent('panelCollapsed'));
+        collapsed = true;
     }
     document.getElementById('categoryMenu')?.classList.remove('show');
+    return collapsed;
 }
 
 function toggleDropdown(event: Event) {
@@ -784,6 +787,7 @@ export function init() {
     // Global Click Listener for Dropdowns & Reveal Logic
     document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
+        let pannedClosed = false;
 
         // 1. Handle Dropdown closing
         if (!target.closest('.category-dropdown')) {
@@ -792,7 +796,7 @@ export function init() {
 
         // 2. Handle Panel closing (if clicked outside)
         if (!target.closest('.control-panel')) {
-            collapsePanel();
+            pannedClosed = collapsePanel();
         }
 
         // 3. Click-to-Reveal Logic
@@ -806,7 +810,7 @@ export function init() {
             target.closest('.modal') || // Keyboard help modal
             target.closest('.keyboard-help-modal');
 
-        if (!isInteractive) {
+        if (!isInteractive && !pannedClosed) {
             // Treat background/card clicks as "Next Action"
             handleNextAction();
         }
