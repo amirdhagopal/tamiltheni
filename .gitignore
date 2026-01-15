@@ -2,5 +2,5 @@ __pycache__
 .DS_Store
 node_modules
 dist
-docs
+
 test-results

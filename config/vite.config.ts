@@ -21,7 +21,7 @@ export default defineConfig(({ command }) => ({
     plugins: [
         VitePWA({
             registerType: 'autoUpdate',
-            includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'assets/icons/*.png'],
+            includeAssets: ['favicon.svg', 'apple-touch-icon.png'],
             manifest: {
                 name: 'TamilTheni - தமிழ்த்தேனி',
                 short_name: 'TamilTheni',
