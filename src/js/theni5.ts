@@ -139,6 +139,7 @@ function updateUI() {
 function shuffleWords() {
     Utils.shuffleArray(activeWords);
     currentSlide = 0;
+    document.getElementById('shuffleBtn')?.classList.add('active');
     renderSlide();
 }
 
@@ -151,6 +152,7 @@ function resetWords() {
 
     activeWords = rawWords.filter((w) => w.s >= start && w.s <= end);
     currentSlide = 0;
+    document.getElementById('shuffleBtn')?.classList.remove('active');
     renderSlide();
 }
 

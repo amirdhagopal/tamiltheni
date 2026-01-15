@@ -141,6 +141,13 @@ body {
     transform: translateY(-2px);
 }
 
+.action-button.active {
+    background: white;
+    color: var(--primary);
+    border-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* --- Dropdowns --- */
 .category-dropdown {
     position: relative;

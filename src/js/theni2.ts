@@ -118,7 +118,7 @@ function populateCategories() {
     allSlides.forEach((slide) => {
         const en = slide.querySelector('.category-badge')?.textContent;
         const ta = slide.querySelector('.category-badge-ta')?.textContent;
-        const key = `${en} - ${ta} `;
+        const key = `${en} - ${ta}`;
         if (!catMap.has(key)) {
             catMap.set(key, true);
         }
@@ -137,7 +137,7 @@ function populateCategories() {
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.checked = true;
-            checkbox.id = `cat - ${cat} `;
+            checkbox.id = `cat-${cat}`;
 
             const label = document.createElement('span');
             label.innerText = cat;
@@ -169,7 +169,7 @@ function toggleCategory(category: string) {
     }
 
     // Update UI
-    const checkbox = document.getElementById(`cat - ${category} `) as HTMLInputElement;
+    const checkbox = document.getElementById(`cat-${category}`) as HTMLInputElement;
     if (checkbox) checkbox.checked = selectedCategories.includes(category);
 
     updateCategoryText();
@@ -223,7 +223,7 @@ function applyFilters(resetToStart = true) {
         const diffBadge = slide.querySelector('.difficulty-badge')?.textContent;
         const catBadge = slide.querySelector('.category-badge')?.textContent;
         const catBadgeTa = slide.querySelector('.category-badge-ta')?.textContent;
-        const catKey = `${catBadge} - ${catBadgeTa} `;
+        const catKey = `${catBadge} - ${catBadgeTa}`;
 
         const difficultyMatch = currentFilter === 'all' || diffBadge === currentFilter;
         const categoryMatch = selectedCategories.includes(catKey);
@@ -249,7 +249,7 @@ function filterDifficulty(difficulty: string) {
 
     // Update button states
     document.querySelectorAll('.pill-button').forEach((btn) => btn.classList.remove('active'));
-    const btn = document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty} `);
+    const btn = document.getElementById(`filter${difficulty === 'all' ? 'All' : difficulty}`);
     if (btn) btn.classList.add('active');
 
     applyFilters();
@@ -257,11 +257,13 @@ function filterDifficulty(difficulty: string) {
 
 function shuffleSlides() {
     isShuffled = true;
+    document.getElementById('btn-shuffle')?.classList.add('active');
     applyFilters();
 }
 
 function resetSequence() {
     isShuffled = false;
+    document.getElementById('btn-shuffle')?.classList.remove('active');
     applyFilters();
 }
 

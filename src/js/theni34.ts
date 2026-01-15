@@ -225,11 +225,13 @@ function filterDifficulty(difficulty: string) {
 
 function shuffleSlides() {
     isShuffled = true;
+    document.getElementById('btn-shuffle')?.classList.add('active');
     applyFilters();
 }
 
 function resetSequence() {
     isShuffled = false;
+    document.getElementById('btn-shuffle')?.classList.remove('active');
     applyFilters();
 }
 
