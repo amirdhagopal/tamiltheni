@@ -9,7 +9,7 @@ export const config: TheniConfig = {
         theni5: 60,
     },
     gemini: {
-        defaultModel: 'models/gemini-3.0-flash',
+        defaultModel: 'models/gemini-2.5-flash',
         baseUrl: 'https://generativelanguage.googleapis.com/v1beta',
     },
 };

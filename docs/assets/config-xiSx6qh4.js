@@ -39,4 +39,4 @@ const d={shuffleArray:function(t){for(let e=t.length-1;e>0;e--){const i=Math.flo
                     <span aria-hidden="true">⏭</span>
                 </button>
             </div>
-        `,e=document.querySelector(".slide-container");e&&e.insertAdjacentHTML("beforeend",t)}},h={timerDurations:{theni1:8,theni2:20,theni3:15,theni4:40,theni5:60},gemini:{defaultModel:"models/gemini-3.0-flash",baseUrl:"https://generativelanguage.googleapis.com/v1beta"}};export{m as L,u as T,d as U,h as c};
+        `,e=document.querySelector(".slide-container");e&&e.insertAdjacentHTML("beforeend",t)}},h={timerDurations:{theni1:8,theni2:20,theni3:15,theni4:40,theni5:60},gemini:{defaultModel:"models/gemini-2.5-flash",baseUrl:"https://generativelanguage.googleapis.com/v1beta"}};export{m as L,u as T,d as U,h as c};

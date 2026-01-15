@@ -3,6 +3,7 @@ import { Timer } from './timer';
 import { AudioManager } from './audio_manager';
 import { Layout } from './layout';
 import { config } from './config';
+import { GeminiService } from './gemini_service';
 import theniWords from '../data/theni_words.json';
 import { Word } from '../types';
 
@@ -389,36 +390,18 @@ async function generateSentence() {
     IMPORTANT: Use the exact Tamil words provided. Keep it simple.`;
 
     try {
-        const response = await fetch(
-            `${config.gemini.baseUrl}/${config.gemini.defaultModel}:generateContent?key=${validKey}`,
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
-                }),
-            }
-        );
+        // Set API key and use dynamic model selection
+        GeminiService.setApiKey(validKey);
+        const text = await GeminiService.generateContent(prompt);
 
-        const data = await response.json();
+        // cleanup markdown code blocks if present
+        const cleanText = text.replace(/```json\n?|\n?```/g, '').trim();
+        const json = JSON.parse(cleanText);
 
-        if (data.error) {
-            throw new Error(data.error.message || 'API Error');
-        }
+        // Cache it
+        sentenceCache[cacheKey] = json;
 
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (text) {
-            // cleanup markdown code blocks if present
-            const cleanText = text.replace(/```json\n?|\n?```/g, '').trim();
-            const json = JSON.parse(cleanText);
-
-            // Cache it
-            sentenceCache[cacheKey] = json;
-
-            renderResult(json);
-        } else {
-            throw new Error('No response text');
-        }
+        renderResult(json);
     } catch (e: unknown) {
         const errorMessage = e instanceof Error ? e.message : 'Unknown error';
         console.error('AI Error:', e);
