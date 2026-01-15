@@ -116,9 +116,10 @@ export const Layout = {
                             <div class="shortcut-row"><kbd>R</kbd><span>Reset sequence</span></div>
                         </div>
                         <div class="shortcut-section">
-                            <h3>❓ Help</h3>
+                            <h3>❓ Help & UI</h3>
                             <div class="shortcut-row"><kbd>?</kbd><span>Show this help</span></div>
-                            <div class="shortcut-row"><kbd>Esc</kbd><span>Close modal</span></div>
+                            <div class="shortcut-row"><kbd>Esc</kbd><span>Close modal / panel</span></div>
+                            <div class="shortcut-row"><kbd>C</kbd><span>Toggle Control Panel</span></div>
                         </div>
                     </div>
                 </div>
@@ -258,11 +259,22 @@ export const Layout = {
                 return;
             }
 
-            // Escape to close modal
-            if (e.key === 'Escape' && modal?.classList.contains('show')) {
-                modal.classList.remove('show');
-                modal.setAttribute('aria-hidden', 'true');
-                return;
+            // Escape: Close modal OR Close control panel
+            if (e.key === 'Escape') {
+                if (modal?.classList.contains('show')) {
+                    modal.classList.remove('show');
+                    modal.setAttribute('aria-hidden', 'true');
+                    return;
+                }
+                // Also close control panel if open
+                const panel = document.getElementById('controlPanel');
+                if (panel && !panel.classList.contains('collapsed')) {
+                    panel.classList.add('collapsed');
+                    document.dispatchEvent(new CustomEvent('panelCollapsed'));
+                    // Optional: remove body class if used
+                    // document.body.classList.remove('panel-expanded');
+                    return;
+                }
             }
 
             // ? to show help modal
@@ -277,6 +289,27 @@ export const Layout = {
 
             // Don't trigger other shortcuts if modal is open
             if (modal?.classList.contains('show')) {
+                return;
+            }
+
+            // C = Toggle Control Panel
+            if (e.key === 'c' || e.key === 'C') {
+                const panel = document.getElementById('controlPanel');
+                if (panel) {
+                    // Start expanded (collapsed=false)? CSS usually starts collapsed or not.
+                    // The logic in injectControlPanel uses 'collapsed' class to HIDE it usually?
+                    // Actually existing CSS: .control-panel.collapsed { transform: translateY(-...); }
+                    // So adding 'collapsed' hides it. Removing 'collapsed' shows it.
+
+                    const wasCollapsed = panel.classList.contains('collapsed');
+                    // Toggle
+                    panel.classList.toggle('collapsed');
+
+                    // If we just collapsed it (was not collapsed -> now collapsed)
+                    if (!wasCollapsed) {
+                        document.dispatchEvent(new CustomEvent('panelCollapsed'));
+                    }
+                }
                 return;
             }
 
