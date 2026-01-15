@@ -128,6 +128,7 @@ The build process (`tsc && vite build`) transpiles this to optimized JavaScript 
 | `layout.ts`        | UI component injection    | `Layout` class       |
 | `timer.ts`         | Countdown timer engine    | `Timer` class        |
 | `audio_manager.ts` | Text-to-Speech wrapper    | `AudioManager` class |
+| `gemini_service.ts`| AI API Integration        | `GeminiService` class|
 
 ---
 
@@ -201,7 +202,7 @@ Configurable countdown timer with visual pie-chart representation and audio feed
 
 ### Layout Module (`layout.ts`)
 
-Injects common UI elements (headers, navigation, sidebars) into each HTML page at runtime, ensuring consistency.
+Injects common UI elements (headers, navigation, sidebars) into each HTML page at runtime, ensuring consistency. It also manages the **Control Panel toggle** and **Global Keyboard Shortcuts** (including the Help Modal).
 
 ---
 
