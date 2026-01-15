@@ -109,12 +109,12 @@
     background: #fafafa;
     border-radius: 16px;
     padding: 20px;
-    padding-bottom: 40px;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border: 2px solid transparent;
     transition: all 0.3s ease;
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .dual-word-card:hover {
@@ -162,7 +162,6 @@
     border-radius: 12px;
     font-size: 0.75em;
     font-weight: 600;
-    margin-top: 8px;
 }
 
 .dual-word-card .category-label {
@@ -173,26 +172,22 @@
 .dual-word-card .category-label-ta {
     background: #ffebee;
     color: #c62828;
-    margin-left: 5px;
 }
 
-.dual-word-card .difficulty-badge-corner {
-    position: absolute;
-    bottom: 10px;
+.dual-word-card .difficulty-label {
     background: #fff3e0;
     color: #ef6c00;
     font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 8px;
-    font-size: 0.8em;
 }
 
-.dual-word-card .difficulty-badge-corner.left {
-    left: 10px;
-}
-
-.dual-word-card .difficulty-badge-corner.right {
-    right: 10px;
+/* Footer badges container - centered at bottom */
+.dual-word-card .card-footer-badges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 10px;
 }
 
 /* Hide original slide content in dual mode */
