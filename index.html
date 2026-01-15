@@ -28,41 +28,53 @@
     <header class="header">
         <h1>TamilTheni <span class="tamil-title">தமிழ்த்தேனி 2026</span></h1>
         <p>பியோரியா தமிழ்ப் பள்ளி - Peoria Tamil School</p>
+        <button id="showHelpBtn" title="Show keyboard shortcuts (?)"
+            style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">
+            ⌨️ <span style="font-weight: 600;">?</span>
+        </button>
     </header>
 
     <main class="grid">
         <!-- Theni 1 -->
-        <a href="html/theni1.html" class="card">
+        <a href="html/theni1.html" class="card" title="Press 1 to open">
             <div class="card-icon">🐝</div>
             <h2>Theni 1 <span>தேனி 1</span></h2>
             <p><strong>Tell the Tamil word for the picture shown.</strong><br>படங்களை பார்த்து அவற்றுக்கு இணையான
                 தமிழ்ச் சொல்லைக் கூறுதல்.</p>
-            <div class="badge active">Ready to Study</div>
+            <div class="badge active">Ready to Study <kbd
+                    style="margin-left: 8px; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 0.8em;">1</kbd>
+            </div>
         </a>
 
         <!-- Theni 2 -->
-        <a href="html/theni2.html" class="card">
+        <a href="html/theni2.html" class="card" title="Press 2 to open">
             <div class="card-icon">🦜</div>
             <h2>Theni 2 <span>தேனி 2</span></h2>
             <p><strong>Form a sentence using the pictures.</strong><br>படங்களை கொண்டு வாக்கியம் அமைக்கவும்.</p>
-            <div class="badge active">Ready to Study</div>
+            <div class="badge active">Ready to Study <kbd
+                    style="margin-left: 8px; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 0.8em;">2</kbd>
+            </div>
         </a>
 
         <!-- Theni 3 & 4 -->
-        <a href="html/theni34.html" class="card">
+        <a href="html/theni34.html" class="card" title="Press 3 or 4 to open">
             <div class="card-icon">🦋</div>
             <h2>Theni 3 & 4 <span>தேனி 3 மற்றும் 4</span></h2>
             <p><strong>Translate English sentences to Tamil.</strong><br>ஆங்கில வாக்கியங்களைத் தமிழில் மொழிபெயர்த்தல்.
             </p>
-            <div class="badge active">Ready to Study</div>
+            <div class="badge active">Ready to Study <kbd
+                    style="margin-left: 8px; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 0.8em;">3</kbd>
+            </div>
         </a>
 
         <!-- Theni 5 -->
-        <a href="html/theni5.html" class="card">
+        <a href="html/theni5.html" class="card" title="Press 5 to open">
             <div class="card-icon">🏹</div>
             <h2>Theni 5 <span>தேனி 5</span></h2>
             <p><strong>Find word using clue words.</strong><br>ஒரு வார்த்தை ஒரு லட்சம் வடிவத்திலான போட்டி.</p>
-            <div class="badge active">Ready to Study</div>
+            <div class="badge active">Ready to Study <kbd
+                    style="margin-left: 8px; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; font-size: 0.8em;">5</kbd>
+            </div>
         </a>
     </main>
 
@@ -77,6 +89,184 @@
                 href="http://creativecommons.org/licenses/by/4.0/" target="_blank"
                 style="color: inherit; text-decoration: underline;">CC BY 4.0</a>.</span>
     </footer>
+
+    <!-- Keyboard Help Modal -->
+    <div class="keyboard-help-modal" id="keyboardHelpModal" role="dialog" aria-labelledby="keyboardHelpTitle"
+        aria-hidden="true">
+        <div class="keyboard-help-content">
+            <div class="keyboard-help-header">
+                <h2 id="keyboardHelpTitle">⌨️ Keyboard Shortcuts</h2>
+                <button class="keyboard-help-close" id="closeKeyboardHelp" title="Close (Escape)"
+                    aria-label="Close">&times;</button>
+            </div>
+            <div class="keyboard-help-body">
+                <div class="shortcut-section">
+                    <h3>🧭 Quick Navigation</h3>
+                    <div class="shortcut-row"><kbd>1</kbd><span>Go to Theni 1</span></div>
+                    <div class="shortcut-row"><kbd>2</kbd><span>Go to Theni 2</span></div>
+                    <div class="shortcut-row"><kbd>3</kbd> or <kbd>4</kbd><span>Go to Theni 3 & 4</span></div>
+                    <div class="shortcut-row"><kbd>5</kbd><span>Go to Theni 5</span></div>
+                </div>
+                <div class="shortcut-section">
+                    <h3>❓ Help</h3>
+                    <div class="shortcut-row"><kbd>?</kbd><span>Show this help</span></div>
+                    <div class="shortcut-row"><kbd>Esc</kbd><span>Close modal</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .keyboard-help-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .keyboard-help-modal.show {
+            display: flex;
+        }
+
+        .keyboard-help-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .keyboard-help-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .keyboard-help-header h2 {
+            margin: 0;
+            color: #fff;
+            font-size: 1.3em;
+        }
+
+        .keyboard-help-close {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .keyboard-help-close:hover {
+            color: #fff;
+        }
+
+        .keyboard-help-body {
+            padding: 20px 24px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .shortcut-section h3 {
+            color: #667eea;
+            font-size: 0.95em;
+            margin: 0 0 12px 0;
+        }
+
+        .shortcut-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            color: #ccc;
+            font-size: 0.9em;
+        }
+
+        .shortcut-row kbd {
+            background: linear-gradient(180deg, #3a3a4a 0%, #2a2a3a 100%);
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 4px 8px;
+            font-family: monospace;
+            font-size: 0.85em;
+            color: #fff;
+            min-width: 24px;
+            text-align: center;
+            box-shadow: 0 2px 0 #222;
+        }
+
+        .shortcut-row span:last-child {
+            flex: 1;
+        }
+    </style>
+
+    <!-- Keyboard Navigation Shortcuts -->
+    <script>
+        document.addEventListener('keydown', function (e) {
+            var modal = document.getElementById('keyboardHelpModal');
+
+            // Escape to close modal
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                modal.classList.remove('show');
+                return;
+            }
+
+            // ? to show help
+            if (e.key === '?') {
+                e.preventDefault();
+                modal.classList.add('show');
+                return;
+            }
+
+            // Don't navigate if modal is open
+            if (modal.classList.contains('show')) return;
+
+            // Navigate to Theni pages using number keys (1, 2, 3, 4, 5)
+            switch (e.key) {
+                case '1':
+                    window.location.href = 'html/theni1.html';
+                    break;
+                case '2':
+                    window.location.href = 'html/theni2.html';
+                    break;
+                case '3':
+                case '4':
+                    window.location.href = 'html/theni34.html';
+                    break;
+                case '5':
+                    window.location.href = 'html/theni5.html';
+                    break;
+            }
+        });
+
+        // Modal controls
+        document.getElementById('showHelpBtn').addEventListener('click', function () {
+            document.getElementById('keyboardHelpModal').classList.add('show');
+        });
+        document.getElementById('closeKeyboardHelp').addEventListener('click', function () {
+            document.getElementById('keyboardHelpModal').classList.remove('show');
+        });
+        document.getElementById('keyboardHelpModal').addEventListener('click', function (e) {
+            if (e.target === this) this.classList.remove('show');
+        });
+    </script>
 
     <!-- PWA Registration with Update Notifications -->
     <script type="module" src="/src/js/pwa.ts"></script>

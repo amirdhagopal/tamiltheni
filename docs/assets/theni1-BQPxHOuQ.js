@@ -1,4 +1,4 @@
-import"./pwa-DOeEgxuH.js";import{L as z,T as w,c as _,U as F}from"./config-CembH8Ct.js";import{A as m}from"./audio_manager-CdHsL4ip.js";import{t as H}from"./theni_words-xXaqkVpm.js";let s=0,g=!0,C=!1,y=null,b="all",r=[],h=[],v=[],l=[],L=!1;const T=window.SpeechRecognition||window.webkitSpeechRecognition;let a=null,E=!1;T?(a=new T,a.lang="ta-IN",a.interimResults=!1,a.maxAlternatives=1,a.onresult=e=>{const t=e.results[0][0].transcript.trim();J(t)},a.onerror=e=>{e.error!=="no-speech"&&(console.error("Speech recognition error:",e.error),x("Error: "+e.error,"error")),p()},a.onend=()=>{E&&p()}):console.warn("Speech recognition not supported.");function U(){const e=document.getElementById("slides-wrapper");if(!e){console.error("Missing slides-wrapper");return}e.innerHTML="",H.forEach((t,i)=>{const n=document.createElement("div");n.className=i===0?"slide active":"slide",n.id=`slide-${i}`,n.style.display=i===0?"flex":"none",n.innerHTML=`
+import"./pwa-DOeEgxuH.js";import{L as z,T as w,c as _,U as F}from"./config-bjlbyccu.js";import{A as m}from"./audio_manager-CdHsL4ip.js";import{t as H}from"./theni_words-xXaqkVpm.js";let s=0,g=!0,C=!1,y=null,b="all",r=[],h=[],v=[],l=[],L=!1;const T=window.SpeechRecognition||window.webkitSpeechRecognition;let a=null,E=!1;T?(a=new T,a.lang="ta-IN",a.interimResults=!1,a.maxAlternatives=1,a.onresult=e=>{const t=e.results[0][0].transcript.trim();J(t)},a.onerror=e=>{e.error!=="no-speech"&&(console.error("Speech recognition error:",e.error),x("Error: "+e.error,"error")),p()},a.onend=()=>{E&&p()}):console.warn("Speech recognition not supported.");function U(){const e=document.getElementById("slides-wrapper");if(!e){console.error("Missing slides-wrapper");return}e.innerHTML="",H.forEach((t,i)=>{const n=document.createElement("div");n.className=i===0?"slide active":"slide",n.id=`slide-${i}`,n.style.display=i===0?"flex":"none",n.innerHTML=`
             <div class="image-container">
                 <img src="https://placehold.co/400x300?text=Loading..."
                      data-word="${t.image_word}"
@@ -39,17 +39,17 @@ import"./pwa-DOeEgxuH.js";import{L as z,T as w,c as _,U as F}from"./config-CembH
                 <span class="control-label">Difficulty:</span>
                 <div class="pill-group">
                 <div class="pill-group">
-                    <button class="pill-button active" id="filterAll" title="Show all difficulty levels" aria-pressed="true">All</button>
-                    <button class="pill-button" id="filterD1" title="Show only Difficulty 1 words" aria-pressed="false">D1 Only</button>
-                    <button class="pill-button" id="filterD2" title="Show only Difficulty 2 words" aria-pressed="false">D2 Only</button>
+                    <button class="pill-button active" id="filterAll" title="Show all difficulty levels (A)" aria-pressed="true">All</button>
+                    <button class="pill-button" id="filterD1" title="Show only Difficulty 1 words (1)" aria-pressed="false">D1 Only</button>
+                    <button class="pill-button" id="filterD2" title="Show only Difficulty 2 words (2)" aria-pressed="false">D2 Only</button>
                 </div>
                 </div>
             </div>
             <div class="control-row">
                 <span class="control-label">Sequence:</span>
                 <div class="pill-group">
-                    <button class="action-button" id="btn-shuffle" title="Randomize slide order" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
-                    <button class="action-button" id="btn-reset-seq" title="Reset to original order"><span aria-hidden="true">↩️</span> Reset</button>
+                    <button class="action-button" id="btn-shuffle" title="Randomize slide order (S)" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                    <button class="action-button" id="btn-reset-seq" title="Reset to original order (R)"><span aria-hidden="true">↩️</span> Reset</button>
                 </div>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
                     <label title="Show/hide countdown timer" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">

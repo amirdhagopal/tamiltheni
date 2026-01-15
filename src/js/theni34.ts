@@ -450,16 +450,16 @@ export function init() {
             <div class="control-row">
                 <span class="control-label">Difficulty:</span>
                 <div class="pill-group">
-                    <button class="pill-button active" id="filterAll" title="Show all difficulty levels" aria-pressed="true">All</button>
-                    <button class="pill-button" id="filterD1" title="Show only Difficulty 1 sentences" aria-pressed="false">D1 Only</button>
-                    <button class="pill-button" id="filterD2" title="Show only Difficulty 2 sentences" aria-pressed="false">D2 Only</button>
+                    <button class="pill-button active" id="filterAll" title="Show all difficulty levels (A)" aria-pressed="true">All</button>
+                    <button class="pill-button" id="filterD1" title="Show only Difficulty 1 sentences (1)" aria-pressed="false">D1 Only</button>
+                    <button class="pill-button" id="filterD2" title="Show only Difficulty 2 sentences (2)" aria-pressed="false">D2 Only</button>
                 </div>
             </div>
             <div class="control-row">
                 <span class="control-label">Sequence:</span>
                 <div class="pill-group">
-                    <button class="action-button" id="btn-shuffle" title="Randomize slide order" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
-                    <button class="action-button" id="btn-reset-seq" title="Reset to original order"><span aria-hidden="true">↩️</span> Reset</button>
+                    <button class="action-button" id="btn-shuffle" title="Randomize slide order (S)" aria-pressed="false"><span aria-hidden="true">🔀</span> Shuffle</button>
+                    <button class="action-button" id="btn-reset-seq" title="Reset to original order (R)"><span aria-hidden="true">↩️</span> Reset</button>
                 </div>
                 <div style="margin-left: auto; display: flex; gap: 15px;">
                     <label title="Show/hide countdown timer" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.85em;">
