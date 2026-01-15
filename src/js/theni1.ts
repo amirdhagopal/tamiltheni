@@ -334,16 +334,7 @@ function updateProgressInfo() {
 function fetchImage(word: string, imgElement: HTMLImageElement) {
     if (!word) return;
 
-    const safeFilename = word
-        .replace(/[^a-zA-Z0-9 \-_]/g, '')
-        .trim()
-        .replace(/\s+/g, '_');
-    const localPath = `assets/images/theni12/${safeFilename}.jpg`;
-
-    // Detect if we're in a subdirectory (like /html/) and adjust path accordingly
-    const isHtmlSubdir = window.location.pathname.includes('/html/');
-    const pathPrefix = isHtmlSubdir ? '../' : './';
-    const finalPath = pathPrefix + localPath;
+    const finalPath = Utils.getImagePath(word);
 
     imgElement.onerror = function () {
         imgElement.onerror = null;

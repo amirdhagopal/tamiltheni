@@ -26,4 +26,29 @@ export const Utils = {
 
     saveLocal: (key: string, val: string): void => localStorage.setItem(key, val),
     getLocal: (key: string): string | null => localStorage.getItem(key),
+
+    /**
+     * Sanitizes a word for use as a filename.
+     */
+    getSafeFilename: function (word: string): string {
+        if (!word) return '';
+        return word
+            .replace(/[^a-zA-Z0-9 \-_]/g, '')
+            .trim()
+            .replace(/\s+/g, '_')
+            .toLowerCase();
+    },
+
+    /**
+     * Returns the correct path for an image, accounting for subdirectory depth.
+     */
+    getImagePath: function (word: string, basePath = 'assets/images/theni12'): string {
+        const safeFilename = this.getSafeFilename(word);
+        if (!safeFilename) return '';
+
+        // Detect if we're in a subdirectory (like /html/) and adjust path accordingly
+        const isHtmlSubdir = window.location.pathname.includes('/html/');
+        const pathPrefix = isHtmlSubdir ? '../' : './';
+        return `${pathPrefix}${basePath}/${safeFilename}.jpg`;
+    },
 };

@@ -91,15 +91,6 @@ function generateSlides() {
     filteredSlides = [...allSlides];
 }
 
-function getSafeFilename(word: string) {
-    if (!word) return '';
-    return word
-        .replace(/[^a-zA-Z0-9 \-_]/g, '')
-        .trim()
-        .replace(/\s+/g, '_')
-        .toLowerCase();
-}
-
 // --- Logic Functions ---
 
 export function toggleControlPanel() {
@@ -511,12 +502,12 @@ function updateUI(shouldSpeak = true) {
 
     const slide2 = filteredSlides[randomIdx];
 
-    // Preload partner image in background using getSafeFilename
+    // Preload partner image in background using Utils.getImagePath
     const partnerImg = slide2.querySelector('.slide-image') as HTMLImageElement;
     const partnerWord = partnerImg?.dataset.word || slide2.querySelector('.word-en')?.textContent?.toLowerCase();
     if (partnerWord) {
         const preloadImg = new Image();
-        preloadImg.src = `assets/images/theni12/${getSafeFilename(partnerWord)}.jpg`;
+        preloadImg.src = Utils.getImagePath(partnerWord);
     }
 
     // Update Card 1
@@ -591,17 +582,11 @@ function updateCard(cardNum: number, slide: HTMLDivElement) {
         // Load image
         const cardImg = document.getElementById(prefix + 'Img') as HTMLImageElement;
         if (cardImg) {
-            const safeFilename = getSafeFilename(word);
             // Check cache first
             if (imageCache[word]) {
                 cardImg.src = imageCache[word];
             } else {
-                const localPath = `assets/images/theni12/${safeFilename}.jpg`;
-                // Detect if we're in a subdirectory (like /html/) and adjust path accordingly
-                const isHtmlSubdir = window.location.pathname.includes('/html/');
-                const pathPrefix = isHtmlSubdir ? '../' : './';
-                const finalPath = pathPrefix + localPath;
-
+                const finalPath = Utils.getImagePath(word);
                 cardImg.src = finalPath;
 
                 cardImg.onerror = function () {
