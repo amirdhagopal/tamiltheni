@@ -147,13 +147,15 @@
     margin: 5px 0;
     opacity: 0;
     filter: blur(5px);
-    transition: all 0.3s ease;
+    /* Transition removed from here to allow instant hiding */
     cursor: pointer;
 }
 
 .dual-word-card.revealed .word-ta {
     opacity: 1;
     filter: blur(0);
+    transition: all 0.3s ease;
+    /* Transition only on reveal */
 }
 
 .dual-word-card .card-badge {
