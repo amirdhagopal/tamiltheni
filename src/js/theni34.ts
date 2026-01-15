@@ -498,8 +498,6 @@ export function init() {
         goToLast();
     });
 
-
-
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') changeSlide(-1);
         if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
