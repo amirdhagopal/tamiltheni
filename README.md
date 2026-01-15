@@ -63,6 +63,7 @@ The application supports global keyboard shortcuts for improved accessibility an
 
 ## 📁 Project Structure
 
+```text
 ├── config/ # Configuration files
 │ ├── vite.config.ts
 │ ├── playwright.config.ts
@@ -119,8 +120,7 @@ The application supports global keyboard shortcuts for improved accessibility an
 
 The `scripts/` folder contains Python utility scripts for data processing and image management. The build pipeline converts raw data into the JSON files found in `src/data/`.
 
-```
-
+```text
 scripts/
 ├── images/ # Image management (downloading, fixing)
 ├── data/ # Data processing (augmentation, validation)
@@ -147,4 +147,3 @@ Under the following terms:
 [cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
 
 © 2026 Peoria Tamil School.
-```
