@@ -4,7 +4,7 @@ import { AudioManager } from './audio_manager';
 import { Layout } from './layout';
 import { config } from './config';
 import theniWords from '../data/theni_words.json';
-import { Word } from '../types';
+import { Word, SpeechRecognitionInstance, SpeechRecognitionEventResult, SpeechRecognitionErrorEventResult } from '../types';
 
 // State variables
 let currentSlide = 0;
@@ -23,23 +23,23 @@ let filteredSlides: HTMLDivElement[] = [];
 let isShuffled = false;
 
 // Speech Recognition setup
-const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-let recognition: any = null;
+const SpeechRecognitionClass = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition: SpeechRecognitionInstance | null = null;
 let isRecording = false;
 
 // Initialize speech recognition
-if (SpeechRecognition) {
-    recognition = new SpeechRecognition();
+if (SpeechRecognitionClass) {
+    recognition = new SpeechRecognitionClass();
     recognition.lang = 'ta-IN';
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
-    recognition.onresult = (event: any) => {
+    recognition.onresult = (event: SpeechRecognitionEventResult) => {
         const speechResult = event.results[0][0].transcript.trim();
         validateVoiceResult(speechResult);
     };
 
-    recognition.onerror = (event: any) => {
+    recognition.onerror = (event: SpeechRecognitionErrorEventResult) => {
         if (event.error !== 'no-speech') {
             console.error('Speech recognition error:', event.error);
             showFeedback("Error: " + event.error, "error");
@@ -335,6 +335,7 @@ function toggleVoiceRecognition() {
 }
 
 function startRecording() {
+    if (!recognition) return;
     try {
         recognition.start();
         isRecording = true;
@@ -366,7 +367,7 @@ function validateVoiceResult(spokenText: string) {
     if (!currentElement) return;
 
     const targetText = currentElement.querySelector('.word-ta')?.textContent?.trim() || "";
-    const normalize = (text: string) => text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").replace(/\s+/g, "");
+    const normalize = (text: string) => text.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, "").replace(/\s+/g, "");
 
     const normalizedSpoken = normalize(spokenText);
     const normalizedTarget = normalize(targetText);

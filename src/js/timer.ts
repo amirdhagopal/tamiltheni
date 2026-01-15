@@ -211,7 +211,6 @@ export const Timer = {
     setupAudioUnlock: function (): void {
         const unlock = () => {
             if (!this.audioCtx) {
-                // @ts-expect-error - webkitAudioContext is a vendor prefix for Safari
                 this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
             if (this.audioCtx) {
@@ -240,7 +239,6 @@ export const Timer = {
 
     playTickSound: function (): void {
         if (!this.audioCtx) {
-            // @ts-expect-error - webkitAudioContext is a vendor prefix for Safari
             this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
         if (this.audioCtx && this.audioCtx.state === 'suspended') this.audioCtx.resume();
@@ -276,7 +274,6 @@ export const Timer = {
 
     playAlarmSound: function (): void {
         if (!this.audioCtx) {
-            // @ts-expect-error - webkitAudioContext is a vendor prefix for Safari
             this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
         if (this.audioCtx && this.audioCtx.state === 'suspended') this.audioCtx.resume();

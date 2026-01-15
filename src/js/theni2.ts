@@ -26,7 +26,7 @@ let filteredSlides: HTMLDivElement[] = [];
 // let originalOrder = []; // Not used?
 let isShuffled = false;
 let viewedPartners: Record<number, number> = {}; // Stores index -> partnerIndex mapping for persistence
-const sentenceCache: Record<string, any> = {}; // Stores "word1|word2" -> {tamil, english}
+const sentenceCache: Record<string, { tamil: string; english: string }> = {}; // Stores "word1|word2" -> {tamil, english}
 const imageCache: Record<string, string> = {}; // Cache for images to avoid re-fetching
 
 // Timer state handled by Timer module
@@ -378,9 +378,10 @@ async function generateSentence() {
             throw new Error('No response text');
         }
 
-    } catch (e: any) {
+    } catch (e: unknown) {
+        const errorMessage = e instanceof Error ? e.message : 'Unknown error';
         console.error('AI Error:', e);
-        alert('Error generating sentence: ' + (e.message || 'Unknown error'));
+        alert('Error generating sentence: ' + errorMessage);
         // Restore UI state
         if (resultDiv) resultDiv.style.display = 'none';
 
@@ -391,7 +392,7 @@ async function generateSentence() {
         }
     }
 
-    function renderResult(json: any) {
+    function renderResult(json: { tamil: string; english: string }) {
         resultText!.textContent = json.tamil;
         resultTextEn!.textContent = json.english;
         resultDiv!.style.display = 'flex';

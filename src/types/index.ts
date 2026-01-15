@@ -32,16 +32,62 @@ export interface Theni5Word {
     w: string;
 }
 
-// Extend Window interface for our global objects (for now, until we fully modularize)
+// Speech Recognition types for browsers
+export interface SpeechRecognitionResultItem {
+    transcript: string;
+    confidence: number;
+}
+
+export interface SpeechRecognitionResult {
+    [index: number]: SpeechRecognitionResultItem;
+    length: number;
+    isFinal: boolean;
+}
+
+export interface SpeechRecognitionResultList {
+    [index: number]: SpeechRecognitionResult;
+    length: number;
+}
+
+export interface SpeechRecognitionEventResult {
+    results: SpeechRecognitionResultList;
+    resultIndex: number;
+}
+
+export interface SpeechRecognitionErrorEventResult {
+    error: string;
+    message?: string;
+}
+
+export interface SpeechRecognitionInstance {
+    lang: string;
+    interimResults: boolean;
+    maxAlternatives: number;
+    onresult: ((event: SpeechRecognitionEventResult) => void) | null;
+    onerror: ((event: SpeechRecognitionErrorEventResult) => void) | null;
+    onend: (() => void) | null;
+    start: () => void;
+    stop: () => void;
+    abort: () => void;
+}
+
+export interface SpeechRecognitionConstructor {
+    new(): SpeechRecognitionInstance;
+}
+
+// Extend Window interface for our global objects
 declare global {
     interface Window {
         theniWords: Word[];
         theni5Words: Theni5Word[];
         TheniConfig: TheniConfig;
-        TheniUtils: any;
-        TheniAudio: any;
-        TheniLayout: any;
-        TheniTimer: any;
-        PWAManager: any;
+        TheniUtils: Record<string, unknown>;
+        TheniAudio: Record<string, unknown>;
+        TheniLayout: Record<string, unknown>;
+        TheniTimer: Record<string, unknown>;
+        PWAManager: Record<string, unknown>;
+        SpeechRecognition?: SpeechRecognitionConstructor;
+        webkitSpeechRecognition?: SpeechRecognitionConstructor;
+        webkitAudioContext?: typeof AudioContext;
     }
 }

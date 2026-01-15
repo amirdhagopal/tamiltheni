@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { init } from '../../src/js/theni1';
 import { Layout } from '../../src/js/layout';
-import { Timer } from '../../src/js/timer';
 
 // Mock explicit dependencies that might affect DOM or Audio
 vi.mock('../../src/js/layout', () => ({
