@@ -14,7 +14,7 @@ import { Word } from '../types';
 let currentSlide = 0;
 
 // Audio state
-let audioEnabled = true; // Default to on
+let audioEnabled = false; // Default to off (checkbox is unchecked by default)
 const audioTimeout: ReturnType<typeof setTimeout> | null = null;
 // synth removed - using AudioManager
 
@@ -405,9 +405,14 @@ async function generateSentence() {
     } catch (e: unknown) {
         const errorMessage = e instanceof Error ? e.message : 'Unknown error';
         console.error('AI Error:', e);
-        alert('Error generating sentence: ' + errorMessage);
-        // Restore UI state
-        if (resultDiv) resultDiv.style.display = 'none';
+        // Show error in result box with error styling
+        if (resultText && resultTextEn && resultDiv) {
+            resultText.textContent = '❌ Error generating sentence';
+            resultTextEn.textContent = errorMessage;
+            resultDiv.style.display = 'flex';
+            resultDiv.classList.add('show');
+            resultDiv.style.borderLeftColor = '#e53935'; // Red error accent
+        }
     } finally {
         if (aiBtn) {
             aiBtn.disabled = false;
@@ -419,6 +424,7 @@ async function generateSentence() {
         resultText!.textContent = json.tamil;
         resultTextEn!.textContent = json.english;
         resultDiv!.style.display = 'flex';
+        resultDiv!.style.borderLeftColor = '#667eea'; // Reset to success color
         // Small delay for transition
         setTimeout(() => resultDiv!.classList.add('show'), 10);
 
@@ -529,9 +535,13 @@ function updateUI(shouldSpeak = true) {
         const word2 = slide2.querySelector('.word-en')?.textContent;
         if (word1) {
             AudioManager.speak(word1, 'en-US');
-            // Queue second word - SpeechSynthesis handles queuing natively
+            // Delay second word to allow first to complete
             if (word2) {
-                AudioManager.speak(word2, 'en-US');
+                setTimeout(() => {
+                    if (audioEnabled) {
+                        AudioManager.speak(word2, 'en-US');
+                    }
+                }, 1500);
             }
         }
     }
