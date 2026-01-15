@@ -8,15 +8,29 @@ export abstract class BaseAgent {
      * Can be overridden or extended by subclasses.
      */
     protected async callLLM(prompt: string): Promise<string> {
-        // Here we could prepend the systemPrompt to the user prompt if the API supports it in a specific way,
-        // or just rely on the prompt construction in the specific agent.
-        // For now, we assume the specific agent constructs the full prompt, potentially using systemPrompt.
+        let attempts = 0;
+        const maxRetries = 3;
 
-        // We might want to pass the systemPrompt here if we change GeminiService to support it explicitly,
-        // but currently GeminiService.generateContent takes a single string.
-        // So we will just pass the prompt.
+        while (attempts < maxRetries) {
+            try {
+                return await GeminiService.generateContent(prompt);
+            } catch (error: any) {
+                attempts++;
+                const isOverloaded = error.message?.toLowerCase().includes('overloaded') ||
+                    error.message?.includes('503') ||
+                    error.message?.includes('429');
 
-        return await GeminiService.generateContent(prompt);
+                if (isOverloaded && attempts < maxRetries) {
+                    const waitTime = Math.pow(2, attempts - 1) * 1000; // 1s, 2s, 4s...
+                    console.warn(`[BaseAgent] Model overloaded. Retrying in ${waitTime}ms... (Attempt ${attempts})`);
+                    await new Promise(resolve => setTimeout(resolve, waitTime));
+                    continue;
+                }
+
+                throw error; // Rethrow if not retryable or max retries reached
+            }
+        }
+        throw new Error('Max retries exceeded');
     }
 
     /**
