@@ -808,8 +808,8 @@ export function init() {
         if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
             handleNextAction();
         }
-        if (e.key === 'Home') goToFirst();
-        if (e.key === 'End') goToLast();
+        if (e.key === 'Home' || e.key === '[') goToFirst();
+        if (e.key === 'End' || e.key === ']') goToLast();
         if (e.key === '1') filterDifficulty('D1');
         if (e.key === '2') filterDifficulty('D2');
         if (e.key === 'a' || e.key === 'A') filterDifficulty('all');

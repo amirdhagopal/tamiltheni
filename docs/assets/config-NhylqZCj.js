@@ -62,8 +62,8 @@ const c={shuffleArray:function(t){for(let e=t.length-1;e>0;e--){const i=Math.flo
                             <h3>📖 Slides</h3>
                             <div class="shortcut-row"><kbd>←</kbd><span>Previous slide</span></div>
                             <div class="shortcut-row"><kbd>→</kbd> <kbd>Space</kbd> <kbd>Enter</kbd><span>Next / Reveal</span></div>
-                            <div class="shortcut-row"><kbd>Home</kbd><span>First slide</span></div>
-                            <div class="shortcut-row"><kbd>End</kbd><span>Last slide</span></div>
+                            <div class="shortcut-row"><kbd>Home</kbd> / <kbd>[</kbd><span>First slide</span></div>
+                            <div class="shortcut-row"><kbd>End</kbd> / <kbd>]</kbd><span>Last slide</span></div>
                         </div>
                         <div class="shortcut-section">
                             <h3>🎛️ Filters</h3>

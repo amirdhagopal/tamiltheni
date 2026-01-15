@@ -26,11 +26,11 @@
 <link rel="manifest" href="/tamiltheni/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/tamiltheni/registerSW.js"></script></head>
 
 <body>
-    <header class="header">
+    <header class="header" style="position: relative;">
         <h1>TamilTheni <span class="tamil-title">தமிழ்த்தேனி 2026</span></h1>
         <p>பியோரியா தமிழ்ப் பள்ளி - Peoria Tamil School</p>
         <button id="showHelpBtn" title="Show keyboard shortcuts (?)"
-            style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 6px;">
+            style="position: absolute; right: 20px; top: 20px; background: rgba(0,0,0,0.1); border: none; color: #57606a; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.9em; display: flex; align-items: center; gap: 6px; transition: background 0.2s;">
             ⌨️ <span style="font-weight: 600;">?</span>
         </button>
     </header>
@@ -118,12 +118,6 @@
     </div>
 
     <style>
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
         .keyboard-help-modal {
             display: none;
             position: fixed;

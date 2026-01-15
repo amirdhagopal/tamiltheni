@@ -32,8 +32,8 @@ function init() {
         if ((e.target as HTMLElement).tagName === 'INPUT') return;
         if (e.key === 'ArrowLeft') prevSlide();
         if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') nextSlide();
-        if (e.key === 'Home') goToSlide(0);
-        if (e.key === 'End') goToSlide(totalPages - 1);
+        if (e.key === 'Home' || e.key === '[') goToSlide(0);
+        if (e.key === 'End' || e.key === ']') goToSlide(totalPages - 1);
     });
 
     document.addEventListener('click', (e) => {

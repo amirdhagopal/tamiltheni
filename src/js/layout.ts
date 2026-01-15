@@ -104,8 +104,8 @@ export const Layout = {
                             <h3>📖 Slides</h3>
                             <div class="shortcut-row"><kbd>←</kbd><span>Previous slide</span></div>
                             <div class="shortcut-row"><kbd>→</kbd> <kbd>Space</kbd> <kbd>Enter</kbd><span>Next / Reveal</span></div>
-                            <div class="shortcut-row"><kbd>Home</kbd><span>First slide</span></div>
-                            <div class="shortcut-row"><kbd>End</kbd><span>Last slide</span></div>
+                            <div class="shortcut-row"><kbd>Home</kbd> / <kbd>[</kbd><span>First slide</span></div>
+                            <div class="shortcut-row"><kbd>End</kbd> / <kbd>]</kbd><span>Last slide</span></div>
                         </div>
                         <div class="shortcut-section">
                             <h3>🎛️ Filters</h3>
