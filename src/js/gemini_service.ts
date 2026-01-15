@@ -1,17 +1,12 @@
-/**
- * Gemini API Service
- * Handles dynamic model selection and API calls
- */
 import { config } from './config';
 
-interface GeminiModel {
+interface Model {
     name: string;
-    displayName: string;
     supportedGenerationMethods: string[];
 }
 
 interface ModelsResponse {
-    models: GeminiModel[];
+    models: Model[];
 }
 
 export const GeminiService = {
@@ -19,30 +14,26 @@ export const GeminiService = {
     failedModels: new Set<string>(),
     apiKey: null as string | null,
 
-    setApiKey(key: string): void {
+    setApiKey(key: string) {
         this.apiKey = key;
     },
 
     /**
-     * Fetches available models and returns the latest Flash model
+     * Fetches available Flash models and sorts them (non-lite first, then by version)
      */
     async getPrioritizedModels(): Promise<string[]> {
-        // Return cached models if available
-        if (this.cachedModels.length > 0) {
-            return this.cachedModels;
-        }
+        if (this.cachedModels.length > 0) return this.cachedModels;
 
-        // Need API key to list models
         if (!this.apiKey) {
-            console.log('[GeminiService] No API key, using default model');
+            console.warn('[GeminiService] API key not set, using default model');
             return [config.gemini.defaultModel];
         }
 
         try {
             const response = await fetch(`${config.gemini.baseUrl}/models?key=${this.apiKey}`);
-
             if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
+                console.warn('[GeminiService] Failed to fetch models, using default');
+                return [config.gemini.defaultModel];
             }
 
             const data: ModelsResponse = await response.json();
@@ -51,7 +42,7 @@ export const GeminiService = {
             const availableModels = data.models
                 .filter(
                     (m) =>
-                        m.name.includes('gemini') &&
+                        (m.name.includes('gemini') || m.name.includes('gemma') || m.name.includes('learnlm')) &&
                         !m.name.includes('tts') &&
                         !m.name.includes('image') &&
                         !m.name.includes('vision') &&
@@ -116,46 +107,46 @@ export const GeminiService = {
         const models = await this.getPrioritizedModels();
 
         // Try models in order
-        for (const model of models) {
-            // Skip models that have failed in this session
-            if (this.failedModels.has(model)) continue;
+        for (const modelName of models) {
+            if (this.failedModels.has(modelName)) continue;
 
             try {
-                const response = await fetch(`${config.gemini.baseUrl}/${model}:generateContent?key=${this.apiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }],
-                    }),
-                });
-
-                const data = await response.json();
-
-                if (data.error) {
-                    const isQuotaError = data.error.message?.includes('quota') || data.error.code === 429;
-                    if (isQuotaError) {
-                        console.warn(`[GeminiService] Quota exceeded for model ${model}. Switching to fallback...`);
-                        this.failedModels.add(model);
-                        continue; // Try next model
+                console.log(`[GeminiService] Attempting generation with model: ${modelName}`);
+                const response = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/${modelName}:generateContent?key=${this.apiKey}`,
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: prompt }] }],
+                        }),
                     }
-                    throw new Error(data.error.message || 'API Error');
-                }
+                );
 
-                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (!text) {
-                    throw new Error('No response text');
-                }
-
-                return text;
-            } catch (err: any) {
-                // If it's a quota error or network error, we might want to try next model
-                // But generally 429 is the main rotation trigger
-                if (err.message?.includes('429') || err.message?.toLowerCase().includes('quota')) {
-                    console.warn(`[GeminiService] Network/Quota error for ${model}. Trying fallback...`);
-                    this.failedModels.add(model);
+                if (response.status === 429) {
+                    console.warn(`[GeminiService] Quota exceeded for model ${modelName}. Switching to fallback...`);
+                    this.failedModels.add(modelName);
                     continue;
                 }
-                throw err; // Rethrow other errors
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(
+                        `API error (${response.status}): ${errorData.error?.message || response.statusText}`
+                    );
+                }
+
+                const data = await response.json();
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (!text) throw new Error('Empty response from Gemini');
+
+                console.log(`[GeminiService] Successfully generated content using: ${modelName}`);
+                return text;
+            } catch (error: any) {
+                if (error.message?.includes('429') || error.message?.toLowerCase().includes('quota')) {
+                    continue;
+                }
+                throw error;
             }
         }
 
