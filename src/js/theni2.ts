@@ -350,8 +350,15 @@ async function generateSentence() {
     const apiKey = localStorage.getItem('gemini_api_key');
 
     if (!apiKey) {
-        alert('Please enter your Gemini API Key in the settings first.');
-        // Open settings panel
+        // Show styled alert box for missing API key
+        if (resultDiv && resultText && resultTextEn) {
+            resultText.textContent = '🔑 API Key Required';
+            resultTextEn.textContent = 'Please enter your Gemini API key in the settings panel above.';
+            resultDiv.style.display = 'flex';
+            resultDiv.classList.add('show');
+            resultDiv.style.borderLeftColor = '#ff9800'; // Orange warning accent
+        }
+        // Open settings panel to show the API key input
         const panel = document.getElementById('controlPanel');
         if (panel && panel.classList.contains('collapsed')) {
             panel.classList.remove('collapsed');
