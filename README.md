@@ -63,13 +63,16 @@ The application supports global keyboard shortcuts for improved accessibility an
 
 ## 📁 Project Structure
 
-```
-tamiltheni/
-├── public/                  # Static assets (images, fonts, manifest)
-│   ├── assets/
-│   │   ├── images/
-│   │   └── icons/
-│   └── manifest.json
+├── config/                  # Configuration files
+│   ├── vite.config.ts
+│   ├── playwright.config.ts
+│   └── .prettierrc
+├── scripts/                 # Utility Scripts (Python)
+│   ├── agents/
+│   ├── data/
+│   ├── images/
+│   ├── pdf_parser/
+│   └── slide_builder/
 ├── src/                     # Source code (TypeScript/CSS)
 │   ├── css/                 # Stylesheets
 │   ├── js/                  # TypeScript Logic
@@ -89,7 +92,6 @@ tamiltheni/
 │   ├── ARCHITECTURE.md
 │   └── REQUIREMENTS.md
 ├── index.html               # Home page
-├── vite.config.ts           # Vite Build configuration
 ├── tsconfig.json            # TypeScript config
 └── package.json             # Dependencies and scripts
 ```

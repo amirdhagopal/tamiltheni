@@ -2,11 +2,12 @@
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig({
-    base: '/tamiltheni/', // Base URL for GitHub Pages
+export default defineConfig(({ command }) => ({
+    // When running from root with --config, root defaults to CWD (root).
+    base: command === 'build' ? '/tamiltheni/' : '/',
     build: {
-        outDir: 'docs', // Output to docs/ for GitHub Pages
-        emptyOutDir: true, // Clear docs/ before building
+        outDir: 'docs',
+        emptyOutDir: true,
         rollupOptions: {
             input: {
                 index: 'index.html',
@@ -73,4 +74,4 @@ export default defineConfig({
         setupFiles: [],
         exclude: ['node_modules', 'dist', 'test/e2e/**']
     }
-});
+}));
