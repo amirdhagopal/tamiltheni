@@ -409,6 +409,7 @@ async function generateSentence() {
     }
 
     function renderResult(json: { tamil: string; english: string }) {
+        console.log('[Theni2] AI Response:', json);
         resultText!.textContent = json.tamil;
         resultTextEn!.textContent = json.english;
         resultDiv!.style.display = 'flex';

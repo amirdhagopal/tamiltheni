@@ -300,9 +300,11 @@
     text-align: left;
     white-space: normal !important;
     word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
     overflow: visible !important;
     max-width: 100%;
     flex-shrink: 0;
+    display: block !important;
 }
 
 .ai-text-en {
@@ -312,9 +314,11 @@
     text-align: left;
     white-space: normal !important;
     word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
     overflow: visible !important;
     max-width: 100%;
     flex-shrink: 0;
+    display: block !important;
 }
 
 .ai-error-message {

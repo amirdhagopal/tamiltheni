@@ -35,7 +35,7 @@ export class SentenceConstructorAgent extends BaseAgent {
             
             Generate a simple Tamil sentence using these two words: "${word1}" and "${word2}".
             Provide the response in JSON format: { "tamil": "tamil sentence", "english": "english meaning" }
-            IMPORTANT: Use the exact Tamil words provided if possible, or their correct declensions. Keep the sentence simple and suitable for learners.
+            IMPORTANT: Provide the COMPLETE sentence. Do NOT truncate or use ellipses (...). Use the exact Tamil words provided if possible, or their correct declensions. Keep the sentence simple and suitable for learners.
         `;
 
         try {
