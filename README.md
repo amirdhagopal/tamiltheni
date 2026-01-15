@@ -63,37 +63,38 @@ The application supports global keyboard shortcuts for improved accessibility an
 
 ## 📁 Project Structure
 
-├── config/                  # Configuration files
-│   ├── vite.config.ts
-│   ├── playwright.config.ts
-│   └── .prettierrc
-├── scripts/                 # Utility Scripts (Python)
-│   ├── agents/
-│   ├── data/
-│   ├── images/
-│   ├── pdf_parser/
-│   └── slide_builder/
-├── src/                     # Source code (TypeScript/CSS)
-│   ├── css/                 # Stylesheets
-│   ├── js/                  # TypeScript Logic
-│   │   ├── agents/          # Client-side AI Agents
-│   ├── data/                # JSON Data Files
-│   ├── types/               # Type definitions
-│   └── vite-env.d.ts        # Vite env definitions
-├── html/                    # Game Module Pages
-│   ├── theni1.html
-│   ├── theni2.html
-│   ├── theni34.html
-│   └── theni5.html
-├── test/                    # Test files
-│   ├── bat/                 # Build Acceptance Tests
-│   └── unit/                # Unit tests
-├── documentation/           # Project documentation
-│   ├── ARCHITECTURE.md
-│   └── REQUIREMENTS.md
-├── index.html               # Home page
-├── tsconfig.json            # TypeScript config
-└── package.json             # Dependencies and scripts
+├── config/ # Configuration files
+│ ├── vite.config.ts
+│ ├── playwright.config.ts
+│ └── .prettierrc
+├── scripts/ # Utility Scripts (Python)
+│ ├── agents/
+│ ├── data/
+│ ├── images/
+│ ├── pdf_parser/
+│ └── slide_builder/
+├── src/ # Source code (TypeScript/CSS)
+│ ├── css/ # Stylesheets
+│ ├── js/ # TypeScript Logic
+│ │ ├── agents/ # Client-side AI Agents
+│ ├── data/ # JSON Data Files
+│ ├── types/ # Type definitions
+│ └── vite-env.d.ts # Vite env definitions
+├── html/ # Game Module Pages
+│ ├── theni1.html
+│ ├── theni2.html
+│ ├── theni34.html
+│ └── theni5.html
+├── test/ # Test files
+│ ├── bat/ # Build Acceptance Tests
+│ └── unit/ # Unit tests
+├── documentation/ # Project documentation
+│ ├── ARCHITECTURE.md
+│ └── REQUIREMENTS.md
+├── index.html # Home page
+├── tsconfig.json # TypeScript config
+└── package.json # Dependencies and scripts
+
 ```
 
 ## 🛠️ Development
@@ -119,10 +120,12 @@ The application supports global keyboard shortcuts for improved accessibility an
 The `scripts/` folder contains Python utility scripts for data processing and image management. The build pipeline converts raw data into the JSON files found in `src/data/`.
 
 ```
+
 scripts/
-├── images/          # Image management (downloading, fixing)
-├── data/            # Data processing (augmentation, validation)
-└── agents/          # Conversion tools
+├── images/ # Image management (downloading, fixing)
+├── data/ # Data processing (augmentation, validation)
+└── agents/ # Conversion tools
+
 ```
 
 ## 📄 License
@@ -144,3 +147,4 @@ Under the following terms:
 [cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
 
 © 2026 Peoria Tamil School.
+```
