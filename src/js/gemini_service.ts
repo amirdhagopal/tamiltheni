@@ -47,31 +47,45 @@ export const GeminiService = {
 
             const data: ModelsResponse = await response.json();
 
-            // Filter for flash models that support generateContent
-            const flashModels = data.models
+            // Filter for appropriate generation models
+            const availableModels = data.models
                 .filter(
                     (m) =>
-                        m.name.includes('flash') &&
-                        !m.name.includes('preview') &&
+                        m.name.includes('gemini') &&
                         !m.name.includes('tts') &&
                         !m.name.includes('image') &&
+                        !m.name.includes('vision') &&
+                        !m.name.includes('embedding') &&
                         m.supportedGenerationMethods?.includes('generateContent')
                 )
                 .sort((a, b) => {
-                    // 1. Prioritize non-lite models over lite models
-                    const aIsLite = a.name.includes('lite');
-                    const bIsLite = b.name.includes('lite');
+                    const nameA = a.name.toLowerCase();
+                    const nameB = b.name.toLowerCase();
+
+                    // 1. Prioritize Flash over Pro
+                    const aIsFlash = nameA.includes('flash');
+                    const bIsFlash = nameB.includes('flash');
+                    if (aIsFlash !== bIsFlash) return aIsFlash ? -1 : 1;
+
+                    // 2. Prioritize non-lite over lite
+                    const aIsLite = nameA.includes('lite');
+                    const bIsLite = nameB.includes('lite');
                     if (aIsLite !== bIsLite) return aIsLite ? 1 : -1;
 
-                    // 2. Sort by version number (higher = newer)
+                    // 3. Prioritize non-preview/non-exp over experimental
+                    const aIsStable = !nameA.includes('preview') && !nameA.includes('exp');
+                    const bIsStable = !nameB.includes('preview') && !nameB.includes('exp');
+                    if (aIsStable !== bIsStable) return aIsStable ? -1 : 1;
+
+                    // 4. Sort by version number (higher = newer)
                     const versionA = this.extractVersion(a.name);
                     const versionB = this.extractVersion(b.name);
                     return versionB - versionA;
                 });
 
-            if (flashModels.length > 0) {
-                this.cachedModels = flashModels.map((m) => m.name);
-                console.log(`[GeminiService] Prioritized models: ${this.cachedModels.join(', ')}`);
+            if (availableModels.length > 0) {
+                this.cachedModels = availableModels.map((m) => m.name);
+                console.log(`[GeminiService] Full prioritized rotation: ${this.cachedModels.join(', ')}`);
                 return this.cachedModels;
             }
 
