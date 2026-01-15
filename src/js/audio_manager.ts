@@ -36,6 +36,8 @@ export const AudioManager = {
         document.addEventListener('touchstart', unlock, { capture: true });
     },
 
+    currentUtterance: null as SpeechSynthesisUtterance | null,
+
     speak: function (text: string, lang = 'ta-IN'): void {
         console.log(`[AudioManager] Request to speak: "${text}" in ${lang}`);
         if (this.isMuted) {
@@ -45,8 +47,13 @@ export const AudioManager = {
         if (this.synth.speaking) this.synth.cancel();
 
         const utterance = new SpeechSynthesisUtterance(text);
+        this.currentUtterance = utterance; // Keep reference to prevent GC
+
         utterance.lang = lang;
         utterance.rate = 0.9;
+        utterance.onend = () => {
+            this.currentUtterance = null; // Release reference when done
+        };
 
         // Try to pick a specific voice if available
         const voice = this.getVoice(lang);
@@ -57,7 +64,10 @@ export const AudioManager = {
             console.warn(`[AudioManager] No specific voice found for ${lang}, using browser default.`);
         }
 
-        utterance.onerror = (e) => console.error('[AudioManager] Utterance error:', e);
+        utterance.onerror = (e) => {
+            console.error('[AudioManager] Utterance error:', e);
+            this.currentUtterance = null;
+        };
 
         this.synth.speak(utterance);
     },
