@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { init } from '../../src/js/theni2';
 import { Layout } from '../../src/js/layout';
 
@@ -68,6 +68,11 @@ describe('Theni 2 BAT', () => {
         document.body.innerHTML = '';
         vi.clearAllMocks();
         localStorageMock.clear();
+        vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+        vi.useRealTimers();
     });
 
     it('should initialize layout and dual cards', () => {
@@ -105,6 +110,7 @@ describe('Theni 2 BAT', () => {
         // Mock that we are on slide 0
         // Second click: Move to next slide (reset reveal)
         // Since we mocked data, we assume at least 2 slides exist
+        vi.advanceTimersByTime(350);
         nextBtn.click();
 
         // After move, logic calls updateUI -> removes 'revealed'

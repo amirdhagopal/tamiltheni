@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { init } from '../../src/js/theni1';
 import { Layout } from '../../src/js/layout';
 
@@ -46,6 +46,11 @@ describe('Theni 1 BAT', () => {
     beforeEach(() => {
         document.body.innerHTML = '';
         vi.clearAllMocks();
+        vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+        vi.useRealTimers();
     });
 
     it('should initialize layout and generate slides on init', () => {
@@ -87,6 +92,9 @@ describe('Theni 1 BAT', () => {
             // First click -> reveal
             expect(slides[0].classList.contains('revealed')).toBe(true);
             expect(slides[0].style.display).toBe('flex');
+
+            // Advance time to bypass debounce
+            vi.advanceTimersByTime(350);
 
             // Second click -> move
             nextBtn.click();

@@ -73,7 +73,7 @@ test.describe('TamilTheni E2E Suite', () => {
         // 2. Reveal
         const container = page.locator('.slide-container');
         await container.click();
-        await page.waitForTimeout(300);
+        await page.waitForTimeout(500); // Wait for transition & debounce
 
         // Check for reveal (handling panel close if needed)
         const isRevealed = (await page.locator('.dual-word-card.revealed').count()) > 0;
@@ -89,6 +89,7 @@ test.describe('TamilTheni E2E Suite', () => {
         // Get current words to compare later (optional, but good for verification)
         const word1Text = await page.locator('#card1En').textContent();
 
+        await page.waitForTimeout(500); // Ensure debounce is clear
         await container.click();
         await page.waitForTimeout(500); // Allow transition
 

@@ -542,8 +542,16 @@ function changeSlide(direction: number) {
 }
 
 // Navigation Action
+let lastActionTime = 0;
+
 // Navigation Action
 function handleNextAction() {
+    const now = Date.now();
+    if (now - lastActionTime < 300) {
+        return;
+    }
+    lastActionTime = now;
+
     if (!filteredSlides[currentSlide]) return;
 
     if (filteredSlides[currentSlide].classList.contains('revealed')) {
@@ -687,7 +695,6 @@ export function init() {
         }
     });
 
-    // Keyboard controls
     document.addEventListener('keydown', (e) => {
         const target = e.target as HTMLElement;
         const isInteractive =
