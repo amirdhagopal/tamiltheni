@@ -800,10 +800,22 @@ export function init() {
     });
 
     document.addEventListener('keydown', (e) => {
+        const target = e.target as HTMLElement;
+        const isInteractive =
+            target.tagName === 'BUTTON' ||
+            target.tagName === 'INPUT' ||
+            target.tagName === 'TEXTAREA' ||
+            target.closest('button');
+
         if (e.key === 'ArrowLeft') changeSlide(-1);
-        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+
+        // Fix: If focused on a button, let the browser handle the click. Don't double-trigger via JS.
+        if (e.key === 'ArrowRight' || ((e.key === ' ' || e.key === 'Enter') && !isInteractive)) {
+            // Prevent default scrolling for Space if we are handling it
+            if (e.key === ' ') e.preventDefault();
             handleNextAction();
         }
+
         if (e.key === 'Home' || e.key === '[') goToFirst();
         if (e.key === 'End' || e.key === ']') goToLast();
         if (e.key === '1') filterDifficulty('D1');

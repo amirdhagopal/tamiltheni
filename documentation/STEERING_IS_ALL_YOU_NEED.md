@@ -10,7 +10,7 @@ _Correspondence: amirdhagopal@gmail.com_
 
 ## Abstract
 
-We introduce a development methodology termed **Vibe Coding with Manual Steering** (VCMS), a collaborative paradigm where large language models (LLMs) generate code under continuous human guidance and oversight. We demonstrate this methodology through the development of TamilTheni, a Tamil language learning web application comprising ~3,000 lines of TypeScript and ~1,700 lines of CSS, supporting 800+ vocabulary items across five interactive modules. The complete application was developed in **5 working days** (79 commits over 7 calendar days), representing an estimated 10-15x reduction in development time compared to traditional methods. We formalize the interaction patterns, analyze productivity metrics, document failure modes, and provide recommendations for effective human-AI collaboration in software development. Our findings suggest that the quality of human steering—not the capability of the AI alone—is the primary determinant of successful outcomes in AI-assisted development.
+We introduce a development methodology termed **Vibe Coding with Manual Steering** (VCMS), a collaborative paradigm where large language models (LLMs) generate code under continuous human guidance and oversight. we demonstrate this methodology through the development of TamilTheni, a Tamil language learning web application comprising ~3,800 lines of TypeScript and ~1,800 lines of CSS, supporting 850+ vocabulary items across five interactive modules. The complete application was developed in **6 working days** (137 commits over 8 calendar days), representing an estimated 10-15x reduction in development time compared to traditional methods. We formalize the interaction patterns, analyze productivity metrics, document failure modes, and provide recommendations for effective human-AI collaboration in software development. Our findings suggest that the quality of human steering—not the capability of the AI alone—is the primary determinant of successful outcomes in AI-assisted development.
 
 ---
 
@@ -169,29 +169,38 @@ Where higher values of each factor correlate with better outcomes.
 
 TamilTheni is a Progressive Web Application for Tamil language learning, comprising:
 
-| Component          | Quantity | Lines of Code | Description                                            |
-| ------------------ | -------- | ------------- | ------------------------------------------------------ |
-| HTML Pages         | 5        | ~400          | Entry points for each module                           |
-| TypeScript Modules | 9        | ~3,000        | Application logic                                      |
-| CSS Files          | 6        | ~1,700        | Styling (tokens + module-specific)                     |
-| JSON Data Files    | 2        | ~9,600        | 850 total vocabulary records                           |
-| Test Files         | 9        | ~510          | Unit and integration tests                             |
-| Documentation      | 5        | ~1,500        | README, Architecture, Requirements, Methodology, Paper |
+| Component          | Quantity | Lines of Code | Description                                                     |
+| ------------------ | -------- | ------------- | --------------------------------------------------------------- |
+| HTML Pages         | 5        | ~400          | Entry points for each module                                    |
+| TypeScript Modules | 16       | ~3,800        | Application logic, agents, and PWA                              |
+| CSS Files          | 7        | ~1,800        | Styling (tokens + module-specific)                              |
+| JSON Data Files    | 2        | ~10,000+      | 850 total vocabulary records                                    |
+| Test Files         | 10       | ~600          | Unit, E2E and Business Acceptance tests                         |
+| Documentation      | 6        | ~2,000        | README, Architecture, Requirements, Methodology, Paper, Article |
+
+The application features include:
+
+- **Progressive Web App (PWA)**: Fully offline-capable functionality.
+- **Five Learning Modules**: Vocabulary, Sentence Formation, Translation, and Clue-based games.
+- **AI Integration**: Client-side AI agents for dynamic sentence generation and grading.
+- **Multimodal Interaction**: Text, Audio, and Visual learning aids.
+- **Responsive Design**: Mobile-first UI adaptable to various screen sizes.
 
 ### 4.2 Development Timeline
 
-Based on git commit history (January 8-14, 2026):
+Based on git commit history:
 
-| Date      | Commits | Key Milestones                                               |
+| Day       | Commits | Key Milestones                                               |
 | --------- | ------- | ------------------------------------------------------------ |
-| Jan 8     | 16      | Initial commit, basic HTML/JS, audio, navigation, categories |
-| Jan 9     | 6       | Home page, Theni 5 implementation, control panel fixes       |
-| Jan 10    | 9       | Local images, Wikipedia integration, image fixes             |
-| Jan 11    | 6       | Image quality improvements, continued fixes                  |
-| Jan 12    | 12      | Timer improvements, split Theni 1/2, sentence generation     |
-| Jan 13    | 17      | TypeScript migration, refactoring, shared modules            |
-| Jan 14    | 13      | Testing, documentation, PWA, final polish                    |
-| **Total** | **79**  | **5 working days from first commit to production**           |
+| Day 1     | 16      | Initial commit, basic HTML/JS, audio, navigation, categories |
+| Day 2     | 6       | Home page, Theni 5 implementation, control panel fixes       |
+| Day 3     | 9       | Local images, Wikipedia integration, image fixes             |
+| Day 4     | 6       | Image quality improvements, continued fixes                  |
+| Day 5     | 12      | Timer improvements, split Theni 1/2, sentence generation     |
+| Day 6     | 17      | TypeScript migration, refactoring, shared modules            |
+| Day 7     | 13      | Testing, documentation, PWA, final polish                    |
+| Day 8     | 41      | LinkedIn announcement, project scope finalization            |
+| **Total** | **137** | **6 working days from first commit to production**           |
 
 Estimated traditional development time for equivalent scope: 8-12 weeks (10-15x longer)
 
@@ -232,10 +241,10 @@ Based on git statistics (79 commits, 5 working days, ~5,200 lines of application
 
 | Metric                 | VCMS (Actual) | Traditional (estimated) | Improvement |
 | ---------------------- | ------------- | ----------------------- | ----------- |
-| Total lines written    | ~5,200        | ~5,200                  | -           |
-| Development time       | 5 days        | 8-12 weeks              | **10-15x**  |
-| Lines of code per day  | ~1,040        | ~65-80                  | **13-16x**  |
-| Commits per day        | 11-16         | 2-3                     | **5-6x**    |
+| Total lines written    | ~5,600        | ~5,600                  | -           |
+| Development time       | 6 days        | 8-12 weeks              | **10-15x**  |
+| Lines of code per day  | ~930          | ~65-80                  | **12-14x**  |
+| Commits per day        | 15-25         | 2-3                     | **5-8x**    |
 | Features per day       | 3-4           | 0.3-0.5                 | **8-10x**   |
 | Documentation coverage | 95%           | 40-60%                  | ~2x         |
 
@@ -401,18 +410,18 @@ The application follows a modular architecture with clear separation of concerns
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     User Interface Layer                      │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ │
-│  │ Theni 1 │ │ Theni 2 │ │Theni 3/4│ │ Theni 5 │ │  Index  │ │
-│  └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ │
-├───────┼──────────┼──────────┼──────────┼──────────┼─────────┤
-│       └──────────┴──────────┴──────────┴──────────┘         │
-│                    Shared Modules Layer                       │
+│                     User Interface Layer                    │
+│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐│
+│  │ Theni 1 │ │ Theni 2 │ │Theni 3/4│ │ Theni 5 │ │  Index  ││
+│  └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘│
+├───────┼──────────-┼────────-─-┼───────-───┼────-──────┼-────┤
+│       └──────────-┴──────────-┴────────-──┴─────-─────┘     │
+│                    Shared Modules Layer                     │
 │  ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐     │
 │  │ Layout │ │ Timer  │ │ Utils  │ │ Audio  │ │ Config │     │
 │  └────────┘ └────────┘ └────────┘ └────────┘ └────────┘     │
 ├─────────────────────────────────────────────────────────────┤
-│                        Data Layer                             │
+│                        Data Layer                           │
 │  ┌─────────────────────┐    ┌─────────────────────┐         │
 │  │  theni_words.json   │    │  theni5_words.json  │         │
 │  │     (800 words)     │    │     (50 clues)      │         │
@@ -449,12 +458,13 @@ The following is an anonymized excerpt from the development log demonstrating a 
 
 | Category        | Technology | Version | Purpose                    |
 | --------------- | ---------- | ------- | -------------------------- |
-| Runtime         | Node.js    | 20.x    | Development environment    |
-| Build           | Vite       | 5.x     | Module bundling, HMR       |
-| Language        | TypeScript | 5.x     | Type-safe development      |
-| Testing         | Vitest     | 2.x     | Unit and integration tests |
-| Linting         | ESLint     | 8.x     | Code quality               |
-| Formatting      | Prettier   | 3.x     | Code style                 |
+| Runtime         | Node.js    | 22.x    | Development environment    |
+| Build           | Vite       | 7.x     | Module bundling, HMR       |
+| Language        | TypeScript | 5.9.x   | Type-safe development      |
+| Testing         | Vitest     | 4.x     | Unit and integration tests |
+| Testing         | Playwright | 1.57    | E2E and BAT tests          |
+| Linting         | ESLint     | 9.x     | Code quality               |
+| Formatting      | Prettier   | 3.4.x   | Code style                 |
 | Data Processing | Python     | 3.12    | Offline scripts            |
 | Documentation   | Pandoc     | 3.x     | PDF generation             |
 
