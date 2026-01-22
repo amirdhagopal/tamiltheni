@@ -44,7 +44,7 @@
     "word_ta": "கண்",
     "image_word": "eye",
     "sentence_en": "The bird looked at me with one <b>eye</b>",
-    "sentence_ta": "பறவை என்னை ஒற்றைக் <b>கண்</b>ணால் பார்த்தது.",
+    "sentence_ta": "அந்தப் பறவை என்னை ஒரு <b>கண்</b>ணால் பார்த்தது.",
     "complexity": 2
   },
   {
@@ -56,7 +56,7 @@
     "word_ta": "கை",
     "image_word": "hand",
     "sentence_en": "She held my <b>hand</b> while we walked.",
-    "sentence_ta": "நாங்கள் நடந்து செல்லும் போது அவள் என் <b>கை</b>யைப் பிடித்தாள்.",
+    "sentence_ta": "நாங்கள் நடக்கும்போது அவள் என் <b>கை</b>யைப் பிடித்திருந்தாள்.",
     "complexity": 2
   },
   {
@@ -68,7 +68,7 @@
     "word_ta": "கால்",
     "image_word": "leg",
     "sentence_en": "The dog hurt its <b>leg</b>.",
-    "sentence_ta": "நாயின் காலில் காயம் ஏற்பட்டது.",
+    "sentence_ta": "அந்த நாயின் காலில் காயம் ஏற்பட்டது.",
     "complexity": 2
   },
   {
@@ -104,7 +104,7 @@
     "word_ta": "விரல்",
     "image_word": "finger",
     "sentence_en": "She used her <b>finger</b> to press the button.",
-    "sentence_ta": "அவள் தன் விரலைப் பயன்படுத்தி பொத்தானை அழுத்தினாள்.",
+    "sentence_ta": "அவள் தன் <b>விரலால்</b> பொத்தானை அழுத்தினாள்.",
     "complexity": 1
   },
   {
@@ -116,7 +116,7 @@
     "word_ta": "கழுத்து",
     "image_word": "neck",
     "sentence_en": "She gently touched her little brother's <b>neck</b>.",
-    "sentence_ta": "அவள் தன் தம்பியின் கழுத்தை மெதுவாக தொட்டாள்.",
+    "sentence_ta": "அவள் தன் தம்பியின் <b>கழுத்தை</b> மென்மையாகத் தொட்டாள்.",
     "complexity": 2
   },
   {
@@ -140,7 +140,7 @@
     "word_ta": "புருவம்",
     "image_word": "eyebrow",
     "sentence_en": "She raised an <b>eyebrow</b> at his comment.",
-    "sentence_ta": "அவன் கூறியதைக் கேட்டு அவள் புருவத்தை உயர்த்தினாள்.",
+    "sentence_ta": "அவன் கூறியதைக் கேட்டு அவள் தன் <b>புருவத்தை</b> உயர்த்தினாள்.",
     "complexity": 2
   },
   {
@@ -164,7 +164,7 @@
     "word_ta": "தோல்",
     "image_word": "skin",
     "sentence_en": "Wash your <b>skin</b> carefully every day.",
-    "sentence_ta": "உங்கள் தோலை தினமும் கவனமாக சுத்தம் செய்யுங்கள்.",
+    "sentence_ta": "தினமும் உங்கள் <b>தோலை</b>  கவனமாகச் சுத்தம் செய்யுங்கள்.",
     "complexity": 2
   },
   {
@@ -188,7 +188,7 @@
     "word_ta": "முடி",
     "image_word": "hair",
     "sentence_en": "Her long <b>hair</b> was very beautiful.",
-    "sentence_ta": "அவளது நீண்ட கூந்தல் மிகவும் அழகாக இருந்தது.",
+    "sentence_ta": "அவளது நீண்ட <b>முடி</b> மிகவும் அழகாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -200,7 +200,7 @@
     "word_ta": "நாக்கு",
     "image_word": "tongue",
     "sentence_en": "The doctor asked me to show my <b>tongue</b>.",
-    "sentence_ta": "மருத்துவர் என்னிடம் நாக்கை நீட்டச் சொன்னார்.",
+    "sentence_ta": "மருத்துவர் என்னிடம் <b>நாக்கை</b> நீட்டச் சொன்னார்.",
     "complexity": 1
   },
   {
@@ -212,7 +212,7 @@
     "word_ta": "முதுகு",
     "image_word": "back",
     "sentence_en": "He carried the bag on his <b>back</b>.",
-    "sentence_ta": "அவன் பையை தன் முதுகில் சுமந்தான்.",
+    "sentence_ta": "அவன் பையைத் தன் <b>முதுகில்</b> சுமந்தான்.",
     "complexity": 2
   },
   {
@@ -224,7 +224,7 @@
     "word_ta": "தொடை",
     "image_word": "thigh",
     "sentence_en": "The doctor examined her <b>thigh</b> carefully.",
-    "sentence_ta": "மருத்துவர் அவள் <b>தொடை</b>யை கவனமாக பரிசோதித்தார்.",
+    "sentence_ta": "மருத்துவர் அவள் <b>தொடை</b>யைக் கவனமாகப் பரிசோதித்தார்.",
     "complexity": 2
   },
   {
@@ -259,7 +259,7 @@
     "word_en": "eyelid",
     "word_ta": "இமை",
     "image_word": "eyelid",
-    "sentence_en": "She closed her heavy eyelids.",
+    "sentence_en": "She closed her heavy <b>eyelids</b>.",
     "sentence_ta": "அவள் தன் கனமான <b>இமை</b>களை மூடினாள்.",
     "complexity": 1
   },
@@ -427,8 +427,8 @@
     "word_en": "bonejoint",
     "word_ta": "எலும்பு மூட்டு",
     "image_word": "bonejoint",
-    "sentence_en": "Exercise keeps your joints flexible.",
-    "sentence_ta": "உடற்பயிற்சி உங்கள் மூட்டுகளை நெகிழ்வாக வைத்திருக்கும்.",
+    "sentence_en": "Exercise keeps your <b>bonejoints</b> flexible.",
+    "sentence_ta": "உடற்பயிற்சி உங்கள் <b>எலும்பு மூட்டுகளை</b> நெகிழ்வாக வைத்திருக்கும்.",
     "complexity": 2
   },
   {
@@ -440,7 +440,7 @@
     "word_ta": "தொண்டை",
     "image_word": "throat",
     "sentence_en": "She has a sore <b>throat</b>.",
-    "sentence_ta": "அவளுக்கு <b>தொண்டை</b> வலி உள்ளது.",
+    "sentence_ta": "அவளுக்குத் <b>தொண்டை</b> வலி உள்ளது.",
     "complexity": 2
   },
   {
@@ -464,7 +464,7 @@
     "word_ta": "குருதி",
     "image_word": "blood",
     "sentence_en": "<b>Blood</b> is red.",
-    "sentence_ta": "ரத்தம் சிவப்பு நிறமானது.",
+    "sentence_ta": "<b>குருதி</b> சிவப்பு நிறமானது.",
     "complexity": 2
   },
   {
@@ -476,7 +476,7 @@
     "word_ta": "முழங்கால்",
     "image_word": "knee",
     "sentence_en": "I bent my <b>knee</b> to scratch an itch.",
-    "sentence_ta": "அரிப்பை சொறிய நான் என் முழங்காலை மடக்கினேன்.",
+    "sentence_ta": "அரிப்பைச் சொறிய நான் என் <b>முழங்காலை</b> மடக்கினேன்.",
     "complexity": 2
   },
   {
@@ -488,7 +488,7 @@
     "word_ta": "அரிசி",
     "image_word": "rice",
     "sentence_en": "She ate <b>rice</b> for her lunch.",
-    "sentence_ta": "அவள் மதிய உணவிற்கு சோறு சாப்பிட்டாள்.",
+    "sentence_ta": "அவள் மதிய உணவிற்கு <b>அரிசி</b> சாப்பிட்டாள்.",
     "complexity": 1
   },
   {
@@ -584,7 +584,7 @@
     "word_ta": "மாமிசம்",
     "image_word": "meat",
     "sentence_en": "<b>Meat</b> is an essential part of our diet.",
-    "sentence_ta": "<b>மாமிசம்</b> எங்கள் உணவின் ஒரு முக்கிய பகுதியாகும்.",
+    "sentence_ta": "<b>மாமிசம்</b> எங்கள் உணவின் ஒரு முக்கியப் பகுதியாகும்.",
     "complexity": 2
   },
   {
@@ -680,7 +680,7 @@
     "word_ta": "தின்பண்டங்கள்",
     "image_word": "snacks",
     "sentence_en": "She ate some <b>snacks</b> before her lunch.",
-    "sentence_ta": "மதிய உணவிற்கு முன் அவள் சில தின்பண்டங்களைச் சாப்பிட்டாள்.",
+    "sentence_ta": "மதிய உணவிற்கு முன் அவள் சில <b>தின்பண்டங்களைச்</b> சாப்பிட்டாள்.",
     "complexity": 1
   },
   {
@@ -692,7 +692,7 @@
     "word_ta": "இனிப்புகள்",
     "image_word": "sweets",
     "sentence_en": "I love eating different types of <b>sweets</b>.",
-    "sentence_ta": "எனக்கு இனிப்பு வகைகள் சாப்பிடப் பிடிக்கும்.",
+    "sentence_ta": "எனக்குப் பல வகையான <b>இனிப்புகள்</b> சாப்பிடப் பிடிக்கும்.",
     "complexity": 2
   },
   {
