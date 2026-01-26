@@ -8,7 +8,7 @@
     "word_ta": "காது",
     "image_word": "ear",
     "sentence_en": "I have an <b>ear</b> infection.",
-    "sentence_ta": "எனக்கு காதில் தொற்று உள்ளது.",
+    "sentence_ta": "எனக்கு <b>காது</b>வில் தொற்று உள்ளது.",
     "complexity": 2
   },
   {
@@ -68,7 +68,7 @@
     "word_ta": "கால்",
     "image_word": "leg",
     "sentence_en": "The dog hurt its <b>leg</b>.",
-    "sentence_ta": "அந்த நாயின் காலில் காயம் ஏற்பட்டது.",
+    "sentence_ta": "அந்த நாயின் <b>கால்</b>ில் காயம் ஏற்பட்டது.",
     "complexity": 2
   },
   {
@@ -80,7 +80,7 @@
     "word_ta": "உடம்பு (உடல்)",
     "image_word": "body",
     "sentence_en": "The human <b>body</b> is very strong.",
-    "sentence_ta": "மனித உடல் மிகவும் வலிமையானது.",
+    "sentence_ta": "மனித <b>உடல்</b> மிகவும் வலிமையானது.",
     "complexity": 2
   },
   {
@@ -127,8 +127,8 @@
     "word_en": "nail",
     "word_ta": "நகம்",
     "image_word": "nail",
-    "sentence_en": "I need to cut my nails.",
-    "sentence_ta": "நான் என் நகங்களை வெட்ட வேண்டும்.",
+    "sentence_en": "I need to cut my <b>nail</b>s.",
+    "sentence_ta": "நான் என் <b>நகம்</b>களை வெட்ட வேண்டும்.",
     "complexity": 1
   },
   {
@@ -296,7 +296,7 @@
     "word_ta": "தோள்",
     "image_word": "shoulder",
     "sentence_en": "The backpack weighed heavily on her <b>shoulder</b>.",
-    "sentence_ta": "புத்தகப்பை அவள் தோளில் கனமாக இருந்தது.",
+    "sentence_ta": "புத்தகப்பை அவள் <b>தோள்</b>ில் கனமாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -320,7 +320,7 @@
     "word_ta": "பாதம்",
     "image_word": "foot",
     "sentence_en": "He injured his left <b>foot</b>.",
-    "sentence_ta": "அவன் இடது பாதத்தில் காயம் ஏற்பட்டது.",
+    "sentence_ta": "அவன் இடது <b>பாதம்</b>த்தில் காயம் ஏற்பட்டது.",
     "complexity": 1
   },
   {
@@ -356,7 +356,7 @@
     "word_ta": "கன்னம்",
     "image_word": "cheek",
     "sentence_en": "She touched my <b>cheek</b> with her finger.",
-    "sentence_ta": "அவள் தன் விரலால் என் கன்னத்தைத் தொட்டாள்.",
+    "sentence_ta": "அவள் தன் விரலால் என் <b>கன்னம்</b>த்தைத் தொட்டாள்.",
     "complexity": 2
   },
   {
@@ -752,7 +752,7 @@
     "word_ta": "வடிசாறு",
     "image_word": "soup",
     "sentence_en": "The delicious <b>soup</b> was served hot yesterday.",
-    "sentence_ta": "நேற்று சுவையான சூடான சூப் பரிமாறப்பட்டது.",
+    "sentence_ta": "நேற்று சுவையான சூடான <b>வடிசாறு</b> பரிமாறப்பட்டது.",
     "complexity": 2
   },
   {
@@ -860,7 +860,7 @@
     "word_ta": "இரவு உணவு",
     "image_word": "dinner",
     "sentence_en": "The family will have <b>dinner</b> together tonight.",
-    "sentence_ta": "குடும்பத்தினர் இன்று இரவு ஒன்றாக அமர்ந்து சாப்பிடுவார்கள்.",
+    "sentence_ta": "குடும்பத்தினர் இன்று <b>இரவு உணவு</b> ஒன்றாக சாப்பிடுவார்கள்.",
     "complexity": 1
   },
   {
@@ -943,8 +943,8 @@
     "word_en": "almond",
     "word_ta": "வாதுமைப் பருப்பு",
     "image_word": "almond",
-    "sentence_en": "Almonds are a healthy snack.",
-    "sentence_ta": "பாதாம் பருப்பு ஒரு சத்தான சிற்றுண்டி.",
+    "sentence_en": "<b>Almond</b>s are a healthy snack.",
+    "sentence_ta": "<b>வாதுமைப் பருப்பு</b> ஒரு சத்தான சிற்றுண்டி.",
     "complexity": 1
   },
   {
@@ -956,7 +956,7 @@
     "word_ta": "வேர்க்கடலை",
     "image_word": "peanut",
     "sentence_en": "The <b>peanut</b> is a type of legume.",
-    "sentence_ta": "<b>வேர்க்கடலை</b> உடலுக்கு நல்லது.",
+    "sentence_ta": "<b>வேர்க்கடலை</b> ஒரு வகை பயறு.",
     "complexity": 1
   },
   {
@@ -968,7 +968,7 @@
     "word_ta": "இல்லம்",
     "image_word": "home",
     "sentence_en": "I will be going <b>home</b> after school today.",
-    "sentence_ta": "நான் பள்ளி முடிந்து வீட்டிற்குச் செல்வேன்.",
+    "sentence_ta": "நான் பள்ளி முடிந்து <b>இல்லம்</b>த்திற்குச் செல்வேன்.",
     "complexity": 2
   },
   {
@@ -1064,7 +1064,7 @@
     "word_ta": "தட்டு",
     "image_word": "plate",
     "sentence_en": "She put the fruit salad on a clean <b>plate</b>.",
-    "sentence_ta": "அவர் ஒரு சுத்தமான தட்டில் பழக்கலவையை வைத்தார்.",
+    "sentence_ta": "அவர் ஒரு சுத்தமான <b>தட்டு</b>வில் பழக்கலவையை வைத்தார்.",
     "complexity": 1
   },
   {
@@ -1112,7 +1112,7 @@
     "word_ta": "பாத்திரம்",
     "image_word": "pot",
     "sentence_en": "The <b>pot</b> is very dirty.",
-    "sentence_ta": "அந்தப் பானை மிகவும் அழுக்காக உள்ளது.",
+    "sentence_ta": "அந்த <b>பாத்திரம்</b> மிகவும் அழுக்காக உள்ளது.",
     "complexity": 1
   },
   {
@@ -1196,7 +1196,7 @@
     "word_ta": "பாய்",
     "image_word": "mat",
     "sentence_en": "She sat on the <b>mat</b> quietly.",
-    "sentence_ta": "அவள் பாயில் அமைதியாக அமர்ந்தாள்.",
+    "sentence_ta": "அவள் <b>பாய்</b>யில் அமைதியாக அமர்ந்தாள்.",
     "complexity": 2
   },
   {
@@ -2048,7 +2048,7 @@
     "word_ta": "கணவன்",
     "image_word": "husband",
     "sentence_en": "My <b>husband</b> is very kind to me.",
-    "sentence_ta": "என் கணவர் என்னிடம் அன்பாக இருக்கிறார்.",
+    "sentence_ta": "என் <b>கணவன்</b> என்னிடம் அன்பாக இருக்கிறார்.",
     "complexity": 1
   },
   {
@@ -2071,8 +2071,8 @@
     "word_en": "friend (boy)",
     "word_ta": "தோழன்",
     "image_word": "friend (boy)",
-    "sentence_en": "My friend is a happy boy.",
-    "sentence_ta": "என் நண்பன் மகிழ்ச்சியானவன்.",
+    "sentence_en": "My <b>friend</b> is a happy boy.",
+    "sentence_ta": "என் <b>தோழன்</b> மகிழ்ச்சியானவன்.",
     "complexity": 1
   },
   {
@@ -2083,8 +2083,8 @@
     "word_en": "friend (girl)",
     "word_ta": "தோழி",
     "image_word": "friend (girl)",
-    "sentence_en": "My best friend is a girl.",
-    "sentence_ta": "என் மிகச்சிறந்த <b>தோழி</b> ஒரு பெண்.",
+    "sentence_en": "My best <b>friend</b> is a girl.",
+    "sentence_ta": "என் சிறந்த <b>தோழி</b> ஒரு பெண்.",
     "complexity": 1
   },
   {
@@ -2167,8 +2167,8 @@
     "word_en": "mom&#x27;s older sister",
     "word_ta": "பெரியம்மா",
     "image_word": "mom&#x27;s older sister",
-    "sentence_en": "My mom's older sister is called my aunt.",
-    "sentence_ta": "என் அம்மாவின் அக்கா <b>பெரியம்மா</b>.",
+    "sentence_en": "My <b>mom's older sister</b> is very kind to me.",
+    "sentence_ta": "என் <b>பெரியம்மா</b> என்னிடம் மிகவும் அன்பானவர்.",
     "complexity": 1
   },
   {
@@ -2179,8 +2179,8 @@
     "word_en": "dad&#x27;s older brother",
     "word_ta": "பெரியப்பா",
     "image_word": "dad&#x27;s older brother",
-    "sentence_en": "My dad's older brother is my பெரியப்பா.",
-    "sentence_ta": "என் அப்பாவின் அண்ணன் <b>பெரியப்பா</b>.",
+    "sentence_en": "My <b>dad's older brother</b> is very kind.",
+    "sentence_ta": "என் <b>பெரியப்பா</b> மிகவும் அன்பானவர்.",
     "complexity": 2
   },
   {
@@ -2191,8 +2191,8 @@
     "word_en": "mom&#x27;s younger sister",
     "word_ta": "சித்தி",
     "image_word": "mom&#x27;s younger sister",
-    "sentence_en": "My mom's younger sister is சித்தி.",
-    "sentence_ta": "என் அம்மாவின் இளைய சகோதரி <b>சித்தி</b>.",
+    "sentence_en": "My <b>mom's younger sister</b> takes care of me.",
+    "sentence_ta": "என் <b>சித்தி</b> என்னை கவனித்துக் கொள்கிறார்.",
     "complexity": 1
   },
   {
@@ -2203,8 +2203,8 @@
     "word_en": "dad&#x27;s younger brother",
     "word_ta": "சித்தப்பா",
     "image_word": "dad&#x27;s younger brother",
-    "sentence_en": "My dad's younger brother is my சித்தப்பா.",
-    "sentence_ta": "என் தந்தையின் இளைய சகோதரன் என் <b>சித்தப்பா</b>.",
+    "sentence_en": "My <b>dad's younger brother</b> is a teacher.",
+    "sentence_ta": "என் <b>சித்தப்பா</b> ஒரு ஆசிரியர்.",
     "complexity": 2
   },
   {
@@ -4484,7 +4484,7 @@
     "word_ta": "கரியமில வாயு",
     "image_word": "carbon dioxide",
     "sentence_en": "<b>Carbon dioxide</b> is released during combustion.",
-    "sentence_ta": "எரிபொருள் எரியும்போது கார்பன் டை ஆக்சைடு வெளியாகிறது.",
+    "sentence_ta": "எரிபொருள் எரியும்போது <b>கரியமில வாயு</b> வெளியாகிறது.",
     "complexity": 2
   },
   {
@@ -4580,7 +4580,7 @@
     "word_ta": "மழைப்பொழிவு",
     "image_word": "precipitation",
     "sentence_en": "<b>Precipitation</b> is an essential part of the Earth's water cycle.",
-    "sentence_ta": "பனிமழை உலகின் நீர் சுழற்சியின் ஒரு முக்கிய அங்கம்.",
+    "sentence_ta": "<b>மழைப்பொழிவு</b> உலகின் நீர் சுழற்சியின் ஒரு முக்கிய அங்கம்.",
     "complexity": 2
   },
   {
@@ -4700,7 +4700,7 @@
     "word_ta": "மாசுபாடு குறைத்தல்",
     "image_word": "reduce pollution",
     "sentence_en": "We need to <b>reduce pollution</b> in our community.",
-    "sentence_ta": "நாம் மாசுபாட்டைக் குறைக்க வேண்டும்.",
+    "sentence_ta": "நாம் <b>மாசுபாடு குறைத்தல்</b>ில் ஈடுபட வேண்டும்.",
     "complexity": 1
   },
   {
@@ -4724,7 +4724,7 @@
     "word_ta": "இயற்கைவள பராமரிப்பு",
     "image_word": "natural resources maintenance",
     "sentence_en": "<b>Natural resources maintenance</b> is very important for our planet.",
-    "sentence_ta": "இயற்கை வளங்களை பராமரிப்பது மிக முக்கியம்.",
+    "sentence_ta": "<b>இயற்கைவள பராமரிப்பு</b> மிக முக்கியம்.",
     "complexity": 2
   },
   {
@@ -6740,7 +6740,7 @@
     "word_ta": "கீழ்",
     "image_word": "bottom",
     "sentence_en": "The <b>bottom</b> of the pool was very slippery.",
-    "sentence_ta": "குளத்தின் அடிப்பகுதி வழுக்கலாக இருந்தது.",
+    "sentence_ta": "குளத்தின் <b>கீழ்</b>ப்பகுதி வழுக்கலாக இருந்தது.",
     "complexity": 1
   },
   {
@@ -6848,7 +6848,7 @@
     "word_ta": "நல்லது",
     "image_word": "good",
     "sentence_en": "The new book is very <b>good</b>.",
-    "sentence_ta": "புதிய நூல் சிறப்பானது.",
+    "sentence_ta": "புதிய நூல் மிகவும் <b>நல்லது</b>.",
     "complexity": 1
   },
   {
@@ -6860,7 +6860,7 @@
     "word_ta": "கெட்டது",
     "image_word": "bad",
     "sentence_en": "The <b>bad</b> weather ruined our picnic.",
-    "sentence_ta": "மோசமான வானிலை எங்கள் சுற்றுலாவை கெடுத்தது.",
+    "sentence_ta": "<b>கெட்ட</b> வானிலை எங்கள் சுற்றுலாவை கெடுத்தது.",
     "complexity": 2
   },
   {
@@ -6896,7 +6896,7 @@
     "word_ta": "உள்ளே",
     "image_word": "inside",
     "sentence_en": "The cat is sleeping <b>inside</b> the house.",
-    "sentence_ta": "பூனை வீட்டுக்குள் தூங்குகிறது.",
+    "sentence_ta": "பூனை வீட்டுக்கு <b>உள்ளே</b> தூங்குகிறது.",
     "complexity": 1
   },
   {
@@ -6908,7 +6908,7 @@
     "word_ta": "வெளியே",
     "image_word": "outside",
     "sentence_en": "I like to play <b>outside</b> in the park.",
-    "sentence_ta": "நான் பூங்காவில் விளையாட விரும்புகிறேன்.",
+    "sentence_ta": "நான் பூங்காவில் <b>வெளியே</b> விளையாட விரும்புகிறேன்.",
     "complexity": 2
   },
   {
@@ -7016,7 +7016,7 @@
     "word_ta": "விரைவாக",
     "image_word": "fast",
     "sentence_en": "She runs <b>fast</b> every morning.",
-    "sentence_ta": "அவள் தினமும் காலையில் வேகமாக ஓடுவாள்.",
+    "sentence_ta": "அவள் தினமும் காலையில் <b>விரைவாக</b> ஓடுவாள்.",
     "complexity": 2
   },
   {
@@ -7052,7 +7052,7 @@
     "word_ta": "காவலன்",
     "image_word": "police",
     "sentence_en": "The <b>police</b> helped the people in the emergency.",
-    "sentence_ta": "காவலர்கள் மக்களுக்கு உதவினர்.",
+    "sentence_ta": "<b>காவலன்</b> மக்களுக்கு உதவினார்.",
     "complexity": 1
   },
   {
@@ -7064,7 +7064,7 @@
     "word_ta": "சமாதானம்",
     "image_word": "peace",
     "sentence_en": "She wants to have <b>peace</b> in her life.",
-    "sentence_ta": "அவள் அமைதியை விரும்புகிறாள்.",
+    "sentence_ta": "அவள் வாழ்வில் <b>சமாதானம்</b>த்தை விரும்புகிறாள்.",
     "complexity": 1
   },
   {
@@ -7076,7 +7076,7 @@
     "word_ta": "சண்டை",
     "image_word": "fight",
     "sentence_en": "Soldiers <b>fight</b> for the country.",
-    "sentence_ta": "வீரர்கள் நாட்டிற்காக போரிடுகிறார்கள்.",
+    "sentence_ta": "வீரர்கள் நாட்டிற்காக <b>சண்டை</b> போடுகிறார்கள்.",
     "complexity": 2
   },
   {
@@ -7136,7 +7136,7 @@
     "word_ta": "இளமை",
     "image_word": "young",
     "sentence_en": "The <b>young</b> girl is very happy today.",
-    "sentence_ta": "அந்த இளம் பெண் மகிழ்ச்சியாக இருக்கிறாள்.",
+    "sentence_ta": "அந்த <b>இளமை</b>யான பெண் மகிழ்ச்சியாக இருக்கிறாள்.",
     "complexity": 2
   },
   {
@@ -7147,8 +7147,8 @@
     "word_en": "elder",
     "word_ta": "முதுமை",
     "image_word": "elder",
-    "sentence_en": "My <b>elder</b> brother helped me with my homework.",
-    "sentence_ta": "என் அண்ணன் வீட்டுப்பாடம் செய்ய உதவினார்.",
+    "sentence_en": "The <b>elder</b>ly man walked slowly.",
+    "sentence_ta": "<b>முதுமை</b>யான மனிதர் மெதுவாக நடந்தார்.",
     "complexity": 1
   },
   {
@@ -9224,7 +9224,7 @@
     "word_ta": "போக்குவரத்து",
     "image_word": "traffic",
     "sentence_en": "<b>Traffic</b> is heavy during peak hours.",
-    "sentence_ta": "பீக் ஹவர்ஸில் <b>போக்குவரத்து</b> நெரிசல் அதிகமாக இருக்கும்.",
+    "sentence_ta": "நெரிசல் நேரத்தில் <b>போக்குவரத்து</b> அதிகமாக இருக்கும்.",
     "complexity": 2
   },
   {
@@ -9272,7 +9272,7 @@
     "word_ta": "சாலை சந்திப்பு",
     "image_word": "intersection",
     "sentence_en": "The <b>intersection</b> of two roads is very busy.",
-    "sentence_ta": "இரு சாலைகளின் சந்திப்பு மிகவும் அதிக போக்குவரத்து உடையது.",
+    "sentence_ta": "இரு சாலைகளின் <b>சாலை சந்திப்பு</b> மிகவும் நெரிசலானது.",
     "complexity": 2
   },
   {
@@ -9344,7 +9344,7 @@
     "word_ta": "பாலம்",
     "image_word": "bridge",
     "sentence_en": "Calculate the strength of the <b>bridge</b>.",
-    "sentence_ta": "இந்தப் <b>பாலம்</b> மிகவும் உறுதியானது.",
+    "sentence_ta": "<b>பாலம்</b>த்தின் வலிமையை கணக்கிடுங்கள்.",
     "complexity": 1
   },
   {
@@ -9356,7 +9356,7 @@
     "word_ta": "நடப்போர் கடப்பிடம்",
     "image_word": "pedestrian crossing",
     "sentence_en": "Be careful at the <b>pedestrian crossing</b>.",
-    "sentence_ta": "சாலையைக் கடக்கும் போது கவனம் தேவை.",
+    "sentence_ta": "<b>நடப்போர் கடப்பிடம்</b>த்தில் கவனமாக இருங்கள்.",
     "complexity": 1
   },
   {
@@ -9368,7 +9368,7 @@
     "word_ta": "பாதை இணைப்பு",
     "image_word": "lane merge",
     "sentence_en": "The two lanes merge ahead.",
-    "sentence_ta": "முன்னால் இரு பாதைகளும் ஒன்றாக இணைகின்றன.",
+    "sentence_ta": "முன்னால் <b>பாதை இணைப்பு</b> உள்ளது.",
     "complexity": 2
   },
   {
@@ -9416,7 +9416,7 @@
     "word_ta": "கட்டுமானம்",
     "image_word": "construction",
     "sentence_en": "The <b>construction</b> of the new building started yesterday.",
-    "sentence_ta": "புதிய கட்டிட வேலை நேற்று தொடங்கியது.",
+    "sentence_ta": "புதிய கட்டிடத்தின் <b>கட்டுமானம்</b> நேற்று தொடங்கியது.",
     "complexity": 2
   },
   {
@@ -9464,7 +9464,7 @@
     "word_ta": "பாதை மாற்றம்",
     "image_word": "lane change",
     "sentence_en": "The driver changed lanes safely.",
-    "sentence_ta": "ஓட்டுநர் பாதுகாப்பாகப் பாதை மாறினார்.",
+    "sentence_ta": "ஓட்டுநர் பாதுகாப்பாக <b>பாதை மாற்றம்</b> செய்தார்.",
     "complexity": 2
   },
   {
@@ -9512,7 +9512,7 @@
     "word_ta": "சாலை ஓர நிறுத்தம்",
     "image_word": "pull-over",
     "sentence_en": "The police asked to pull over.",
-    "sentence_ta": "காவலர் காரை ஓரமாக நிறுத்தச் சொன்னார்.",
+    "sentence_ta": "காவலர் <b>சாலை ஓர நிறுத்தம்</b> செய்யச் சொன்னார்.",
     "complexity": 1
   },
   {
@@ -9596,7 +9596,7 @@
     "word_ta": "சாலை குறியீடுகள்",
     "image_word": "road signs",
     "sentence_en": "<b>Road signs</b> are used to guide traffic safely.",
-    "sentence_ta": "<b>சாலை குறியீடுகள்</b> விதிகளை பின்பற்றி முன்னேற உதவுகின்றன.",
+    "sentence_ta": "<b>சாலை குறியீடுகள்</b> போக்குவரத்தை பாதுகாப்பாக வழிநடத்த பயன்படுகின்றன.",
     "complexity": 2
   }
 ]
