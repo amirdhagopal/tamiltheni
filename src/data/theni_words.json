@@ -764,7 +764,7 @@
     "word_ta": "ரொட்டித்துண்டு",
     "image_word": "bread slice",
     "sentence_en": "A toasted <b>bread slice</b> is very delicious.",
-    "sentence_ta": "வாட்டிய ரொட்டித் துண்டு மிகவும் சுவையானது.",
+    "sentence_ta": "வாட்டிய <b>ரொட்டித் துண்டு</b> மிகவும் சுவையானது.",
     "complexity": 2
   },
   {
@@ -800,7 +800,7 @@
     "word_ta": "எலுமிச்சை பானம்",
     "image_word": "lemonade",
     "sentence_en": "I'm drinking <b>lemonade</b> on a hot summer day.",
-    "sentence_ta": "நான் வெப்பமான கோடை நாளில் எலுமிச்சை பானத்தை குடிக்கிறேன்.",
+    "sentence_ta": "நான் வெப்பமான கோடை நாளில் <b>எலுமிச்சை பானத்தை</b> குடிக்கிறேன்.",
     "complexity": 2
   },
   {
@@ -3176,7 +3176,7 @@
     "word_ta": "வேறுபாடு",
     "image_word": "difference",
     "sentence_en": "The <b>difference</b> is 5.",
-    "sentence_ta": "இரு எண்களுக்கு இடையே உள்ள வித்தியாசம் 5.",
+    "sentence_ta": "இரு எண்களுக்கு இடையே உள்ள <b>வேறுபாடு</b> 5.",
     "complexity": 2
   },
   {
@@ -3236,7 +3236,7 @@
     "word_ta": "வடிவியல்",
     "image_word": "geometry",
     "sentence_en": "<b>Geometry</b> helps us to understand shapes and patterns.",
-    "sentence_ta": "<b>வடிவியல்</b> என்பது சூழல்களும் நிலைகளும் உணர்ந்துகொள்ளவும்.",
+    "sentence_ta": "<b>வடிவியல்</b> வடிவங்களையும் அமைப்புகளையும் புரிந்துகொள்ள உதவுகிறது.",
     "complexity": 2
   },
   {
@@ -3248,7 +3248,7 @@
     "word_ta": "எண்கோணம்",
     "image_word": "octagon",
     "sentence_en": "An <b>octagon</b> has eight sides in total.",
-    "sentence_ta": "ஒரு <b>எண்கோணம்</b> மொத்தம் எட்டு புள்ளிகளைக் கொண்டுள்ளது.",
+    "sentence_ta": "ஒரு <b>எண்கோணம்</b> மொத்தம் எட்டு பக்கங்களைக் கொண்டுள்ளது.",
     "complexity": 1
   },
   {
@@ -3356,7 +3356,7 @@
     "word_ta": "குறுக்குவெட்டு",
     "image_word": "intersection",
     "sentence_en": "The <b>intersection</b> of two roads is very important.",
-    "sentence_ta": "இரு சாலைகளின் சந்திப்பு மிகவும் முக்கியமானது.",
+    "sentence_ta": "இரு சாலைகளின் <b>குறுக்குவெட்டு</b> மிகவும் முக்கியமானது.",
     "complexity": 2
   },
   {
@@ -3368,7 +3368,7 @@
     "word_ta": "புவி",
     "image_word": "earth",
     "sentence_en": "The <b>earth</b> is a beautiful planet.",
-    "sentence_ta": "பூமி ஒரு அழகான கோள்.",
+    "sentence_ta": "<b>புவி</b> ஒரு அழகான கோள்.",
     "complexity": 1
   },
   {
@@ -3391,7 +3391,7 @@
     "word_en": "country",
     "word_ta": "நாடு",
     "image_word": "country",
-    "sentence_en": "My <b>country</b> beautiful residence-place is.",
+    "sentence_en": "My <b>country</b> is a beautiful place to live.",
     "sentence_ta": "என் <b>நாடு</b> வசிப்பதற்கு அழகான இடம்.",
     "complexity": 2
   },
@@ -3440,7 +3440,7 @@
     "word_ta": "ஞாயிறு",
     "image_word": "sun",
     "sentence_en": "The <b>sun</b> is shining brightly in the sky.",
-    "sentence_ta": "வானத்தில் சூரியன் பிரகாசமாக ஒளிருகிறது.",
+    "sentence_ta": "வானத்தில் <b>ஞாயிறு</b> பிரகாசமாக ஒளிருகிறது.",
     "complexity": 2
   },
   {
@@ -3452,7 +3452,7 @@
     "word_ta": "திங்கள்",
     "image_word": "moon",
     "sentence_en": "The <b>moon</b> shines at night.",
-    "sentence_ta": "நிலவு இரவில் ஒளிரும்.",
+    "sentence_ta": "<b>திங்கள்</b> இரவில் ஒளிரும்.",
     "complexity": 2
   },
   {
@@ -3524,7 +3524,7 @@
     "word_ta": "அண்டம்",
     "image_word": "universe",
     "sentence_en": "The <b>universe</b> is full of mystery and wonder.",
-    "sentence_ta": "பேரண்டம் மர்மங்களும் அதிசயங்களும் நிறைந்தது.",
+    "sentence_ta": "<b>அண்டம்</b> மர்மங்களும் அதிசயங்களும் நிறைந்தது.",
     "complexity": 2
   },
   {
@@ -3536,7 +3536,7 @@
     "word_ta": "புவியியல் (நிலவியல்)",
     "image_word": "geography",
     "sentence_en": "<b>Geography</b> is an important subject for students.",
-    "sentence_ta": "மாணர்களுக்கு புவியியல் ஒரு முக்கியமான பாடம்.",
+    "sentence_ta": "மாணவர்களுக்கு <b>புவியியல்</b> ஒரு முக்கியமான பாடம்.",
     "complexity": 2
   },
   {
@@ -3560,7 +3560,7 @@
     "word_ta": "நீர்",
     "image_word": "water",
     "sentence_en": "The <b>water</b> is very refreshing.",
-    "sentence_ta": "தண்ணீர் மிகவும் புத்துணர்ச்சியானது.",
+    "sentence_ta": "<b>நீர்</b> மிகவும் புத்துணர்ச்சியானது.",
     "complexity": 2
   },
   {
@@ -4532,7 +4532,7 @@
     "word_ta": "ஒளி மாசுபடு",
     "image_word": "light pollution",
     "sentence_en": "<b>Light pollution</b> affects our view of the stars.",
-    "sentence_ta": "ஒளி மாசுபாடு விண்மீன்களைப் பார்ப்பதைத் தடுக்கிறது.",
+    "sentence_ta": "<b>ஒளி மாசுபாடு</b> விண்மீன்களைப் பார்ப்பதைத் தடுக்கிறது.",
     "complexity": 1
   },
   {
@@ -4568,7 +4568,7 @@
     "word_ta": "ஓசோன் படிவம்",
     "image_word": "ozone layer",
     "sentence_en": "The <b>ozone layer</b> protects us from the sun's harmful rays.",
-    "sentence_ta": "ஓசோன் படலம் சூரியனின் தீங்கு விளைவிக்கும் கதிர்களிலிருந்து நம்மைக் காக்கிறது.",
+    "sentence_ta": "<b>ஓசோன் படிவம்</b> சூரியனின் தீங்கு விளைவிக்கும் கதிர்களிலிருந்து நம்மைக் காக்கிறது.",
     "complexity": 2
   },
   {
@@ -4616,7 +4616,7 @@
     "word_ta": "காற்று விசையாழி",
     "image_word": "wind turbine",
     "sentence_en": "The <b>wind turbine</b> generates electricity from the wind.",
-    "sentence_ta": "காற்றாலை காற்றிலிருந்து மின்சாரத்தை உற்பத்தி செய்கிறது.",
+    "sentence_ta": "<b>காற்று விசையாழி</b> காற்றிலிருந்து மின்சாரத்தை உற்பத்தி செய்கிறது.",
     "complexity": 2
   },
   {
@@ -4772,7 +4772,7 @@
     "word_ta": "நெகிழிக் கழிவு",
     "image_word": "plastic waste",
     "sentence_en": "We should reduce <b>plastic waste</b> at our school.",
-    "sentence_ta": "நாம் நெகிழிப் பயன்பாட்டை குறைக்க வேண்டும்.",
+    "sentence_ta": "நாம் <b>நெகிழிக் கழிவை</b> குறைக்க வேண்டும்.",
     "complexity": 1
   },
   {
@@ -5600,7 +5600,7 @@
     "word_ta": "பிறந்தநாள் பாடல்",
     "image_word": "birthday song",
     "sentence_en": "We sang the <b>birthday song</b> together.",
-    "sentence_ta": "நாம் பிறந்தநாள் பாடலை இணைந்து பாடினோம்.",
+    "sentence_ta": "நாம் <b>பிறந்தநாள் பாடலை</b> இணைந்து பாடினோம்.",
     "complexity": 2
   },
   {
@@ -5636,7 +5636,7 @@
     "word_ta": "கொண்டாட்டம்",
     "image_word": "celebration",
     "sentence_en": "The school is organizing a big <b>celebration</b>.",
-    "sentence_ta": "பாடசாலை ஒரு பெரிய <b>கொண்டாட்டம்</b> ஏற்பாடு செய்து வருகின்றது.",
+    "sentence_ta": "பள்ளி ஒரு பெரிய <b>கொண்டாட்டம்</b> ஏற்பாடு செய்கிறது.",
     "complexity": 1
   },
   {
@@ -5672,7 +5672,7 @@
     "word_ta": "முக ஓவியம்",
     "image_word": "face painting",
     "sentence_en": "I like watching <b>face painting</b> on TV.",
-    "sentence_ta": "நான் டிவி மூலம் பார்க்கும் முக ஓவியத்தை விரும்புகிறேன்.",
+    "sentence_ta": "நான் <b>முக ஓவியத்தை</b> தொலைக்காட்சியில் பார்க்க விரும்புகிறேன்.",
     "complexity": 1
   },
   {
@@ -5684,7 +5684,7 @@
     "word_ta": "காகி்த் துண்டுகள்",
     "image_word": "confetti",
     "sentence_en": "The party used colorful <b>confetti</b> everywhere.",
-    "sentence_ta": "விழாவில் வண்ண காகிதத் துண்டுகள் தூவப்பட்டன.",
+    "sentence_ta": "விழாவில் வண்ண <b>காகிதத் துண்டுகள்</b> தூவப்பட்டன.",
     "complexity": 1
   },
   {
@@ -5708,7 +5708,7 @@
     "word_ta": "தண்ணீர்த் துப்பாக்கி",
     "image_word": "water gun",
     "sentence_en": "She played with her <b>water gun</b> in the backyard.",
-    "sentence_ta": "அவள் கொல்லைப்புறத்தில் தண்ணீர் துப்பாக்கியுடன் விளையாடினாள்.",
+    "sentence_ta": "அவள் கொல்லைப்புறத்தில் <b>தண்ணீர்த் துப்பாக்கியுடன்</b> விளையாடினாள்.",
     "complexity": 3
   },
   {
@@ -5744,7 +5744,7 @@
     "word_ta": "நன்றிக் குறிப்பு",
     "image_word": "thank you note",
     "sentence_en": "The teacher wrote a <b>thank you note</b> to the student.",
-    "sentence_ta": "ஆசிரியர் ஒரு நன்றிக் குறிப்பை மாணவருக்கு எழுதினார்.",
+    "sentence_ta": "ஆசிரியர் மாணவருக்கு ஒரு <b>நன்றிக் குறிப்பை</b> எழுதினார்.",
     "complexity": 1
   },
   {
@@ -5792,7 +5792,7 @@
     "word_ta": "உயிர் எழுத்து",
     "image_word": "vowel",
     "sentence_en": "A <b>vowel</b> is an essential sound in language.",
-    "sentence_ta": "உயிரெழுத்து மொழியின் முக்கிய ஒலி.",
+    "sentence_ta": "<b>உயிர் எழுத்து</b> மொழியின் முக்கிய ஒலி.",
     "complexity": 2
   },
   {
@@ -5816,7 +5816,7 @@
     "word_ta": "உயிர்மெய் எழுத்து",
     "image_word": "vowel consonant",
     "sentence_en": "The sound of <b>vowel consonant</b> is very interesting.",
-    "sentence_ta": "உயிர்மெய் எழுத்தின் ஒலி சுவாரஸ்யமானது.",
+    "sentence_ta": "<b>உயிர்மெய் எழுத்தின்</b> ஒலி சுவாரஸ்யமானது.",
     "complexity": 2
   },
   {
@@ -5827,8 +5827,8 @@
     "word_en": "hard-sounding consonant",
     "word_ta": "வல்லினம்",
     "image_word": "hard-sounding consonant",
-    "sentence_en": "Hard consonants are called Vallinam.",
-    "sentence_ta": "வல்லின எழுத்துக்கள் கடினமான ஒலியை உடையவை.",
+    "sentence_en": "<b>Hard-sounding consonant</b>s are called Vallinam.",
+    "sentence_ta": "<b>வல்லின</b> எழுத்துக்கள் கடினமான ஒலியை உடையவை.",
     "complexity": 1
   },
   {
@@ -5840,7 +5840,7 @@
     "word_ta": "மெல்லினம்",
     "image_word": "soft-sounding consonant",
     "sentence_en": "The <b>soft-sounding consonant</b> makes a gentle sound.",
-    "sentence_ta": "மெல்லின எழுத்துக்கள் மென்மையான ஒலியை உடையவை.",
+    "sentence_ta": "<b>மெல்லின</b> எழுத்துக்கள் மென்மையான ஒலியை உடையவை.",
     "complexity": 2
   },
   {
@@ -5852,7 +5852,7 @@
     "word_ta": "இடையினம்",
     "image_word": "middle-sounding consonant",
     "sentence_en": "A <b>middle-sounding consonant</b> is difficult to pronounce.",
-    "sentence_ta": "இடையின எழுத்துக்கள் இடைப்பட்ட ஒலியை உடையவை.",
+    "sentence_ta": "<b>இடையின</b> எழுத்துக்கள் இடைப்பட்ட ஒலியை உடையவை.",
     "complexity": 2
   },
   {
@@ -5887,8 +5887,8 @@
     "word_en": "word",
     "word_ta": "சொல்",
     "image_word": "word",
-    "sentence_en": "'Vanakkam' is a popular greeting.",
-    "sentence_ta": "'வணக்கம்' என்பது ஒரு பிரபலமான <b>சொல்</b>.",
+    "sentence_en": "'Vanakkam' is a popular greeting <b>word</b>.",
+    "sentence_ta": "'வணக்கம்' என்பது ஒரு பிரபலமான வாழ்த்து <b>சொல்</b>.",
     "complexity": 2
   },
   {
@@ -6812,7 +6812,7 @@
     "word_ta": "இழப்பு",
     "image_word": "loss",
     "sentence_en": "The team experienced a <b>loss</b> in their last match.",
-    "sentence_ta": "அணியின் கடைசி போட்டியில் ஒரு இழப்பை அனுபவித்தார்கள்.",
+    "sentence_ta": "அணி கடைசி போட்டியில் ஒரு <b>இழப்பை</b> அனுபவித்தது.",
     "complexity": 1
   },
   {
@@ -7088,7 +7088,7 @@
     "word_ta": "பலம்",
     "image_word": "strength",
     "sentence_en": "She needs to develop her inner <b>strength</b>.",
-    "sentence_ta": "அவளுக்கு உள் பலத்தை வளர்க்க வேண்டும்.",
+    "sentence_ta": "அவளுக்கு உள் <b>பலத்தை</b> வளர்க்க வேண்டும்.",
     "complexity": 2
   },
   {
@@ -8144,7 +8144,7 @@
     "word_ta": "கீரை மீன்",
     "image_word": "yellow tuna",
     "sentence_en": "I liked <b>yellow tuna</b> at the restaurant.",
-    "sentence_ta": "எனக்கு உணவகத்தில் மஞ்சள் சூரை மீன் மிகவும் பிடித்திருந்தது.",
+    "sentence_ta": "எனக்கு உணவகத்தில் <b>கீரை மீன்</b> மிகவும் பிடித்திருந்தது.",
     "complexity": 1
   },
   {
@@ -8168,7 +8168,7 @@
     "word_ta": "குடிமகன் / குடிமகள்",
     "image_word": "citizen",
     "sentence_en": "A <b>citizen</b> has the right to vote.",
-    "sentence_ta": "ஒரு குடிமகனுக்கு வாக்களிக்க உரிமை உண்டு.",
+    "sentence_ta": "ஒரு <b>குடிமகனுக்கு</b> வாக்களிக்க உரிமை உண்டு.",
     "complexity": 2
   },
   {
@@ -8216,7 +8216,7 @@
     "word_ta": "குடியேற்றம்",
     "image_word": "immigration",
     "sentence_en": "<b>Immigration</b> laws are strict for most countries.",
-    "sentence_ta": "பெரும்பாலான நாடுகளில் குடியேற்ற சட்டங்கள் கடுமையானவை.",
+    "sentence_ta": "பெரும்பாலான நாடுகளில் <b>குடியேற்ற</b> சட்டங்கள் கடுமையானவை.",
     "complexity": 2
   },
   {
@@ -8228,7 +8228,7 @@
     "word_ta": "விண்ணப்பம்",
     "image_word": "application",
     "sentence_en": "She submitted her college <b>application</b>.",
-    "sentence_ta": "அவள் தன் கல்லூரி விண்ணப்பத்தை சமர்ப்பித்தாள்.",
+    "sentence_ta": "அவள் தன் கல்லூரி <b>விண்ணப்பத்தை</b> சமர்ப்பித்தாள்.",
     "complexity": 2
   },
   {
@@ -8240,7 +8240,7 @@
     "word_ta": "நுழைவுச் சான்று",
     "image_word": "visa",
     "sentence_en": "She needs a <b>visa</b> to travel to that country.",
-    "sentence_ta": "அவளுக்கு அந்த நாட்டிற்குச் செல்ல விசா தேவை.",
+    "sentence_ta": "அவளுக்கு அந்த நாட்டிற்குச் செல்ல <b>நுழைவுச் சான்று</b> தேவை.",
     "complexity": 2
   },
   {
@@ -8252,7 +8252,7 @@
     "word_ta": "கடவுச் சீட்டு",
     "image_word": "passport",
     "sentence_en": "My <b>passport</b> is in my bag.",
-    "sentence_ta": "என் கடவுச்சீட்டு என் பெட்டியில் உள்ளது.",
+    "sentence_ta": "என் <b>கடவுச் சீட்டு</b> என் பெட்டியில் உள்ளது.",
     "complexity": 1
   },
   {
@@ -8264,7 +8264,7 @@
     "word_ta": "சுங்கம்",
     "image_word": "customs",
     "sentence_en": "The <b>customs</b> office handles imports and exports carefully.",
-    "sentence_ta": "சுங்க அலுவலகம் ஏற்றுமதி இறக்குமதியை கவனிக்கிறது.",
+    "sentence_ta": "<b>சுங்க</b> அலுவலகம் ஏற்றுமதி இறக்குமதியை கவனிக்கிறது.",
     "complexity": 2
   },
   {
@@ -8276,7 +8276,7 @@
     "word_ta": "நாடு கடத்து",
     "image_word": "deport",
     "sentence_en": "The government decided to <b>deport</b> the refugee.",
-    "sentence_ta": "அரசாங்கம் அகதியை நாடு கடத்த முடிவு செய்தது.",
+    "sentence_ta": "அரசாங்கம் அகதியை <b>நாடு கடத்த</b> முடிவு செய்தது.",
     "complexity": 2
   },
   {
@@ -8288,7 +8288,7 @@
     "word_ta": "இடம் பெயர்வு",
     "image_word": "migration",
     "sentence_en": "Animal <b>migration</b> is called Valasai pothal.",
-    "sentence_ta": "விலங்குகள் இடம்பெயர்தலை வலசை போதல் என்பர்.",
+    "sentence_ta": "விலங்குகள் <b>இடம் பெயர்தலை</b> வலசை போதல் என்பர்.",
     "complexity": 2
   },
   {
@@ -8348,7 +8348,7 @@
     "word_ta": "குடியேறல்",
     "image_word": "emigration",
     "sentence_en": "<b>Emigration</b> is the act of leaving one's country.",
-    "sentence_ta": "குடிபெயர்தல் என்பது சொந்த நாட்டை விட்டு வெளியேறுவது.",
+    "sentence_ta": "<b>குடியேறல்</b> என்பது சொந்த நாட்டை விட்டு வெளியேறுவது.",
     "complexity": 1
   },
   {
@@ -8384,7 +8384,7 @@
     "word_ta": "தண்டனை",
     "image_word": "penalty",
     "sentence_en": "The team will pay the <b>penalty</b> for late submission.",
-    "sentence_ta": "தாமதத்திற்கு அணி அபராதம் செலுத்தும்.",
+    "sentence_ta": "தாமதத்திற்கு அணி <b>தண்டனை</b> செலுத்தும்.",
     "complexity": 1
   },
   {
@@ -9428,7 +9428,7 @@
     "word_ta": "நுழைவு சரிவுப் பாதை",
     "image_word": "entry ramp",
     "sentence_en": "The <b>entry ramp</b> is steep.",
-    "sentence_ta": "நுழைவுச் சரிவுப் பாதை செங்குத்தாக உள்ளது.",
+    "sentence_ta": "<b>நுழைவு சரிவுப் பாதை</b> செங்குத்தாக உள்ளது.",
     "complexity": 2
   },
   {
@@ -9440,7 +9440,7 @@
     "word_ta": "வெளியேறும் சரிவுப் பாதை",
     "image_word": "exit ramp",
     "sentence_en": "The <b>exit ramp</b> is located on the highway.",
-    "sentence_ta": "வெளியேறும் சரிவுப்பாதை நெடுஞ்சாலையில் அமைந்துள்ளது.",
+    "sentence_ta": "<b>வெளியேறும் சரிவுப் பாதை</b> நெடுஞ்சாலையில் அமைந்துள்ளது.",
     "complexity": 2
   },
   {
@@ -9524,7 +9524,7 @@
     "word_ta": "சாலை ஓரப் பகுதி",
     "image_word": "road shoulder",
     "sentence_en": "The <b>road shoulder</b> is narrow.",
-    "sentence_ta": "சாலையின் ஓரம் மிகவும் குறுகலாக உள்ளது.",
+    "sentence_ta": "<b>சாலை ஓரப் பகுதி</b> மிகவும் குறுகலாக உள்ளது.",
     "complexity": 2
   },
   {
@@ -9572,7 +9572,7 @@
     "word_ta": "கவனச்சிதறலுடன் வாகனம் ஓட்டுதல்",
     "image_word": "distracted driving",
     "sentence_en": "<b>Distracted driving</b> is dangerous.",
-    "sentence_ta": "கவனச்சிதறலுடன் வாகனம் ஓட்டுவது ஆபத்தானது.",
+    "sentence_ta": "<b>கவனச்சிதறலுடன் வாகனம் ஓட்டுதல்</b> ஆபத்தானது.",
     "complexity": 2
   },
   {
