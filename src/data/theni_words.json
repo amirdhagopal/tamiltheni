@@ -1232,7 +1232,7 @@
     "word_ta": "மின்விசிறி",
     "image_word": "electric fan",
     "sentence_en": "The <b>electric fan</b> is very helpful during summer.",
-    "sentence_ta": "அவள் <b>படிக்கட்டில்</b> அமர்ந்தாள்.",
+    "sentence_ta": "<b>மின்விசிறி</b> கோடைக்காலத்தில் மிகவும் உதவியாக இருக்கிறது.",
     "complexity": 1
   },
   {
@@ -1244,7 +1244,7 @@
     "word_ta": "தண்ணீர்க்குழாய்",
     "image_word": "water pipe",
     "sentence_en": "The <b>water pipe</b> was very dirty yesterday.",
-    "sentence_ta": "அவள் <b>மாடியில்</b> இருந்து கீழே குதித்தாள்.",
+    "sentence_ta": "<b>தண்ணீர்க்குழாய்</b> நேற்று மிகவும் அழுக்காக இருந்தது.",
     "complexity": 1
   },
   {
@@ -1256,7 +1256,7 @@
     "word_ta": "கணினி",
     "image_word": "computer",
     "sentence_en": "The <b>computer</b> is very useful for learning.",
-    "sentence_ta": "<b>பெட்டியில்</b> நிறைய பொருட்கள் இருந்தன.",
+    "sentence_ta": "<b>கணினி</b> கற்றலுக்கு மிகவும் பயனுள்ளது.",
     "complexity": 2
   },
   {
@@ -1268,7 +1268,7 @@
     "word_ta": "சமையலறை",
     "image_word": "kitchen",
     "sentence_en": "The <b>kitchen</b> is very clean today.",
-    "sentence_ta": "<b>கண்ணாடியில்</b> என்னையே பார்த்துக் கொண்டேன்.",
+    "sentence_ta": "<b>சமையலறை</b> இன்று மிகவும் சுத்தமாக உள்ளது.",
     "complexity": 2
   },
   {
@@ -1280,7 +1280,7 @@
     "word_ta": "குளியலறை",
     "image_word": "bathroom",
     "sentence_en": "The <b>bathroom</b> is next to my bedroom.",
-    "sentence_ta": "<b>சீப்பால்</b> தலைமுடியை சீவுவேன்.",
+    "sentence_ta": "<b>குளியலறை</b> என் படுக்கையறையின் அருகில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -1304,7 +1304,7 @@
     "word_ta": "நிலைக்கண்ணாடி",
     "image_word": "mirror",
     "sentence_en": "The <b>mirror</b> is hanging on the wall.",
-    "sentence_ta": "<b>மின்விசிறி</b> மெதுவாக சுழல்கிறது.",
+    "sentence_ta": "<b>நிலைக்கண்ணாடி</b> சுவரில் தொங்குகிறது.",
     "complexity": 1
   },
   {
