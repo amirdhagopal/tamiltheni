@@ -44,7 +44,7 @@
     "word_ta": "கண்",
     "image_word": "eye",
     "sentence_en": "The bird looked at me with one <b>eye</b>",
-    "sentence_ta": "அந்தப் பறவை என்னை ஒரு <b>கண்</b>ணால் பார்த்தது.",
+    "sentence_ta": "அந்தப் பறவை என்னை ஒரு <b>கண்ணால்</b> பார்த்தது.",
     "complexity": 2
   },
   {
@@ -68,7 +68,7 @@
     "word_ta": "கால்",
     "image_word": "leg",
     "sentence_en": "The dog hurt its <b>leg</b>.",
-    "sentence_ta": "அந்த நாயின் <b>கால்</b>ில் காயம் ஏற்பட்டது.",
+    "sentence_ta": "அந்த நாயின் <b>காலில்</b> காயம் ஏற்பட்டது.",
     "complexity": 2
   },
   {
@@ -128,7 +128,7 @@
     "word_ta": "நகம்",
     "image_word": "nail",
     "sentence_en": "I need to cut my <b>nail</b>s.",
-    "sentence_ta": "நான் என் <b>நகம்</b>களை வெட்ட வேண்டும்.",
+    "sentence_ta": "நான் என் <b>நகங்களை</b> வெட்ட வேண்டும.",
     "complexity": 1
   },
   {
@@ -260,7 +260,7 @@
     "word_ta": "இமை",
     "image_word": "eyelid",
     "sentence_en": "She closed her heavy <b>eyelids</b>.",
-    "sentence_ta": "அவள் தன் கனமான <b>இமை</b>களை மூடினாள்.",
+    "sentence_ta": "அவள் தன் கனமான <b>இமைகளை</b> மூடினாள்.",
     "complexity": 1
   },
   {
@@ -296,7 +296,7 @@
     "word_ta": "தோள்",
     "image_word": "shoulder",
     "sentence_en": "The backpack weighed heavily on her <b>shoulder</b>.",
-    "sentence_ta": "புத்தகப்பை அவள் <b>தோள்</b>ில் கனமாக இருந்தது.",
+    "sentence_ta": "புத்தகப்பை அவள் <b>தோளில்</b> கனமாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -320,7 +320,7 @@
     "word_ta": "பாதம்",
     "image_word": "foot",
     "sentence_en": "He injured his left <b>foot</b>.",
-    "sentence_ta": "அவன் இடது <b>பாதம்</b>த்தில் காயம் ஏற்பட்டது.",
+    "sentence_ta": "அவன் இடது <b>பாதத்தில்</b> காயம் ஏற்பட்டது.",
     "complexity": 1
   },
   {
@@ -356,7 +356,7 @@
     "word_ta": "கன்னம்",
     "image_word": "cheek",
     "sentence_en": "She touched my <b>cheek</b> with her finger.",
-    "sentence_ta": "அவள் தன் விரலால் என் <b>கன்னம்</b>த்தைத் தொட்டாள்.",
+    "sentence_ta": "அவள் தன் விரலால் என் <b>கன்னத்தைத்</b> தொட்டாள்.",
     "complexity": 2
   },
   {
@@ -968,7 +968,7 @@
     "word_ta": "இல்லம்",
     "image_word": "home",
     "sentence_en": "I will be going <b>home</b> after school today.",
-    "sentence_ta": "நான் பள்ளி முடிந்து <b>இல்லம்</b>த்திற்குச் செல்வேன்.",
+    "sentence_ta": "நான் பள்ளி முடிந்து <b>இல்லத்திற்குச்</b> செல்வேன்.",
     "complexity": 2
   },
   {
@@ -1448,7 +1448,7 @@
     "word_ta": "பள்ளி",
     "image_word": "school",
     "sentence_en": "I am going to my <b>school</b>.",
-    "sentence_ta": "நான் <b>பள்ளி</b>க்குச் செல்கிறேன்.",
+    "sentence_ta": "நான் <b>பள்ளிக்குச்</b> செல்கிறேன்.",
     "complexity": 1
   },
   {
@@ -3320,7 +3320,7 @@
     "word_ta": "இணை கோடு",
     "image_word": "parallel",
     "sentence_en": "The two lines run in <b>parallel</b>.",
-    "sentence_ta": "இவை இரண்டும் <b>இணை கோடு</b>கள்.",
+    "sentence_ta": "இவை இரண்டும் <b>இணை கோடுகள்</b>.",
     "complexity": 1
   },
   {
@@ -4328,7 +4328,7 @@
     "word_ta": "குப்பை",
     "image_word": "litter (trash)",
     "sentence_en": "There is trash on the beach.",
-    "sentence_ta": "கடற்கரையில் <b>குப்பை</b>கள் உள்ளன.",
+    "sentence_ta": "கடற்கரையில் <b>குப்பைகள்</b> உள்ளன.",
     "complexity": 1
   },
   {
@@ -4340,7 +4340,7 @@
     "word_ta": "கழிவு",
     "image_word": "waste",
     "sentence_en": "Recycling reduces <b>waste</b>.",
-    "sentence_ta": "மறுசுழற்சி <b>கழிவு</b>களைக் குறைக்கிறது.",
+    "sentence_ta": "மறுசுழற்சி <b>கழிவுகளைக்</b> குறைக்கிறது.",
     "complexity": 2
   },
   {
@@ -4700,7 +4700,7 @@
     "word_ta": "மாசுபாடு குறைத்தல்",
     "image_word": "reduce pollution",
     "sentence_en": "We need to <b>reduce pollution</b> in our community.",
-    "sentence_ta": "நாம் <b>மாசுபாடு குறைத்தல்</b>ில் ஈடுபட வேண்டும்.",
+    "sentence_ta": "நாம் <b>மாசுபாடு குறைத்தலில்</b> ஈடுபட வேண்டும்.",
     "complexity": 1
   },
   {
@@ -4760,7 +4760,7 @@
     "word_ta": "நச்சுக்கழிவு",
     "image_word": "toxic waste",
     "sentence_en": "The <b>toxic waste</b> was dumped into the ocean.",
-    "sentence_ta": "<b>நச்சுக்கழிவு</b>கள் கடலில் கொட்டப்பட்டன.",
+    "sentence_ta": "<b>நச்சுக்கழிவுகள்</b> கடலில் கொட்டப்பட்டன.",
     "complexity": 1
   },
   {
@@ -4784,7 +4784,7 @@
     "word_ta": "தொழிற்சாலைக் கழிவு",
     "image_word": "industrial waste",
     "sentence_en": "<b>Industrial waste</b> is harmful to our environment.",
-    "sentence_ta": "<b>தொழிற்சாலைக் கழிவு</b>கள் சுற்றுச்சூழலுக்கு கெடுதலானவை.",
+    "sentence_ta": "<b>தொழிற்சாலைக் கழிவுகள்</b> சுற்றுச்சூழலுக்கு கெடுதலானவை.",
     "complexity": 1
   },
   {
@@ -5204,7 +5204,7 @@
     "word_ta": "ஒளியாண்டு",
     "image_word": "light year",
     "sentence_en": "The nearest star is four light years away.",
-    "sentence_ta": "அருகிலுள்ள நட்சத்திரம் நான்கு <b>ஒளியாண்டு</b>கள் தொலைவில் உள்ளது.",
+    "sentence_ta": "அருகிலுள்ள நட்சத்திரம் நான்கு <b>ஒளியாண்டுகள்</b> தொலைவில் உள்ளது.",
     "complexity": 2
   },
   {
@@ -5408,7 +5408,7 @@
     "word_ta": "வாழ்த்து",
     "image_word": "wish",
     "sentence_en": "I <b>wish</b> you have a happy birthday.",
-    "sentence_ta": "உங்களுக்கு இனிய பிறந்தநாள் <b>வாழ்த்து</b>க்கள்.",
+    "sentence_ta": "உங்களுக்கு இனிய பிறந்தநாள் <b>வாழ்த்துக்கள்</b>.",
     "complexity": 2
   },
   {
@@ -6944,7 +6944,7 @@
     "word_ta": "திற",
     "image_word": "open",
     "sentence_en": "The door is <b>open</b> now.",
-    "sentence_ta": "கதவு <b>திற</b>ந்திருக்கிறது.",
+    "sentence_ta": "கதவு <b>திறந்திருக்கிறது</b>.",
     "complexity": 1
   },
   {
@@ -7064,7 +7064,7 @@
     "word_ta": "சமாதானம்",
     "image_word": "peace",
     "sentence_en": "She wants to have <b>peace</b> in her life.",
-    "sentence_ta": "அவள் வாழ்வில் <b>சமாதானம்</b>த்தை விரும்புகிறாள்.",
+    "sentence_ta": "அவள் வாழ்வில் <b>சமாதானத்தை</b> விரும்புகிறாள்.",
     "complexity": 1
   },
   {
@@ -7796,7 +7796,7 @@
     "word_ta": "கிளிஞ்சல் பூச்சி",
     "image_word": "shellfish",
     "sentence_en": "<b>Shellfish</b> are an important food source for many people.",
-    "sentence_ta": "<b>கிளிஞ்சல் பூச்சி</b>கள் பலருக்கு முக்கிய உணவாக விளங்குகின்றன.",
+    "sentence_ta": "<b>கிளிஞ்சல் பூச்சிகள்</b> பலருக்கு முக்கிய உணவாக விளங்குகின்றன.",
     "complexity": 1
   },
   {
@@ -8120,7 +8120,7 @@
     "word_ta": "வாள் மீன்",
     "image_word": "swordfish",
     "sentence_en": "<b>Swordfish</b> are large and fast swimming fish.",
-    "sentence_ta": "<b>வாள் மீன்</b>கள் பெரியவை, வேகமாக நீந்தும் மீன்கள்.",
+    "sentence_ta": "<b>வாள் மீன்கள்</b> பெரியவை, வேகமாக நீந்தும் மீன்கள்.",
     "complexity": 1
   },
   {
@@ -9008,7 +9008,7 @@
     "word_ta": "ஆளி விதை",
     "image_word": "flax seed",
     "sentence_en": "Flax seeds are good for health.",
-    "sentence_ta": "<b>ஆளி விதை</b>கள் உடல் நலத்திற்கு நல்லது.",
+    "sentence_ta": "<b>ஆளி விதைகள்</b> உடல் நலத்திற்கு நல்லது.",
     "complexity": 2
   },
   {
@@ -9092,7 +9092,7 @@
     "word_ta": "சணல் விதை",
     "image_word": "hemp seed",
     "sentence_en": "Hemp seeds are very nutritious.",
-    "sentence_ta": "<b>சணல் விதை</b>கள் மிகவும் சத்தானவை.",
+    "sentence_ta": "<b>சணல் விதைகள்</b> மிகவும் சத்தானவை.",
     "complexity": 2
   },
   {
@@ -9344,7 +9344,7 @@
     "word_ta": "பாலம்",
     "image_word": "bridge",
     "sentence_en": "Calculate the strength of the <b>bridge</b>.",
-    "sentence_ta": "<b>பாலம்</b>த்தின் வலிமையை கணக்கிடுங்கள்.",
+    "sentence_ta": "<b>பாலத்தின்</b> வலிமையை கணக்கிடுங்கள்.",
     "complexity": 1
   },
   {
@@ -9356,7 +9356,7 @@
     "word_ta": "நடப்போர் கடப்பிடம்",
     "image_word": "pedestrian crossing",
     "sentence_en": "Be careful at the <b>pedestrian crossing</b>.",
-    "sentence_ta": "<b>நடப்போர் கடப்பிடம்</b>த்தில் கவனமாக இருங்கள்.",
+    "sentence_ta": "<b>நடப்போர் கடப்பிடத்தில்</b> கவனமாக இருங்கள்.",
     "complexity": 1
   },
   {
@@ -9392,7 +9392,7 @@
     "word_ta": "வழி விடு",
     "image_word": "yield",
     "sentence_en": "<b>Yield</b> to oncoming traffic.",
-    "sentence_ta": "எதிரே வரும் வாகனங்களுக்கு <b>வழி விடு</b>ங்கள்.",
+    "sentence_ta": "எதிரே வரும் வாகனங்களுக்கு <b>வழிவிடுங்கள்</b>.",
     "complexity": 1
   },
   {
@@ -9404,7 +9404,7 @@
     "word_ta": "பாதசாரி",
     "image_word": "pedestrian",
     "sentence_en": "A <b>pedestrian</b> must follow traffic rules carefully.",
-    "sentence_ta": "<b>பாதசாரி</b>கள் சாலை விதிகளை மதிக்க வேண்டும்.",
+    "sentence_ta": "<b>பாதசாரிகள்</b> சாலை விதிகளை மதிக்க வேண்டும்.",
     "complexity": 2
   },
   {
