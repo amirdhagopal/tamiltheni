@@ -1196,7 +1196,7 @@
     "word_ta": "பாய்",
     "image_word": "mat",
     "sentence_en": "She sat on the <b>mat</b> quietly.",
-    "sentence_ta": "அவள் <b>பாய்</b>யில் அமைதியாக அமர்ந்தாள்.",
+    "sentence_ta": "அவள் <b>பாயில்</b> அமைதியாக அமர்ந்தாள்.",
     "complexity": 2
   },
   {
@@ -1232,7 +1232,7 @@
     "word_ta": "மின்விசிறி",
     "image_word": "electric fan",
     "sentence_en": "The <b>electric fan</b> is very helpful during summer.",
-    "sentence_ta": "கோடை காலத்தில் <b>மின்விசிறி</b> மிகவும் உதவும்.",
+    "sentence_ta": "அவள் <b>படிக்கட்டில்</b> அமர்ந்தாள்.",
     "complexity": 1
   },
   {
@@ -1244,7 +1244,7 @@
     "word_ta": "தண்ணீர்க்குழாய்",
     "image_word": "water pipe",
     "sentence_en": "The <b>water pipe</b> was very dirty yesterday.",
-    "sentence_ta": "நேற்று தண்ணீர் குழாய் மிகவும் அழுக்காக இருந்தது.",
+    "sentence_ta": "அவள் <b>மாடியில்</b> இருந்து கீழே குதித்தாள்.",
     "complexity": 1
   },
   {
@@ -1256,7 +1256,7 @@
     "word_ta": "கணினி",
     "image_word": "computer",
     "sentence_en": "The <b>computer</b> is very useful for learning.",
-    "sentence_ta": "<b>கணினி</b> கற்க மிகவும் பயனுள்ளது.",
+    "sentence_ta": "<b>பெட்டியில்</b> நிறைய பொருட்கள் இருந்தன.",
     "complexity": 2
   },
   {
@@ -1268,7 +1268,7 @@
     "word_ta": "சமையலறை",
     "image_word": "kitchen",
     "sentence_en": "The <b>kitchen</b> is very clean today.",
-    "sentence_ta": "<b>சமையலறை</b> இப்போது மிகவும் சுத்தமானது.",
+    "sentence_ta": "<b>கண்ணாடியில்</b> என்னையே பார்த்துக் கொண்டேன்.",
     "complexity": 2
   },
   {
@@ -1280,7 +1280,7 @@
     "word_ta": "குளியலறை",
     "image_word": "bathroom",
     "sentence_en": "The <b>bathroom</b> is next to my bedroom.",
-    "sentence_ta": "<b>குளியலறை</b> என் படுக்கையறைக்கு அருகில் உள்ளது.",
+    "sentence_ta": "<b>சீப்பால்</b> தலைமுடியை சீவுவேன்.",
     "complexity": 2
   },
   {
@@ -1304,7 +1304,7 @@
     "word_ta": "நிலைக்கண்ணாடி",
     "image_word": "mirror",
     "sentence_en": "The <b>mirror</b> is hanging on the wall.",
-    "sentence_ta": "கண்ணாடி சுவற்றில் மாற்றப்பட்டுள்ளது.",
+    "sentence_ta": "<b>மின்விசிறி</b> மெதுவாக சுழல்கிறது.",
     "complexity": 1
   },
   {
@@ -1316,7 +1316,7 @@
     "word_ta": "தொலைபேசி",
     "image_word": "telephone",
     "sentence_en": "I picked up the <b>telephone</b> to answer the call.",
-    "sentence_ta": "அழைப்பை ஏற்க நான் <b>தொலைபேசி</b>யை எடுத்தேன்.",
+    "sentence_ta": "அழைப்பை ஏற்க நான் <b>தொலைபேசியை</b> எடுத்தேன்.",
     "complexity": 2
   },
   {
@@ -1424,7 +1424,7 @@
     "word_ta": "தலையணை",
     "image_word": "pillow",
     "sentence_en": "She rested her head on the <b>pillow</b>.",
-    "sentence_ta": "அவள் <b>தலையணை</b>யில் தலை வைத்தாள்.",
+    "sentence_ta": "அவள் <b>தலையணையில்</b> தலை வைத்தாள்.",
     "complexity": 2
   },
   {
@@ -1496,7 +1496,7 @@
     "word_ta": "புத்தகப்பை",
     "image_word": "book bag",
     "sentence_en": "She carries her <b>book bag</b> to school every day.",
-    "sentence_ta": "அவள் தினமும் <b>புத்தகப்பை</b>யை பள்ளிக்கு எடுத்துச் செல்கிறாள்.",
+    "sentence_ta": "அவள் தினமும் <b>புத்தகப்பையை</b> பள்ளிக்கு எடுத்துச் செல்கிறாள்.",
     "complexity": 2
   },
   {
@@ -1520,7 +1520,7 @@
     "word_ta": "வகுப்பறை",
     "image_word": "classroom",
     "sentence_en": "The students are studying in the <b>classroom</b>.",
-    "sentence_ta": "மாணவர்கள் <b>வகுப்பறை</b>யில் படிக்கிறார்கள்.",
+    "sentence_ta": "மாணவர்கள் <b>வகுப்பறையில்</b> படிக்கிறார்கள்.",
     "complexity": 2
   },
   {
@@ -1592,7 +1592,7 @@
     "word_ta": "வினா",
     "image_word": "question",
     "sentence_en": "The teacher asked me an easy <b>question</b>.",
-    "sentence_ta": "ஆசிரியர் என்னிடம் ஒரு எளிய <b>வினா</b>வைக் கேட்டார்.",
+    "sentence_ta": "ஆசிரியர் என்னிடம் ஒரு எளிய <b>வினாவைக்</b> கேட்டார்.",
     "complexity": 2
   },
   {
@@ -1688,7 +1688,7 @@
     "word_ta": "வண்ணத் தூரிகை",
     "image_word": "paint brush",
     "sentence_en": "She is holding the <b>paint brush</b> carefully.",
-    "sentence_ta": "அவள் <b>வண்ணத் தூரிகை</b>யை கவனமாக வைத்துள்ளாள்.",
+    "sentence_ta": "அவள் <b>வண்ணத் தூரிகையை</b> கவனமாக வைத்துள்ளாள்.",
     "complexity": 1
   },
   {
@@ -1772,7 +1772,7 @@
     "word_ta": "ஒலிபெருக்கி",
     "image_word": "loud speaker",
     "sentence_en": "The <b>loud speaker</b> was very clear and loud.",
-    "sentence_ta": "<b>ஒலிபெருக்கி</b>யின் சத்தம் தெளிவாக இருந்தது.",
+    "sentence_ta": "<b>ஒலிபெருக்கியின்</b> சத்தம் தெளிவாக இருந்தது.",
     "complexity": 2
   },
   {
@@ -1820,7 +1820,7 @@
     "word_ta": "படி",
     "image_word": "read",
     "sentence_en": "She will <b>read</b> the book tonight.",
-    "sentence_ta": "அவள் இன்று இரவு புத்தகத்தைப் <b>படி</b>ப்பாள்.",
+    "sentence_ta": "அவள் இன்று இரவு புத்தகத்தைப் <b>படிப்பாள்</b>.",
     "complexity": 1
   },
   {
@@ -1916,7 +1916,7 @@
     "word_ta": "கவிதை",
     "image_word": "poem",
     "sentence_en": "She wrote a beautiful <b>poem</b> yesterday.",
-    "sentence_ta": "அவள் நேற்று ஒரு அழகான <b>கவிதை</b>யை எழுதினாள்.",
+    "sentence_ta": "அவள் நேற்று ஒரு அழகான <b>கவிதையை</b> எழுதினாள்.",
     "complexity": 2
   },
   {
@@ -2660,7 +2660,7 @@
     "word_ta": "சாத்துக்குடி",
     "image_word": "sweet lime",
     "sentence_en": "I ate a <b>sweet lime</b> in Sathukudi yesterday.",
-    "sentence_ta": "நேற்று நான் <b>சாத்துக்குடி</b>யை சாப்பிட்டேன்.",
+    "sentence_ta": "நேற்று நான் <b>சாத்துக்குடியை</b> சாப்பிட்டேன்.",
     "complexity": 2
   },
   {
@@ -2852,7 +2852,7 @@
     "word_ta": "குருதி நெல்லி",
     "image_word": "cranberry",
     "sentence_en": "<b>Cranberry</b> sauce is made from cranberries.",
-    "sentence_ta": "<b>குருதி நெல்லி</b> சாஸ் <b>குருதி நெல்லி</b>யிலிருந்து உருவாக்கப்படுகிறது.",
+    "sentence_ta": "<b>குருதி நெல்லி</b> சாஸ் <b>குருதி நெல்லியிலிருந்து</b> உருவாக்கப்படுகிறது.",
     "complexity": 2
   },
   {
@@ -3992,7 +3992,7 @@
     "word_ta": "மென்மை",
     "image_word": "tender",
     "sentence_en": "The <b>tender</b> flower was very delicate and soft.",
-    "sentence_ta": "அந்த மலர் மிகவும் <b>மென்மை</b>யானது.",
+    "sentence_ta": "அந்த மலர் மிகவும் <b>மென்மையானது</b>.",
     "complexity": 2
   },
   {
@@ -4100,7 +4100,7 @@
     "word_ta": "பொறுப்பு",
     "image_word": "responsible",
     "sentence_en": "She is a <b>responsible</b> person in our school.",
-    "sentence_ta": "அவள் எங்கள் பள்ளியில் <b>பொறுப்பு</b>ள்ள ஒரு நபர்.",
+    "sentence_ta": "அவள் எங்கள் பள்ளியில் <b>பொறுப்புள்ள</b> ஒரு நபர்.",
     "complexity": 2
   },
   {
@@ -4244,7 +4244,7 @@
     "word_ta": "மேன்மை",
     "image_word": "greatness",
     "sentence_en": "She believed in the <b>greatness</b> of her country.",
-    "sentence_ta": "அவர் தனது நாட்டின் <b>மேன்மை</b>யை நம்பினார்.",
+    "sentence_ta": "அவர் தனது நாட்டின் <b>மேன்மையை</b> நம்பினார்.",
     "complexity": 1
   },
   {
@@ -4676,7 +4676,7 @@
     "word_ta": "மட்டுப்படுத்து",
     "image_word": "mitigate",
     "sentence_en": "The new policy will help <b>mitigate</b> the effects of climate change.",
-    "sentence_ta": "புதிய கொள்கை காலநிலை மாற்றத்தின் விளைவுகளை <b>மட்டுப்படுத்து</b>ம்.",
+    "sentence_ta": "புதிய கொள்கை காலநிலை மாற்றத்தின் விளைவுகளை <b>மட்டுப்படுத்தும்</b>.",
     "complexity": 2
   },
   {
@@ -4988,7 +4988,7 @@
     "word_ta": "விண்வெளி",
     "image_word": "space",
     "sentence_en": "The universe is made up of vast <b>space</b>.",
-    "sentence_ta": "பேரண்டம் பரந்த <b>விண்வெளி</b>யால் ஆனது.",
+    "sentence_ta": "பேரண்டம் பரந்த <b>விண்வெளியால்</b> ஆனது.",
     "complexity": 2
   },
   {
@@ -5144,7 +5144,7 @@
     "word_ta": "கண்ணாடி வில்லை",
     "image_word": "lens",
     "sentence_en": "The camera uses a special <b>lens</b>.",
-    "sentence_ta": "கேமரா ஒரு சிறப்பு <b>கண்ணாடி வில்லை</b>யைப் பயன்படுத்துகிறது.",
+    "sentence_ta": "கேமரா ஒரு சிறப்பு <b>கண்ணாடி வில்லையைப்</b> பயன்படுத்துகிறது.",
     "complexity": 2
   },
   {
@@ -5288,7 +5288,7 @@
     "word_ta": "பிறந்தநாள் விழா",
     "image_word": "birthday party",
     "sentence_en": "We are planning a fun <b>birthday party</b>",
-    "sentence_ta": "நாங்கள் <b>பிறந்தநாள் விழா</b>விற்கு திட்டமிடுகிறோம்.",
+    "sentence_ta": "நாங்கள் <b>பிறந்தநாள் விழாவிற்கு</b> திட்டமிடுகிறோம்.",
     "complexity": 2
   },
   {
@@ -5324,7 +5324,7 @@
     "word_ta": "பிறந்தநாள் தொப்பி",
     "image_word": "birthday hat",
     "sentence_en": "She wore a colorful <b>birthday hat</b> today.",
-    "sentence_ta": "அவள் ஒரு <b>பிறந்தநாள் தொப்பி</b>யை இன்று அணிந்தாள்.",
+    "sentence_ta": "அவள் ஒரு <b>பிறந்தநாள் தொப்பியை</b> இன்று அணிந்தாள்.",
     "complexity": 2
   },
   {
@@ -5420,7 +5420,7 @@
     "word_ta": "பொம்மை",
     "image_word": "doll",
     "sentence_en": "The little girl is playing with her <b>doll</b>.",
-    "sentence_ta": "சிறுமி தன் <b>பொம்மை</b>யுடன் விளையாடுகிறாள்.",
+    "sentence_ta": "சிறுமி தன் <b>பொம்மையுடன்</b> விளையாடுகிறாள்.",
     "complexity": 1
   },
   {
@@ -5492,7 +5492,7 @@
     "word_ta": "மேடை",
     "image_word": "stage",
     "sentence_en": "The school play will be on the <b>stage</b> tonight.",
-    "sentence_ta": "பள்ளி நாடகம் இன்று இரவு <b>மேடை</b>யில் நடக்கும்.",
+    "sentence_ta": "பள்ளி நாடகம் இன்று இரவு <b>மேடையில்</b> நடக்கும்.",
     "complexity": 1
   },
   {
@@ -5912,7 +5912,7 @@
     "word_ta": "ஒருமை",
     "image_word": "singular",
     "sentence_en": "The word 'cat' is <b>singular</b>.",
-    "sentence_ta": "'பூனை' என்ற சொல் <b>ஒருமை</b>யில் உள்ளது.",
+    "sentence_ta": "'பூனை' என்ற சொல் <b>ஒருமையில்</b> உள்ளது.",
     "complexity": 1
   },
   {
@@ -6044,7 +6044,7 @@
     "word_ta": "அஃறிணை",
     "image_word": "non cognitive",
     "sentence_en": "Animals belong to the non-rational class.",
-    "sentence_ta": "விலங்குகள் <b>அஃறிணை</b>யைச் சேர்ந்தவை.",
+    "sentence_ta": "விலங்குகள் <b>அஃறிணையைச்</b> சேர்ந்தவை.",
     "complexity": 2
   },
   {
@@ -6224,7 +6224,7 @@
     "word_ta": "உயர்திணை",
     "image_word": "noun_denoting_rational_beings",
     "sentence_en": "Humans belong to the rational class.",
-    "sentence_ta": "மனிதர்கள் <b>உயர்திணை</b>யைச் சேர்ந்தவர்கள்.",
+    "sentence_ta": "மனிதர்கள் <b>உயர்திணையைச்</b> சேர்ந்தவர்கள்.",
     "complexity": 1
   },
   {
@@ -6740,7 +6740,7 @@
     "word_ta": "கீழ்",
     "image_word": "bottom",
     "sentence_en": "The <b>bottom</b> of the pool was very slippery.",
-    "sentence_ta": "குளத்தின் <b>கீழ்</b>ப்பகுதி வழுக்கலாக இருந்தது.",
+    "sentence_ta": "குளத்தின் <b>கீழ்ப்பகுதி</b> வழுக்கலாக இருந்தது.",
     "complexity": 1
   },
   {
@@ -6920,7 +6920,7 @@
     "word_ta": "உண்மை",
     "image_word": "truth",
     "sentence_en": "The <b>truth</b> is always more important than lies.",
-    "sentence_ta": "பொய்யை விட <b>உண்மை</b>யே முக்கியம்.",
+    "sentence_ta": "பொய்யை விட <b>உண்மையே</b> முக்கியம்.",
     "complexity": 2
   },
   {
@@ -6980,7 +6980,7 @@
     "word_ta": "வேற்றுமை",
     "image_word": "diversity",
     "sentence_en": "We value <b>diversity</b>.",
-    "sentence_ta": "நாங்கள் <b>வேற்றுமை</b>யில் ஒற்றுமையை போற்றுகிறோம்.",
+    "sentence_ta": "நாங்கள் <b>வேற்றுமையில்</b> ஒற்றுமையை போற்றுகிறோம்.",
     "complexity": 1
   },
   {
@@ -7136,7 +7136,7 @@
     "word_ta": "இளமை",
     "image_word": "young",
     "sentence_en": "The <b>young</b> girl is very happy today.",
-    "sentence_ta": "அந்த <b>இளமை</b>யான பெண் மகிழ்ச்சியாக இருக்கிறாள்.",
+    "sentence_ta": "அந்த <b>இளமையான</b> பெண் மகிழ்ச்சியாக இருக்கிறாள்.",
     "complexity": 2
   },
   {
@@ -7148,7 +7148,7 @@
     "word_ta": "முதுமை",
     "image_word": "elder",
     "sentence_en": "The <b>elder</b>ly man walked slowly.",
-    "sentence_ta": "<b>முதுமை</b>யான மனிதர் மெதுவாக நடந்தார்.",
+    "sentence_ta": "<b>முதுமையான</b> மனிதர் மெதுவாக நடந்தார்.",
     "complexity": 1
   },
   {
@@ -7304,7 +7304,7 @@
     "word_ta": "மகுடி",
     "image_word": "snake charmer&#x27;s flute",
     "sentence_en": "Snake charmer's flute sounds melodious.",
-    "sentence_ta": "<b>மகுடி</b>யின் ஓசை இனிமையானது.",
+    "sentence_ta": "<b>மகுடியின்</b> ஓசை இனிமையானது.",
     "complexity": 2
   },
   {
@@ -7472,7 +7472,7 @@
     "word_ta": "கைவினை",
     "image_word": "craft",
     "sentence_en": "She likes to make crafts.",
-    "sentence_ta": "அவள் <b>கைவினை</b>ப் பொருட்கள் செய்ய விரும்புகிறாள்.",
+    "sentence_ta": "அவள் <b>கைவினைப்</b> பொருட்கள் செய்ய விரும்புகிறாள்.",
     "complexity": 2
   },
   {
@@ -7484,7 +7484,7 @@
     "word_ta": "களிமண் பொம்மை",
     "image_word": "clay doll",
     "sentence_en": "The child played with the <b>clay doll</b>.",
-    "sentence_ta": "குழந்தை <b>களிமண் பொம்மை</b>யுடன் விளையாடியது.",
+    "sentence_ta": "குழந்தை <b>களிமண் பொம்மையுடன்</b> விளையாடியது.",
     "complexity": 2
   },
   {
@@ -7520,7 +7520,7 @@
     "word_ta": "மரப்பாச்சி பொம்மை",
     "image_word": "wooden doll",
     "sentence_en": "The <b>wooden doll</b> was made of natural wood.",
-    "sentence_ta": "<b>மரப்பாச்சி பொம்மை</b>யானது இயற்கையான மரத்தால் ஆனது.",
+    "sentence_ta": "<b>மரப்பாச்சி பொம்மையானது</b> இயற்கையான மரத்தால் ஆனது.",
     "complexity": 2
   },
   {
@@ -7532,7 +7532,7 @@
     "word_ta": "காகித முகமூடி",
     "image_word": "paper mask",
     "sentence_en": "The <b>paper mask</b> is very easy to put on.",
-    "sentence_ta": "<b>காகித முகமூடி</b>யை அணிவது சுலபம்.",
+    "sentence_ta": "<b>காகித முகமூடியை</b> அணிவது சுலபம்.",
     "complexity": 1
   },
   {
@@ -7556,7 +7556,7 @@
     "word_ta": "மூங்கில் கூடை",
     "image_word": "bamboo basket",
     "sentence_en": "The vendor used a <b>bamboo basket</b> to carry vegetables.",
-    "sentence_ta": "வியாபாரி காய்கறிகளை எடுத்துச் செல்ல <b>மூங்கில் கூடை</b>யை பயன்படுத்தினார்.",
+    "sentence_ta": "வியாபாரி காய்கறிகளை எடுத்துச் செல்ல <b>மூங்கில் கூடையை</b> பயன்படுத்தினார்.",
     "complexity": 2
   },
   {
@@ -7568,7 +7568,7 @@
     "word_ta": "மணி மாலை",
     "image_word": "bead chain",
     "sentence_en": "She wore a beautiful <b>bead chain</b> around her neck.",
-    "sentence_ta": "அவள் கழுத்தில் <b>மணி மாலை</b>யை அணிந்திருந்தாள்.",
+    "sentence_ta": "அவள் கழுத்தில் <b>மணி மாலையை</b> அணிந்திருந்தாள்.",
     "complexity": 2
   },
   {
@@ -7580,7 +7580,7 @@
     "word_ta": "பனை ஓலைத் தொப்பி",
     "image_word": "palm leaf hat",
     "sentence_en": "She wore a traditional <b>palm leaf hat</b>.",
-    "sentence_ta": "அவள் <b>பனை ஓலைத் தொப்பி</b>யை அணிந்திருந்தாள்.",
+    "sentence_ta": "அவள் <b>பனை ஓலைத் தொப்பியை</b> அணிந்திருந்தாள்.",
     "complexity": 1
   },
   {
@@ -7592,7 +7592,7 @@
     "word_ta": "சணல் வேலை",
     "image_word": "jute work",
     "sentence_en": "The <b>jute work</b> was very interesting to learn about.",
-    "sentence_ta": "<b>சணல் வேலை</b>ப்பாடு மிகவும் சுவாரஸ்யமானது.",
+    "sentence_ta": "<b>சணல் வேலைப்பாடு</b> மிகவும் சுவாரஸ்யமானது.",
     "complexity": 2
   },
   {
@@ -8192,7 +8192,7 @@
     "word_ta": "எல்லை",
     "image_word": "border",
     "sentence_en": "The country shares its <b>border</b> with the neighboring state.",
-    "sentence_ta": "நாடு தனது <b>எல்லை</b>யில் அருகிலுள்ள மாநிலம் ஒன்றுடன் பகிர்ந்து கொள்கிறது.",
+    "sentence_ta": "நாடு தனது <b>எல்லையில்</b> அருகிலுள்ள மாநிலம் ஒன்றுடன் பகிர்ந்து கொள்கிறது.",
     "complexity": 2
   },
   {
@@ -8780,7 +8780,7 @@
     "word_ta": "பூசணி விதை",
     "image_word": "pumpkin seed",
     "sentence_en": "Pumpkin seeds are a good source of protein.",
-    "sentence_ta": "<b>பூசணி விதை</b>யில் புரதச்சத்து உள்ளது.",
+    "sentence_ta": "<b>பூசணி விதையில்</b> புரதச்சத்து உள்ளது.",
     "complexity": 2
   },
   {
@@ -8996,7 +8996,7 @@
     "word_ta": "சாமை",
     "image_word": "little millet",
     "sentence_en": "The farmer grew <b>little millet</b> in the field.",
-    "sentence_ta": "விவசாயி தெருவில் <b>சாமை</b>யை பயிரிட்டார்.",
+    "sentence_ta": "விவசாயி தெருவில் <b>சாமையை</b> பயிரிட்டார்.",
     "complexity": 2
   },
   {
@@ -9140,7 +9140,7 @@
     "word_ta": "பள்ளிப் பகுதி",
     "image_word": "school zone",
     "sentence_en": "Drive slowly in the <b>school zone</b>.",
-    "sentence_ta": "<b>பள்ளிப் பகுதி</b>யில் மெதுவாக வாகனம் ஓட்டவும்.",
+    "sentence_ta": "<b>பள்ளிப் பகுதியில்</b> மெதுவாக வாகனம் ஓட்டவும்.",
     "complexity": 2
   },
   {
@@ -9164,7 +9164,7 @@
     "word_ta": "சுரங்கப் பாதை",
     "image_word": "subway",
     "sentence_en": "I use the <b>subway</b> to go to school.",
-    "sentence_ta": "நான் பள்ளிக்குச் செல்ல <b>சுரங்கப் பாதை</b>யைப் பயன்படுத்துகிறேன்.",
+    "sentence_ta": "நான் பள்ளிக்குச் செல்ல <b>சுரங்கப் பாதையைப்</b> பயன்படுத்துகிறேன்.",
     "complexity": 1
   },
   {
@@ -9236,7 +9236,7 @@
     "word_ta": "நில் பலகை",
     "image_word": "stop sign",
     "sentence_en": "Stop the vehicle at the <b>stop sign</b>.",
-    "sentence_ta": "<b>நில் பலகை</b>யைப் பார்த்ததும் வண்டியை நிறுத்தவும்.",
+    "sentence_ta": "<b>நில் பலகையைப்</b> பார்த்ததும் வண்டியை நிறுத்தவும்.",
     "complexity": 2
   },
   {
@@ -9248,7 +9248,7 @@
     "word_ta": "வட்டச் சாலை",
     "image_word": "roundabout",
     "sentence_en": "Traffic flows smoothly in the <b>roundabout</b>.",
-    "sentence_ta": "<b>வட்டச் சாலை</b>யில் போக்குவரத்து சீராக உள்ளது.",
+    "sentence_ta": "<b>வட்டச் சாலையில்</b> போக்குவரத்து சீராக உள்ளது.",
     "complexity": 2
   },
   {
@@ -9260,7 +9260,7 @@
     "word_ta": "தெரு",
     "image_word": "street",
     "sentence_en": "I walked down the <b>street</b> with my friends.",
-    "sentence_ta": "நான் என் நண்பர்களுடன் <b>தெரு</b>வில் சென்றேன்",
+    "sentence_ta": "நான் என் நண்பர்களுடன் <b>தெருவில்</b> சென்றேன்.",
     "complexity": 2
   },
   {
@@ -9296,7 +9296,7 @@
     "word_ta": "நெடுஞ்சாலை",
     "image_word": "highway",
     "sentence_en": "The <b>highway</b> has many cars driving on it.",
-    "sentence_ta": "<b>நெடுஞ்சாலை</b>யில் பல வாகனங்கள் ஓடி கொண்டிருக்கின்றன.",
+    "sentence_ta": "<b>நெடுஞ்சாலையில்</b> பல வாகனங்கள் ஓடிக் கொண்டிருக்கின்றன.",
     "complexity": 2
   },
   {
