@@ -7,7 +7,7 @@ interface LayoutOptions {
 
 export const Layout = {
     init: function (options: LayoutOptions): void {
-        this.injectControlPanel(options.title, options.contentHTML);
+        this.injectHeaderAndPanel(options.title, options.contentHTML);
         this.injectCircularTimer(options.timerDisplay);
         // Navigation injection can be optional if page layout differs significantly
         if (options.injectNavigation) {
@@ -17,31 +17,67 @@ export const Layout = {
         this.injectKeyboardHelpModal();
         // Setup global keyboard shortcuts for page navigation
         this.setupGlobalKeyboardShortcuts();
+
+        // Adjust body padding for fixed header
+        document.body.style.paddingTop = '80px';
     },
 
-    injectControlPanel: function (title: string, contentHTML: string): void {
-        const panelStr = `
-            <div class="control-panel" id="controlPanel">
-                <div class="control-header" role="button" tabindex="0" aria-expanded="false" aria-controls="controlContent" title="Click to expand/collapse settings" onclick="const panel = document.getElementById('controlPanel'); const wasCollapsed = panel.classList.contains('collapsed'); panel.classList.toggle('collapsed'); this.setAttribute('aria-expanded', wasCollapsed); if (!wasCollapsed) { document.dispatchEvent(new CustomEvent('panelCollapsed')); }" onkeydown="if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); this.click(); }">
-                    <h3><span aria-hidden="true">⚙️</span> ${title}</h3>
-                    <span class="toggle-icon" aria-hidden="true">▼</span>
+    injectHeaderAndPanel: function (title: string, contentHTML: string): void {
+        // 1. Fixed Header
+        const headerStr = `
+            <header class="app-header">
+                <div class="header-left">
+                    <a href="../index.html" class="home-btn" title="Go Home (H)" aria-label="Home">
+                        <span aria-hidden="true">🏠</span>
+                    </a>
                 </div>
+                <h1 class="header-title">${title}</h1>
+                <div class="header-right">
+                    <button class="settings-toggle" id="settingsToggle" title="Toggle Settings (C)" aria-label="Toggle Settings" aria-expanded="false" aria-controls="controlPanel">
+                        <span aria-hidden="true">⚙️</span>
+                    </button>
+                </div>
+            </header>
+        `;
+        document.body.insertAdjacentHTML('afterbegin', headerStr);
+
+        // 2. Control Panel (Overlay)
+        // Note: We removed the inner "Back to Portal" button since it is now in the header.
+        const panelStr = `
+            <div class="control-panel" id="controlPanel" aria-hidden="true">
                 <div class="control-content" id="controlContent">
                     <div id="controlSettings" style="display: flex; flex-direction: column; gap: 15px;">
                         ${contentHTML}
                     </div>
-                    <div class="control-row" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: flex; gap: 10px;">
-                        <a href="../index.html" class="action-button" title="Return to main portal (H)" style="text-decoration: none; background: rgba(255,255,255,0.1); flex: 1; justify-content: center;">
-                            <span aria-hidden="true">🏠</span> Back to Portal Home
-                        </a>
-                        <button class="action-button" id="showKeyboardHelp" title="Show keyboard shortcuts (?)" style="background: rgba(255,255,255,0.1); padding: 8px 12px;">
-                            <span aria-hidden="true">⌨️</span> <span style="font-size: 0.85em;">?</span>
+                    <div class="control-row" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: flex; gap: 10px; justify-content: flex-end;">
+                         <button class="action-button" id="showKeyboardHelp" title="Show keyboard shortcuts (?)" style="background: rgba(255,255,255,0.1); padding: 8px 12px;">
+                            <span aria-hidden="true">⌨️</span> Shortcuts
                         </button>
                     </div>
                 </div>
             </div>
         `;
-        document.body.insertAdjacentHTML('afterbegin', panelStr);
+        document.body.insertAdjacentHTML('beforeend', panelStr);
+
+        // Wire up toggle logic
+        const toggleBtn = document.getElementById('settingsToggle');
+        const panel = document.getElementById('controlPanel');
+
+        if (toggleBtn && panel) {
+            toggleBtn.addEventListener('click', () => {
+                const isOpen = panel.classList.contains('open');
+                if (isOpen) {
+                    panel.classList.remove('open');
+                    panel.setAttribute('aria-hidden', 'true');
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                    document.dispatchEvent(new CustomEvent('panelCollapsed'));
+                } else {
+                    panel.classList.add('open');
+                    panel.setAttribute('aria-hidden', 'false');
+                    toggleBtn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        }
     },
 
     injectCircularTimer: function (initialDisplay = '00:15'): void {
@@ -269,11 +305,12 @@ export const Layout = {
                 }
                 // Also close control panel if open
                 const panel = document.getElementById('controlPanel');
-                if (panel && !panel.classList.contains('collapsed')) {
-                    panel.classList.add('collapsed');
+                if (panel && panel.classList.contains('open')) {
+                    panel.classList.remove('open');
+                    panel.setAttribute('aria-hidden', 'true');
+                    const toggle = document.getElementById('settingsToggle');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
                     document.dispatchEvent(new CustomEvent('panelCollapsed'));
-                    // Optional: remove body class if used
-                    // document.body.classList.remove('panel-expanded');
                     return;
                 }
             }
@@ -296,19 +333,20 @@ export const Layout = {
             // C = Toggle Control Panel
             if (e.key === 'c' || e.key === 'C') {
                 const panel = document.getElementById('controlPanel');
+                const toggle = document.getElementById('settingsToggle');
+
                 if (panel) {
-                    // Start expanded (collapsed=false)? CSS usually starts collapsed or not.
-                    // The logic in injectControlPanel uses 'collapsed' class to HIDE it usually?
-                    // Actually existing CSS: .control-panel.collapsed { transform: translateY(-...); }
-                    // So adding 'collapsed' hides it. Removing 'collapsed' shows it.
+                    const isOpen = panel.classList.contains('open');
 
-                    const wasCollapsed = panel.classList.contains('collapsed');
-                    // Toggle
-                    panel.classList.toggle('collapsed');
-
-                    // If we just collapsed it (was not collapsed -> now collapsed)
-                    if (!wasCollapsed) {
+                    if (isOpen) {
+                        panel.classList.remove('open');
+                        panel.setAttribute('aria-hidden', 'true');
+                        if (toggle) toggle.setAttribute('aria-expanded', 'false');
                         document.dispatchEvent(new CustomEvent('panelCollapsed'));
+                    } else {
+                        panel.classList.add('open');
+                        panel.setAttribute('aria-hidden', 'false');
+                        if (toggle) toggle.setAttribute('aria-expanded', 'true');
                     }
                 }
                 return;
