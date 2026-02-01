@@ -1,0 +1,272 @@
+import { h, Fragment } from 'preact';
+import { useState, useEffect, useMemo, useCallback } from 'preact/hooks';
+import { Controls } from './Controls';
+import { Utils } from '../utils';
+import { AudioManager } from '../audio_manager';
+import { Timer } from '../timer';
+import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
+import theniWords from '../data/theni_words.json';
+import { Word } from '../types';
+import confetti from 'canvas-confetti';
+
+export default function Theni1App() {
+    // Data
+    const allWords = useMemo(() => theniWords as Word[], []);
+    const categories = useMemo(() => {
+        const cats = new Set<string>();
+        allWords.forEach(w => cats.add(`${w.category} - ${w.category_ta}`));
+        return Array.from(cats);
+    }, [allWords]);
+
+    // State
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(() => [...categories]);
+    const [difficulty, setDifficulty] = useState<'all' | 'D1' | 'D2'>('all');
+    const [shuffle, setShuffle] = useState(false);
+
+    // Derived State
+    const [filteredWords, setFilteredWords] = useState<Word[]>(() => [...allWords]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [revealed, setRevealed] = useState(false);
+
+    // Settings
+    const [audioEnabled, setAudioEnabled] = useState(true);
+    const [voiceEnabled, setVoiceEnabled] = useState(false);
+    const [showTimer, setShowTimer] = useState(true);
+
+    // Hooks
+    const { isRecording, feedback, setFeedback, toggleRecording, stopRecording } = useSpeechRecognition();
+
+    // Timer Init
+    useEffect(() => {
+        setTimeout(() => Timer.init(8), 100);
+    }, []);
+
+    // Timer Visibility
+    useEffect(() => {
+        if (showTimer) {
+            document.getElementById('timerPill')?.style.removeProperty('display');
+        } else {
+            const pill = document.getElementById('timerPill');
+            if (pill) pill.style.display = 'none';
+        }
+    }, [showTimer]);
+
+    // Apply Filters
+    useEffect(() => {
+        let result = allWords.filter(w => {
+            const catKey = `${w.category} - ${w.category_ta}`;
+            const matchesCat = selectedCategories.includes(catKey);
+            const matchesDiff = difficulty === 'all' || w.difficulty === difficulty;
+            return matchesCat && matchesDiff;
+        });
+
+        if (shuffle) {
+            Utils.shuffleArray(result);
+        }
+
+        setFilteredWords(result);
+        setCurrentIndex(0);
+        setRevealed(false);
+        stopRecording(); // Stop ANY recording on filter change
+    }, [selectedCategories, difficulty, shuffle, allWords]);
+
+    const currentWord = filteredWords[currentIndex];
+
+    // Progress
+    useEffect(() => {
+        Utils.updateProgress(currentIndex, filteredWords.length, 'progressBar', 'counter');
+    }, [currentIndex, filteredWords]);
+
+
+    // Validation Logic
+    const handleVoiceResult = (spokenText: string) => {
+        if (!currentWord) return;
+
+        const targetText = currentWord.word_ta;
+        const normalize = (text: string) => text.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '').replace(/\s+/g, '');
+
+        const normalizedSpoken = normalize(spokenText);
+        const normalizedTarget = normalize(targetText);
+
+        if (normalizedSpoken === normalizedTarget || normalizedTarget.includes(normalizedSpoken) || normalizedSpoken.includes(normalizedTarget)) {
+            setFeedback({ text: `Correct! ✅ (${spokenText})`, type: 'success' });
+
+            // Reveal Logic
+            if (!revealed) {
+                setRevealed(true);
+                // Last Slide Confetti
+                if (currentIndex === filteredWords.length - 1) {
+                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                }
+            }
+        } else {
+            setFeedback({ text: `Heard "${spokenText}" ❌`, type: 'error' });
+        }
+        // Auto stop recording handled by onend usually, but good to be safer
+    };
+
+    // Actions
+    const handleNext = useCallback(() => {
+        if (currentIndex < filteredWords.length - 1) {
+            setCurrentIndex(c => c + 1);
+            setRevealed(false);
+            setFeedback({ text: '', type: '' });
+            stopRecording();
+        }
+    }, [currentIndex, filteredWords]);
+
+    const handlePrev = useCallback(() => {
+        if (currentIndex > 0) {
+            setCurrentIndex(c => c - 1);
+            setRevealed(false);
+            setFeedback({ text: '', type: '' });
+            stopRecording();
+        }
+    }, [currentIndex]);
+
+    const handleGoFirst = useCallback(() => {
+        setCurrentIndex(0);
+        setRevealed(false);
+        setFeedback({ text: '', type: '' });
+        stopRecording();
+    }, []);
+
+    const handleGoLast = useCallback(() => {
+        setCurrentIndex(filteredWords.length - 1);
+        setRevealed(false);
+        setFeedback({ text: '', type: '' });
+        stopRecording();
+    }, [filteredWords]);
+
+    const handleAction = useCallback(() => {
+        if (!revealed) {
+            setRevealed(true);
+            // Confetti check
+            if (currentIndex === filteredWords.length - 1) {
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            }
+        } else {
+            handleNext();
+        }
+    }, [revealed, handleNext, currentIndex, filteredWords.length]);
+
+
+    // Audio Playback
+    useEffect(() => {
+        if (audioEnabled && currentWord) {
+            // Debounce slightly to allow transition
+            const t = setTimeout(() => {
+                if (audioEnabled) AudioManager.speak(currentWord.word_en, 'en-US');
+            }, 300);
+            return () => clearTimeout(t);
+        }
+    }, [currentIndex, audioEnabled, currentWord]);
+
+    // Timer Restart on Slide Change
+    useEffect(() => {
+        if (showTimer) Timer.restart();
+    }, [currentIndex, showTimer]);
+
+
+    // Bind Navigation (Portal-ish)
+    useEffect(() => {
+        const bind = (id: string, fn: () => void) => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.onclick = (e) => { e.stopPropagation(); fn(); };
+                if (id === 'firstBtn' || id === 'prevBtn') (el as HTMLButtonElement).disabled = currentIndex === 0;
+                if (id === 'lastBtn') (el as HTMLButtonElement).disabled = currentIndex === filteredWords.length - 1;
+                if (id === 'nextBtn') (el as HTMLButtonElement).disabled = currentIndex === filteredWords.length - 1 && revealed;
+            }
+        };
+        bind('firstBtn', handleGoFirst);
+        bind('prevBtn', handlePrev);
+        bind('nextBtn', handleAction);
+        bind('lastBtn', handleGoLast);
+    }, [currentIndex, filteredWords.length, revealed, handleAction, handleGoFirst, handleGoLast, handlePrev]);
+
+    // Keyboard
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if ((e.target as HTMLElement).tagName === 'INPUT') return;
+            switch (e.key) {
+                case 'ArrowLeft': handlePrev(); break;
+                case 'ArrowRight': handleAction(); break;
+                case ' ': e.preventDefault(); handleAction(); break;
+                case 'Enter': handleAction(); break;
+                case 'Home': case '[': handleGoFirst(); break;
+                case 'End': case ']': handleGoLast(); break;
+            }
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, [handlePrev, handleAction, handleGoFirst, handleGoLast]);
+
+
+    // Render
+    if (filteredWords.length === 0) return <div style={{ color: 'white', padding: 20 }}>No words found.</div>;
+
+    return (
+        <Fragment>
+            <Controls
+                categories={categories}
+                selectedCategories={selectedCategories}
+                onToggleCategory={(c: string) => setSelectedCategories(p => p.includes(c) ? p.filter(x => x !== c) : [...p, c])}
+                onToggleAllCategories={() => setSelectedCategories(selectedCategories.length === categories.length ? [] : [...categories])}
+                difficulty={difficulty}
+                setDifficulty={setDifficulty}
+                shuffle={shuffle}
+                setShuffle={setShuffle}
+                reset={() => { setShuffle(false); setDifficulty('all'); setSelectedCategories([...categories]); }}
+                audioEnabled={audioEnabled}
+                setAudioEnabled={setAudioEnabled}
+                voiceEnabled={voiceEnabled}
+                setVoiceEnabled={setVoiceEnabled}
+                showTimer={showTimer}
+                setShowTimer={setShowTimer}
+                timerLabel="Timer (8s)"
+                progressText={`${currentIndex + 1}/${filteredWords.length} slides - Filter: ${difficulty} ${shuffle ? '(Shuffled)' : ''}`}
+            />
+
+            {/* Slide Content */}
+            <div id="slides-wrapper" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <div className="slide active" style={{ display: 'flex' }}>
+                    <div className="image-container">
+                        <img
+                            src={Utils.getImagePath(currentWord.image_word)}
+                            alt={currentWord.word_en}
+                            className="slide-image"
+                            onError={(e) => { (e.target as HTMLImageElement).src = `https://placehold.co/400x300?text=${encodeURIComponent(currentWord.image_word)}`; }}
+                        />
+                    </div>
+                    <div className="word-row">
+                        <div className="word-en">{currentWord.word_en}</div>
+                        {voiceEnabled && (
+                            <button
+                                className={`mic-button-inline ${isRecording ? 'recording' : ''}`}
+                                onClick={(e) => { e.stopPropagation(); toggleRecording(handleVoiceResult); }}
+                                title={isRecording ? "Stop Listening" : "Start Voice Validation"}
+                            >
+                                🎤
+                            </button>
+                        )}
+                        <span className={`voice-feedback-inline ${feedback.type}`}>{feedback.text}</span>
+                    </div>
+
+                    {/* Tamil Word - Revealed Class Logic */}
+                    <div className={`word-ta ${revealed ? 'revealed' : ''}`}>
+                        {currentWord.word_ta}
+                    </div>
+
+                    <div className="card-footer">
+                        <div className="footer-left">
+                            <span className="category-badge">{currentWord.category}</span>
+                            <span className="category-badge-ta">{currentWord.category_ta}</span>
+                            <span className="difficulty-badge">{currentWord.difficulty}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Fragment>
+    );
+}
