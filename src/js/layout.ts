@@ -25,7 +25,7 @@ export const Layout = {
     injectHeaderAndPanel: function (title: string, contentHTML: string): void {
         // 1. Fixed Header
         const headerStr = `
-            <header class="app-header">
+            <header class="app-header" id="appHeader">
                 <div class="header-left">
                     <a href="../index.html" class="home-btn" title="Go Home (H)" aria-label="Home">
                         <span aria-hidden="true">🏠</span>
@@ -33,11 +33,11 @@ export const Layout = {
                 </div>
                 <h1 class="header-title">${title}</h1>
                 <div class="header-right" style="gap: 10px;">
-                    <button class="settings-toggle" id="settingsToggle" title="Toggle Settings (C)" aria-label="Toggle Settings" aria-expanded="false" aria-controls="controlPanel">
-                        <span aria-hidden="true">⚙️</span>
-                    </button>
                     <button class="settings-toggle" id="showKeyboardHelp" title="Keyboard Shortcuts (?)" aria-label="Show Shortcuts">
                         <span aria-hidden="true">⌨️</span>
+                    </button>
+                    <button class="settings-toggle" id="settingsToggle" title="Toggle Settings (C)" aria-label="Toggle Settings" aria-expanded="true" aria-controls="controlPanel">
+                        <span aria-hidden="true">⚙️</span>
                     </button>
                 </div>
             </header>
@@ -45,10 +45,9 @@ export const Layout = {
         document.body.insertAdjacentHTML('afterbegin', headerStr);
 
         // 2. Control Panel (Overlay)
-        // Note: We removed the inner "Back to Portal" button since it is now in the header.
-        // We also removed the Shortcuts button from here as it is now in the header.
+        // Default Open: 'open' class added and aria-hidden="false"
         const panelStr = `
-            <div class="control-panel" id="controlPanel" aria-hidden="true">
+            <div class="control-panel open" id="controlPanel" aria-hidden="false">
                 <div class="control-content" id="controlContent">
                     <div id="controlSettings" style="display: flex; flex-direction: column; gap: 15px;">
                         ${contentHTML}
@@ -61,22 +60,58 @@ export const Layout = {
         // Wire up toggle logic
         const toggleBtn = document.getElementById('settingsToggle');
         const panel = document.getElementById('controlPanel');
+        const header = document.getElementById('appHeader');
 
-        if (toggleBtn && panel) {
-            toggleBtn.addEventListener('click', () => {
-                const isOpen = panel.classList.contains('open');
-                if (isOpen) {
-                    panel.classList.remove('open');
-                    panel.setAttribute('aria-hidden', 'true');
-                    toggleBtn.setAttribute('aria-expanded', 'false');
-                    document.dispatchEvent(new CustomEvent('panelCollapsed'));
-                } else {
-                    panel.classList.add('open');
-                    panel.setAttribute('aria-hidden', 'false');
-                    toggleBtn.setAttribute('aria-expanded', 'true');
-                }
+        const togglePanel = () => {
+            if (!panel) return;
+            const isOpen = panel.classList.contains('open');
+            if (isOpen) {
+                panel.classList.remove('open');
+                panel.setAttribute('aria-hidden', 'true');
+                if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                document.dispatchEvent(new CustomEvent('panelCollapsed'));
+            } else {
+                panel.classList.add('open');
+                panel.setAttribute('aria-hidden', 'false');
+                if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+            }
+        };
+
+        // 1. Gear Icon Toggle
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent bubbling to header
+                togglePanel();
             });
         }
+
+        // 2. Header Click Toggle
+        if (header) {
+            header.addEventListener('click', (e) => {
+                // Ignore clicks on interactive elements inside header
+                if ((e.target as HTMLElement).closest('button, a')) {
+                    return;
+                }
+                togglePanel();
+            });
+            header.style.cursor = 'pointer'; // Indicate clickability
+        }
+
+        // 3. Click Outside to Close
+        document.addEventListener('click', (e) => {
+            const target = e.target as HTMLElement;
+            // If panel is open
+            if (panel && panel.classList.contains('open')) {
+                // And click is NOT inside panel AND NOT inside header
+                if (!panel.contains(target) && !header?.contains(target)) {
+                    // Close logic directly
+                    panel.classList.remove('open');
+                    panel.setAttribute('aria-hidden', 'true');
+                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+                    document.dispatchEvent(new CustomEvent('panelCollapsed'));
+                }
+            }
+        });
     },
 
     injectCircularTimer: function (initialDisplay = '00:15'): void {
