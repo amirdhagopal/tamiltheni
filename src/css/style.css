@@ -175,6 +175,10 @@ body {
     transform: translateY(-2px);
 }
 
+.pill-button:active {
+    transform: translateY(1px) scale(0.95);
+}
+
 .pill-button.active {
     background: white;
     color: var(--primary);
@@ -284,6 +288,10 @@ button.nav-btn {
 .nav-btn:hover:not(:disabled) {
     background: #000;
     transform: translateY(-2px);
+}
+
+.nav-btn:active:not(:disabled) {
+    transform: translateY(1px) scale(0.95);
 }
 
 .nav-btn:disabled {

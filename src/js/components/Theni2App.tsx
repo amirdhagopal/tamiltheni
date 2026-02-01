@@ -7,6 +7,7 @@ import { Utils } from '../utils';
 import { AudioManager } from '../audio_manager';
 import { Timer } from '../timer';
 import { SentenceConstructorAgent } from '../agents/sentence_agent';
+import confetti from 'canvas-confetti';
 
 // --- Sub-components ---
 
@@ -277,6 +278,38 @@ export default function Theni2App() {
     useEffect(() => {
         Utils.updateProgress(currentIndex, filteredWords.length, 'progressBar', 'counter');
     }, [currentIndex, filteredWords]);
+
+
+    // Confetti on Completion
+    useEffect(() => {
+        if (filteredWords.length > 0 && currentIndex === filteredWords.length - 1) {
+            // Wait a moment for the user to realize they finished?
+            // Or immediate gratification? Immediate is usually better for "unlocking" the end.
+
+            // Fire a burst
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            // Maybe a second burst for fun?
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 50,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+            }, 250);
+        }
+    }, [currentIndex, filteredWords.length]);
 
 
     // Actions
