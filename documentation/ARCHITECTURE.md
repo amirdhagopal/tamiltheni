@@ -89,18 +89,23 @@ tamiltheni/
 ├── src/                     # Source code
 │   ├── css/                 # Stylesheets modularized by page
 │   ├── js/                  # TypeScript logic files
+│   │   ├── components/      # Preact Components (Declarative UI)
+│   │   ├── agents/          # Client-side AI Agents
+│   │   ├── ...              # Legacy imperative modules
 │   ├── data/                # JSON data files (Single Source of Truth)
 │   └── types/               # TypeScript interface definitions
 ├── html/                    # HTML entry points for each module
-├── test/                    # Test files
-│   ├── bat/                 # Build Acceptance Tests
-│   └── unit/                # Unit tests
-├── documentation/           # Project documentation
-│   ├── ARCHITECTURE.md      # This file
-│   └── REQUIREMENTS.md      # Product requirements
-├── index.html               # Main entry point
-├── docs/                    # Production build output (GitHub Pages root)
+├── Makefile                 # Project automation (Build, Test, Data Tools)
+├── ...
 ```
+
+### Component Architecture (Declarative UI)
+
+The application is transitioning from imperative jQuery-style DOM manipulation to a **Declarative Component-Based Architecture** using **Preact**.
+
+- **Goal**: Improved state management, cleaner logic, and easier testing.
+- **Implementation**: Theni 2 (`src/js/components/Theni2App.tsx`) serves as the pilot for this architecture.
+- **Integration**: Preact components are mounted into the legacy HTML structure via specific root elements (e.g., `#app-root`), and reuse shared vanilla modules like `Layout` and `Timer` via hooks or Portals.
 
 ### TypeScript Strategy
 
@@ -189,8 +194,8 @@ Branch: publish (primary)
 
 ### Build Process
 
-1. **Development**: `npm run dev` serves files from memory with hot replacement.
-2. **Production**: `npm run build` runs `tsc` (type check) then `vite build`.
+1. **Development**: `npm run dev` (or `make dev`) acts as the dev server.
+2. **Production**: `npm run build` (or `make build`) runs `tsc` and `vite build`.
 3. **Artifacts**: Minified JS/CSS and assets are output to `docs/`.
 
 ---
