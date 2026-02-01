@@ -32,7 +32,10 @@ export const Layout = {
                     </a>
                 </div>
                 <h1 class="header-title">${title}</h1>
-                <div class="header-right">
+                <div class="header-right" style="gap: 10px;">
+                    <button class="settings-toggle" id="showKeyboardHelp" title="Keyboard Shortcuts (?)" aria-label="Show Shortcuts">
+                        <span aria-hidden="true">⌨️</span>
+                    </button>
                     <button class="settings-toggle" id="settingsToggle" title="Toggle Settings (C)" aria-label="Toggle Settings" aria-expanded="false" aria-controls="controlPanel">
                         <span aria-hidden="true">⚙️</span>
                     </button>
@@ -43,16 +46,12 @@ export const Layout = {
 
         // 2. Control Panel (Overlay)
         // Note: We removed the inner "Back to Portal" button since it is now in the header.
+        // We also removed the Shortcuts button from here as it is now in the header.
         const panelStr = `
             <div class="control-panel" id="controlPanel" aria-hidden="true">
                 <div class="control-content" id="controlContent">
                     <div id="controlSettings" style="display: flex; flex-direction: column; gap: 15px;">
                         ${contentHTML}
-                    </div>
-                    <div class="control-row" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: flex; gap: 10px; justify-content: flex-end;">
-                         <button class="action-button" id="showKeyboardHelp" title="Show keyboard shortcuts (?)" style="background: rgba(255,255,255,0.1); padding: 8px 12px;">
-                            <span aria-hidden="true">⌨️</span> Shortcuts
-                        </button>
                     </div>
                 </div>
             </div>
