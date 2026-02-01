@@ -27,7 +27,9 @@ export const Layout = {
                     <span class="toggle-icon" aria-hidden="true">▼</span>
                 </div>
                 <div class="control-content" id="controlContent">
-                    ${contentHTML}
+                    <div id="controlSettings" style="display: flex; flex-direction: column; gap: 15px;">
+                        ${contentHTML}
+                    </div>
                     <div class="control-row" style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; display: flex; gap: 10px;">
                         <a href="../index.html" class="action-button" title="Return to main portal (H)" style="text-decoration: none; background: rgba(255,255,255,0.1); flex: 1; justify-content: center;">
                             <span aria-hidden="true">🏠</span> Back to Portal Home

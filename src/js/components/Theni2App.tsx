@@ -67,7 +67,7 @@ const Controls = ({
     apiKey,
     setApiKey
 }: any) => {
-    const portalTarget = document.getElementById('controlContent');
+    const portalTarget = document.getElementById('controlSettings') || document.getElementById('controlContent');
     if (!portalTarget) return null;
 
     return createPortal(
