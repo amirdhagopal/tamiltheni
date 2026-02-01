@@ -331,8 +331,19 @@ export default function Theni2App() {
         }
     }, [currentIndex]);
 
-    const handleGoFirst = useCallback(() => setCurrentIndex(0), []);
-    const handleGoLast = useCallback(() => setCurrentIndex(filteredWords.length - 1), []);
+    const handleGoFirst = useCallback(() => {
+        setCurrentIndex(0);
+        setRevealed(false);
+        setAiStatus('idle');
+        setAiResult(null);
+    }, []);
+
+    const handleGoLast = useCallback(() => {
+        setCurrentIndex(filteredWords.length - 1);
+        setRevealed(false);
+        setAiStatus('idle');
+        setAiResult(null);
+    }, [filteredWords.length]);
 
     const handleAction = useCallback(() => {
         if (!revealed) {
