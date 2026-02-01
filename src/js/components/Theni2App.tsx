@@ -282,7 +282,7 @@ export default function Theni2App() {
 
     // Confetti on Completion
     useEffect(() => {
-        if (filteredWords.length > 0 && currentIndex === filteredWords.length - 1) {
+        if (filteredWords.length > 0 && currentIndex === filteredWords.length - 1 && revealed) {
             // Wait a moment for the user to realize they finished?
             // Or immediate gratification? Immediate is usually better for "unlocking" the end.
 
@@ -309,7 +309,7 @@ export default function Theni2App() {
                 });
             }, 250);
         }
-    }, [currentIndex, filteredWords.length]);
+    }, [currentIndex, filteredWords.length, revealed]);
 
 
     // Actions
