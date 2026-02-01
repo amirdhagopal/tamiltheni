@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
+import preact from '@preact/preset-vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ command, isPreview }) => ({
@@ -20,6 +21,7 @@ export default defineConfig(({ command, isPreview }) => ({
         },
     },
     plugins: [
+        preact(),
         VitePWA({
             injectRegister: null, // Manual registration to handle relative paths correctly
             manifestFilename: 'manifest.webmanifest',
