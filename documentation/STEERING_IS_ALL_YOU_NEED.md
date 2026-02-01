@@ -461,6 +461,7 @@ The following is an anonymized excerpt from the development log demonstrating a 
 | Runtime         | Node.js    | 22.x    | Development environment    |
 | Build           | Vite       | 7.x     | Module bundling, HMR       |
 | Language        | TypeScript | 5.9.x   | Type-safe development      |
+| Framework       | Preact     | 10.x    | UI Component Library       |
 | Testing         | Vitest     | 4.x     | Unit and integration tests |
 | Testing         | Playwright | 1.57    | E2E and BAT tests          |
 | Linting         | ESLint     | 9.x     | Code quality               |

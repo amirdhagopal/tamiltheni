@@ -104,26 +104,42 @@ The application supports global keyboard shortcuts for improved accessibility an
 - Node.js 20+
 - Modern web browser
 
-### NPM Scripts
+### NPM Scripts & Makefile
 
-| Script            | Description                                                |
-| ----------------- | ---------------------------------------------------------- |
-| `npm run dev`     | Start local Vite development server                        |
-| `npm run build`   | Type-check (tsc) and build production artifacts to `docs/` |
-| `npm run preview` | Preview production build locally                           |
-| `npm run lint`    | Run ESLint on TypeScript files                             |
-| `npm run format`  | Format code with Prettier                                  |
-| `npm test`        | Run unit and BAT tests with Vitest                         |
+You can use standard `npm` commands or the provided `Makefile` for convenience.
+
+| Task              | NPM Command       | Make Command   | Description                                          |
+| ----------------- | ----------------- | -------------- | ---------------------------------------------------- |
+| **Install**       | `npm install`     | `make install` | Install dependencies                                 |
+| **Dev Server**    | `npm run dev`     | `make dev`     | Start local Vite development server                  |
+| **Build**         | `npm run build`   | `make build`   | Build production artifacts to `docs/`                |
+| **Test**          | `npm test`        | `make test`    | Run unit and BAT tests with Vitest                   |
+| **Lint**          | `npm run lint`    | `make lint`    | Run ESLint                                           |
+| **Check All**     | `npm run check-all`| `make check`   | Run formatting, linting, tests, and build            |
 
 ### Scripts (Python)
 
-The `scripts/` folder contains Python utility scripts for data processing and image management. The build pipeline converts raw data into the JSON files found in `src/data/`.
+The `scripts/` folder contains Python utility scripts. You can run them via `make`:
+
+| Task                    | Make Command           | Description                                      |
+| ----------------------- | ---------------------- | ------------------------------------------------ |
+| **Download Images**     | `make download-images` | Download missing images for Theni 1/2            |
+| **Check Images**        | `make check-images`    | Verify all required images exist                 |
+| **Fix Images**          | `make fix-images`      | Convert/Validate downloaded images               |
+
+### Project Structure (Key Files)
 
 ```text
 scripts/
 ├── images/     # Image management (downloading, fixing)
 ├── data/       # Data processing (augmentation, validation)
 └── agents/     # Conversion tools
+src/
+├── js/
+│   ├── components/  # Preact Components (Theni 2)
+│   │   └── Theni2App.tsx
+│   ├── theni2.tsx   # Entry point for Theni 2 (Preact)
+...
 ```
 
 ## 📄 License
