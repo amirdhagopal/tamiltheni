@@ -4,6 +4,7 @@ import { Layout } from './layout';
 import { config } from './config';
 import theniWords from '../data/theni_words.json';
 import { Word } from '../types';
+import confetti from 'canvas-confetti';
 
 // State variables
 let currentSlide = 0;
@@ -339,8 +340,7 @@ function updateUI() {
 
     (document.getElementById('firstBtn') as HTMLButtonElement).disabled = currentSlide === 0;
     (document.getElementById('prevBtn') as HTMLButtonElement).disabled = currentSlide === 0;
-    (document.getElementById('nextBtn') as HTMLButtonElement).disabled = currentSlide === filteredSlides.length - 1;
-    (document.getElementById('lastBtn') as HTMLButtonElement).disabled = currentSlide === filteredSlides.length - 1;
+    updateButtons();
 
     const counter = document.getElementById('counter');
     if (counter) counter.textContent = `${currentSlide + 1} / ${filteredSlides.length}`;
@@ -392,7 +392,28 @@ function handleNextAction() {
         changeSlide(1);
     } else {
         filteredSlides[currentSlide].classList.add('revealed');
+        // Check if Last Slide to Trigger Confetti
+        if (currentSlide === filteredSlides.length - 1) {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+        updateButtons();
     }
+}
+
+function updateButtons() {
+    (document.getElementById('firstBtn') as HTMLButtonElement).disabled = currentSlide === 0;
+    (document.getElementById('prevBtn') as HTMLButtonElement).disabled = currentSlide === 0;
+
+    // Last Btn: Disabled if at end
+    (document.getElementById('lastBtn') as HTMLButtonElement).disabled = currentSlide === filteredSlides.length - 1;
+
+    // Next Btn: Disabled if at end AND revealed
+    const isRevealed = filteredSlides[currentSlide]?.classList.contains('revealed');
+    (document.getElementById('nextBtn') as HTMLButtonElement).disabled = (currentSlide === filteredSlides.length - 1) && isRevealed;
 }
 
 function handleHashChange() {

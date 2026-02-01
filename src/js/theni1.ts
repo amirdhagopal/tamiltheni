@@ -10,6 +10,7 @@ import {
     SpeechRecognitionEventResult,
     SpeechRecognitionErrorEventResult,
 } from '../types';
+import confetti from 'canvas-confetti';
 
 // State variables
 let currentSlide = 0;
@@ -407,6 +408,15 @@ function validateVoiceResult(spokenText: string) {
     ) {
         showFeedback(`Correct! ✅ (${spokenText})`, 'success');
         currentElement.classList.add('revealed');
+        // Confetti if last slide
+        if (currentSlide === filteredSlides.length - 1) {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+        updateButtons();
     } else {
         showFeedback(`Heard "${spokenText}" ❌`, 'error');
     }
@@ -507,8 +517,8 @@ function updateUI(shouldSpeak = true) {
 
     (document.getElementById('firstBtn') as HTMLButtonElement).disabled = currentSlide === 0;
     (document.getElementById('prevBtn') as HTMLButtonElement).disabled = currentSlide === 0;
-    (document.getElementById('nextBtn') as HTMLButtonElement).disabled = currentSlide === filteredSlides.length - 1;
-    (document.getElementById('lastBtn') as HTMLButtonElement).disabled = currentSlide === filteredSlides.length - 1;
+    // Use new shared logic
+    updateButtons();
 
     Utils.updateProgress(currentSlide, filteredSlides.length, 'progressBar', 'counter');
     updateProgressInfo();
@@ -558,7 +568,29 @@ function handleNextAction() {
         changeSlide(1);
     } else {
         filteredSlides[currentSlide].classList.add('revealed');
+        // Check if Last Slide to Trigger Confetti
+        if (currentSlide === filteredSlides.length - 1) {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+        // Update Button State immediately after reveal
+        updateButtons();
     }
+}
+
+function updateButtons() {
+    (document.getElementById('firstBtn') as HTMLButtonElement).disabled = currentSlide === 0;
+    (document.getElementById('prevBtn') as HTMLButtonElement).disabled = currentSlide === 0;
+
+    // Last Btn: Disabled if at end
+    (document.getElementById('lastBtn') as HTMLButtonElement).disabled = currentSlide === filteredSlides.length - 1;
+
+    // Next Btn: Disabled if at end AND revealed
+    const isRevealed = filteredSlides[currentSlide]?.classList.contains('revealed');
+    (document.getElementById('nextBtn') as HTMLButtonElement).disabled = (currentSlide === filteredSlides.length - 1) && isRevealed;
 }
 
 function handleHashChange() {
