@@ -423,14 +423,18 @@ export default function Theni2App() {
                 el.onclick = (e) => { e.stopPropagation(); fn(); };
                 // Update disabled state
                 if (id === 'firstBtn' || id === 'prevBtn') (el as HTMLButtonElement).disabled = currentIndex === 0;
-                if (id === 'nextBtn' || id === 'lastBtn') (el as HTMLButtonElement).disabled = currentIndex === filteredWords.length - 1;
+                // Last button simply goes to last index. If already there, disable it.
+                if (id === 'lastBtn') (el as HTMLButtonElement).disabled = currentIndex === filteredWords.length - 1;
+                // Next button performs "Reveal" then "Next". 
+                // It should only be disabled if we are at the end AND already revealed.
+                if (id === 'nextBtn') (el as HTMLButtonElement).disabled = currentIndex === filteredWords.length - 1 && revealed;
             }
         };
         bind('firstBtn', handleGoFirst);
         bind('prevBtn', handlePrev);
         bind('nextBtn', handleAction); // Next btn does "Action" (Reveal/Next)
         bind('lastBtn', handleGoLast);
-    }, [currentIndex, filteredWords.length, handleAction, handleGoFirst, handleGoLast, handlePrev]);
+    }, [currentIndex, filteredWords.length, revealed, handleAction, handleGoFirst, handleGoLast, handlePrev]);
 
 
     // Render
