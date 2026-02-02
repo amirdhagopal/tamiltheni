@@ -143,7 +143,7 @@ export default function Theni34App() {
             />
 
             {filteredWords.length > 0 && currentWord ? (
-                <div className="slide-container" onClick={handleAction} style={{ cursor: 'pointer' }}>
+                <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation')) handleAction(); }} style={{ cursor: 'pointer' }}>
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
                         <div className="slide active" style={{ display: 'flex' }}>
                             <div className="slide-content">
@@ -163,7 +163,7 @@ export default function Theni34App() {
                     </div>
 
                     {/* Navigation - Standardized with Production UI */}
-                    <div className="navigation" onClick={e => e.stopPropagation()}>
+                    <div className="navigation">
                         <button id="firstBtn" className="nav-btn" onClick={handleGoFirst} disabled={currentIndex === 0} title="First Slide (Home)">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
                         </button>

@@ -91,18 +91,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
 }
 
-.nav-btn {
-    background: #e0e0e0;
-    color: #444;
-}
-
-.nav-btn.play-btn {
-    background: #2d3436;
-    color: white;
-}
 
 .pill-group .pill-button.active {
     background: #6a539d;

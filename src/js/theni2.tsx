@@ -9,7 +9,7 @@ export function init() {
         title: 'பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 2',
         contentHTML: '', // Preact Portals into #controlContent
         timerDisplay: '00:20',
-        injectNavigation: true, // Layout creates .navigation buttons for us to bind to
+        injectNavigation: false, // Preact renders .navigation manually for consistency
     });
 
     // Render the App

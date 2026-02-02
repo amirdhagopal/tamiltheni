@@ -213,7 +213,7 @@ export default function Theni1App() {
             />
 
             {filteredWords.length > 0 && currentWord ? (
-                <div className="slide-container" onClick={handleAction} style={{ cursor: 'pointer' }}>
+                <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation, .mic-button-inline')) handleAction(); }} style={{ cursor: 'pointer' }}>
                     {/* Slide Content */}
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
                         <div className="slide active" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '60px' }}>
@@ -231,7 +231,7 @@ export default function Theni1App() {
                                     <Fragment>
                                         <button
                                             className={`mic-button-inline ${isRecording ? 'recording' : ''}`}
-                                            onClick={(e) => { e.stopPropagation(); toggleRecording(handleVoiceResult); }}
+                                            onClick={() => toggleRecording(handleVoiceResult)}
                                             title={isRecording ? "Stop Listening" : "Start Voice Validation"}
                                             style={{ display: 'inline-flex', marginLeft: '10px' }}
                                         >
@@ -258,7 +258,7 @@ export default function Theni1App() {
                     </div>
 
                     {/* Navigation */}
-                    <div className="navigation" onClick={e => e.stopPropagation()}>
+                    <div className="navigation">
                         <button id="firstBtn" className="nav-btn" onClick={handleGoFirst} disabled={currentIndex === 0} title="First Slide (Home)">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
                         </button>

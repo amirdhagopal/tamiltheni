@@ -4,12 +4,13 @@ export default defineConfig({
     testDir: '../test/e2e',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
-    retries: process.env.CI ? 2 : 0,
+    retries: process.env.CI ? 2 : 1,
     workers: process.env.CI ? 1 : undefined,
     reporter: 'list',
     use: {
-        baseURL: 'http://localhost:4173',
+        baseURL: 'http://localhost:5174',
         trace: 'on-first-retry',
+        screenshot: 'only-on-failure',
     },
     projects: [
         {
@@ -18,9 +19,9 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'npm run preview',
-        url: 'http://localhost:4173',
-        reuseExistingServer: !process.env.CI,
-        timeout: 30000, // Preview server starts quickly
+        command: 'npm run dev',
+        url: 'http://localhost:5174',
+        reuseExistingServer: true,
+        timeout: 30000,
     },
 });

@@ -127,7 +127,7 @@ export default function Theni5App() {
                 progressText={`Page ${currentPage} of ${totalPages} (${filteredWords.length} words in range${shuffle ? ' - shuffled' : ''})`}
             />
 
-            <div className="slide-container" onClick={handleNext} style={{ cursor: 'pointer' }}>
+            <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation')) handleNext(); }} style={{ cursor: 'pointer' }}>
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
                         currentWords.map((wordItem: Theni5Word) => (
@@ -153,21 +153,21 @@ export default function Theni5App() {
                     )}
                 </div>
 
-                <div className="navigation" onClick={e => e.stopPropagation()}>
-                    <button className="nav-btn" onClick={handleFirst} disabled={currentPage === 1} title="First Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
+                <div className="navigation">
+                    <button id="firstBtn" className="nav-btn" onClick={handleFirst} disabled={currentPage === 1} title="First Page">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
                     </button>
-                    <button className="nav-btn" onClick={handlePrev} disabled={currentPage === 1} title="Previous Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    <button id="prevBtn" className="nav-btn" onClick={handlePrev} disabled={currentPage === 1} title="Previous Page">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                     </button>
 
-                    <span className="slide-counter">{currentPage} / {totalPages}</span>
+                    <span className="slide-counter" id="counter">{currentPage} / {totalPages}</span>
 
-                    <button className="nav-btn play-btn" onClick={handleNext} disabled={currentPage === totalPages || totalPages === 0} title="Next Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    <button id="nextBtn" className="nav-btn" onClick={handleNext} disabled={currentPage === totalPages || totalPages === 0} title="Next Page">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </button>
-                    <button className="nav-btn" onClick={handleLast} disabled={currentPage === totalPages || totalPages === 0} title="Last Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+                    <button id="lastBtn" className="nav-btn" onClick={handleLast} disabled={currentPage === totalPages || totalPages === 0} title="Last Page">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
                     </button>
                 </div>
             </div>

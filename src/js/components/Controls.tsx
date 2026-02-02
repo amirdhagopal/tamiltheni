@@ -1,5 +1,6 @@
 import { Fragment } from 'preact';
 import { createPortal } from 'preact/compat';
+import { useEffect } from 'preact/hooks';
 
 interface ControlsProps {
     categories: string[];
@@ -70,6 +71,34 @@ export const Controls = ({
 }: ControlsProps) => {
     const portalTarget = document.getElementById('controlSettings') || document.getElementById('controlContent');
     if (!portalTarget) return null;
+
+    // --- FR-005.2: Auto-close dropdown on panel interaction ---
+    useEffect(() => {
+        const handleDocumentClick = (e: MouseEvent) => {
+            const dropdown = document.getElementById('categoryMenu');
+            const btn = document.getElementById('cat-dropdown-btn');
+            if (dropdown?.classList.contains('show')) {
+                const target = e.target as Node;
+                // If click is NOT inside dropdown AND NOT inside the toggle button
+                if (!dropdown.contains(target) && !btn?.contains(target)) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        };
+
+        document.addEventListener('click', handleDocumentClick);
+
+        // Also close if the panel itself is collapsed via global interaction
+        const handlePanelCollapsed = () => {
+            document.getElementById('categoryMenu')?.classList.remove('show');
+        };
+        document.addEventListener('panelCollapsed', handlePanelCollapsed);
+
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+            document.removeEventListener('panelCollapsed', handlePanelCollapsed);
+        };
+    }, []);
 
     return createPortal(
         <Fragment>

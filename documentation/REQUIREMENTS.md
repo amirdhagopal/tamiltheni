@@ -155,6 +155,8 @@ The application should be installable on mobile devices and work offline.
 ### FR-005: Control Panel
 
 - [x] Collapsible settings panel
+- [x] Settings Auto-Collapse: Clicking anywhere outside the panel (including slide area or navigation) collapses the panel if open
+- [x] Category Dropdown Auto-Close: Clicking anywhere within the panel (outside the dropdown itself) closes the category dropdown if open
 - [x] Category selection dropdown
 - [x] Difficulty filter buttons (All/D1/D2)
 - [x] Timer and audio toggles
