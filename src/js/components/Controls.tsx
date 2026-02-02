@@ -203,11 +203,11 @@ export const Controls = ({
                 </div>
                 <div style={{ marginLeft: 'auto', display: 'flex', gap: '15px' }}>
                     <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
-                        <input type="checkbox" checked={showTimer} onChange={(e) => setShowTimer(e.currentTarget.checked)} /> {timerLabel}
+                        <input type="checkbox" id="showTimer" checked={showTimer} onChange={(e) => setShowTimer(e.currentTarget.checked)} /> {timerLabel}
                     </label>
                     {audioEnabled !== undefined && setAudioEnabled && (
                         <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
-                            <input type="checkbox" checked={audioEnabled} onChange={(e) => setAudioEnabled(e.currentTarget.checked)} /> 🔊 Audio
+                            <input type="checkbox" id="audioToggle" checked={audioEnabled} onChange={(e) => setAudioEnabled(e.currentTarget.checked)} /> 🔊 Audio
                         </label>
                     )}
                     {voiceEnabled !== undefined && setVoiceEnabled && (

@@ -1,5 +1,6 @@
 import { BaseAgent } from './base_agent';
 import { GeminiService } from '../gemini_service';
+import { Word } from '../../types/index';
 
 export interface SentenceResponse {
     tamil: string;
@@ -11,31 +12,39 @@ export class SentenceConstructorAgent extends BaseAgent {
 
     constructor() {
         super(
-            `You are a helpful Tamil language tutor. Your goal is to create simple, grammatically correct Tamil sentences using provided keywords.`
+            `You are a helpful Tamil language tutor. Your goal is to create simple, grammatically correct Tamil sentences using provided keywords and their contexts.`
         );
     }
 
     /**
      * Generates a sentence using the two provided words.
-     * Checks cache first.
+     * Includes category and english context to ensure accurate usage.
      */
-    async generateSentence(word1: string, word2: string, apiKey: string): Promise<SentenceResponse> {
-        const cacheKey = `${word1}|${word2}`;
+    async generateSentence(word1: Word, word2: Word, apiKey: string): Promise<SentenceResponse> {
+        const cacheKey = `${word1.word_ta}|${word2.word_ta}`;
 
         if (this.cache[cacheKey]) {
             console.log('[SentenceAgent] Returning cached result');
             return this.cache[cacheKey];
         }
 
-        // Set the API key on the service (ensuring we use the one provided for this call/session)
         GeminiService.setApiKey(apiKey);
 
         const prompt = `
             ${this.systemPrompt}
             
-            Generate a simple Tamil sentence using these two words: "${word1}" and "${word2}".
+            Generate a simple Tamil sentence using these two specific words:
+            1. Word: "${word1.word_ta}" (English: "${word1.word_en}", Category: "${word1.category}")
+            2. Word: "${word2.word_ta}" (English: "${word2.word_en}", Category: "${word2.category}")
+
+            POLICY:
+            - The generated Tamil sentence MUST include both Exact Tamil words: "${word1.word_ta}" and "${word2.word_ta}".
+            - Use the correct context for each word based on its Category. (e.g., if a word refers to a body part, use it in that sense).
+            - The generated English translation MUST include the exact English words: "${word1.word_en}" and "${word2.word_en}".
+            - Keep the sentence simple, educational, and suitable for learners.
+
             Provide the response in JSON format: { "tamil": "tamil sentence", "en": "english meaning" }
-            IMPORTANT: Provide the COMPLETE sentence. Do NOT truncate or use ellipses (...). Use the exact Tamil words provided if possible, or their correct declensions. Keep the sentence simple and suitable for learners.
+            IMPORTANT: Provide the COMPLETE sentence. Do NOT truncate or use ellipses (...).
         `;
 
         try {
@@ -43,12 +52,10 @@ export class SentenceConstructorAgent extends BaseAgent {
             const cleanText = this.cleanJson(rawResponse);
             const json: SentenceResponse = JSON.parse(cleanText);
 
-            // Validate structure
             if (!json.tamil || !json.en) {
                 throw new Error('Invalid response structure from AI');
             }
 
-            // Cache the valid result
             this.cache[cacheKey] = json;
             return json;
         } catch (error) {

@@ -56,7 +56,14 @@ export const AudioManager = {
         };
 
         // Try to pick a specific voice if available
-        const voice = this.getVoice(lang);
+        let voice = this.getVoice(lang);
+
+        // Final attempt if voices were empty (sometimes happens on first load)
+        if (!voice && this.synth.getVoices().length === 0) {
+            console.log('[AudioManager] Voices empty, waiting for voiceschanged...');
+            // We'll just use default here if we can't wait, but the next call will likely work
+        }
+
         if (voice) {
             utterance.voice = voice;
             console.log(`[AudioManager] Using voice: ${voice.name}`);
@@ -65,7 +72,7 @@ export const AudioManager = {
         }
 
         utterance.onerror = (e) => {
-            console.error('[AudioManager] Utterance error:', e);
+            console.error('[AudioManager] Utterance error:', e.error, e);
             this.currentUtterance = null;
         };
 

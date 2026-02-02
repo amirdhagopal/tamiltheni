@@ -3,6 +3,8 @@ import { useState, useEffect, useMemo, useCallback } from 'preact/hooks';
 import { Word } from '../../types/index';
 import theniWords from '../../data/theni_words.json';
 import { Utils } from '../utils';
+import { AudioManager } from '../audio_manager';
+import { Timer } from '../timer';
 import { SentenceConstructorAgent } from '../agents/sentence_agent';
 import { Controls } from './Controls';
 import confetti from 'canvas-confetti';
@@ -20,11 +22,9 @@ const Card = ({ word, side, show }: { word: Word | null, side: 1 | 2, show: bool
             return;
         }
 
-        // Image logic
         const keyword = word.image_word || word.word_en.toLowerCase();
         const path = Utils.getImagePath(keyword);
 
-        // Simple validity check or let browser handle error
         const img = new Image();
         img.onload = () => setImgSrc(path);
         img.onerror = () => setImgSrc(`https://placehold.co/300x180?text=${encodeURIComponent(word.word_en)}`);
@@ -34,13 +34,24 @@ const Card = ({ word, side, show }: { word: Word | null, side: 1 | 2, show: bool
 
     if (!word) return <div class="dual-word-card" />;
 
+    const handleSpeak = (e: any) => {
+        e.stopPropagation();
+        AudioManager.speak(word.word_en, 'en-US');
+    };
+
+
     return (
         <div className={`dual-word-card ${show ? 'revealed' : ''}`} id={`card${side}`}>
             <div className="card-image">
                 <img id={`card${side}Img`} src={imgSrc} alt={word.word_en} />
+                <button className="speaker-button-overlay" onClick={handleSpeak} title="Speak English">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                </button>
             </div>
             <div className="word-en" id={`card${side}En`}>{word.word_en}</div>
-            <div className="word-ta" id={`card${side}Ta`}>{word.word_ta}</div>
+            <div className="word-ta" id={`card${side}Ta`}>
+                {word.word_ta}
+            </div>
             <div className="card-footer-badges">
                 <span className="card-badge category-label">{word.category}</span>
                 <span className="card-badge category-label-ta">{word.category_ta}</span>
@@ -119,6 +130,10 @@ export default function Theni2App() {
         setFilteredWords(result);
         setCurrentIndex(0);
         setRevealed(false);
+        // Clear AI state on filter change
+        setAiStatus('idle');
+        setAiResult(null);
+        setLastAiError('');
     }, [selectedCategories, difficulty, shuffle, allWords]);
 
     const currentWord = filteredWords[currentIndex];
@@ -129,7 +144,7 @@ export default function Theni2App() {
         if (!currentWord || !partnerWord) return;
         setAiStatus('loading');
         try {
-            const result = await sentenceAgent.generateSentence(currentWord.word_ta, partnerWord.word_ta, apiKey);
+            const result = await sentenceAgent.generateSentence(currentWord, partnerWord, apiKey);
             setAiResult(result);
             setAiStatus('success');
         } catch (e: any) {
@@ -193,6 +208,51 @@ export default function Theni2App() {
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
     }, [handleNext, handlePrev, handleGoFirst, handleGoLast, revealed]);
+
+    // --- Timer & Audio Integrations ---
+
+    // 1. Timer Init
+    useEffect(() => {
+        setTimeout(() => Timer.init(20), 100);
+    }, []);
+
+    // 2. Timer Restart on Slide Change
+    useEffect(() => {
+        if (showTimer) Timer.restart();
+    }, [currentIndex, showTimer]);
+
+    // 3. Timer Visibility
+    useEffect(() => {
+        const pill = document.getElementById('timerPill');
+        if (showTimer) {
+            pill?.style.removeProperty('display');
+        } else {
+            if (pill) pill.style.display = 'none';
+        }
+    }, [showTimer]);
+
+    // 4. Audio Playback (Speaks both words English with a gap)
+    useEffect(() => {
+        if (audioEnabled && currentWord && partnerWord) {
+            let t2: ReturnType<typeof setTimeout>;
+            const t1 = setTimeout(() => {
+                if (audioEnabled) {
+                    AudioManager.speak(currentWord.word_en, 'en-US');
+                    // We estimate duration + 1s gap. Most words are < 1s. So 2s total is safe.
+                    // Reduced delay for sequential words to ~0.5s gap
+                    t2 = setTimeout(() => {
+                        if (audioEnabled) {
+                            AudioManager.speak(partnerWord.word_en, 'en-US');
+                        }
+                    }, 1200);
+                }
+            }, 500);
+            return () => {
+                clearTimeout(t1);
+                if (t2) clearTimeout(t2);
+            };
+        }
+    }, [currentIndex, partnerIndex, audioEnabled]);
 
     return (
         <Fragment>
