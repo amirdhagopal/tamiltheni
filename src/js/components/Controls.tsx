@@ -8,8 +8,8 @@ interface ControlsProps {
     onToggleCategory: (cat: string) => void;
     onToggleAllCategories: () => void;
 
-    difficulty?: 'all' | 'D1' | 'D2';
-    setDifficulty?: (d: 'all' | 'D1' | 'D2') => void;
+    difficulty?: 'all' | 'D1' | 'D2' | 'D3';
+    setDifficulty?: (d: 'all' | 'D1' | 'D2' | 'D3') => void;
 
     // Theni 3/4 Level Control
     level?: number;

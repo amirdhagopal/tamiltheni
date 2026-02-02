@@ -2,6 +2,7 @@ import { Fragment } from 'preact';
 import { useState, useEffect, useMemo, useCallback } from 'preact/hooks';
 import confetti from 'canvas-confetti';
 import { Controls } from './Controls';
+import { useTheniModule } from '../hooks/useTheniModule';
 import { Timer } from '../timer';
 import theni5Words from '../../data/theni5_words.json';
 import { Theni5Word } from '../../types/index';
@@ -12,9 +13,24 @@ export default function Theni5App() {
 
     const [rangeStart, setRangeStart] = useState(1);
     const [rangeEnd, setRangeEnd] = useState(250);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [showTimer, setShowTimer] = useState(true);
-    const [shuffle, setShuffle] = useState(false);
+
+    // Module Hook
+    const {
+        shuffle,
+        setShuffle,
+        currentIndex: currentPage,
+        setCurrentIndex: setCurrentPage,
+        showTimer,
+        setShowTimer,
+        handleNext: baseHandleNext,
+        handlePrev,
+        handleGoFirst,
+        handleGoLast,
+        resetSelection
+    } = useTheniModule({
+        allWords: [], // We'll manage processing locally for Theni5's range/pagination
+        initialTimerDuration: 60
+    });
 
     // 1. Filter first (Strict range adherence)
     const filteredWords = useMemo(() => {
@@ -37,12 +53,12 @@ export default function Theni5App() {
 
     // 3. Paginate
     const currentWords = useMemo(() => {
-        const start = (currentPage - 1) * WORDS_PER_PAGE;
+        const start = (currentPage) * WORDS_PER_PAGE;
         return processedWords.slice(start, start + WORDS_PER_PAGE);
     }, [currentPage, processedWords]);
 
-    // Reset page on scope changes
-    useEffect(() => setCurrentPage(1), [shuffle, rangeStart, rangeEnd]);
+    // Reset page on scope changes - Note: useTheniModule uses 0-based for currentPage
+    useEffect(() => setCurrentPage(0), [shuffle, rangeStart, rangeEnd]);
 
     const handleApplyRange = useCallback((s: number, e: number) => {
         setRangeStart(s);
@@ -50,9 +66,9 @@ export default function Theni5App() {
     }, []);
 
     const handleNext = useCallback(() => {
-        if (currentPage < totalPages) {
-            setCurrentPage(p => p + 1);
-            if (currentPage + 1 === totalPages && totalPages > 1) {
+        if (currentPage < totalPages - 1) {
+            baseHandleNext();
+            if (currentPage + 2 === totalPages && totalPages > 1) {
                 confetti({
                     particleCount: 150,
                     spread: 70,
@@ -61,48 +77,9 @@ export default function Theni5App() {
                 });
             }
         }
-    }, [currentPage, totalPages]);
+    }, [currentPage, totalPages, baseHandleNext]);
 
-    const handlePrev = useCallback(() => {
-        if (currentPage > 1) setCurrentPage(p => p - 1);
-    }, [currentPage]);
-
-    const handleFirst = useCallback(() => setCurrentPage(1), []);
-    const handleLast = useCallback(() => setCurrentPage(totalPages), [totalPages]);
-
-    // Timer Init
-    useEffect(() => {
-        // Delay slightly to ensure layout elements are injected
-        setTimeout(() => Timer.init(60), 100);
-    }, []);
-
-    // Timer Visibility
-    useEffect(() => {
-        const pill = document.getElementById('timerPill');
-        if (pill) pill.style.display = showTimer ? '' : 'none';
-    }, [showTimer]);
-
-    // Timer Auto-restart
-    useEffect(() => {
-        if (showTimer) Timer.restart();
-    }, [currentPage, showTimer, shuffle, rangeStart, rangeEnd]);
-
-    // Keyboard Navigation
-    useEffect(() => {
-        const handleKey = (e: KeyboardEvent) => {
-            if (e.target instanceof HTMLInputElement) return;
-            switch (e.key) {
-                case 'ArrowLeft': handlePrev(); break;
-                case 'ArrowRight': handleNext(); break;
-                case ' ': e.preventDefault(); handleNext(); break;
-                case 'Enter': handleNext(); break;
-                case 'Home': case '[': handleFirst(); break;
-                case 'End': case ']': handleLast(); break;
-            }
-        };
-        window.addEventListener('keydown', handleKey);
-        return () => window.removeEventListener('keydown', handleKey);
-    }, [handleNext, handlePrev, handleFirst, handleLast]);
+    const timerText = totalPages > 0 ? `Page ${currentPage + 1} of ${totalPages} (${filteredWords.length} words in range${shuffle ? ' - shuffled' : ''})` : 'No words in range';
 
     return (
         <Fragment>
@@ -112,8 +89,9 @@ export default function Theni5App() {
                 onToggleCategory={() => { }}
                 onToggleAllCategories={() => { }}
                 reset={() => {
-                    setShuffle(false);
-                    setCurrentPage(1);
+                    resetSelection();
+                    setRangeStart(1);
+                    setRangeEnd(250);
                     Timer.restart();
                 }}
                 shuffle={shuffle}
@@ -124,7 +102,7 @@ export default function Theni5App() {
                 showTimer={showTimer}
                 setShowTimer={setShowTimer}
                 timerLabel="Timer (1m)"
-                progressText={`Page ${currentPage} of ${totalPages} (${filteredWords.length} words in range${shuffle ? ' - shuffled' : ''})`}
+                progressText={timerText}
             />
 
             <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation')) handleNext(); }} style={{ cursor: 'pointer' }}>
@@ -136,16 +114,7 @@ export default function Theni5App() {
                             </div>
                         ))
                     ) : (
-                        <div style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            height: '40vh',
-                            color: 'rgba(255,255,255,0.7)',
-                            fontSize: '1.2rem',
-                            textAlign: 'center'
-                        }}>
+                        <div className="empty-state-container">
                             <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
                             No words found in this range.<br />
                             Try selecting a different word range in settings.
@@ -154,19 +123,19 @@ export default function Theni5App() {
                 </div>
 
                 <div className="navigation">
-                    <button id="firstBtn" className="nav-btn" onClick={handleFirst} disabled={currentPage === 1} title="First Page">
+                    <button id="firstBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoFirst(); }} disabled={currentPage === 0} title="First Page">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
                     </button>
-                    <button id="prevBtn" className="nav-btn" onClick={handlePrev} disabled={currentPage === 1} title="Previous Page">
+                    <button id="prevBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handlePrev(); }} disabled={currentPage === 0} title="Previous Page">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                     </button>
 
-                    <span className="slide-counter" id="counter">{currentPage} / {totalPages}</span>
+                    <span className="slide-counter" id="counter">{totalPages > 0 ? currentPage + 1 : 0} / {totalPages}</span>
 
-                    <button id="nextBtn" className="nav-btn" onClick={handleNext} disabled={currentPage === totalPages || totalPages === 0} title="Next Page">
+                    <button id="nextBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleNext(); }} disabled={currentPage >= totalPages - 1 || totalPages === 0} title="Next Page">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </button>
-                    <button id="lastBtn" className="nav-btn" onClick={handleLast} disabled={currentPage === totalPages || totalPages === 0} title="Last Page">
+                    <button id="lastBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoLast(); }} disabled={currentPage >= totalPages - 1 || totalPages === 0} title="Last Page">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
                     </button>
                 </div>

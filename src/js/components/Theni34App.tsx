@@ -1,118 +1,63 @@
 import { Fragment } from 'preact';
-import { useState, useEffect, useMemo, useCallback } from 'preact/hooks';
+import { useState, useMemo, useCallback } from 'preact/hooks';
 import { Controls } from './Controls';
-import { Utils } from '../utils';
-import { Timer } from '../timer';
+import { useTheniModule } from '../hooks/useTheniModule';
 import { config } from '../config';
 import theniWords from '../../data/theni_words.json';
 import { Word } from '../../types/index';
 import confetti from 'canvas-confetti';
 
 export default function Theni34App() {
-    // Data
     const allWords = useMemo(() => theniWords as Word[], []);
-    const categories = useMemo(() => {
-        const cats = new Set<string>();
-        allWords.forEach(w => cats.add(`${w.category} - ${w.category_ta}`));
-        return Array.from(cats);
-    }, [allWords]);
+    const [level, setLevel] = useState(3);
 
-    // State
-    const [level, setLevel] = useState(3); // Level 3 or 4
-    const [selectedCategories, setSelectedCategories] = useState<string[]>(() => [...categories]);
-    const [difficulty, setDifficulty] = useState<'all' | 'D1' | 'D2'>('all');
-    const [shuffle, setShuffle] = useState(false);
+    // Module Hook
+    const {
+        categories,
+        selectedCategories,
+        difficulty,
+        setDifficulty,
+        shuffle,
+        setShuffle,
+        currentIndex,
+        revealed,
+        setRevealed,
+        showTimer,
+        setShowTimer,
+        filteredWords,
+        currentWord,
+        handleNext: baseHandleNext,
+        handlePrev,
+        handleGoFirst,
+        handleGoLast,
+        toggleCategory,
+        toggleAllCategories,
+        resetSelection
+    } = useTheniModule({
+        allWords,
+        initialTimerDuration: level === 4 ? (config.timerDurations.theni4 || 40) : (config.timerDurations.theni3 || 15)
+    });
 
-    // Derived
-    const [filteredWords, setFilteredWords] = useState<Word[]>(() => [...allWords]);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [revealed, setRevealed] = useState(false);
-
-    // Settings
-    const [showTimer, setShowTimer] = useState(true);
-
-    // Init & Level Change Logic
-    useEffect(() => {
-        const duration = level === 4 ? (config.timerDurations.theni4 || 15) : (config.timerDurations.theni3 || 15);
-        Timer.init(duration);
-        if (showTimer) Timer.restart();
-    }, [level, showTimer]);
-
-    // Apply Filters
-    useEffect(() => {
-        let result = allWords.filter(w => {
-            const catKey = `${w.category} - ${w.category_ta}`;
-            const matchesCat = selectedCategories.includes(catKey);
-            const matchesDiff = difficulty === 'all' || w.difficulty === difficulty;
-            return matchesCat && matchesDiff;
-        });
-
-        if (shuffle) {
-            Utils.shuffleArray(result);
-        }
-
-        setFilteredWords(result);
-        setCurrentIndex(0);
-        setRevealed(false);
-    }, [selectedCategories, difficulty, shuffle, allWords, level]); // Level triggers re-filter conceptually even if using exact same words
-
-    const currentWord = filteredWords[currentIndex] || null;
-    const timerLabel = `Timer (${level === 3 ? '15s' : '40s'})`; // Simplified label update
-
-    // Progress
-    useEffect(() => {
-        Utils.updateProgress(currentIndex, filteredWords.length, 'progressBar', 'counter');
-    }, [currentIndex, filteredWords]);
-
-    // Actions
     const handleNext = useCallback(() => {
         if (currentIndex < filteredWords.length - 1) {
-            setCurrentIndex(c => c + 1);
-            setRevealed(false);
+            baseHandleNext();
+        } else {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         }
-    }, [currentIndex, filteredWords]);
-
-    const handlePrev = useCallback(() => {
-        if (currentIndex > 0) {
-            setCurrentIndex(c => c - 1);
-            setRevealed(false);
-        }
-    }, [currentIndex]);
-
-    const handleGoFirst = useCallback(() => {
-        setCurrentIndex(0);
-        setRevealed(false);
-    }, []);
-
-    const handleGoLast = useCallback(() => {
-        setCurrentIndex(filteredWords.length - 1);
-        setRevealed(false);
-    }, [filteredWords]);
+    }, [currentIndex, filteredWords.length, baseHandleNext]);
 
     const handleAction = useCallback(() => {
         if (!revealed) {
             setRevealed(true);
-            // Confetti check
             if (currentIndex === filteredWords.length - 1) {
                 confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             }
         } else {
             handleNext();
         }
-    }, [revealed, handleNext, currentIndex, filteredWords.length]);
+    }, [revealed, handleNext, currentIndex, filteredWords.length, setRevealed]);
 
-
-    // Timer Restart
-    useEffect(() => {
-        if (showTimer) Timer.restart();
-    }, [currentIndex, showTimer]);
-
-
-
-
-    // Render
-    // Removed early return to keep Controls visible at all times
-
+    const timerLabel = `Timer (${level === 3 ? '15s' : '40s'})`;
     const enText = currentWord ? (currentWord.sentence_en || currentWord.word_en) : '';
     const taText = currentWord ? (currentWord.sentence_ta || currentWord.word_ta) : '';
 
@@ -121,21 +66,15 @@ export default function Theni34App() {
             <Controls
                 categories={categories}
                 selectedCategories={selectedCategories}
-                onToggleCategory={(c: string) => setSelectedCategories(p => p.includes(c) ? p.filter(x => x !== c) : [...p, c])}
-                onToggleAllCategories={() => setSelectedCategories(selectedCategories.length === categories.length ? [] : [...categories])}
+                onToggleCategory={toggleCategory}
+                onToggleAllCategories={toggleAllCategories}
                 difficulty={difficulty}
                 setDifficulty={setDifficulty}
                 shuffle={shuffle}
                 setShuffle={setShuffle}
-                reset={() => {
-                    setShuffle(false);
-                    setCurrentIndex(0);
-                    setRevealed(false);
-                }}
-                // Level Specific
+                reset={resetSelection}
                 level={level}
                 setLevel={setLevel}
-
                 showTimer={showTimer}
                 setShowTimer={setShowTimer}
                 timerLabel={timerLabel}
@@ -154,7 +93,6 @@ export default function Theni34App() {
                                 </div>
                                 <div className="slide-body">
                                     <div className="word-en" dangerouslySetInnerHTML={{ __html: enText }}></div>
-                                    {/* Tamil Reveal */}
                                     <div className={`word-ta ${revealed ? 'revealed' : ''}`} dangerouslySetInnerHTML={{ __html: taText }}>
                                     </div>
                                 </div>
@@ -162,12 +100,11 @@ export default function Theni34App() {
                         </div>
                     </div>
 
-                    {/* Navigation - Standardized with Production UI */}
                     <div className="navigation">
-                        <button id="firstBtn" className="nav-btn" onClick={handleGoFirst} disabled={currentIndex === 0} title="First Slide (Home)">
+                        <button id="firstBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoFirst(); }} disabled={currentIndex === 0} title="First Slide (Home)">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
                         </button>
-                        <button id="prevBtn" className="nav-btn" onClick={handlePrev} disabled={currentIndex === 0} title="Previous Slide (←)">
+                        <button id="prevBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handlePrev(); }} disabled={currentIndex === 0} title="Previous Slide (←)">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                         </button>
 
@@ -177,7 +114,7 @@ export default function Theni34App() {
 
                         <button id="nextBtn"
                             className={`nav-btn ${!revealed ? 'reveal-mode' : ''}`}
-                            onClick={handleAction}
+                            onClick={e => { e.stopPropagation(); handleAction(); }}
                             disabled={currentIndex === filteredWords.length - 1 && revealed}
                             title={!revealed ? "Reveal (Space/Enter)" : "Next Slide (→)"}
                         >
@@ -188,22 +125,13 @@ export default function Theni34App() {
                             )}
                         </button>
 
-                        <button id="lastBtn" className="nav-btn" onClick={handleGoLast} disabled={currentIndex === filteredWords.length - 1} title="Last Slide (End)">
+                        <button id="lastBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoLast(); }} disabled={currentIndex === filteredWords.length - 1} title="Last Slide (End)">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
                         </button>
                     </div>
                 </div>
             ) : (
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '50vh',
-                    color: 'rgba(255,255,255,0.7)',
-                    fontSize: '1.2rem',
-                    textAlign: 'center'
-                }}>
+                <div className="empty-state-container">
                     <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
                     No items found for the current selection.<br />
                     Please check your Category or Difficulty filters.
