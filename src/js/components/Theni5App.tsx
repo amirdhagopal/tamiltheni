@@ -127,7 +127,7 @@ export default function Theni5App() {
                 progressText={`Page ${currentPage} of ${totalPages} (${filteredWords.length} words in range${shuffle ? ' - shuffled' : ''})`}
             />
 
-            <div className="slide-container">
+            <div className="slide-container" onClick={handleNext} style={{ cursor: 'pointer' }}>
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
                         currentWords.map((wordItem: Theni5Word) => (
@@ -153,7 +153,7 @@ export default function Theni5App() {
                     )}
                 </div>
 
-                <div className="navigation">
+                <div className="navigation" onClick={e => e.stopPropagation()}>
                     <button className="nav-btn" onClick={handleFirst} disabled={currentPage === 1} title="First Page">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg>
                     </button>

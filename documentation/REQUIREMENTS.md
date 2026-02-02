@@ -119,6 +119,7 @@ The application should be installable on mobile devices and work offline.
 - [x] First/Previous/Next/Last navigation buttons (Standardized SVG icons)
 - [x] Keyboard navigation (Arrow keys, Home, End)
 - [x] Progress counter showing current position (Standardized .slide-counter)
+- [x] Universal Slide Interaction: Clicking anywhere on the slide triggers the "Next" action (Reveal first, then Advance)
 - [x] Progress bar visualization
 - [x] Differentiable "Reveal" state for action buttons (Blue background + icon)
 
