@@ -122,11 +122,12 @@ export function useTheniModule<T extends { difficulty: string; category: string;
         setRevealed(false);
     }, [filteredWords.length]);
 
-    const handleAction = useCallback(() => {
+    const handleAction = useCallback((onAdvance?: () => void) => {
         if (!revealed) {
             setRevealed(true);
         } else {
             handleNext();
+            if (onAdvance) onAdvance();
         }
     }, [revealed, handleNext]);
 

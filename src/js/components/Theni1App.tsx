@@ -49,6 +49,7 @@ export default function Theni1App() {
     });
 
     // Custom Handle Action to include Confetti and Next Logic
+    // Custom Handle Action to include Confetti and Next Logic
     const handleAction = useCallback(() => {
         if (!revealed) {
             setRevealed(true);
@@ -116,8 +117,18 @@ export default function Theni1App() {
                 progressText={`${currentIndex + 1}/${filteredWords.length} slides - Filter: ${difficulty} ${shuffle ? '(Shuffled)' : ''}`}
             />
 
+            {/* Progress Bar Container */}
+            <div id="progressBarContainer" style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '4px', background: 'rgba(255,255,255,0.1)', zIndex: 1000 }}>
+                <div id="progressBar" style={{ width: '0%', height: '100%', background: 'var(--primary-color, #667eea)', transition: 'width 0.3s ease' }}></div>
+            </div>
+
             {filteredWords.length > 0 && currentWord ? (
-                <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation, .mic-button-inline')) handleAction(); }} style={{ cursor: 'pointer' }}>
+                <div className="slide-container" onClick={(e) => {
+                    // Only trigger if click is on the slide itself, not interactive elements
+                    if (!(e.target as HTMLElement).closest('.navigation, .mic-button-inline, .controls-panel')) {
+                        handleAction();
+                    }
+                }} style={{ cursor: 'pointer' }}>
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
                         <div className="slide active" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '60px' }}>
                             <div className="image-container">
@@ -159,7 +170,7 @@ export default function Theni1App() {
                         </div>
                     </div>
 
-                    <div className="navigation">
+                    <div className="navigation" onClick={e => e.stopPropagation()}>
                         <button id="firstBtn" className="nav-btn" onClick={handleGoFirst} disabled={currentIndex === 0} title="First Slide (Home)">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
                         </button>

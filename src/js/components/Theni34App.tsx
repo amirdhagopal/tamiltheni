@@ -81,6 +81,11 @@ export default function Theni34App() {
                 progressText={`${currentIndex + 1}/${filteredWords.length} slides - Filter: All Difficulty (Matches: D1=${filteredWords.filter(w => w.difficulty === 'D1').length}, D2=${filteredWords.filter(w => w.difficulty === 'D2').length})`}
             />
 
+            {/* Progress Bar Container */}
+            <div id="progressBarContainer" style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '4px', background: 'rgba(255,255,255,0.1)', zIndex: 1000 }}>
+                <div id="progressBar" style={{ width: '0%', height: '100%', background: 'var(--primary-color, #667eea)', transition: 'width 0.3s ease' }}></div>
+            </div>
+
             {filteredWords.length > 0 && currentWord ? (
                 <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation')) handleAction(); }} style={{ cursor: 'pointer' }}>
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
