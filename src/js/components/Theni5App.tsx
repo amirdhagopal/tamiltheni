@@ -129,13 +129,27 @@ export default function Theni5App() {
 
             <div className="slide-container">
                 <div className="words-list-centered">
-                    {currentWords.map((wordItem: Theni5Word) => (
-                        <div className="word-row-card" key={wordItem.s}>
-                            <div className="word-text-ta">{wordItem.w}</div>
+                    {currentWords.length > 0 ? (
+                        currentWords.map((wordItem: Theni5Word) => (
+                            <div className="word-row-card" key={wordItem.s}>
+                                <div className="word-text-ta">{wordItem.w}</div>
+                            </div>
+                        ))
+                    ) : (
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            height: '40vh',
+                            color: 'rgba(255,255,255,0.7)',
+                            fontSize: '1.2rem',
+                            textAlign: 'center'
+                        }}>
+                            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
+                            No words found in this range.<br />
+                            Try selecting a different word range in settings.
                         </div>
-                    ))}
-                    {currentWords.length === 0 && (
-                        <div style={{ color: '#666', fontStyle: 'italic' }}>No words found in this range.</div>
                     )}
                 </div>
 
