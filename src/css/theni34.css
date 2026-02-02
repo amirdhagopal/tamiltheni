@@ -1,12 +1,10 @@
 /* Theni 3 & 4 Specific Overrides */
 /* Ensure height is passed down for centering */
 .slide-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100vw;
+    margin: 20px auto;
+    /* Center horizontally */
     position: relative;
-    overflow: hidden;
+    /* allow scroll if content overflows card height */
 }
 
 #slides-wrapper {
@@ -24,19 +22,24 @@
     font-weight: 500;
 }
 
+.word-en b {
+    color: var(--primary);
+    font-weight: 700;
+}
+
 .slide-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 90%;
-    max-width: 800px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
     padding: 30px;
+    position: relative;
 }
 
 .slide-body {
@@ -59,7 +62,7 @@
     filter: blur(5px);
 }
 
-.slide.revealed .word-ta {
+.word-ta.revealed {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
@@ -123,3 +126,5 @@
     background: #fff3e0;
     color: #ef6c00;
 }
+
+/* Counter - Standard Appearance (Match Theni 2) */

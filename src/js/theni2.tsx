@@ -13,11 +13,11 @@ export function init() {
     });
 
     // Render the App
-    const root = document.getElementById('app-root');
-    if (root) {
-        render(<Theni2App />, root);
+    const mountNode = document.getElementById('preact-root');
+    if (mountNode) {
+        render(<Theni2App />, mountNode);
     } else {
-        console.error('Root element not found');
+        console.error('Mount node #preact-root not found');
     }
 }
 

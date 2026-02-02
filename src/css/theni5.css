@@ -1,80 +1,126 @@
-/* Theni 5 Specific Styles - Grid View */
+/* Theni 5 Specific Styles - Paginated List View */
 
-/* Slide UI */
 .slide-container {
-    width: 90%;
-    max-width: 800px;
-    min-height: 450px;
-    max-height: calc(100vh - 180px);
-    background: var(--card-bg);
+    width: 900px;
+    max-width: 95vw;
+    height: 600px;
+    background: transparent;
+    /* Main container transparent to show the "card" feel of rows */
     border-radius: 32px;
-    box-shadow: var(--shadow);
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 25px 30px 100px;
+    padding: 40px 60px 100px;
     box-sizing: border-box;
-    margin-top: 60px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.progress-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary) 0%, #00d2ff 100%);
-    border-radius: 32px 32px 0 0;
-    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
-}
-
-.words-grid {
+.words-list-centered {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     flex-grow: 1;
     justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-.word-item {
+.word-row-card {
+    width: 100%;
+    max-width: 700px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 15px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 12px 25px;
-    background: #fdfdfd;
-    border: 1px solid #f0f0f0;
-    border-radius: 16px;
+    justify-content: center;
     transition: var(--transition);
-    cursor: pointer;
-    position: relative;
+    border: 1px solid #f0f0f0;
 }
 
-.word-item:hover {
-    background: #fff;
-    transform: scale(1.02);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    border-color: var(--primary);
+.word-row-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
-.tamil-word {
+.word-text-ta {
     font-family: 'Hind Madurai', sans-serif;
     font-size: 2.2rem;
-    color: var(--secondary);
+    color: #5d4037;
+    /* Dark brownish purple often used in Tamil UI */
     font-weight: 700;
-    transition: var(--transition);
 }
 
-/* Status Badge inside nav if used clearly */
-.status-badge {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--secondary);
-    min-width: 80px;
+/* Specific purple color from user image */
+.word-text-ta {
+    color: #6a539d;
+}
+
+/* Range input styling in controls */
+.control-row input[type="number"] {
+    background: white !important;
+    color: #333 !important;
+    border: 1px solid #ddd !important;
+    padding: 6px 10px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
     text-align: center;
-    letter-spacing: 1px;
+}
+
+.control-row .action-button {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 20px !important;
+    padding: 8px 20px !important;
+}
+
+.control-row .action-button:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Nav refinements to match image icons/colors */
+.navigation {
+    position: relative;
+    bottom: auto;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nav-btn {
+    background: #e0e0e0;
+    color: #444;
+}
+
+.nav-btn.play-btn {
+    background: #2d3436;
+    color: white;
+}
+
+.pill-group .pill-button.active {
+    background: #6a539d;
+    color: white;
 }
 
 /* Dynamic layout adjustment when control panel is expanded */
 body.panel-expanded .slide-container {
-    margin-top: 140px;
+    margin-top: 80px;
+}
+
+/* Responsive adjustments for the new layout */
+@media (max-width: 768px) {
+    .word-text-ta {
+        font-size: 1.6rem;
+    }
+
+    .word-row-card {
+        padding: 10px 20px;
+    }
 }

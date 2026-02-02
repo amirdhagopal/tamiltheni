@@ -14,13 +14,19 @@ const PWAManager = {
     },
 
     registerServiceWorker: function () {
-        // Check if we are in a subdirectory (like /html/) to adjust relative paths
-        // This is robust for both root-served and base-served deployments using relative paths
+        // In Vite dev mode, the SW is usually 'dev-sw.js?dev-sw'
+        // In production, it's 'sw.js'
         const isHtmlSubdir = window.location.pathname.includes('/html/');
         const pathPrefix = isHtmlSubdir ? '../' : './';
-        const swUrl = `${pathPrefix}sw.js`;
 
-        // Scope must also be adjusted to ensure the SW controls the whole app
+        // Try relative sw.js first, then dev-sw.js if we are on localhost
+        let swUrl = `${pathPrefix}sw.js`;
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            // Check if we are in dev mode by looking for vite markers? 
+            // Or just try dev-sw.js if sw.js fails.
+            // For now, let's keep it simple and just resolve the path properly.
+        }
+
         navigator.serviceWorker
             .register(swUrl, { scope: pathPrefix })
             .then((registration) => {

@@ -1,13 +1,13 @@
 import { Fragment } from 'preact';
-import { useState, useEffect, useMemo, useCallback } from 'preact/hooks';
-import { createPortal } from 'preact/compat';
-import { Word } from '../../types';
+import { useState, useEffect, useMemo } from 'preact/hooks';
+import { Word } from '../../types/index';
 import theniWords from '../../data/theni_words.json';
 import { Utils } from '../utils';
-import { AudioManager } from '../audio_manager';
-import { Timer } from '../timer';
 import { SentenceConstructorAgent } from '../agents/sentence_agent';
+import { Controls } from './Controls';
 import confetti from 'canvas-confetti';
+
+const sentenceAgent = new SentenceConstructorAgent();
 
 // --- Sub-components ---
 
@@ -50,7 +50,7 @@ const Card = ({ word, side, show }: { word: Word | null, side: 1 | 2, show: bool
     );
 };
 
-import { Controls } from './Controls';
+// --- Sub-components ---
 
 // ... (Sub-components) ...
 
@@ -59,7 +59,86 @@ import { Controls } from './Controls';
 // --- Main App ---
 
 export default function Theni2App() {
-    // ... (State logic same as before) ...
+    // Data
+    const allWords = useMemo(() => theniWords as Word[], []);
+    const categories = useMemo(() => {
+        const cats = new Set<string>();
+        allWords.forEach(w => cats.add(`${w.category} - ${w.category_ta}`));
+        return Array.from(cats);
+    }, [allWords]);
+
+    // State
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(() => [...categories]);
+    const [difficulty, setDifficulty] = useState<'all' | 'D1' | 'D2'>('all');
+    const [shuffle, setShuffle] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [revealed, setRevealed] = useState(false);
+    const [apiKey, setApiKey] = useState(() => localStorage.getItem('GEMINI_API_KEY') || '');
+
+    // AI State
+    const [aiStatus, setAiStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [aiResult, setAiResult] = useState<{ tamil: string, en: string } | null>(null);
+    const [lastAiError, setLastAiError] = useState('');
+
+    // Settings
+    const [audioEnabled, setAudioEnabled] = useState(true);
+    const [showTimer, setShowTimer] = useState(true);
+
+    // Derived State
+    const [filteredWords, setFilteredWords] = useState<Word[]>([]);
+
+    // Partner Logic
+    const partnerMap = useMemo(() => {
+        const map = new Map<number, number>();
+        const shuffled = [...Array(allWords.length).keys()];
+        Utils.shuffleArray(shuffled);
+        for (let i = 0; i < shuffled.length; i++) {
+            map.set(i, shuffled[(i + 1) % shuffled.length]);
+        }
+        return map;
+    }, [allWords]);
+
+    useEffect(() => {
+        let result = allWords.filter((w: Word) => {
+            const catKey = `${w.category} - ${w.category_ta}`;
+            return selectedCategories.includes(catKey) && (difficulty === 'all' || w.difficulty === difficulty);
+        });
+        if (shuffle) Utils.shuffleArray(result);
+        setFilteredWords(result);
+        setCurrentIndex(0);
+        setRevealed(false);
+    }, [selectedCategories, difficulty, shuffle, allWords]);
+
+    const currentWord = filteredWords[currentIndex];
+    const partnerIndex = currentWord ? partnerMap.get(allWords.findIndex(w => w.id === currentWord.id)) ?? 0 : 0;
+    const partnerWord = allWords[partnerIndex];
+
+    const generateSentence = async () => {
+        if (!currentWord || !partnerWord) return;
+        setAiStatus('loading');
+        try {
+            const result = await sentenceAgent.generateSentence(currentWord.word_ta, partnerWord.word_ta, apiKey);
+            setAiResult(result);
+            setAiStatus('success');
+        } catch (e: any) {
+            setLastAiError(e.message);
+            setAiStatus('error');
+        }
+    };
+
+    const handleAction = () => {
+        if (!revealed) setRevealed(true);
+        else {
+            if (currentIndex < filteredWords.length - 1) {
+                setCurrentIndex((v: number) => v + 1);
+                setRevealed(false);
+                setAiStatus('idle');
+                setAiResult(null);
+            } else {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            }
+        }
+    };
 
     return (
         <Fragment>
@@ -105,7 +184,7 @@ export default function Theni2App() {
             </div>
 
             {/* Cards */}
-            <div className="dual-view-container">
+            <div className="dual-view-container" onClick={handleAction} style={{ cursor: 'pointer' }}>
                 <Card word={currentWord} side={1} show={revealed} />
                 <Card word={partnerWord} side={2} show={revealed} />
             </div>

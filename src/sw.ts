@@ -1,11 +1,9 @@
-// @ts-nocheck
 /**
  * TamilTheni Service Worker
  * Enables offline access and caching for the PWA
  */
 
-const CACHE_NAME = 'tamiltheni-v2';
-const CACHE_VERSION = 22;
+const CACHE_NAME = 'tamiltheni-v22'; // Consolidated versioning
 
 // App shell - core files needed for offline functionality
 // App shell - core files needed for offline functionality
@@ -109,7 +107,7 @@ self.addEventListener('fetch', ((event: FetchEvent) => {
                         })
                         .catch(() => cachedResponse);
 
-                    return cachedResponse || fetchPromise;
+                    return cachedResponse || fetchPromise as Promise<Response>;
                 });
             })
         );
@@ -130,7 +128,7 @@ self.addEventListener('fetch', ((event: FetchEvent) => {
                 })
                 .catch(() => {
                     // Fall back to cache if network fails
-                    return caches.match(event.request);
+                    return caches.match(event.request) as Promise<Response>;
                 })
         );
         return;
@@ -168,8 +166,9 @@ self.addEventListener('fetch', ((event: FetchEvent) => {
                 .catch(() => {
                     // If both cache and network fail, show offline page
                     if (event.request.destination === 'document') {
-                        return caches.match('./index.html');
+                        return caches.match('./index.html') as Promise<Response>;
                     }
+                    return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
                 });
         })
     );

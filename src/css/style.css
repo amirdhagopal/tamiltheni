@@ -13,13 +13,16 @@
 body {
     font-family: var(--font-main);
     margin: 0;
-    padding: 0;
+    padding: 60px 0 0 0;
+    /* Clear header */
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    box-sizing: border-box;
+    /* Include padding in height */
     overflow: hidden;
     color: var(--text);
 }
@@ -110,7 +113,6 @@ body {
     left: 0;
     right: 0;
     background: white;
-    /* Changed to white for contrast or keep dark? Let's keep dark theme match but maybe slightly lighter or same */
     background: linear-gradient(135deg, #667eeaF2 0%, #764ba2F2 100%);
     /* Slight transparency */
     backdrop-filter: blur(10px);
@@ -132,7 +134,6 @@ body {
     opacity: 1;
 }
 
-/* Remove old collapsed logic styles if conflicting, but we are replacing them */
 .control-content {
     padding: 20px;
     display: flex;
@@ -271,23 +272,27 @@ body {
 /* --- Navigation & Buttons --- */
 .nav-btn,
 button.nav-btn {
-    /* Specificity buffer */
-    background: var(--text);
+    background: #212529;
+    /* Dark Charcoal */
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px;
+    width: 45px;
+    height: 45px;
     border-radius: 12px;
     cursor: pointer;
     font-size: 1.2rem;
-    transition: var(--transition);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .nav-btn:hover:not(:disabled) {
     background: #000;
     transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav-btn:active:not(:disabled) {
@@ -298,6 +303,40 @@ button.nav-btn {
     opacity: 0.3;
     cursor: not-allowed;
     background: #bdbdbd;
+    box-shadow: none;
+}
+
+.nav-btn.reveal-mode {
+    background-color: #4c6ef5;
+    /* Primary Blue */
+    color: white;
+    box-shadow: 0 4px 12px rgba(76, 110, 245, 0.3);
+}
+
+.nav-btn.reveal-mode:hover:not(:disabled) {
+    background-color: #3b5bdb;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(76, 110, 245, 0.4);
+}
+
+.nav-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5;
+}
+
+.progress-bar-container {
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    width: 0%;
+    transition: width 0.3s ease;
 }
 
 .navigation {
@@ -308,6 +347,61 @@ button.nav-btn {
     justify-content: center;
     gap: 20px;
     z-index: 20;
+}
+
+.slide-counter {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #757575;
+    min-width: 80px;
+    text-align: center;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+}
+
+.speaker-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6c757d;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.speaker-button:hover {
+    color: #4c6ef5;
+    transform: scale(1.1);
+}
+
+.speaker-button svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2.5;
+}
+
+/* --- GLOBAL UNIFIED SLIDE CONTAINER --- */
+/* This ensures same width/height feel for all apps */
+.slide-container {
+    width: 900px;
+    max-width: 95vw;
+    /* Production Standard */
+    height: 600px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    position: relative;
+    margin: auto;
+    /* Vertically and Horizontally Center in Flex body */
+
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
 }
 
 /* --- Badges --- */
@@ -366,11 +460,12 @@ button.nav-btn {
 /* --- Circular Timer (Shared) --- */
 .circular-timer {
     position: fixed;
-    left: calc(50% + 430px);
+    left: calc(50% + 480px);
+    /* Pushed further right */
     top: 50%;
     transform: translateY(-50%);
-    width: 270px;
-    height: 270px;
+    width: 250px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -386,9 +481,7 @@ button.nav-btn {
     border-radius: 50%;
     background: conic-gradient(var(--primary) 360deg, #f0f0f0 0);
     transition: background 0.3s ease;
-    box-shadow:
-        inset 0 0 20px rgba(0, 0, 0, 0.05),
-        0 8px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05), 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
 .timer-content {
@@ -399,8 +492,8 @@ button.nav-btn {
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.95);
-    width: 210px;
-    height: 210px;
+    width: 190px;
+    height: 190px;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
@@ -449,26 +542,21 @@ button.nav-btn {
 }
 
 /* Timer Media Queries */
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
     .circular-timer {
         right: 20px;
         left: auto;
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
     }
 
     .circular-timer .timer-content {
-        width: 160px;
-        height: 160px;
+        width: 140px;
+        height: 140px;
     }
 
     .circular-timer .timer-display {
-        font-size: 2.2rem;
-    }
-
-    .circular-timer .timer-btn {
-        font-size: 1.8rem;
-        margin-top: 4px;
+        font-size: 2rem;
     }
 }
 
@@ -480,17 +568,12 @@ button.nav-btn {
     }
 
     .circular-timer .timer-content {
-        width: 95px;
-        height: 95px;
+        width: 90px;
+        height: 90px;
     }
 
     .circular-timer .timer-display {
         font-size: 1.3rem;
-    }
-
-    .circular-timer .timer-btn {
-        font-size: 1.1rem;
-        margin-top: 2px;
     }
 }
 
@@ -514,11 +597,6 @@ button.nav-btn {
     .circular-timer .timer-display {
         font-size: 0.9rem;
     }
-
-    .circular-timer .timer-btn {
-        font-size: 0.8rem;
-        margin-top: 1px;
-    }
 }
 
 /* --- PWA Update Banner --- */
@@ -538,9 +616,7 @@ button.nav-btn {
     z-index: 10000;
     font-family: var(--font-main);
     opacity: 0;
-    transition:
-        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
 .pwa-update-banner.show {
@@ -611,44 +687,10 @@ button.nav-btn {
     .pwa-update-banner.show {
         transform: translateX(0) translateY(0);
     }
-
-    .pwa-update-text {
-        font-size: 0.85rem;
-    }
 }
 
 /* --- Accessibility / Focus Styles --- */
 :focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 2px;
-}
-
-/* Fix for control header inside dark panel */
-.control-header:focus-visible {
-    outline: 2px solid white;
-    outline-offset: -2px;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Interactive elements inside dark panels need lighter focus */
-.pill-button:focus-visible,
-.action-button:focus-visible,
-.dropdown-button:focus-visible,
-#apiKeyInput:focus-visible {
-    outline: 2px solid white;
-    outline-offset: 2px;
-}
-
-/* Dropdown items */
-.dropdown-item:focus-visible {
-    background: #f0f0f0;
-    outline: 2px solid var(--primary);
-    outline-offset: -2px;
-}
-
-/* Links */
-a:focus-visible {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
 }

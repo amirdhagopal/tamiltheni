@@ -19,7 +19,9 @@ export default [
             globals: {
                 ...globals.browser,
                 ...globals.node,
+                ...globals.serviceworker,
                 NodeListOf: 'readonly',
+                EventListener: 'readonly',
             },
         },
         plugins: {

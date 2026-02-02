@@ -1,15 +1,15 @@
 /* Theni 2 Specific Styles - Dual Card View */
 
 .slide-container {
-    width: 90%;
-    max-width: 900px;
+    width: 900px;
+    max-width: 95vw;
     height: 600px;
     background: white;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
-    margin-top: 60px;
+    margin: auto;
 }
 
 #slides-wrapper {

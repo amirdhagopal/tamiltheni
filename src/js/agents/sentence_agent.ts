@@ -3,7 +3,7 @@ import { GeminiService } from '../gemini_service';
 
 export interface SentenceResponse {
     tamil: string;
-    english: string;
+    en: string;
 }
 
 export class SentenceConstructorAgent extends BaseAgent {
@@ -34,7 +34,7 @@ export class SentenceConstructorAgent extends BaseAgent {
             ${this.systemPrompt}
             
             Generate a simple Tamil sentence using these two words: "${word1}" and "${word2}".
-            Provide the response in JSON format: { "tamil": "tamil sentence", "english": "english meaning" }
+            Provide the response in JSON format: { "tamil": "tamil sentence", "en": "english meaning" }
             IMPORTANT: Provide the COMPLETE sentence. Do NOT truncate or use ellipses (...). Use the exact Tamil words provided if possible, or their correct declensions. Keep the sentence simple and suitable for learners.
         `;
 
@@ -44,7 +44,7 @@ export class SentenceConstructorAgent extends BaseAgent {
             const json: SentenceResponse = JSON.parse(cleanText);
 
             // Validate structure
-            if (!json.tamil || !json.english) {
+            if (!json.tamil || !json.en) {
                 throw new Error('Invalid response structure from AI');
             }
 

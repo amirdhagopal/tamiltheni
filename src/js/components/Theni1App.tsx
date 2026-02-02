@@ -1,12 +1,12 @@
-import { h, Fragment } from 'preact';
+import { Fragment } from 'preact';
 import { useState, useEffect, useMemo, useCallback } from 'preact/hooks';
 import { Controls } from './Controls';
 import { Utils } from '../utils';
 import { AudioManager } from '../audio_manager';
 import { Timer } from '../timer';
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
-import theniWords from '../data/theni_words.json';
-import { Word } from '../types';
+import theniWords from '../../data/theni_words.json';
+import { Word } from '../../types';
 import confetti from 'canvas-confetti';
 
 export default function Theni1App() {
@@ -102,7 +102,6 @@ export default function Theni1App() {
         } else {
             setFeedback({ text: `Heard "${spokenText}" ❌`, type: 'error' });
         }
-        // Auto stop recording handled by onend usually, but good to be safer
     };
 
     // Actions
@@ -168,22 +167,7 @@ export default function Theni1App() {
     }, [currentIndex, showTimer]);
 
 
-    // Bind Navigation (Portal-ish)
-    useEffect(() => {
-        const bind = (id: string, fn: () => void) => {
-            const el = document.getElementById(id);
-            if (el) {
-                el.onclick = (e) => { e.stopPropagation(); fn(); };
-                if (id === 'firstBtn' || id === 'prevBtn') (el as HTMLButtonElement).disabled = currentIndex === 0;
-                if (id === 'lastBtn') (el as HTMLButtonElement).disabled = currentIndex === filteredWords.length - 1;
-                if (id === 'nextBtn') (el as HTMLButtonElement).disabled = currentIndex === filteredWords.length - 1 && revealed;
-            }
-        };
-        bind('firstBtn', handleGoFirst);
-        bind('prevBtn', handlePrev);
-        bind('nextBtn', handleAction);
-        bind('lastBtn', handleGoLast);
-    }, [currentIndex, filteredWords.length, revealed, handleAction, handleGoFirst, handleGoLast, handlePrev]);
+
 
     // Keyboard
     useEffect(() => {
@@ -228,43 +212,77 @@ export default function Theni1App() {
                 progressText={`${currentIndex + 1}/${filteredWords.length} slides - Filter: ${difficulty} ${shuffle ? '(Shuffled)' : ''}`}
             />
 
-            {/* Slide Content */}
-            <div id="slides-wrapper" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <div className="slide active" style={{ display: 'flex' }}>
-                    <div className="image-container">
-                        <img
-                            src={Utils.getImagePath(currentWord.image_word)}
-                            alt={currentWord.word_en}
-                            className="slide-image"
-                            onError={(e) => { (e.target as HTMLImageElement).src = `https://placehold.co/400x300?text=${encodeURIComponent(currentWord.image_word)}`; }}
-                        />
-                    </div>
-                    <div className="word-row">
-                        <div className="word-en">{currentWord.word_en}</div>
-                        {voiceEnabled && (
-                            <button
-                                className={`mic-button-inline ${isRecording ? 'recording' : ''}`}
-                                onClick={(e) => { e.stopPropagation(); toggleRecording(handleVoiceResult); }}
-                                title={isRecording ? "Stop Listening" : "Start Voice Validation"}
-                            >
-                                🎤
-                            </button>
-                        )}
-                        <span className={`voice-feedback-inline ${feedback.type}`}>{feedback.text}</span>
-                    </div>
+            <div className="slide-container">
+                {/* Slide Content */}
+                <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <div className="slide active" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '60px' }}>
+                        <div className="image-container">
+                            <img
+                                src={Utils.getImagePath(currentWord?.image_word || '')}
+                                alt={currentWord?.word_en || ''}
+                                className="slide-image"
+                                onError={(e) => { (e.target as HTMLImageElement).src = `https://placehold.co/400x300?text=${encodeURIComponent(currentWord?.image_word || 'Image Missing')}`; }}
+                            />
+                        </div>
+                        <div className="word-row">
+                            <div className="word-en" dangerouslySetInnerHTML={{ __html: currentWord.word_en }}></div>
+                            {voiceEnabled && (
+                                <button
+                                    className={`mic-button-inline ${isRecording ? 'recording' : ''}`}
+                                    onClick={(e) => { e.stopPropagation(); toggleRecording(handleVoiceResult); }}
+                                    title={isRecording ? "Stop Listening" : "Start Voice Validation"}
+                                    style={{ display: 'inline-flex', marginLeft: '10px' }}
+                                >
+                                    {isRecording ? '⏹️' : '🎤'}
+                                </button>
+                            )}
+                            <span className={`voice-feedback-inline ${feedback.type}`}>{feedback.text}</span>
+                        </div>
 
-                    {/* Tamil Word - Revealed Class Logic */}
-                    <div className={`word-ta ${revealed ? 'revealed' : ''}`}>
-                        {currentWord.word_ta}
-                    </div>
+                        {/* Tamil Word - Revealed Class Logic */}
+                        <div className={`word-ta ${revealed ? 'revealed' : ''}`}>
+                            {currentWord.word_ta}
+                        </div>
 
-                    <div className="card-footer">
-                        <div className="footer-left">
-                            <span className="category-badge">{currentWord.category}</span>
-                            <span className="category-badge-ta">{currentWord.category_ta}</span>
-                            <span className="difficulty-badge">{currentWord.difficulty}</span>
+                        <div className="card-footer">
+                            <div className="footer-left">
+                                <span className="category-badge">{currentWord.category}</span>
+                                <span className="category-badge-ta">{currentWord.category_ta}</span>
+                                <span className="difficulty-badge">{currentWord.difficulty}</span>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                {/* Navigation */}
+                <div className="navigation">
+                    <button id="firstBtn" className="nav-btn" onClick={handleGoFirst} disabled={currentIndex === 0} title="First Slide (Home)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
+                    </button>
+                    <button id="prevBtn" className="nav-btn" onClick={handlePrev} disabled={currentIndex === 0} title="Previous Slide (←)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+
+                    <span className="slide-counter" id="counter">
+                        {currentIndex + 1} / {filteredWords.length}
+                    </span>
+
+                    <button id="nextBtn"
+                        className={`nav-btn ${!revealed ? 'reveal-mode' : ''}`}
+                        onClick={handleAction}
+                        disabled={currentIndex === filteredWords.length - 1 && revealed}
+                        title={!revealed ? "Reveal (Space/Enter)" : "Next Slide (→)"}
+                    >
+                        {!revealed ? (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        ) : (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        )}
+                    </button>
+
+                    <button id="lastBtn" className="nav-btn" onClick={handleGoLast} disabled={currentIndex === filteredWords.length - 1} title="Last Slide (End)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
+                    </button>
                 </div>
             </div>
         </Fragment>

@@ -1,7 +1,7 @@
 import { GeminiService } from '../gemini_service';
 
 export abstract class BaseAgent {
-    constructor(protected systemPrompt: string) {}
+    constructor(protected systemPrompt: string) { }
 
     /**
      * Common method to call GeminiService.
@@ -38,6 +38,7 @@ export abstract class BaseAgent {
      * Helper to clean JSON markdown blocks from LLM response
      */
     protected cleanJson(text: string): string {
-        return text.replace(/```json\n?|\n?```/g, '').trim();
+        const jsonMatch = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+        return jsonMatch ? jsonMatch[0].trim() : text.replace(/```json\n?|\n?```/g, '').trim();
     }
 }

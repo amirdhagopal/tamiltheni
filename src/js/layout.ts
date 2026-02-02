@@ -133,17 +133,17 @@ export const Layout = {
         const navStr = `
             <div class="navigation" role="navigation" aria-label="Slide Navigation">
                 <button class="nav-btn" id="firstBtn" title="First slide (Home)" aria-label="First Slide">
-                    <span aria-hidden="true">⏮</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
                 </button>
                 <button class="nav-btn" id="prevBtn" title="Previous slide (←)" aria-label="Previous Slide">
-                    <span aria-hidden="true">◀</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                 </button>
-                <span style="align-self: center; color: #757575; font-weight: 600; min-width: 80px; text-align: center;" id="counter" aria-live="polite"></span>
+                <span id="counter" aria-live="polite" class="slide-counter"></span>
                 <button class="nav-btn" id="nextBtn" title="Next slide (→ / Space / Enter)" aria-label="Next Slide">
-                    <span aria-hidden="true">▶</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </button>
                 <button class="nav-btn" id="lastBtn" title="Last slide (End)" aria-label="Last Slide">
-                    <span aria-hidden="true">⏭</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
                 </button>
             </div>
         `;

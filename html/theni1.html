@@ -23,24 +23,11 @@
 
 <body>
 
-    <div class="slide-container">
-        <div class="progress" id="progressBar" style="width: 0%"></div>
 
-        <button id="micBtn" class="mic-button" onclick="toggleVoiceRecognition(); event.stopPropagation();"
-            title="Voice Validation is IDLE - Click to Start Listening">
-            🎤
-        </button>
-
-        <div id="voiceFeedback" class="voice-feedback"></div>
-
-        <div id="slides-wrapper">
-            <!-- Slides generated dynamically from theni1_data.js -->
-        </div>
-        <!-- Navigation injected by layout.js -->
-    </div>
 
     <!-- Main Module Entry Point -->
-    <script type="module" src="/src/js/theni1.ts"></script>
+    <div id="preact-root"></div>
+    <script type="module" src="/src/js/theni1.tsx"></script>
     <script type="module" src="/src/js/pwa.ts"></script>
 </body>
 

@@ -116,10 +116,11 @@ The application should be installable on mobile devices and work offline.
 
 ### FR-001: Navigation System
 
-- [x] First/Previous/Next/Last navigation buttons
+- [x] First/Previous/Next/Last navigation buttons (Standardized SVG icons)
 - [x] Keyboard navigation (Arrow keys, Home, End)
-- [x] Progress counter showing current position
+- [x] Progress counter showing current position (Standardized .slide-counter)
 - [x] Progress bar visualization
+- [x] Differentiable "Reveal" state for action buttons (Blue background + icon)
 
 ### FR-002: Timer Functionality
 
@@ -142,6 +143,8 @@ The application should be installable on mobile devices and work offline.
 - [x] Audio toggle checkbox to enable/disable
 - [x] Consecutive audio playback on slide changes
 - [x] Browser autoplay policy compliance (require user gesture)
+- [x] Speech recognition for voice validation (Theni 1)
+- [x] Robust mic-initialization (Mic "warm-up" using getUserMedia)
 
 ### FR-004: Shuffle and Reset
 

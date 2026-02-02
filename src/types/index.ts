@@ -72,7 +72,7 @@ export interface SpeechRecognitionInstance {
 }
 
 export interface SpeechRecognitionConstructor {
-    new (): SpeechRecognitionInstance;
+    new(): SpeechRecognitionInstance;
 }
 
 // Extend Window interface for our global objects
@@ -86,8 +86,8 @@ declare global {
         TheniLayout: Record<string, unknown>;
         TheniTimer: Record<string, unknown>;
         PWAManager: Record<string, unknown>;
-        SpeechRecognition?: SpeechRecognitionConstructor;
-        webkitSpeechRecognition?: SpeechRecognitionConstructor;
+        SpeechRecognition: SpeechRecognitionConstructor | undefined;
+        webkitSpeechRecognition: SpeechRecognitionConstructor | undefined;
         webkitAudioContext?: typeof AudioContext;
     }
 }

@@ -1,5 +1,5 @@
 // Main entry for Theni 3 & 4 (Preact)
-import { h, render } from 'preact';
+import { render } from 'preact';
 import Theni34App from './components/Theni34App';
 import { Layout } from './layout';
 
@@ -8,18 +8,15 @@ function init() {
         title: 'பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 3 & 4',
         contentHTML: '',
         timerDisplay: '00:15',
-        injectNavigation: true
+        injectNavigation: false
     });
 
-    const root = document.getElementById('app') || document.body;
-    let mountNode = document.getElementById('preact-root');
-    if (!mountNode) {
-        mountNode = document.createElement('div');
-        mountNode.id = 'preact-root';
-        root.appendChild(mountNode);
+    const mountNode = document.getElementById('preact-root');
+    if (mountNode) {
+        render(<Theni34App />, mountNode);
+    } else {
+        console.error('Mount node #preact-root not found');
     }
-
-    render(<Theni34App />, mountNode);
 }
 
 document.addEventListener('DOMContentLoaded', init);

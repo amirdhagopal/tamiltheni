@@ -26,24 +26,10 @@
 
 <body>
 
-    <div class="slide-container" id="slide-surface">
-        <div class="progress" id="progressBar" style="width: 0%"></div>
-        <!-- Progress bar class changed from progress-bar to progress to match style.css if needed, check style.css -->
-        <!-- style.css uses .progress. theni5 used .progress-bar. I will use .progress in layout injection? No, layout injects nav. 
-             theni5 HTML has specific slide container structure. 
-             Wait, style.css has .progress { ... }
-             theni5.css had .progress-bar { ... } which I might have removed or consolidated.
-             I updated theni5 HTML line 51 to use id="progressBar". 
-             Lets assume style.css .progress is the standard.
-        -->
 
-        <div class="words-grid" id="wordsGrid">
-            <!-- Words will be injected here -->
-        </div>
-        <!-- Navigation injected by layout.js -->
-    </div>
 
-    <script type="module" src="/src/js/theni5.ts"></script>
+    <div id="preact-root"></div>
+    <script type="module" src="/src/js/theni5.tsx"></script>
     <script type="module" src="/src/js/pwa.ts"></script>
 </body>
 

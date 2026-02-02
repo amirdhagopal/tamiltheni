@@ -16,14 +16,14 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="../manifest.webmanifest">
     <title>TamilTheni - Theni 2</title>
-  <script type="module" crossorigin src="../assets/theni2-BlUZ-wnb.js"></script>
-  <link rel="modulepreload" crossorigin href="../assets/pwa-BUDmkMds.js">
-  <link rel="modulepreload" crossorigin href="../assets/config-JvmG0hWQ.js">
-  <link rel="modulepreload" crossorigin href="../assets/audio_manager-CdHsL4ip.js">
-  <link rel="modulepreload" crossorigin href="../assets/theni_words-BW4kD3dF.js">
+  <script type="module" crossorigin src="../assets/theni2-CyrOWq42.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/pwa-0EdWiSbj.js">
+  <link rel="modulepreload" crossorigin href="../assets/layout-DTw1xBiz.js">
+  <link rel="modulepreload" crossorigin href="../assets/theni_words-D6DQ_fOb.js">
+  <link rel="modulepreload" crossorigin href="../assets/config-COslKbpI.js">
   <link rel="stylesheet" crossorigin href="../assets/pwa-CyULuHxC.css">
-  <link rel="stylesheet" crossorigin href="../assets/config-DrnjTJDb.css">
-  <link rel="stylesheet" crossorigin href="../assets/theni2-EsDW4Rco.css">
+  <link rel="stylesheet" crossorigin href="../assets/layout-CHQXs-Yl.css">
+  <link rel="stylesheet" crossorigin href="../assets/theni2-BrqJWJoL.css">
 </head>
 
 <body>
@@ -33,47 +33,8 @@
 
         <div id="slides-wrapper" class="dual-mode">
 
-            <!-- Dual View Container -->
-            <div id="dualViewContainer" style="padding-bottom: 20px;">
-                <!-- AI Generator Section (Side-by-Side) -->
-                <div class="ai-section">
-                    <button class="ai-btn" id="aiBtn" title="Generate AI sentence from these words (G)">
-                        <span>✨</span> Generate Sentence
-                    </button>
-
-                    <div id="aiResult" class="ai-result-box">
-                        <div id="aiText" class="ai-text-ta"></div>
-                        <div id="aiTextEn" class="ai-text-en"></div>
-                    </div>
-                </div>
-
-                <div class="dual-view-container">
-                    <div class="dual-word-card" id="card1">
-                        <div class="card-image">
-                            <img id="card1Img" src="https://placehold.co/300x180?text=Loading..." alt="">
-                        </div>
-                        <div class="word-en" id="card1En">Word 1</div>
-                        <div class="word-ta" id="card1Ta">சொல் 1</div>
-                        <div class="card-footer-badges">
-                            <span class="card-badge category-label" id="card1Cat">Category</span>
-                            <span class="card-badge category-label-ta" id="card1CatTa">வகை</span>
-                            <span class="card-badge difficulty-label" id="card1Diff">D1</span>
-                        </div>
-                    </div>
-                    <div class="dual-word-card" id="card2">
-                        <div class="card-image">
-                            <img id="card2Img" src="https://placehold.co/300x180?text=Loading..." alt="">
-                        </div>
-                        <div class="word-en" id="card2En">Word 2</div>
-                        <div class="word-ta" id="card2Ta">சொல் 2</div>
-                        <div class="card-footer-badges">
-                            <span class="card-badge category-label" id="card2Cat">Category</span>
-                            <span class="card-badge category-label-ta" id="card2CatTa">வகை</span>
-                            <span class="card-badge difficulty-label" id="card2Diff">D2</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- App Root for Preact -->
+            <div id="preact-root"></div>
             <!-- Navigation injected by layout.js -->
         </div>
     </div>
