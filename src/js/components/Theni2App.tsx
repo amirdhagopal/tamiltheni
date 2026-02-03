@@ -59,6 +59,11 @@ export default function Theni2App() {
     const [aiResult, setAiResult] = useState<{ tamil: string, en: string } | null>(null);
     const [lastAiError, setLastAiError] = useState('');
 
+    // Persist API Key
+    useEffect(() => {
+        localStorage.setItem('GEMINI_API_KEY', apiKey);
+    }, [apiKey]);
+
     const clearAi = useCallback(() => {
         setAiStatus('idle');
         setAiResult(null);
