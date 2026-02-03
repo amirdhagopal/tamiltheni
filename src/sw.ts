@@ -3,7 +3,7 @@
  * Enables offline access and caching for the PWA
  */
 
-const CACHE_NAME = 'tamiltheni-v24'; // Consolidated versioning
+const CACHE_NAME = 'tamiltheni-v25'; // Consolidated versioning
 
 // App shell - core files needed for offline functionality
 // App shell - core files needed for offline functionality
