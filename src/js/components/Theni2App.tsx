@@ -32,18 +32,10 @@ const Card = ({ word, side, show }: { word: Word | null, side: 1 | 2, show: bool
 
     if (!word) return <div class="dual-word-card" />;
 
-    const handleSpeak = (e: any) => {
-        e.stopPropagation();
-        AudioManager.speak(word.word_en, 'en-US');
-    };
-
     return (
         <div className={`dual-word-card ${show ? 'revealed' : ''}`} id={`card${side}`}>
             <div className="card-image">
                 <img id={`card${side}Img`} src={imgSrc} alt={word.word_en} />
-                <button className="speaker-button-overlay" onClick={handleSpeak} title="Speak English">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                </button>
             </div>
             <div className="word-en" id={`card${side}En`}>{word.word_en}</div>
             <div className="word-ta" id={`card${side}Ta`}>
