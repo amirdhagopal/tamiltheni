@@ -43,8 +43,9 @@ const PWAManager = {
                         if (installingWorker.state === 'installed') {
                             if (navigator.serviceWorker.controller) {
                                 // New update available
-                                console.log('[PWA] New content is available; please refresh.');
-                                this.showUpdateNotification();
+                                // Force update immediately
+                                console.log('[PWA] New content available. Forcing update...');
+                                installingWorker.postMessage({ type: 'SKIP_WAITING' });
                             } else {
                                 console.log('[PWA] Content is cached for offline use.');
                             }
@@ -63,34 +64,6 @@ const PWAManager = {
                 window.location.reload();
                 refreshing = true;
             }
-        });
-    },
-
-    showUpdateNotification: function () {
-        const notification = document.createElement('div');
-        notification.id = 'pwa-update-notification';
-        notification.className = 'pwa-update-banner'; // Ensure CSS exists for this or add inline
-        notification.style.cssText =
-            'position: fixed; bottom: 20px; right: 20px; background: #333; color: white; padding: 15px; border-radius: 8px; z-index: 9999; display: flex; gap: 10px; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3);';
-
-        notification.innerHTML = `
-            <span>🔄 New version available!</span>
-            <button id="pwa-refresh" style="background: #4CAF50; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Refresh</button>
-            <button id="pwa-dismiss" style="background: transparent; color: #aaa; border: none; cursor: pointer; font-size: 1.2em;">&times;</button>
-        `;
-
-        document.body.appendChild(notification);
-
-        document.getElementById('pwa-refresh')?.addEventListener('click', () => {
-            if (this.registration && this.registration.waiting) {
-                this.registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-            } else {
-                window.location.reload();
-            }
-        });
-
-        document.getElementById('pwa-dismiss')?.addEventListener('click', () => {
-            notification.remove();
         });
     },
 };
