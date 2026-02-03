@@ -118,7 +118,9 @@
     margin-top: 5px;
     margin-bottom: 0px;
     /* Base state is hidden to prevent flash on load */
-    transition: opacity 0s, visibility 0s;
+    transition:
+        opacity 0s,
+        visibility 0s;
 }
 
 .slide.active .word-ta {

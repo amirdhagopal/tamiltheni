@@ -72,7 +72,7 @@ export interface SpeechRecognitionInstance {
 }
 
 export interface SpeechRecognitionConstructor {
-    new(): SpeechRecognitionInstance;
+    new (): SpeechRecognitionInstance;
 }
 
 // Extend Window interface for our global objects

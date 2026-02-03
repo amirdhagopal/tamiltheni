@@ -115,20 +115,20 @@ test.describe('TamilTheni E2E Suite', () => {
         await expect(panel).not.toHaveClass(/collapsed/);
 
         // First Click -> Should close panel
-        await slide0.locator('.slide-content').click();
-        await page.waitForTimeout(300);
+        await page.locator('.slide-container').click({ position: { x: 300, y: 300 } });
+        await page.waitForTimeout(500);
         await expect(panel).toHaveClass(/collapsed/);
-        await expect(slide0).not.toHaveClass(/revealed/); // Should NOT be revealed yet
+        await expect(slide0).not.toHaveClass(/revealed/);
 
         // Second Click -> Should Reveal
-        await slide0.locator('.slide-content').click();
-        await page.waitForTimeout(300);
+        await page.locator('.slide-container').click({ position: { x: 300, y: 300 } });
+        await page.waitForTimeout(500);
 
         // Verify "revealed"
         await expect(slide0).toHaveClass(/revealed/);
 
         // 3. Next Slide
-        await slide0.locator('.slide-content').click();
+        await page.locator('.slide-container').click({ position: { x: 300, y: 300 } });
 
         const slide1 = page.locator('#slide-1');
         await expect(slide1).toHaveClass(/active/);

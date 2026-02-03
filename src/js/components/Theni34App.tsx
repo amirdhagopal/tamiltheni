@@ -142,11 +142,13 @@ export default function Theni34App() {
                                 </div>
                             </div>
 
-                            <div className="focus-card">
-                                <div className="word-en" dangerouslySetInnerHTML={{ __html: enText }}></div>
-                                <div className={`word-ta ${revealed ? 'revealed' : ''}`}
-                                    dangerouslySetInnerHTML={{ __html: taText }}
-                                    style={{ visibility: revealed ? 'visible' : 'hidden' }}>
+                            <div className="slide-content">
+                                <div className="focus-card">
+                                    <div className="word-en" dangerouslySetInnerHTML={{ __html: enText }}></div>
+                                    <div className={`word-ta ${revealed ? 'revealed' : ''}`}
+                                        dangerouslySetInnerHTML={{ __html: taText }}
+                                        style={{ visibility: revealed ? 'visible' : 'hidden' }}>
+                                    </div>
                                 </div>
                             </div>
                         </div>

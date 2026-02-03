@@ -22,7 +22,7 @@ const PWAManager = {
         // Try relative sw.js first, then dev-sw.js if we are on localhost
         let swUrl = `${pathPrefix}sw.js`;
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            // Check if we are in dev mode by looking for vite markers? 
+            // Check if we are in dev mode by looking for vite markers?
             // Or just try dev-sw.js if sw.js fails.
             // For now, let's keep it simple and just resolve the path properly.
         }

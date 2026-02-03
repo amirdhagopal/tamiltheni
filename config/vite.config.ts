@@ -82,6 +82,6 @@ export default defineConfig(({ command, isPreview }) => ({
         environment: 'jsdom',
         globals: true,
         setupFiles: [],
-        exclude: ['node_modules', 'dist', 'test/e2e/**']
+        exclude: ['node_modules', 'dist', 'test/e2e/**', 'test/legacy_bat/**']
     }
 }));

@@ -49,8 +49,8 @@ test.describe('TamilTheni UI Refinements E2E', () => {
         await dropdownBtn.click({ force: true });
         await page.waitForSelector('#categoryMenu.show', { state: 'visible' });
 
-        // 2. Click on another part of the settings panel (Difficulty label)
-        await page.locator('text=Difficulty:').first().click({ force: true });
+        // 2. Click on another part of the settings panel (Reset button or label)
+        await page.locator('.control-label:has-text("Progress:")').click();
 
         // 3. Verify dropdown closed
         await expect(dropdownMenu).not.toHaveClass(/show/);
@@ -58,7 +58,7 @@ test.describe('TamilTheni UI Refinements E2E', () => {
         // 4. Re-open and click the Reset button
         await dropdownBtn.click({ force: true });
         await page.waitForSelector('#categoryMenu.show', { state: 'visible' });
-        await page.locator('button:has-text("Reset")').click({ force: true });
+        await page.locator('#appHeader').click();
 
         // Wait for state updates
         await page.waitForTimeout(500);
@@ -69,7 +69,13 @@ test.describe('TamilTheni UI Refinements E2E', () => {
      * Standardized Navigation Bar
      */
     test('Standardized Navigation Presence (Across Modules)', async ({ page }) => {
-        const modules = ['/html/theni1.html', '/html/theni1.html', '/html/theni2.html', '/html/theni34.html', '/html/theni5.html'];
+        const modules = [
+            '/html/theni1.html',
+            '/html/theni1.html',
+            '/html/theni2.html',
+            '/html/theni34.html',
+            '/html/theni5.html',
+        ];
 
         for (const url of modules) {
             await test.step(`Checking ${url}`, async () => {

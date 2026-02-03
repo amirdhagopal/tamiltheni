@@ -108,24 +108,24 @@ The application supports global keyboard shortcuts for improved accessibility an
 
 You can use standard `npm` commands or the provided `Makefile` for convenience.
 
-| Task              | NPM Command       | Make Command   | Description                                          |
-| ----------------- | ----------------- | -------------- | ---------------------------------------------------- |
-| **Install**       | `npm install`     | `make install` | Install dependencies                                 |
-| **Dev Server**    | `npm run dev`     | `make dev`     | Start local Vite development server                  |
-| **Build**         | `npm run build`   | `make build`   | Build production artifacts to `docs/`                |
-| **Test**          | `npm test`        | `make test`    | Run unit and BAT tests with Vitest                   |
-| **Lint**          | `npm run lint`    | `make lint`    | Run ESLint                                           |
-| **Check All**     | `npm run check-all`| `make check`   | Run formatting, linting, tests, and build            |
+| Task           | NPM Command         | Make Command   | Description                               |
+| -------------- | ------------------- | -------------- | ----------------------------------------- |
+| **Install**    | `npm install`       | `make install` | Install dependencies                      |
+| **Dev Server** | `npm run dev`       | `make dev`     | Start local Vite development server       |
+| **Build**      | `npm run build`     | `make build`   | Build production artifacts to `docs/`     |
+| **Test**       | `npm test`          | `make test`    | Run unit and BAT tests with Vitest        |
+| **Lint**       | `npm run lint`      | `make lint`    | Run ESLint                                |
+| **Check All**  | `npm run check-all` | `make check`   | Run formatting, linting, tests, and build |
 
 ### Scripts (Python)
 
 The `scripts/` folder contains Python utility scripts. You can run them via `make`:
 
-| Task                    | Make Command           | Description                                      |
-| ----------------------- | ---------------------- | ------------------------------------------------ |
-| **Download Images**     | `make download-images` | Download missing images for Theni 1/2            |
-| **Check Images**        | `make check-images`    | Verify all required images exist                 |
-| **Fix Images**          | `make fix-images`      | Convert/Validate downloaded images               |
+| Task                | Make Command           | Description                           |
+| ------------------- | ---------------------- | ------------------------------------- |
+| **Download Images** | `make download-images` | Download missing images for Theni 1/2 |
+| **Check Images**    | `make check-images`    | Verify all required images exist      |
+| **Fix Images**      | `make fix-images`      | Convert/Validate downloaded images    |
 
 ### Project Structure (Key Files)
 

@@ -19,7 +19,7 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
     onIndexChange,
     onFilterChange,
     disableProgressUpdate = false,
-    disableShortcuts = false
+    disableShortcuts = false,
 }: UseTheniModuleProps<T>) {
     // Shared State
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -117,7 +117,7 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
     // Navigation Handlers
     const handleNext = useCallback(() => {
         if (currentIndex < filteredWords.length - 1) {
-            setCurrentIndex(c => c + 1);
+            setCurrentIndex((c) => c + 1);
             setRevealed(false);
             document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
         }
@@ -125,7 +125,7 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
 
     const handlePrev = useCallback(() => {
         if (currentIndex > 0) {
-            setCurrentIndex(c => c - 1);
+            setCurrentIndex((c) => c - 1);
             setRevealed(false);
             document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
         }
@@ -143,25 +143,24 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
     }, [filteredWords.length]);
 
-    const handleAction = useCallback((onAdvance?: () => void) => {
-        if (!revealed) {
-            setRevealed(true);
-        } else {
-            handleNext();
-            if (onAdvance) onAdvance();
-        }
-    }, [revealed, handleNext]);
+    const handleAction = useCallback(
+        (onAdvance?: () => void) => {
+            if (!revealed) {
+                setRevealed(true);
+            } else {
+                handleNext();
+                if (onAdvance) onAdvance();
+            }
+        },
+        [revealed, handleNext]
+    );
 
     const toggleCategory = useCallback((c: string) => {
-        setSelectedCategories(prev =>
-            prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]
-        );
+        setSelectedCategories((prev) => (prev.includes(c) ? prev.filter((x) => x !== c) : [...prev, c]));
     }, []);
 
     const toggleAllCategories = useCallback(() => {
-        setSelectedCategories(prev =>
-            prev.length === categories.length ? [] : [...categories]
-        );
+        setSelectedCategories((prev) => (prev.length === categories.length ? [] : [...categories]));
     }, [categories]);
 
     const resetSelection = useCallback(() => {
@@ -177,12 +176,27 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         const handleKey = (e: KeyboardEvent) => {
             if ((e.target as HTMLElement).tagName === 'INPUT') return;
             switch (e.key) {
-                case 'ArrowLeft': handlePrev(); break;
-                case 'ArrowRight': handleAction(); break;
-                case ' ': e.preventDefault(); handleAction(); break;
-                case 'Enter': handleAction(); break;
-                case 'Home': case '[': handleGoFirst(); break;
-                case 'End': case ']': handleGoLast(); break;
+                case 'ArrowLeft':
+                    handlePrev();
+                    break;
+                case 'ArrowRight':
+                    handleAction();
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    handleAction();
+                    break;
+                case 'Enter':
+                    handleAction();
+                    break;
+                case 'Home':
+                case '[':
+                    handleGoFirst();
+                    break;
+                case 'End':
+                case ']':
+                    handleGoLast();
+                    break;
             }
         };
         window.addEventListener('keydown', handleKey);
@@ -220,6 +234,6 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         handleAction,
         toggleCategory,
         toggleAllCategories,
-        resetSelection
+        resetSelection,
     };
 }

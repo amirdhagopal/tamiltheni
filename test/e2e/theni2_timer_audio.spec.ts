@@ -43,7 +43,7 @@ test.describe('Theni 2 Timer and Audio Verification', () => {
         const nextBtn = page.locator('#nextBtn');
         await expect(page.locator('#timerPill')).toBeVisible();
 
-        // We can't easily check the internal state of the Timer module, 
+        // We can't easily check the internal state of the Timer module,
         // but we can ensure it remains visible and doesn't crash on slide change.
         await nextBtn.click();
         await expect(page.locator('#timerPill')).toBeVisible();
@@ -72,7 +72,7 @@ test.describe('Theni 2 Timer and Audio Verification', () => {
         await page.waitForTimeout(2000);
 
         // Check if AudioManager.speak was called
-        const speakLogs = logs.filter(l => l.includes('[AudioManager] Request to speak:'));
+        const speakLogs = logs.filter((l) => l.includes('[AudioManager] Request to speak:'));
         expect(speakLogs.length).toBeGreaterThan(0);
     });
 });

@@ -17,11 +17,15 @@ test.describe('Theni 1 Visibility & Layout', () => {
         // 1. Initially hidden or blurred
         await expect(wordTa).not.toHaveClass(/revealed/);
 
-        // 2. Reveal by clicking the next button (which is in reveal mode)
+        // 2. Reveal by clicking (ensuring we handle potential first click panel close)
         await nextBtn.click({ force: true });
+        await page.waitForTimeout(500);
 
-        // 3. Wait for reveal state to apply
-        await page.waitForTimeout(1000);
+        const isRevealed = await wordTa.evaluate((el) => el.classList.contains('revealed'));
+        if (!isRevealed) {
+            await nextBtn.click({ force: true });
+            await page.waitForTimeout(500);
+        }
 
         const classes = await wordTa.getAttribute('class');
         const isVisible = await wordTa.isVisible();
@@ -32,7 +36,7 @@ test.describe('Theni 1 Visibility & Layout', () => {
         await expect(wordTa).toBeVisible();
 
         // 5. Verification: Bounding Box check
-        // The Tamil word must be within the vertical bounds of the container 
+        // The Tamil word must be within the vertical bounds of the container
         // AND not overlap with the navigation buttons at the bottom.
 
         const containerBox = await container.boundingBox();

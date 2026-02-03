@@ -1,7 +1,7 @@
 import { GeminiService } from '../gemini_service';
 
 export abstract class BaseAgent {
-    constructor(protected systemPrompt: string) { }
+    constructor(protected systemPrompt: string) {}
 
     /**
      * Common method to call GeminiService.
