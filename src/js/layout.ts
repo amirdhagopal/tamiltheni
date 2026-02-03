@@ -33,11 +33,11 @@ export const Layout = {
                 </div>
                 <h1 class="header-title">${title}</h1>
                 <div class="header-right" style="gap: 10px;">
-                    <button class="settings-toggle" id="showKeyboardHelp" title="Keyboard Shortcuts (?)" aria-label="Show Shortcuts">
-                        <span aria-hidden="true">⌨️</span>
-                    </button>
                     <button class="settings-toggle" id="settingsToggle" title="Toggle Settings (C)" aria-label="Toggle Settings" aria-expanded="true" aria-controls="controlPanel">
                         <span aria-hidden="true">⚙️</span>
+                    </button>
+                    <button class="settings-toggle" id="showKeyboardHelp" title="Keyboard Shortcuts (?)" aria-label="Show Shortcuts">
+                        <span aria-hidden="true">⌨️</span>
                     </button>
                 </div>
             </header>
