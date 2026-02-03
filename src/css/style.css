@@ -679,6 +679,10 @@ button.nav-btn {
         font-size: 1rem;
         margin-top: 0;
     }
+
+    .header-title {
+        font-size: 1rem;
+    }
 }
 
 /* --- PWA Update Banner --- */
@@ -770,6 +774,10 @@ button.nav-btn {
 
     .pwa-update-banner.show {
         transform: translateX(0) translateY(0);
+    }
+
+    .header-title {
+        font-size: 0.9rem;
     }
 }
 
