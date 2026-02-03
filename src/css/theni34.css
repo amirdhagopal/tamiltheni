@@ -56,14 +56,16 @@
     /* Hidden by default until revealed */
     opacity: 0;
     transform: translateY(10px);
-    transition: all 0.5s ease;
-    filter: blur(5px);
+    visibility: hidden;
+    /* No transitions here to ensure it's hidden instantly on slide change */
 }
 
 .word-ta.revealed {
     opacity: 1;
     transform: translateY(0);
+    visibility: visible;
     filter: blur(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .slide {

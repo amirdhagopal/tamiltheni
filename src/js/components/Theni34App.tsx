@@ -90,7 +90,7 @@ export default function Theni34App() {
             {filteredWords.length > 0 && currentWord ? (
                 <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation, .control-panel')) handleAction(); }} style={{ cursor: 'pointer' }}>
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                        <div className="slide active" style={{ display: 'flex' }}>
+                        <div className="slide active" key={currentWord.word_en} style={{ display: 'flex' }}>
                             <div className="slide-content">
                                 <div className="slide-header">
                                     <span className="category-badge">{currentWord.category}</span>
