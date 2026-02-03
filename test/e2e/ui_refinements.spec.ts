@@ -53,7 +53,7 @@ test.describe('TamilTheni UI Refinements E2E', () => {
         await page.locator('.control-label:has-text("Progress:")').click();
 
         // 3. Verify dropdown closed
-        await expect(dropdownMenu).not.toHaveClass(/show/);
+        await expect(dropdownMenu).toBeHidden();
 
         // 4. Re-open and click the Reset button
         await dropdownBtn.click({ force: true });
@@ -62,7 +62,7 @@ test.describe('TamilTheni UI Refinements E2E', () => {
 
         // Wait for state updates
         await page.waitForTimeout(500);
-        await expect(dropdownMenu).not.toHaveClass(/show/);
+        await expect(dropdownMenu).toBeHidden();
     });
 
     /**

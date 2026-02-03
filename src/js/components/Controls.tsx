@@ -1,6 +1,6 @@
 import { Fragment } from 'preact';
 import { createPortal } from 'preact/compat';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useState, useRef } from 'preact/hooks';
 
 interface ControlsProps {
     categories: string[];
@@ -44,6 +44,7 @@ interface ControlsProps {
 }
 
 export const Controls = ({
+    // ... props
     categories,
     selectedCategories,
     onToggleCategory,
@@ -70,45 +71,73 @@ export const Controls = ({
     setApiKey
 }: ControlsProps) => {
     const portalTarget = document.getElementById('controlSettings') || document.getElementById('controlContent');
-    if (!portalTarget) return null;
 
-    // --- FR-005.2: Auto-close dropdown on panel interaction ---
+    // Dropdown State
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    // Close dropdown on global click or panel collapse
     useEffect(() => {
         const handleDocumentClick = (e: MouseEvent) => {
+            // If click is NOT inside dropdown menu (which is now in body) AND NOT on button
             const dropdown = document.getElementById('categoryMenu');
-            const btn = document.getElementById('cat-dropdown-btn');
-            if (dropdown?.classList.contains('show')) {
+            const btn = buttonRef.current;
+
+            if (isDropdownOpen && dropdown && btn) {
                 const target = e.target as Node;
-                // If click is NOT inside dropdown AND NOT inside the toggle button
-                if (!dropdown.contains(target) && !btn?.contains(target)) {
-                    dropdown.classList.remove('show');
+                if (!dropdown.contains(target) && !btn.contains(target)) {
+                    setIsDropdownOpen(false);
                 }
             }
         };
 
-        document.addEventListener('click', handleDocumentClick);
+        const handlePanelCollapsed = () => setIsDropdownOpen(false);
 
-        // Also close if the panel itself is collapsed via global interaction
-        const handlePanelCollapsed = () => {
-            document.getElementById('categoryMenu')?.classList.remove('show');
+        const handleScroll = (e: Event) => {
+            const dropdown = document.getElementById('categoryMenu');
+            // If scrolling happens inside the dropdown, do NOT close it
+            if (dropdown && dropdown.contains(e.target as Node)) {
+                return;
+            }
+            // If scrolling happens elsewhere (e.g. main page), close it to prevent detachment
+            if (isDropdownOpen) setIsDropdownOpen(false);
         };
+
+        document.addEventListener('click', handleDocumentClick);
         document.addEventListener('panelCollapsed', handlePanelCollapsed);
+        document.addEventListener('scroll', handleScroll, true); // Capture scroll
 
         return () => {
             document.removeEventListener('click', handleDocumentClick);
             document.removeEventListener('panelCollapsed', handlePanelCollapsed);
+            document.removeEventListener('scroll', handleScroll, true);
         };
-    }, []);
+    }, [isDropdownOpen]);
 
-    const closeDropdown = () => {
-        document.getElementById('categoryMenu')?.classList.remove('show');
+    const toggleDropdown = (e: MouseEvent) => {
+        e.stopPropagation();
+        if (!isDropdownOpen && buttonRef.current) {
+            const rect = buttonRef.current.getBoundingClientRect();
+            setDropdownPos({
+                top: rect.bottom + 5,
+                left: rect.left,
+                width: rect.width
+            });
+        }
+        setIsDropdownOpen(!isDropdownOpen);
     };
+
+    if (!portalTarget) return null;
+
+    const closeDropdown = () => setIsDropdownOpen(false);
 
     return createPortal(
         <Fragment>
-            {/* Range Selection (Theni 5) */}
+            {/* ... Range & Level ... */}
             {(rangeStart !== undefined && rangeEnd !== undefined && onApplyRange) && (
                 <div className="control-row">
+                    {/* ... copied Range ... */}
                     <span className="control-label">Range:</span>
                     <input type="number" id="startRange" value={rangeStart} min="1" max="250" title="Starting word number"
                         onChange={(e) => {
@@ -124,7 +153,11 @@ export const Controls = ({
                         }}
                         style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }} />
                     <button className="action-button" onClick={() => {
-                        closeDropdown();
+                        // closeDropdown via logic if needed, or keeping explicit logic? 
+                        // The original code passed closeDropdown() which closed via DOM ID.
+                        // We should update reset() calls to also setIsDropdownOpen(false)?
+                        // Actually the only consumers of closeDropdown() were reset/shuffle buttons.
+
                         const s = parseInt((document.getElementById('startRange') as HTMLInputElement).value);
                         const e = parseInt((document.getElementById('endRange') as HTMLInputElement).value);
                         onApplyRange(s, e);
@@ -132,7 +165,6 @@ export const Controls = ({
                 </div>
             )}
 
-            {/* Level Selection (Theni 3/4) */}
             {level !== undefined && setLevel && (
                 <div className="control-row">
                     <span className="control-label">Level:</span>
@@ -148,8 +180,11 @@ export const Controls = ({
                 <div className="control-row">
                     <span className="control-label">Categories:</span>
                     <div className="category-dropdown">
-                        <button className="dropdown-button" id="cat-dropdown-btn"
-                            onClick={(e) => { e.stopPropagation(); document.getElementById('categoryMenu')?.classList.toggle('show'); }}
+                        <button
+                            className="dropdown-button"
+                            id="cat-dropdown-btn"
+                            ref={buttonRef}
+                            onClick={toggleDropdown}
                             title="Select word categories to display">
                             <span id="selectedCatText">
                                 {selectedCategories.length === categories.length ? 'All Categories' :
@@ -158,23 +193,41 @@ export const Controls = ({
                             </span>
                             <span>▼</span>
                         </button>
-                        <div className="dropdown-menu" id="categoryMenu" onClick={(e) => e.stopPropagation()}>
-                            <div className="dropdown-item header" id="select-all-cat-row" onClick={onToggleAllCategories}>
-                                <input type="checkbox" id="selectAllCats" checked={selectedCategories.length === categories.length} readOnly />
-                                <span>Select All / None</span>
-                            </div>
-                            <div id="categoryList">
-                                {categories.map((cat: string) => {
-                                    const isSelected = selectedCategories.includes(cat);
-                                    return (
-                                        <div className="dropdown-item" key={cat} onClick={() => onToggleCategory(cat)}>
-                                            <input type="checkbox" checked={isSelected} readOnly />
-                                            <span>{cat}</span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
+
+                        {/* Render Dropdown via Portal to Body */}
+                        {isDropdownOpen && createPortal(
+                            <div
+                                className="dropdown-menu show"
+                                id="categoryMenu"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                    display: 'block',
+                                    position: 'fixed',
+                                    top: dropdownPos.top,
+                                    left: dropdownPos.left,
+                                    width: dropdownPos.width,
+                                    maxHeight: '60vh', // Prevent running off screen
+                                    zIndex: 9999, // Ensure on top of everything
+                                }}
+                            >
+                                <div className="dropdown-item header" id="select-all-cat-row" onClick={() => { onToggleAllCategories(); }}>
+                                    <input type="checkbox" id="selectAllCats" checked={selectedCategories.length === categories.length} readOnly />
+                                    <span>Select All / None</span>
+                                </div>
+                                <div id="categoryList">
+                                    {categories.map((cat: string) => {
+                                        const isSelected = selectedCategories.includes(cat);
+                                        return (
+                                            <div className="dropdown-item" key={cat} onClick={() => onToggleCategory(cat)}>
+                                                <input type="checkbox" checked={isSelected} readOnly />
+                                                <span>{cat}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>,
+                            document.body
+                        )}
                     </div>
                 </div>
             )}

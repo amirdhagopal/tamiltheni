@@ -625,6 +625,11 @@ button.nav-btn {
     .circular-timer .timer-display {
         font-size: 2rem;
     }
+
+    .circular-timer .timer-btn {
+        font-size: 2rem;
+        margin-top: 6px;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -641,6 +646,11 @@ button.nav-btn {
 
     .circular-timer .timer-display {
         font-size: 1.3rem;
+    }
+
+    .circular-timer .timer-btn {
+        font-size: 1.5rem;
+        margin-top: 4px;
     }
 }
 
@@ -663,6 +673,11 @@ button.nav-btn {
 
     .circular-timer .timer-display {
         font-size: 0.9rem;
+    }
+
+    .circular-timer .timer-btn {
+        font-size: 1rem;
+        margin-top: 0;
     }
 }
 
