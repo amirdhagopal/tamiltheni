@@ -3,16 +3,11 @@
 .slide-container {
     width: 900px;
     max-width: 95vw;
-    height: 600px;
-    background: transparent;
-    /* Main container transparent to show the "card" feel of rows */
-    border-radius: 32px;
     position: relative;
     display: flex;
     flex-direction: column;
     padding: 40px 60px 100px;
     box-sizing: border-box;
-    margin: auto;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -22,10 +17,15 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    flex-grow: 1;
+    flex: 1;
+    /* Standard flex flow */
     justify-content: center;
     align-items: center;
     width: 100%;
+    overflow-y: auto;
+    /* Enable scroll */
+    padding-bottom: 30px;
+    /* Internal breathing room */
 }
 
 .word-row-card {
@@ -84,15 +84,7 @@
 }
 
 /* Nav refinements to match image icons/colors */
-.navigation {
-    position: relative;
-    bottom: auto;
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
+/* Navigation handled by style.css */
 
 
 .pill-group .pill-button.active {

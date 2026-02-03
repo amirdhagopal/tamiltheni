@@ -198,36 +198,8 @@ export default function Theni1App() {
                     }
                 }} style={{ cursor: 'pointer' }}>
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                        <div id={`slide-${currentIndex}`} className={`slide active ${revealed ? 'revealed' : ''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '60px' }}>
-                            <div className="image-container">
-                                <img
-                                    src={Utils.getImagePath(currentWord?.image_word || '')}
-                                    alt={currentWord?.word_en || ''}
-                                    className="slide-image"
-                                    onError={(e) => { (e.target as HTMLImageElement).src = `https://placehold.co/400x300?text=${encodeURIComponent(currentWord?.image_word || 'Image Missing')}`; }}
-                                />
-                            </div>
-                            <div className="word-row">
-                                <div className="word-en" dangerouslySetInnerHTML={{ __html: currentWord.word_en }}></div>
-                                {voiceEnabled && (
-                                    <Fragment>
-                                        <button
-                                            className={`mic-button-inline ${isRecording ? 'recording' : ''}`}
-                                            onClick={() => toggleRecording(handleVoiceResult)}
-                                            title={isRecording ? "Stop Listening" : "Start Voice Validation"}
-                                            style={{ display: 'inline-flex', marginLeft: '10px' }}
-                                        >
-                                            {isRecording ? '⏹️' : '🎤'}
-                                        </button>
-                                        <span className={`voice-feedback-inline ${feedback.type}`}>{feedback.text}</span>
-                                    </Fragment>
-                                )}
-                            </div>
-
-                            <div className={`word-ta ${revealed ? 'revealed' : ''}`}>
-                                {currentWord.word_ta}
-                            </div>
-
+                        <div id={`slide-${currentIndex}`} className={`slide active ${revealed ? 'revealed' : ''}`}>
+                            {/* Card Header - Category and Difficulty Badges */}
                             <div className="card-footer">
                                 <div className="footer-left">
                                     <span className="category-badge">{currentWord.category}</span>
@@ -235,15 +207,49 @@ export default function Theni1App() {
                                     <span className="difficulty-badge">{currentWord.difficulty}</span>
                                 </div>
                             </div>
+
+                            <div className="slide-content">
+                                <div className="image-container">
+                                    <img
+                                        src={Utils.getImagePath(currentWord?.image_word || '')}
+                                        alt={currentWord?.word_en || ''}
+                                        className="slide-image"
+                                        onError={(e) => { (e.target as HTMLImageElement).src = `https://placehold.co/400x300?text=${encodeURIComponent(currentWord?.image_word || 'Image Missing')}`; }}
+                                    />
+                                </div>
+                                <div className="word-row">
+                                    <div className="word-en" dangerouslySetInnerHTML={{ __html: currentWord.word_en }}></div>
+                                    {voiceEnabled && (
+                                        <Fragment>
+                                            <button
+                                                className={`mic-button-inline ${isRecording ? 'recording' : ''}`}
+                                                onClick={() => toggleRecording(handleVoiceResult)}
+                                                title={isRecording ? "Stop Listening" : "Start Voice Validation"}
+                                                style={{ display: 'inline-flex', marginLeft: '10px' }}
+                                            >
+                                                {isRecording ? '⏹️' : '🎤'}
+                                            </button>
+                                            <span className={`voice-feedback-inline ${feedback.type}`}>{feedback.text}</span>
+                                        </Fragment>
+                                    )}
+                                </div>
+
+                                <div
+                                    id="wordTa"
+                                    className={`word-ta ${revealed ? 'revealed' : ''}`.trim()}
+                                >
+                                    {currentWord.word_ta}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="navigation" onClick={e => e.stopPropagation()}>
-                        <button id="firstBtn" className="nav-btn" onClick={handleGoFirst} disabled={currentIndex === 0} title="First Slide (Home)">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
+                    <div className="navigation">
+                        <button id="firstBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoFirst(); }} disabled={currentIndex === 0} title="First Slide (Home)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
                         </button>
-                        <button id="prevBtn" className="nav-btn" onClick={handlePrev} disabled={currentIndex === 0} title="Previous Slide (←)">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        <button id="prevBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handlePrev(); }} disabled={currentIndex === 0} title="Previous Slide (←)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                         </button>
 
                         <span className="slide-counter" id="counter">
@@ -252,19 +258,18 @@ export default function Theni1App() {
 
                         <button id="nextBtn"
                             className={`nav-btn ${!revealed ? 'reveal-mode' : ''}`}
-                            onClick={handleAction}
+                            onClick={e => { e.stopPropagation(); handleAction(); }}
                             disabled={currentIndex === filteredWords.length - 1 && revealed}
                             title={!revealed ? "Reveal (Space/Enter)" : "Next Slide (→)"}
                         >
                             {!revealed ? (
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                             ) : (
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             )}
                         </button>
-
-                        <button id="lastBtn" className="nav-btn" onClick={handleGoLast} disabled={currentIndex === filteredWords.length - 1} title="Last Slide (End)">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
+                        <button id="lastBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoLast(); }} disabled={currentIndex === filteredWords.length - 1} title="Last Slide (End)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
                         </button>
                     </div>
                 </div>

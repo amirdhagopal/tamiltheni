@@ -60,7 +60,10 @@ export default function Theni5App() {
         setCurrentPage(0);
     }, [shuffle, rangeStart, rangeEnd]);
 
-    // Manual progress update for paginated view
+    // - [x] Standardize SVG stroke-width for primary icons <!-- id: 23 -->
+    // - [/] UI Refinements (Feedback V2) <!-- id: 24 -->
+    //     - [ ] Remove Navigation Background Bar (Glass Island) <!-- id: 25 -->
+    //     - [ ] Add bottom padding to slide content to prevent button overlap <!-- id: 26 -->
     useEffect(() => {
         const progress = totalPages > 0 ? ((currentPage + 1) / totalPages) * 100 : 0;
         const bar = document.getElementById('progressBar');
@@ -226,19 +229,19 @@ export default function Theni5App() {
 
                 <div className="navigation">
                     <button id="firstBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoFirst(); }} disabled={currentPage === 0} title="First Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
                     </button>
                     <button id="prevBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handlePrev(); }} disabled={currentPage === 0} title="Previous Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                     </button>
 
                     <span className="slide-counter" id="counter">{totalPages > 0 ? currentPage + 1 : 0} / {totalPages}</span>
 
                     <button id="nextBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleNext(); }} disabled={currentPage >= totalPages - 1 || totalPages === 0} title="Next Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </button>
                     <button id="lastBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoLast(); }} disabled={currentPage >= totalPages - 1 || totalPages === 0} title="Last Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
                     </button>
                 </div>
             </div>

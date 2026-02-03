@@ -9,55 +9,42 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    overflow-y: auto;
+    /* Enable scroll */
+    padding-bottom: 120px;
+    /* Navigation island safety */
+}
+
+/* Focus Card for Sentences */
+.focus-card {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 30px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
 }
 
 .word-en {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    padding: 0 40px;
-    line-height: 1.4;
+    font-size: 2.2rem;
     color: #2c3e50;
+    line-height: 1.5;
+    margin-bottom: 30px;
     font-weight: 500;
 }
 
-.word-en b {
-    color: var(--primary);
-    font-weight: 700;
-}
-
-.slide-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    margin: 0;
-    padding: 30px;
-    position: relative;
-}
-
-.slide-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
 .word-ta {
-    font-size: 2.2em;
-    margin-top: 10px;
+    font-size: 2.2rem;
     color: #e74c3c;
-    /* Hidden by default until revealed */
-    opacity: 0;
-    transform: translateY(10px);
-    visibility: hidden;
-    /* No transitions here to ensure it's hidden instantly on slide change */
+    line-height: 1.5;
+    font-weight: 600;
 }
 
 .word-ta.revealed {
@@ -90,14 +77,14 @@
 /* Reusing card-footer from theni1 style but adapting */
 /* Header badges inside the card */
 .slide-header {
+    position: absolute;
+    top: 25px;
+    left: 40px;
+    right: 40px;
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    margin-bottom: 20px;
-    padding-bottom: 0;
+    z-index: 10;
 }
 
 /* Ensure badges look right */

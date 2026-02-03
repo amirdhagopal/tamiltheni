@@ -5,24 +5,29 @@
     --bg: #f5f7fa;
     --card-bg: #ffffff;
     --text: #2d3436;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.05);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --font-main: 'Outfit', 'Segoe UI', sans-serif;
+    --font-main: 'Outfit',
+        'Segoe UI',
+        sans-serif;
 }
 
 body {
     font-family: var(--font-main);
     margin: 0;
-    padding: 60px 0 0 0;
-    /* Clear header */
+    /* Padding for fixed header */
+    padding-top: 60px;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* Vertically center the slide container */
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     box-sizing: border-box;
-    /* Include padding in height */
     overflow: hidden;
     color: var(--text);
 }
@@ -270,53 +275,82 @@ body {
 }
 
 /* --- Navigation & Buttons --- */
-.nav-btn,
-button.nav-btn {
-    background: #212529;
-    /* Dark Charcoal */
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+.navigation {
+    position: absolute;
+    bottom: 30px;
+    width: auto;
+    max-width: 90%;
+    /* Prevent overflow on small screens */
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.nav-btn:hover:not(:disabled) {
-    background: #000;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.nav-btn:active:not(:disabled) {
-    transform: translateY(1px) scale(0.95);
-}
-
-.nav-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    background: #bdbdbd;
+    align-items: center;
+    gap: 16px;
+    /* Increased gap for easier tapping */
+    z-index: 20;
+    padding: 10px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
     box-shadow: none;
 }
 
+.nav-btn,
+button.nav-btn {
+    background: white;
+    color: var(--text);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    /* Thicker, more visible border */
+    padding: 0;
+    width: 48px;
+    /* Slightly larger for kids */
+    height: 48px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    /* Stronger shadow */
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.nav-btn:active:not(:disabled) {
+    transform: translateY(1px) scale(0.9);
+}
+
+.nav-btn:disabled {
+    opacity: 0.15;
+    /* Much more faded to distinguish from active */
+    cursor: not-allowed;
+    background: #f0f0f0;
+    /* Grey background for disabled */
+    border-color: #e0e0e0;
+    box-shadow: none;
+    color: #999;
+}
+
 .nav-btn.reveal-mode {
-    background-color: #4c6ef5;
-    /* Primary Blue */
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     color: white;
-    box-shadow: 0 4px 12px rgba(76, 110, 245, 0.3);
+    border: none;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .nav-btn.reveal-mode:hover:not(:disabled) {
-    background-color: #3b5bdb;
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(76, 110, 245, 0.4);
 }
 
 .nav-btn svg {
@@ -339,15 +373,7 @@ button.nav-btn {
     transition: width 0.3s ease;
 }
 
-.navigation {
-    position: absolute;
-    bottom: 30px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    z-index: 20;
-}
+/* Standardize Navigation Island Layout (Duplicate Removal) */
 
 .slide-counter {
     font-weight: 600;
@@ -422,18 +448,24 @@ button.nav-btn {
 .slide-container {
     width: 900px;
     max-width: 95vw;
-    /* Production Standard */
-    height: 600px;
+    /* Production Standard V4 */
+    height: 80vh;
+    min-height: 550px;
+    max-height: 800px;
     background: var(--card-bg);
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     position: relative;
-    margin: auto;
-    /* Vertically and Horizontally Center in Flex body */
+    margin: 20px 0;
+    /* Vertical margin only, horizontal handled by body flex */
+    box-sizing: border-box;
+    /* Crucial: padding included in height */
+    overflow: hidden;
+    /* Prevent content bleeding into nav zone */
 
     display: flex;
     flex-direction: column;
-    padding-bottom: 30px;
+    padding-bottom: 120px;
 }
 
 /* --- Badges --- */
@@ -442,51 +474,52 @@ button.nav-btn {
 .sno-badge,
 .difficulty-badge {
     position: absolute;
-    padding: 8px 16px;
+    padding: 6px 16px;
     border-radius: 20px;
     font-weight: 600;
     z-index: 5;
+    font-size: 0.85em;
+    letter-spacing: 0.02em;
+    border: 1px solid transparent;
 }
 
 .category-badge {
-    top: 30px;
-    left: 30px;
-    background-color: #e3f2fd;
+    top: 25px;
+    left: 40px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
     color: #1565c0;
-    font-size: 0.9em;
+    border-color: rgba(21, 101, 192, 0.1);
 }
 
 .category-badge-ta {
-    top: 75px;
-    left: 30px;
-    background-color: #ffebee;
+    top: 65px;
+    left: 40px;
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
     color: #c62828;
-    font-size: 0.8em;
+    border-color: rgba(198, 40, 40, 0.1);
 }
 
 .sno-badge {
-    top: 30px;
-    right: 30px;
-    background-color: #eeeeee;
-    color: #616161;
-    padding: 8px 12px;
+    top: 25px;
+    right: 40px;
+    background: white;
+    color: #757575;
     border-radius: 50%;
-    font-size: 0.9em;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .difficulty-badge {
-    top: 75px;
-    right: 30px;
-    background-color: #fff3e0;
+    top: 65px;
+    right: 40px;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
     color: #ef6c00;
-    padding: 6px 12px;
-    border-radius: 12px;
-    font-size: 0.8em;
+    border-color: rgba(239, 108, 0, 0.1);
 }
 
 /* --- Circular Timer (Shared) --- */

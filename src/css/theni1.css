@@ -7,13 +7,11 @@
     max-width: 95vw !important;
     /* Safety for smaller screens */
     /* Keep wide layout */
-    height: 600px !important;
     background: var(--card-bg);
     border-radius: 20px;
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
-    margin: auto;
     display: flex;
     flex-direction: column;
 }
@@ -24,21 +22,25 @@
     /* Allow flexible height */
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    /* Enable scroll if content tall */
+    /* Removed padding-bottom: 120px to avoid double padding with .slide-container */
 }
 
 .slide {
     display: none;
     width: 100%;
-    height: 100%;
+    flex: 1;
+    /* MUST fill container for vertical centering */
+    min-height: 100%;
     flex-direction: column;
-    justify-content: center;
-    /* Center content vertically */
+    justify-content: flex-start;
+    /* Flow from top */
     align-items: center;
     animation: fadeIn 0.5s ease;
     position: relative;
-    padding: 20px 30px;
-    padding-bottom: 0px;
-    /* Nav is separate now or at bottom */
+    padding: 10px 30px;
+    /* Reduced top padding */
     box-sizing: border-box;
 }
 
@@ -58,15 +60,14 @@
     }
 }
 
-/* Image Container - Adjusted to fit wide card without pushing content off */
 .image-container {
     width: 100%;
     max-width: 450px;
-    height: 300px;
-    margin: 50px auto 20px;
-    /* Top margin accounts for badges */
+    height: min(220px, 35vh);
+    /* Responsive height to save vertical space */
+    margin: 10px auto;
+    /* Reduced margin */
     border-radius: 12px;
-    /* overflow: hidden; Removed to allow shadow/contain */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,7 +93,8 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    /* Tightened */
 }
 
 .word-en {
@@ -104,8 +106,6 @@
 }
 
 /* Tamil Word */
-/* Tamil Word */
-/* Tamil Word */
 .word-ta {
     font-size: 2.5em;
     color: #d32f2f;
@@ -115,29 +115,48 @@
     transform: translateY(10px);
     filter: blur(5px);
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    /* Base state is hidden to prevent flash on load */
+    transition: opacity 0s, visibility 0s;
 }
 
-/* Updated Selector: .revealed applies directly to element */
-.word-ta.revealed {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    filter: blur(0);
-    transition: all 0.3s ease;
-    /* Only animate when revealing */
+.slide.active .word-ta {
+    /* Inherits hidden state from base class */
 }
 
-/* Card Footer - Category and Difficulty Badges */
+.slide.active .word-ta.revealed {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    filter: blur(0) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Card Header - Category and Difficulty Badges */
 .card-footer {
-    position: absolute;
-    top: 25px;
-    left: 40px;
+    width: 100%;
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     z-index: 10;
+    margin-bottom: 10px;
+    /* Reduced space before content */
+    flex-shrink: 0;
+}
+
+.slide-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center content vertically */
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    /* Reduced gap */
+    padding-bottom: 60px;
+    /* Increased padding-bottom to push content UPWARDS and stay clear of nav island */
 }
 
 .footer-left {
@@ -190,16 +209,7 @@
 }
 
 /* Standardize with layout.ts provided classes if needed, else let style.css handle it */
-.navigation {
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    padding: 10px 0 30px 0;
-    margin-top: auto;
-}
+/* Navigation handled by style.css */
 
 /* Counter */
 /* Inline Mic Styles */
