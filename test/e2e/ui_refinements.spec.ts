@@ -5,7 +5,8 @@ test.describe('TamilTheni UI Refinements E2E', () => {
 
     test.beforeEach(({ page }) => {
         page.on('console', (msg) => {
-            if (msg.type() === 'error') console.log(`[Browser Error]: ${msg.text()}`);
+            if (msg.text().includes('ServiceWorker') || msg.text().includes('MIME type')) return;
+            console.log(`[Browser ${msg.type().toUpperCase()}]: ${msg.text()}`);
         });
     });
 
@@ -20,8 +21,8 @@ test.describe('TamilTheni UI Refinements E2E', () => {
         // 1. Panel starts open
         await expect(panel).toHaveClass(/open/);
 
-        // 2. Click on the slide card area (bottom center)
-        await page.mouse.click(640, 700);
+        // 2. Click on the slide card area (bottom center) - (X, 780) is definitely below 80vh panel
+        await page.mouse.click(640, 780);
         await expect(panel).not.toHaveClass(/open/);
 
         // 3. Toggle back open
@@ -49,7 +50,6 @@ test.describe('TamilTheni UI Refinements E2E', () => {
         await page.waitForSelector('#categoryMenu.show', { state: 'visible' });
 
         // 2. Click on another part of the settings panel (Difficulty label)
-        // Using a very specific coordinate inside the panel but outside the dropdown
         await page.locator('text=Difficulty:').first().click({ force: true });
 
         // 3. Verify dropdown closed
@@ -59,6 +59,9 @@ test.describe('TamilTheni UI Refinements E2E', () => {
         await dropdownBtn.click({ force: true });
         await page.waitForSelector('#categoryMenu.show', { state: 'visible' });
         await page.locator('button:has-text("Reset")').click({ force: true });
+
+        // Wait for state updates
+        await page.waitForTimeout(500);
         await expect(dropdownMenu).not.toHaveClass(/show/);
     });
 
@@ -128,7 +131,9 @@ test.describe('TamilTheni UI Refinements E2E', () => {
         await expect(page.locator('#controlPanel')).not.toHaveClass(/open/);
 
         // 2. Click to reveal
-        await container.click({ position: { x: 300, y: 200 }, force: true });
+        await container.click({ position: { x: 450, y: 300 }, force: true });
+        await page.waitForTimeout(500);
+
         // Find the active slide's word-ta
         const wordTa = page.locator('.slide.active .word-ta');
         await expect(wordTa).toHaveClass(/revealed/);

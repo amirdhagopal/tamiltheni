@@ -47,6 +47,7 @@ export default function Theni34App() {
     }, [currentIndex, filteredWords.length, baseHandleNext]);
 
     const handleAction = useCallback(() => {
+        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
         if (!revealed) {
             setRevealed(true);
             if (currentIndex === filteredWords.length - 1) {
@@ -87,7 +88,7 @@ export default function Theni34App() {
             </div>
 
             {filteredWords.length > 0 && currentWord ? (
-                <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation')) handleAction(); }} style={{ cursor: 'pointer' }}>
+                <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation, .control-panel')) handleAction(); }} style={{ cursor: 'pointer' }}>
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
                         <div className="slide active" style={{ display: 'flex' }}>
                             <div className="slide-content">
@@ -98,7 +99,9 @@ export default function Theni34App() {
                                 </div>
                                 <div className="slide-body">
                                     <div className="word-en" dangerouslySetInnerHTML={{ __html: enText }}></div>
-                                    <div className={`word-ta ${revealed ? 'revealed' : ''}`} dangerouslySetInnerHTML={{ __html: taText }}>
+                                    <div className={`word-ta ${revealed ? 'revealed' : ''}`}
+                                        dangerouslySetInnerHTML={{ __html: taText }}
+                                        style={{ visibility: revealed ? 'visible' : 'hidden' }}>
                                     </div>
                                 </div>
                             </div>

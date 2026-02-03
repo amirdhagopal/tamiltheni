@@ -100,6 +100,10 @@ export const Controls = ({
         };
     }, []);
 
+    const closeDropdown = () => {
+        document.getElementById('categoryMenu')?.classList.remove('show');
+    };
+
     return createPortal(
         <Fragment>
             {/* Range Selection (Theni 5) */}
@@ -120,6 +124,7 @@ export const Controls = ({
                         }}
                         style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }} />
                     <button className="action-button" onClick={() => {
+                        closeDropdown();
                         const s = parseInt((document.getElementById('startRange') as HTMLInputElement).value);
                         const e = parseInt((document.getElementById('endRange') as HTMLInputElement).value);
                         onApplyRange(s, e);
@@ -191,12 +196,12 @@ export const Controls = ({
                 <span className="control-label">Actions:</span>
                 <div className="pill-group">
                     {setShuffle && (
-                        <button className={`action-button ${shuffle ? 'active' : ''}`} onClick={() => setShuffle && setShuffle(!shuffle)}>
+                        <button className={`action-button ${shuffle ? 'active' : ''}`} onClick={() => { closeDropdown(); setShuffle && setShuffle(!shuffle); }}>
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style={{ marginRight: '4px' }}><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
                             Shuffle
                         </button>
                     )}
-                    <button className="action-button" onClick={reset}>
+                    <button className="action-button" onClick={() => { closeDropdown(); reset(); }}>
                         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style={{ marginRight: '4px' }}><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
                         Reset
                     </button>

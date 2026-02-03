@@ -1,8 +1,6 @@
 /* Theni 3 & 4 Specific Overrides */
 /* Ensure height is passed down for centering */
 .slide-container {
-    margin: 20px auto;
-    /* Center horizontally */
     position: relative;
     /* allow scroll if content overflows card height */
 }

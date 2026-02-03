@@ -10,7 +10,7 @@ interface UseTheniModuleProps<T> {
     onFilterChange?: () => void;
 }
 
-export function useTheniModule<T extends { difficulty: string; category: string; category_ta: string }>({
+export function useTheniModule<T extends { difficulty?: string; category?: string; category_ta?: string } | any>({
     allWords,
     initialTimerDuration = 10,
     filterFn,
@@ -30,7 +30,11 @@ export function useTheniModule<T extends { difficulty: string; category: string;
     // Derived State: Categories
     const categories = useMemo(() => {
         const cats = new Set<string>();
-        allWords.forEach(w => cats.add(`${w.category} - ${w.category_ta}`));
+        allWords.forEach((w: any) => {
+            if (w.category && w.category_ta) {
+                cats.add(`${w.category} - ${w.category_ta}`);
+            }
+        });
         return Array.from(cats);
     }, [allWords]);
 
@@ -48,9 +52,12 @@ export function useTheniModule<T extends { difficulty: string; category: string;
         if (filterFn) {
             result = filterFn(allWords, { selectedCategories, difficulty });
         } else {
-            result = allWords.filter(w => {
+            result = allWords.filter((w: any) => {
+                // If it doesn't have category/difficulty, include it (it's likely Theni 5 or similar handled externally)
+                if (!w.category || !w.difficulty) return true;
+
                 const catKey = `${w.category} - ${w.category_ta}`;
-                const matchesCat = selectedCategories.length === 0 || selectedCategories.includes(catKey);
+                const matchesCat = selectedCategories.length > 0 && selectedCategories.includes(catKey);
                 const matchesDiff = difficulty === 'all' || w.difficulty === difficulty;
                 return matchesCat && matchesDiff;
             });
@@ -102,6 +109,7 @@ export function useTheniModule<T extends { difficulty: string; category: string;
         if (currentIndex < filteredWords.length - 1) {
             setCurrentIndex(c => c + 1);
             setRevealed(false);
+            document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
         }
     }, [currentIndex, filteredWords.length]);
 
@@ -109,17 +117,20 @@ export function useTheniModule<T extends { difficulty: string; category: string;
         if (currentIndex > 0) {
             setCurrentIndex(c => c - 1);
             setRevealed(false);
+            document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
         }
     }, [currentIndex]);
 
     const handleGoFirst = useCallback(() => {
         setCurrentIndex(0);
         setRevealed(false);
+        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
     }, []);
 
     const handleGoLast = useCallback(() => {
         setCurrentIndex(Math.max(0, filteredWords.length - 1));
         setRevealed(false);
+        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
     }, [filteredWords.length]);
 
     const handleAction = useCallback((onAdvance?: () => void) => {

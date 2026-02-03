@@ -145,9 +145,16 @@ export default function Theni2App() {
     }, [currentIndex, filteredWords.length, baseHandleNext]);
 
     const handleAction = useCallback(() => {
-        if (!revealed) setRevealed(true);
-        else handleNext();
-    }, [revealed, setRevealed, handleNext]);
+        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+        if (!revealed) {
+            setRevealed(true);
+            if (currentIndex === filteredWords.length - 1) {
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            }
+        } else {
+            handleNext();
+        }
+    }, [revealed, setRevealed, handleNext, currentIndex, filteredWords.length]);
 
     // Dual-word Audio Playback
     useEffect(() => {
@@ -216,7 +223,11 @@ export default function Theni2App() {
                     </div>
                 </div>
 
-                <div className="dual-view-container" id="slides-wrapper" onClick={handleAction} style={{ cursor: 'pointer' }}>
+                <div className="dual-view-container" id="slides-wrapper" onClick={(e) => {
+                    if (!(e.target as HTMLElement).closest('.navigation, .control-panel')) {
+                        handleAction();
+                    }
+                }} style={{ cursor: 'pointer' }}>
                     <Card word={currentWord} side={1} show={revealed} />
                     <Card word={partnerWord} side={2} show={revealed} />
                 </div>

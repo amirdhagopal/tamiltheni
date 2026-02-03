@@ -51,6 +51,7 @@ export default function Theni1App() {
     // Custom Handle Action to include Confetti and Next Logic
     // Custom Handle Action to include Confetti and Next Logic
     const handleAction = useCallback(() => {
+        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
         if (!revealed) {
             setRevealed(true);
             if (currentIndex === filteredWords.length - 1) {
@@ -88,9 +89,25 @@ export default function Theni1App() {
     // Audio Playback
     useEffect(() => {
         if (audioEnabled && currentWord) {
-            const t = setTimeout(() => {
+            const speakWord = () => {
                 if (audioEnabled && currentWord) AudioManager.speak(currentWord.word_en, 'en-US');
-            }, 300);
+            };
+
+            const t = setTimeout(speakWord, 300);
+
+            // Special handling for first slide: Ensure audio plays if allowed
+            if (currentIndex === 0) {
+                const autoSpeak = () => {
+                    speakWord();
+                    document.removeEventListener('click', autoSpeak);
+                };
+                document.addEventListener('click', autoSpeak);
+                return () => {
+                    clearTimeout(t);
+                    document.removeEventListener('click', autoSpeak);
+                };
+            }
+
             return () => clearTimeout(t);
         }
     }, [currentIndex, audioEnabled, currentWord]);
@@ -125,7 +142,7 @@ export default function Theni1App() {
             {filteredWords.length > 0 && currentWord ? (
                 <div className="slide-container" onClick={(e) => {
                     // Only trigger if click is on the slide itself, not interactive elements
-                    if (!(e.target as HTMLElement).closest('.navigation, .mic-button-inline, .controls-panel')) {
+                    if (!(e.target as HTMLElement).closest('.navigation, .mic-button-inline, .control-panel')) {
                         handleAction();
                     }
                 }} style={{ cursor: 'pointer' }}>

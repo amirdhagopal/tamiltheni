@@ -14,6 +14,11 @@ export default function Theni5App() {
     const [rangeStart, setRangeStart] = useState(1);
     const [rangeEnd, setRangeEnd] = useState(250);
 
+    // 1. Filter first (Strict range adherence)
+    const filteredWords = useMemo(() => {
+        return allWords.filter(w => w.s >= rangeStart && w.s <= rangeEnd);
+    }, [allWords, rangeStart, rangeEnd]);
+
     // Module Hook
     const {
         shuffle,
@@ -28,14 +33,9 @@ export default function Theni5App() {
         handleGoLast,
         resetSelection
     } = useTheniModule({
-        allWords: [], // We'll manage processing locally for Theni5's range/pagination
+        allWords: filteredWords, // Pass filtered list to hook
         initialTimerDuration: 60
     });
-
-    // 1. Filter first (Strict range adherence)
-    const filteredWords = useMemo(() => {
-        return allWords.filter(w => w.s >= rangeStart && w.s <= rangeEnd);
-    }, [allWords, rangeStart, rangeEnd]);
 
     // 2. Shuffle second
     const processedWords = useMemo(() => {
@@ -57,8 +57,11 @@ export default function Theni5App() {
         return processedWords.slice(start, start + WORDS_PER_PAGE);
     }, [currentPage, processedWords]);
 
-    // Reset page on scope changes - Note: useTheniModule uses 0-based for currentPage
-    useEffect(() => setCurrentPage(0), [shuffle, rangeStart, rangeEnd]);
+    // Reset page on scope changes
+    useEffect(() => {
+        setCurrentPage(0);
+        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+    }, [shuffle, rangeStart, rangeEnd]);
 
     const handleApplyRange = useCallback((s: number, e: number) => {
         setRangeStart(s);
@@ -110,11 +113,16 @@ export default function Theni5App() {
                 <div id="progressBar" style={{ width: '0%', height: '100%', background: 'var(--primary-color, #667eea)', transition: 'width 0.3s ease' }}></div>
             </div>
 
-            <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation')) handleNext(); }} style={{ cursor: 'pointer' }}>
+            <div className="slide-container" onClick={(e) => {
+                if (!(e.target as HTMLElement).closest('.navigation, .control-panel')) {
+                    document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+                    handleNext();
+                }
+            }} style={{ cursor: 'pointer' }}>
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
                         currentWords.map((wordItem: Theni5Word) => (
-                            <div className="word-row-card" key={wordItem.s}>
+                            <div className="word-row-card" key={wordItem.s} onClick={e => e.stopPropagation()}>
                                 <div className="word-text-ta">{wordItem.w}</div>
                             </div>
                         ))

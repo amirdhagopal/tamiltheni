@@ -104,14 +104,27 @@ export const Layout = {
             if (panel && panel.classList.contains('open')) {
                 // And click is NOT inside panel AND NOT inside header
                 if (!panel.contains(target) && !header?.contains(target)) {
-                    // Close logic directly
-                    panel.classList.remove('open');
-                    panel.setAttribute('aria-hidden', 'true');
-                    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
-                    document.dispatchEvent(new CustomEvent('panelCollapsed'));
+                    this.collapsePanel();
                 }
             }
         });
+
+        // 4. Global Event / Method for Internal Collapse
+        (window as any).collapsePanel = () => this.collapsePanel();
+        document.addEventListener('requestPanelCollapse', () => {
+            this.collapsePanel();
+        });
+    },
+
+    collapsePanel: function (): void {
+        const panel = document.getElementById('controlPanel');
+        const toggleBtn = document.getElementById('settingsToggle');
+        if (panel && panel.classList.contains('open')) {
+            panel.classList.remove('open');
+            panel.setAttribute('aria-hidden', 'true');
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+            document.dispatchEvent(new CustomEvent('panelCollapsed'));
+        }
     },
 
     injectCircularTimer: function (initialDisplay = '00:15'): void {
