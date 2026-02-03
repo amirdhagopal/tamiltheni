@@ -163,6 +163,13 @@ export default function Theni1App() {
         }
     }, [currentIndex, audioEnabled, currentWord]);
 
+    // Progress Bar Logic
+    useEffect(() => {
+        const progress = filteredWords.length > 0 ? ((currentIndex + 1) / filteredWords.length) * 100 : 0;
+        const bar = document.getElementById('progressBar');
+        if (bar) bar.style.width = `${progress}%`;
+    }, [currentIndex, filteredWords.length]);
+
     return (
         <Fragment>
             <Controls
@@ -186,8 +193,8 @@ export default function Theni1App() {
             />
 
             {/* Progress Bar Container */}
-            <div id="progressBarContainer" style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '4px', background: 'rgba(255,255,255,0.1)', zIndex: 1000 }}>
-                <div id="progressBar" style={{ width: '0%', height: '100%', background: 'var(--primary-color, #667eea)', transition: 'width 0.3s ease' }}></div>
+            <div className="progress-bar-container">
+                <div id="progressBar" className="progress-bar" style={{ width: '0%' }}></div>
             </div>
 
             {filteredWords.length > 0 && currentWord ? (
