@@ -138,8 +138,8 @@ export default function Theni34App() {
                                 <div className="header-badges">
                                     <span className="category-badge">{currentWord.category}</span>
                                     <span className="category-badge-ta">{currentWord.category_ta}</span>
+                                    <span className="difficulty-badge">{currentWord.difficulty}</span>
                                 </div>
-                                <span className="difficulty-badge">{currentWord.difficulty}</span>
                             </div>
 
                             <div className="focus-card">

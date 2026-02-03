@@ -82,9 +82,17 @@
     left: 40px;
     right: 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    /* Changed from space-between to align all badges to the left */
     align-items: center;
     z-index: 10;
+}
+
+.header-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    /* Match Theni 1 .footer-left layout */
 }
 
 /* Ensure badges look right */
