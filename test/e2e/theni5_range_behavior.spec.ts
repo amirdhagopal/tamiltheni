@@ -110,6 +110,7 @@ test.describe('Theni 5 Range and Panel Behavior', () => {
         await startInput.fill('1');
         await endInput.fill('10');
         await applyBtn.click();
+        await applyBtn.blur(); // Ensure focus is removed so Space doesn't trigger button again
 
         const counter = page.locator('#counter');
         await expect(counter).toHaveText('1 / 2');
