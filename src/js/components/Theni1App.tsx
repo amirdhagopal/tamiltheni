@@ -34,13 +34,14 @@ export default function Theni1App() {
         setShowTimer,
         filteredWords,
         currentWord,
-        handleNext,
+        handleNext: baseHandleNext,
         handlePrev,
         handleGoFirst,
         handleGoLast,
         toggleCategory,
         toggleAllCategories,
-        resetSelection
+        resetSelection,
+        isLast
     } = useTheniModule({
         allWords,
         initialTimerDuration: 8,
@@ -48,20 +49,70 @@ export default function Theni1App() {
         onIndexChange: stopRecording
     });
 
-    // Custom Handle Action to include Confetti and Next Logic
+    const triggerConfetti = useCallback(() => {
+        const count = 200;
+        const defaults = {
+            origin: { y: 0.7 },
+            colors: ['#6a539d', '#9c88ff', '#ffffff']
+        };
+
+        function fire(particleRatio: number, opts: any) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }, []);
+
+    const handleNext = useCallback(() => {
+        if (!isLast) {
+            baseHandleNext();
+        } else {
+            triggerConfetti();
+        }
+    }, [isLast, baseHandleNext, triggerConfetti]);
+
     // Custom Handle Action to include Confetti and Next Logic
     const handleAction = useCallback(() => {
-        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+        const panel = document.getElementById('controlPanel');
+        if (panel && panel.classList.contains('open')) {
+            document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+            return;
+        }
+
         if (!revealed) {
             setRevealed(true);
-            if (currentIndex === filteredWords.length - 1) {
-                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            if (isLast) {
+                triggerConfetti();
             }
         } else {
             handleNext();
             setFeedback({ text: '', type: '' });
         }
-    }, [revealed, handleNext, currentIndex, filteredWords.length, setRevealed, setFeedback]);
+    }, [revealed, handleNext, isLast, setRevealed, setFeedback, triggerConfetti]);
+
+    // Global Click Trigger for Final Slide
+    useEffect(() => {
+        if (!isLast || !revealed) return;
+
+        const handleGlobalClick = (e: MouseEvent) => {
+            // Only trigger if not clicking on navigation or controls
+            const target = e.target as HTMLElement;
+            if (!target.closest('.navigation, .mic-button-inline, .control-panel')) {
+                triggerConfetti();
+            }
+        };
+
+        window.addEventListener('click', handleGlobalClick);
+        return () => window.removeEventListener('click', handleGlobalClick);
+    }, [isLast, revealed, triggerConfetti]);
 
     // Validation Logic
     const handleVoiceResult = (spokenText: string) => {
@@ -77,8 +128,8 @@ export default function Theni1App() {
             setFeedback({ text: `Correct! ✅ (${spokenText})`, type: 'success' });
             if (!revealed) {
                 setRevealed(true);
-                if (currentIndex === filteredWords.length - 1) {
-                    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                if (isLast) {
+                    triggerConfetti();
                 }
             }
         } else {
@@ -147,7 +198,7 @@ export default function Theni1App() {
                     }
                 }} style={{ cursor: 'pointer' }}>
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                        <div className="slide active" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '60px' }}>
+                        <div id={`slide-${currentIndex}`} className={`slide active ${revealed ? 'revealed' : ''}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '60px' }}>
                             <div className="image-container">
                                 <img
                                     src={Utils.getImagePath(currentWord?.image_word || '')}

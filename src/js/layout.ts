@@ -67,11 +67,13 @@ export const Layout = {
             const isOpen = panel.classList.contains('open');
             if (isOpen) {
                 panel.classList.remove('open');
+                panel.classList.add('collapsed');
                 panel.setAttribute('aria-hidden', 'true');
                 if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
                 document.dispatchEvent(new CustomEvent('panelCollapsed'));
             } else {
                 panel.classList.add('open');
+                panel.classList.remove('collapsed');
                 panel.setAttribute('aria-hidden', 'false');
                 if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
             }
@@ -121,6 +123,7 @@ export const Layout = {
         const toggleBtn = document.getElementById('settingsToggle');
         if (panel && panel.classList.contains('open')) {
             panel.classList.remove('open');
+            panel.classList.add('collapsed');
             panel.setAttribute('aria-hidden', 'true');
             if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
             document.dispatchEvent(new CustomEvent('panelCollapsed'));

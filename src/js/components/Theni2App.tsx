@@ -88,13 +88,36 @@ export default function Theni2App() {
         handleGoLast,
         toggleCategory,
         toggleAllCategories,
-        resetSelection
+        resetSelection,
+        isLast
     } = useTheniModule({
         allWords,
         initialTimerDuration: 20,
         onFilterChange: clearAi,
         onIndexChange: clearAi
     });
+
+    const triggerConfetti = useCallback(() => {
+        const count = 200;
+        const defaults = {
+            origin: { y: 0.7 },
+            colors: ['#6a539d', '#9c88ff', '#ffffff']
+        };
+
+        function fire(particleRatio: number, opts: any) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }, []);
 
     const partnerMap = useMemo(() => {
         const map = new Map<number, number>();
@@ -129,24 +152,44 @@ export default function Theni2App() {
     };
 
     const handleNext = useCallback(() => {
-        if (currentIndex < filteredWords.length - 1) {
+        if (!isLast) {
             baseHandleNext();
         } else {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            triggerConfetti();
         }
-    }, [currentIndex, filteredWords.length, baseHandleNext]);
+    }, [isLast, baseHandleNext, triggerConfetti]);
 
     const handleAction = useCallback(() => {
-        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+        const panel = document.getElementById('controlPanel');
+        if (panel && panel.classList.contains('open')) {
+            document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+            return;
+        }
+
         if (!revealed) {
             setRevealed(true);
-            if (currentIndex === filteredWords.length - 1) {
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            if (isLast) {
+                triggerConfetti();
             }
         } else {
             handleNext();
         }
-    }, [revealed, setRevealed, handleNext, currentIndex, filteredWords.length]);
+    }, [revealed, setRevealed, handleNext, isLast, triggerConfetti]);
+
+    // Global Click Trigger for Final Slide
+    useEffect(() => {
+        if (!isLast || !revealed) return;
+
+        const handleGlobalClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest('.navigation, .mic-button-inline, .control-panel, .ai-section')) {
+                triggerConfetti();
+            }
+        };
+
+        window.addEventListener('click', handleGlobalClick);
+        return () => window.removeEventListener('click', handleGlobalClick);
+    }, [isLast, revealed, triggerConfetti]);
 
     // Dual-word Audio Playback
     useEffect(() => {

@@ -8,6 +8,8 @@ interface UseTheniModuleProps<T> {
     filterFn?: (words: T[], state: any) => T[];
     onIndexChange?: (index: number) => void;
     onFilterChange?: () => void;
+    disableProgressUpdate?: boolean;
+    disableShortcuts?: boolean;
 }
 
 export function useTheniModule<T extends { difficulty?: string; category?: string; category_ta?: string } | any>({
@@ -15,7 +17,9 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
     initialTimerDuration = 10,
     filterFn,
     onIndexChange,
-    onFilterChange
+    onFilterChange,
+    disableProgressUpdate = false,
+    disableShortcuts = false
 }: UseTheniModuleProps<T>) {
     // Shared State
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -71,6 +75,10 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         return result;
     }, [allWords, selectedCategories, difficulty, shuffle, filterFn]);
 
+    const isLast = useMemo(() => {
+        return filteredWords.length > 0 && currentIndex === filteredWords.length - 1;
+    }, [filteredWords.length, currentIndex]);
+
     // Update index and revealed state when filters change
     useEffect(() => {
         setCurrentIndex(0);
@@ -80,9 +88,11 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
 
     // Progress Update
     useEffect(() => {
-        Utils.updateProgress(currentIndex, filteredWords.length, 'progressBar', 'counter');
+        if (!disableProgressUpdate) {
+            Utils.updateProgress(currentIndex, filteredWords.length, 'progressBar', 'counter');
+        }
         if (onIndexChange) onIndexChange(currentIndex);
-    }, [currentIndex, filteredWords.length]);
+    }, [currentIndex, filteredWords.length, disableProgressUpdate]);
 
     // Timer Init
     useEffect(() => {
@@ -162,6 +172,8 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
 
     // Keyboard Shortcuts
     useEffect(() => {
+        if (disableShortcuts) return;
+
         const handleKey = (e: KeyboardEvent) => {
             if ((e.target as HTMLElement).tagName === 'INPUT') return;
             switch (e.key) {
@@ -175,7 +187,7 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         };
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
-    }, [handlePrev, handleAction, handleGoFirst, handleGoLast]);
+    }, [handlePrev, handleAction, handleGoFirst, handleGoLast, disableShortcuts]);
 
     return {
         // State
@@ -198,6 +210,7 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         filteredWords,
         currentWord: filteredWords[currentIndex] || null,
         categories,
+        isLast,
 
         // Handlers
         handleNext,

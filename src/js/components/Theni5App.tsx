@@ -27,14 +27,12 @@ export default function Theni5App() {
         setCurrentIndex: setCurrentPage,
         showTimer,
         setShowTimer,
-        handleNext: baseHandleNext,
-        handlePrev,
-        handleGoFirst,
-        handleGoLast,
         resetSelection
     } = useTheniModule({
         allWords: filteredWords, // Pass filtered list to hook
-        initialTimerDuration: 60
+        initialTimerDuration: 60,
+        disableProgressUpdate: true,
+        disableShortcuts: true
     });
 
     // 2. Shuffle second
@@ -60,29 +58,114 @@ export default function Theni5App() {
     // Reset page on scope changes
     useEffect(() => {
         setCurrentPage(0);
-        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
     }, [shuffle, rangeStart, rangeEnd]);
+
+    // Manual progress update for paginated view
+    useEffect(() => {
+        const progress = totalPages > 0 ? ((currentPage + 1) / totalPages) * 100 : 0;
+        const bar = document.getElementById('progressBar');
+        if (bar) bar.style.width = `${progress}%`;
+    }, [currentPage, totalPages]);
 
     const handleApplyRange = useCallback((s: number, e: number) => {
         setRangeStart(s);
         setRangeEnd(e);
     }, []);
 
+    const handleGoFirst = useCallback(() => {
+        setCurrentPage(0);
+        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+    }, [setCurrentPage]);
+
+    const handleGoLast = useCallback(() => {
+        setCurrentPage(Math.max(0, totalPages - 1));
+        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+    }, [setCurrentPage, totalPages]);
+
+    const triggerConfetti = useCallback(() => {
+        const count = 200;
+        const defaults = {
+            origin: { y: 0.7 },
+            colors: ['#6a539d', '#9c88ff', '#ffffff']
+        };
+
+        function fire(particleRatio: number, opts: any) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }, []);
+
     const handleNext = useCallback(() => {
         if (currentPage < totalPages - 1) {
-            baseHandleNext();
+            setCurrentPage(currentPage + 1);
+            document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
             if (currentPage + 2 === totalPages && totalPages > 1) {
-                confetti({
-                    particleCount: 150,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: ['#6a539d', '#9c88ff', '#ffffff']
-                });
+                triggerConfetti();
             }
+        } else if (totalPages > 0) {
+            triggerConfetti();
         }
-    }, [currentPage, totalPages, baseHandleNext]);
+    }, [currentPage, totalPages, setCurrentPage, triggerConfetti]);
+
+    const handlePrev = useCallback(() => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+            document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+        }
+    }, [currentPage, setCurrentPage]);
+
+    // Global Click Trigger for Final Page
+    useEffect(() => {
+        const isLastPage = totalPages > 0 && currentPage === totalPages - 1;
+        if (!isLastPage) return;
+
+        const handleGlobalClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest('.navigation, .control-panel')) {
+                triggerConfetti();
+            }
+        };
+
+        window.addEventListener('click', handleGlobalClick);
+        return () => window.removeEventListener('click', handleGlobalClick);
+    }, [currentPage, totalPages, triggerConfetti]);
 
     const timerText = totalPages > 0 ? `Page ${currentPage + 1} of ${totalPages} (${filteredWords.length} words in range${shuffle ? ' - shuffled' : ''})` : 'No words in range';
+
+    // Keyboard Shortcuts
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            const target = e.target as HTMLElement;
+            if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
+
+            switch (e.key) {
+                case 'ArrowLeft':
+                    handlePrev();
+                    break;
+                case 'ArrowRight': case ' ': case 'Enter':
+                    if (e.key === ' ') e.preventDefault();
+                    handleNext();
+                    break;
+                case 'Home': case '[':
+                    handleGoFirst();
+                    break;
+                case 'End': case ']':
+                    handleGoLast();
+                    break;
+            }
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, [handlePrev, handleNext, handleGoFirst, handleGoLast]);
 
     return (
         <Fragment>
@@ -114,15 +197,21 @@ export default function Theni5App() {
             </div>
 
             <div className="slide-container" onClick={(e) => {
-                if (!(e.target as HTMLElement).closest('.navigation, .control-panel')) {
+                const target = e.target as HTMLElement;
+                if (!target.closest('.navigation, .control-panel')) {
                     document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
-                    handleNext();
+
+                    if (currentPage === totalPages - 1 && totalPages > 0) {
+                        triggerConfetti();
+                    } else if (!target.closest('.word-row-card')) {
+                        handleNext();
+                    }
                 }
             }} style={{ cursor: 'pointer' }}>
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
                         currentWords.map((wordItem: Theni5Word) => (
-                            <div className="word-row-card" key={wordItem.s} onClick={e => e.stopPropagation()}>
+                            <div className="word-row-card word-item" key={wordItem.s}>
                                 <div className="word-text-ta">{wordItem.w}</div>
                             </div>
                         ))

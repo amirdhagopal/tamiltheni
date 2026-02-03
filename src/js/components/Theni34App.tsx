@@ -1,5 +1,5 @@
 import { Fragment } from 'preact';
-import { useState, useMemo, useCallback } from 'preact/hooks';
+import { useState, useMemo, useCallback, useEffect } from 'preact/hooks';
 import { Controls } from './Controls';
 import { useTheniModule } from '../hooks/useTheniModule';
 import { config } from '../config';
@@ -32,31 +32,74 @@ export default function Theni34App() {
         handleGoLast,
         toggleCategory,
         toggleAllCategories,
-        resetSelection
+        resetSelection,
+        isLast
     } = useTheniModule({
         allWords,
         initialTimerDuration: level === 4 ? (config.timerDurations.theni4 || 40) : (config.timerDurations.theni3 || 15)
     });
 
+    const triggerConfetti = useCallback(() => {
+        const count = 200;
+        const defaults = {
+            origin: { y: 0.7 },
+            colors: ['#6a539d', '#9c88ff', '#ffffff']
+        };
+
+        function fire(particleRatio: number, opts: any) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }, []);
+
     const handleNext = useCallback(() => {
-        if (currentIndex < filteredWords.length - 1) {
+        if (!isLast) {
             baseHandleNext();
         } else {
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            triggerConfetti();
         }
-    }, [currentIndex, filteredWords.length, baseHandleNext]);
+    }, [isLast, baseHandleNext, triggerConfetti]);
 
     const handleAction = useCallback(() => {
-        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+        const panel = document.getElementById('controlPanel');
+        if (panel && panel.classList.contains('open')) {
+            document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+            return;
+        }
+
         if (!revealed) {
             setRevealed(true);
-            if (currentIndex === filteredWords.length - 1) {
-                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            if (isLast) {
+                triggerConfetti();
             }
         } else {
             handleNext();
         }
-    }, [revealed, handleNext, currentIndex, filteredWords.length, setRevealed]);
+    }, [revealed, handleNext, isLast, setRevealed, triggerConfetti]);
+
+    // Global Click Trigger for Final Slide
+    useEffect(() => {
+        if (!isLast || !revealed) return;
+
+        const handleGlobalClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest('.navigation, .control-panel')) {
+                triggerConfetti();
+            }
+        };
+
+        window.addEventListener('click', handleGlobalClick);
+        return () => window.removeEventListener('click', handleGlobalClick);
+    }, [isLast, revealed, triggerConfetti]);
 
     const timerLabel = `Timer (${level === 3 ? '15s' : '40s'})`;
     const enText = currentWord ? (currentWord.sentence_en || currentWord.word_en) : '';
@@ -90,7 +133,7 @@ export default function Theni34App() {
             {filteredWords.length > 0 && currentWord ? (
                 <div className="slide-container" onClick={(e) => { if (!(e.target as HTMLElement).closest('.navigation, .control-panel')) handleAction(); }} style={{ cursor: 'pointer' }}>
                     <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                        <div className="slide active" key={currentWord.word_en} style={{ display: 'flex' }}>
+                        <div id={`slide-${currentIndex}`} className={`slide active ${revealed ? 'revealed' : ''}`} key={currentWord.word_en} style={{ display: 'flex' }}>
                             <div className="slide-content">
                                 <div className="slide-header">
                                     <span className="category-badge">{currentWord.category}</span>
