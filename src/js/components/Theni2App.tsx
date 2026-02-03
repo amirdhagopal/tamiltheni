@@ -34,17 +34,17 @@ const Card = ({ word, side, show }: { word: Word | null, side: 1 | 2, show: bool
 
     return (
         <div className={`dual-word-card ${show ? 'revealed' : ''}`} id={`card${side}`}>
+            <div className="card-header-badges">
+                <span className="card-badge category-label">{word.category}</span>
+                <span className="card-badge category-label-ta">{word.category_ta}</span>
+                <span className="card-badge difficulty-label">{word.difficulty}</span>
+            </div>
             <div className="card-image">
                 <img id={`card${side}Img`} src={imgSrc} alt={word.word_en} />
             </div>
             <div className="word-en" id={`card${side}En`}>{word.word_en}</div>
             <div className="word-ta" id={`card${side}Ta`}>
                 {word.word_ta}
-            </div>
-            <div className="card-footer-badges">
-                <span className="card-badge category-label">{word.category}</span>
-                <span className="card-badge category-label-ta">{word.category_ta}</span>
-                <span className="card-badge difficulty-label">{word.difficulty}</span>
             </div>
         </div>
     );

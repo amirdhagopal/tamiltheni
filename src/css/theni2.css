@@ -7,7 +7,8 @@
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    /* Changed from hidden to ensure badges at top are visible if they bleed out slightly */
 }
 
 #slides-wrapper {
@@ -186,14 +187,15 @@
     border-color: rgba(239, 108, 0, 0.1);
 }
 
-/* Footer badges container - centered at bottom */
-.dual-word-card .card-footer-badges {
+/* Header badges container - centered at top */
+.dual-word-card .card-header-badges {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    margin-top: auto;
-    padding-top: 10px;
+    margin-bottom: 12px;
+    /* Space before image */
+    padding-bottom: 5px;
 }
 
 /* Hide original slide content in dual mode */
@@ -212,10 +214,11 @@
     align-items: flex-start;
     justify-content: center;
     flex: 1;
-    padding: 40px 20px 120px;
-    /* Navigation safe zone preserved! */
+    padding: 20px 20px 140px;
+    /* Reduced top padding, kept bottom for nav safety */
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow-y: visible;
+    /* Removed scroll */
 }
 
 /* AI Generation UI */
@@ -227,9 +230,9 @@
     gap: 15px;
     width: 100%;
     max-width: 800px;
-    margin-top: 60px;
-    /* Shift down to avoid badges */
-    margin-bottom: 20px;
+    margin-top: 20px;
+    /* Reduced margin-top to avoid overlap with panel and save space */
+    margin-bottom: 10px;
     min-height: 50px;
     padding-left: 20px;
 }
