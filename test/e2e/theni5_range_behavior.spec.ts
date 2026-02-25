@@ -110,29 +110,36 @@ test.describe('Theni 5 Range and Panel Behavior', () => {
         await startInput.fill('1');
         await endInput.fill('10');
         await applyBtn.click();
-        await applyBtn.blur(); // Ensure focus is removed so Space doesn't trigger button again
+        // Click slide area to move focus away from button and onto the page
+        await page.mouse.click(640, 400);
+        await page.waitForTimeout(300);
 
         const counter = page.locator('#counter');
         await expect(counter).toHaveText('1 / 2');
 
         // Press Space on Page 1 -> Go to Page 2
         await page.keyboard.press(' ');
+        await page.waitForTimeout(300);
         await expect(counter).toHaveText('2 / 2');
 
         // Press Space on Last Page -> Stay on Page 2
         await page.keyboard.press(' ');
+        await page.waitForTimeout(300);
         await expect(counter).toHaveText('2 / 2');
 
         // Press ArrowLeft -> Go to Page 1
         await page.keyboard.press('ArrowLeft');
+        await page.waitForTimeout(300);
         await expect(counter).toHaveText('1 / 2');
 
         // Press ArrowLeft on Page 1 -> Stay on Page 1
         await page.keyboard.press('ArrowLeft');
+        await page.waitForTimeout(300);
         await expect(counter).toHaveText('1 / 2');
 
         // Press ArrowRight on Page 1 -> Go to Page 2
         await page.keyboard.press('ArrowRight');
+        await page.waitForTimeout(300);
         await expect(counter).toHaveText('2 / 2');
     });
 });
