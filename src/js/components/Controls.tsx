@@ -20,6 +20,12 @@ interface ControlsProps {
     rangeEnd?: number;
     onApplyRange?: (start: number, end: number) => void;
 
+    // Year Filter
+    availableYears?: number[];
+    selectedYears?: number[];
+    onToggleYear?: (year: number) => void;
+    onToggleAllYears?: () => void;
+
     shuffle?: boolean;
     setShuffle?: (s: boolean) => void;
     reset: () => void;
@@ -56,6 +62,10 @@ export const Controls = ({
     rangeStart,
     rangeEnd,
     onApplyRange,
+    availableYears,
+    selectedYears,
+    onToggleYear,
+    onToggleAllYears,
     shuffle,
     setShuffle,
     reset,
@@ -77,6 +87,11 @@ export const Controls = ({
     const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
     const buttonRef = useRef<HTMLButtonElement>(null);
 
+    // Year Dropdown State
+    const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
+    const [yearDropdownPos, setYearDropdownPos] = useState({ top: 0, left: 0, width: 0 });
+    const yearButtonRef = useRef<HTMLButtonElement>(null);
+
     // Close dropdown on global click or panel collapse
     useEffect(() => {
         const handleDocumentClick = (e: MouseEvent) => {
@@ -92,16 +107,17 @@ export const Controls = ({
             }
         };
 
-        const handlePanelCollapsed = () => setIsDropdownOpen(false);
+        const handlePanelCollapsed = () => { setIsDropdownOpen(false); setIsYearDropdownOpen(false); };
 
         const handleScroll = (e: Event) => {
             const dropdown = document.getElementById('categoryMenu');
-            // If scrolling happens inside the dropdown, do NOT close it
-            if (dropdown && dropdown.contains(e.target as Node)) {
-                return;
-            }
-            // If scrolling happens elsewhere (e.g. main page), close it to prevent detachment
+            const yearDropdown = document.getElementById('yearMenu');
+            // If scrolling happens inside a dropdown, do NOT close it
+            if (dropdown && dropdown.contains(e.target as Node)) return;
+            if (yearDropdown && yearDropdown.contains(e.target as Node)) return;
+            // If scrolling happens elsewhere (e.g. main page), close dropdowns to prevent detachment
             if (isDropdownOpen) setIsDropdownOpen(false);
+            if (isYearDropdownOpen) setIsYearDropdownOpen(false);
         };
 
         document.addEventListener('click', handleDocumentClick);
@@ -113,7 +129,25 @@ export const Controls = ({
             document.removeEventListener('panelCollapsed', handlePanelCollapsed);
             document.removeEventListener('scroll', handleScroll, true);
         };
-    }, [isDropdownOpen]);
+    }, [isDropdownOpen, isYearDropdownOpen]);
+
+    // Close year dropdown when clicking on the settings panel (but not on the dropdown itself)
+    useEffect(() => {
+        const panel = document.getElementById('controlPanel');
+        if (!panel) return;
+
+        const handlePanelClick = (e: Event) => {
+            const target = e.target as HTMLElement;
+            const yearMenu = document.getElementById('yearMenu');
+            const yearBtn = yearButtonRef.current;
+            if (yearMenu && yearMenu.contains(target)) return;
+            if (yearBtn && yearBtn.contains(target)) return;
+            setIsYearDropdownOpen(false);
+        };
+
+        panel.addEventListener('click', handlePanelClick);
+        return () => panel.removeEventListener('click', handlePanelClick);
+    }, []);
 
     const toggleDropdown = (e: MouseEvent) => {
         e.stopPropagation();
@@ -128,12 +162,81 @@ export const Controls = ({
         setIsDropdownOpen(!isDropdownOpen);
     };
 
+    const toggleYearDropdown = (e: MouseEvent) => {
+        e.stopPropagation();
+        if (!isYearDropdownOpen && yearButtonRef.current) {
+            const rect = yearButtonRef.current.getBoundingClientRect();
+            setYearDropdownPos({
+                top: rect.bottom + 5,
+                left: rect.left,
+                width: Math.max(rect.width, 180)
+            });
+        }
+        setIsYearDropdownOpen(!isYearDropdownOpen);
+    };
+
     if (!portalTarget) return null;
 
-    const closeDropdown = () => setIsDropdownOpen(false);
+    const closeDropdown = () => { setIsDropdownOpen(false); setIsYearDropdownOpen(false); };
 
     return createPortal(
         <Fragment>
+            {/* Year Filter */}
+            {availableYears && availableYears.length > 0 && selectedYears && onToggleYear && onToggleAllYears && (
+                <div className="control-row">
+                    <span className="control-label">Year:</span>
+                    <div className="category-dropdown">
+                        <button
+                            className="dropdown-button"
+                            id="year-dropdown-btn"
+                            ref={yearButtonRef}
+                            onClick={toggleYearDropdown}
+                            title="Select years to display">
+                            <span>
+                                {selectedYears.length === availableYears.length ? 'All Years' :
+                                    selectedYears.length === 0 ? 'None selected' :
+                                        selectedYears.join(', ')}
+                            </span>
+                            <span>▼</span>
+                        </button>
+
+                        {isYearDropdownOpen && createPortal(
+                            <div
+                                className="dropdown-menu show"
+                                id="yearMenu"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                    display: 'block',
+                                    position: 'fixed',
+                                    top: yearDropdownPos.top,
+                                    left: yearDropdownPos.left,
+                                    width: yearDropdownPos.width,
+                                    maxHeight: '60vh',
+                                    zIndex: 9999,
+                                }}
+                            >
+                                <div className="dropdown-item header" onClick={() => { onToggleAllYears(); }}>
+                                    <input type="checkbox" checked={selectedYears.length === availableYears.length} readOnly />
+                                    <span>Select All / None</span>
+                                </div>
+                                <div>
+                                    {availableYears.map((year: number) => {
+                                        const isSelected = selectedYears.includes(year);
+                                        return (
+                                            <div className="dropdown-item" key={year} onClick={() => onToggleYear(year)}>
+                                                <input type="checkbox" checked={isSelected} readOnly />
+                                                <span>{year}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>,
+                            document.body
+                        )}
+                    </div>
+                </div>
+            )}
+
             {/* ... Range & Level ... */}
             {(rangeStart !== undefined && rangeEnd !== undefined && onApplyRange) && (
                 <div className="control-row">

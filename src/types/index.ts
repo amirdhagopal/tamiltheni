@@ -30,6 +30,7 @@ export interface TheniConfig {
 export interface Theni5Word {
     s: number;
     w: string;
+    y: number;
 }
 
 // Speech Recognition types for browsers

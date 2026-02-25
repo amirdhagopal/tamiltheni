@@ -11,13 +11,45 @@ export default function Theni5App() {
     const WORDS_PER_PAGE = 5;
     const allWords = useMemo(() => theni5Words as Theni5Word[], []);
 
-    const [rangeStart, setRangeStart] = useState(1);
-    const [rangeEnd, setRangeEnd] = useState(250);
+    // Compute available years from data
+    const availableYears = useMemo(() => {
+        const years = [...new Set(allWords.map(w => w.y))].sort((a, b) => b - a);
+        return years;
+    }, [allWords]);
 
-    // 1. Filter first (Strict range adherence)
+    const [selectedYears, setSelectedYears] = useState<number[]>(availableYears);
+
+    // 1. Concatenate words from selected years (latest first), assign virtual serial positions
+    const yearScopedWords = useMemo(() => {
+        const sortedYears = [...selectedYears].sort((a, b) => b - a); // latest first
+        let vs = 1;
+        const result: (Theni5Word & { vs: number })[] = [];
+        for (const year of sortedYears) {
+            const yearWords = allWords
+                .filter(w => w.y === year)
+                .sort((a, b) => a.s - b.s);
+            for (const w of yearWords) {
+                result.push({ ...w, vs: vs++ });
+            }
+        }
+        return result;
+    }, [allWords, selectedYears]);
+
+    const totalWordsInScope = yearScopedWords.length;
+
+    const [rangeStart, setRangeStart] = useState(1);
+    const [rangeEnd, setRangeEnd] = useState(totalWordsInScope || 250);
+
+    // Update rangeEnd when scope changes
+    useEffect(() => {
+        setRangeEnd(totalWordsInScope || 250);
+        setRangeStart(1);
+    }, [totalWordsInScope]);
+
+    // 2. Filter by range using virtual serial positions
     const filteredWords = useMemo(() => {
-        return allWords.filter(w => w.s >= rangeStart && w.s <= rangeEnd);
-    }, [allWords, rangeStart, rangeEnd]);
+        return yearScopedWords.filter(w => w.vs >= rangeStart && w.vs <= rangeEnd);
+    }, [yearScopedWords, rangeStart, rangeEnd]);
 
     // Module Hook
     const {
@@ -58,7 +90,7 @@ export default function Theni5App() {
     // Reset page on scope changes
     useEffect(() => {
         setCurrentPage(0);
-    }, [shuffle, rangeStart, rangeEnd]);
+    }, [shuffle, rangeStart, rangeEnd, selectedYears]);
 
     // - [x] Standardize SVG stroke-width for primary icons <!-- id: 23 -->
     // - [/] UI Refinements (Feedback V2) <!-- id: 24 -->
@@ -74,6 +106,20 @@ export default function Theni5App() {
         setRangeStart(s);
         setRangeEnd(e);
     }, []);
+
+    const handleToggleYear = useCallback((year: number) => {
+        setSelectedYears(prev =>
+            prev.includes(year)
+                ? prev.filter(y => y !== year)
+                : [...prev, year].sort()
+        );
+    }, []);
+
+    const handleToggleAllYears = useCallback(() => {
+        setSelectedYears(prev =>
+            prev.length === availableYears.length ? [] : [...availableYears]
+        );
+    }, [availableYears]);
 
     const handleGoFirst = useCallback(() => {
         setCurrentPage(0);
@@ -180,7 +226,8 @@ export default function Theni5App() {
                 reset={() => {
                     resetSelection();
                     setRangeStart(1);
-                    setRangeEnd(250);
+                    setRangeEnd(totalWordsInScope || 250);
+                    setSelectedYears([...availableYears]);
                     Timer.restart();
                 }}
                 shuffle={shuffle}
@@ -188,6 +235,10 @@ export default function Theni5App() {
                 rangeStart={rangeStart}
                 rangeEnd={rangeEnd}
                 onApplyRange={handleApplyRange}
+                availableYears={availableYears}
+                selectedYears={selectedYears}
+                onToggleYear={handleToggleYear}
+                onToggleAllYears={handleToggleAllYears}
                 showTimer={showTimer}
                 setShowTimer={setShowTimer}
                 timerLabel="Timer (1m)"
@@ -213,8 +264,8 @@ export default function Theni5App() {
             }} style={{ cursor: 'pointer' }}>
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
-                        currentWords.map((wordItem: Theni5Word) => (
-                            <div className="word-row-card word-item" key={wordItem.s}>
+                        currentWords.map((wordItem) => (
+                            <div className="word-row-card word-item" key={`${wordItem.y}-${wordItem.s}`}>
                                 <div className="word-text-ta">{wordItem.w}</div>
                             </div>
                         ))
