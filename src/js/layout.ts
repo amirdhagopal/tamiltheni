@@ -200,6 +200,8 @@ export const Layout = {
                             <div class="shortcut-row"><kbd>G</kbd><span>Generate Sentence (Theni 2)</span></div>
                             <div class="shortcut-row"><kbd>S</kbd><span>Shuffle slides</span></div>
                             <div class="shortcut-row"><kbd>R</kbd><span>Reset sequence</span></div>
+                            <div class="shortcut-row"><kbd>T</kbd><span>Toggle Timer</span></div>
+                            <div class="shortcut-row"><kbd>K</kbd><span>Toggle Color (Theni 5)</span></div>
                             <div class="shortcut-row"><kbd>1</kbd> / <kbd>2</kbd> / <kbd>A</kbd><span>Filter D1 / D2 / All</span></div>
                         </div>
                         <div class="shortcut-section">

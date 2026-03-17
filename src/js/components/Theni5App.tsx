@@ -218,11 +218,17 @@ export default function Theni5App() {
                 case 'End': case ']':
                     handleGoLast();
                     break;
+                case 't': case 'T':
+                    setShowTimer(!showTimer);
+                    break;
+                case 'k': case 'K':
+                    setShowColor(!showColor);
+                    break;
             }
         };
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
-    }, [handlePrev, handleNext, handleGoFirst, handleGoLast]);
+    }, [handlePrev, handleNext, handleGoFirst, handleGoLast, showTimer, setShowTimer, showColor, setShowColor]);
 
     return (
         <Fragment>
