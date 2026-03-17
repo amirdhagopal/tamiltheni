@@ -7,6 +7,13 @@ import { Timer } from '../timer';
 import theni5Words from '../../data/theni5_words.json';
 import { Theni5Word } from '../../types/index';
 
+// Subtle pastel background colors for each year
+const YEAR_COLORS: Record<number, string> = {
+    2026: '#e8e0f0', // soft lavender
+    2025: '#d9f0e0', // soft mint
+    2024: '#f0e0d9', // soft peach
+};
+
 export default function Theni5App() {
     const WORDS_PER_PAGE = 5;
     const allWords = useMemo(() => theni5Words as Theni5Word[], []);
@@ -18,6 +25,7 @@ export default function Theni5App() {
     }, [allWords]);
 
     const [selectedYears, setSelectedYears] = useState<number[]>(availableYears);
+    const [showColor, setShowColor] = useState(true);
 
     // 1. Concatenate words from selected years (latest first), assign virtual serial positions
     const yearScopedWords = useMemo(() => {
@@ -241,6 +249,9 @@ export default function Theni5App() {
                 onToggleAllYears={handleToggleAllYears}
                 showTimer={showTimer}
                 setShowTimer={setShowTimer}
+                showColor={showColor}
+                setShowColor={setShowColor}
+                yearColors={YEAR_COLORS}
                 timerLabel="Timer (1m)"
                 progressText={timerText}
             />
@@ -265,8 +276,11 @@ export default function Theni5App() {
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
                         currentWords.map((wordItem) => (
-                            <div className="word-row-card word-item" key={`${wordItem.y}-${wordItem.s}`}>
-                                <div className="word-text-ta">{wordItem.w}</div>
+                            <div className="word-row-card word-item" key={`${wordItem.y}-${wordItem.s}`}
+                                style={showColor && YEAR_COLORS[wordItem.y] ? { backgroundColor: YEAR_COLORS[wordItem.y] } : undefined}>
+                                <div className="word-text-ta">
+                                    {wordItem.w}
+                                </div>
                             </div>
                         ))
                     ) : (

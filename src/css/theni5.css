@@ -91,6 +91,25 @@
     color: white;
 }
 
+/* Year color swatch in dropdown */
+.year-color-swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
+}
+
+/* Word background color fill */
+.word-text-colored {
+    padding: 4px 14px;
+    border-radius: 8px;
+    transition: background-color 0.25s ease;
+}
+
 /* Dynamic layout adjustment when control panel is expanded */
 body.panel-expanded .slide-container {
     margin-top: 80px;

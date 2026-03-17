@@ -38,6 +38,11 @@ interface ControlsProps {
     setShowTimer: (show: boolean) => void;
     timerLabel?: string;
 
+    // Year Color
+    showColor?: boolean;
+    setShowColor?: (show: boolean) => void;
+    yearColors?: Record<number, string>;
+
     // Extra
     voiceEnabled?: boolean;
     setVoiceEnabled?: (enabled: boolean) => void;
@@ -74,6 +79,9 @@ export const Controls = ({
     showTimer,
     setShowTimer,
     timerLabel = 'Timer',
+    showColor,
+    setShowColor,
+    yearColors,
     voiceEnabled,
     setVoiceEnabled,
     progressText,
@@ -225,6 +233,9 @@ export const Controls = ({
                                         return (
                                             <div className="dropdown-item" key={year} onClick={() => onToggleYear(year)}>
                                                 <input type="checkbox" checked={isSelected} readOnly />
+                                                {yearColors && yearColors[year] && (
+                                                    <span className="year-color-swatch" style={{ backgroundColor: yearColors[year] }} />
+                                                )}
                                                 <span>{year}</span>
                                             </div>
                                         );
@@ -366,6 +377,11 @@ export const Controls = ({
                     <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
                         <input type="checkbox" id="showTimer" checked={showTimer} onChange={(e) => setShowTimer(e.currentTarget.checked)} /> {timerLabel}
                     </label>
+                    {showColor !== undefined && setShowColor && (
+                        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
+                            <input type="checkbox" id="showColor" checked={showColor} onChange={(e) => setShowColor(e.currentTarget.checked)} /> Color
+                        </label>
+                    )}
                     {audioEnabled !== undefined && setAudioEnabled && (
                         <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
                             <input type="checkbox" id="audioToggle" checked={audioEnabled} onChange={(e) => setAudioEnabled(e.currentTarget.checked)} /> 🔊 Audio
