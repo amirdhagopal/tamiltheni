@@ -6,7 +6,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 40px 60px 100px;
+    padding: 100px 60px 100px; /* Increased top padding to avoid header overlap */
     box-sizing: border-box;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
@@ -14,32 +14,48 @@
 }
 
 .words-list-centered {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-    /* Standard flex flow */
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px 30px; /* Increased horizontal gap for better breathability */
     width: 100%;
-    overflow-y: auto;
-    /* Enable scroll */
-    padding-bottom: 30px;
-    /* Internal breathing room */
+    align-content: center;
+    padding-bottom: 50px; /* More vertical space before navigation */
 }
 
 .word-row-card {
-    width: 100%;
-    max-width: 700px;
+    position: relative;
+    grid-column: span 2;
+    aspect-ratio: 1.8 / 1;
     background: #ffffff;
     border-radius: 16px;
-    padding: 15px 30px;
+    padding: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
     border: 1px solid #f0f0f0;
+    width: 100%;
+    max-width: 220px; /* Slightly reduced width to account for larger gaps */
+    justify-self: center;
+}
+
+.word-row-card:nth-child(4) {
+    grid-column: 2 / span 2;
+}
+
+.word-row-card:nth-child(5) {
+    grid-column: 4 / span 2;
+}
+
+.card-index {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(106, 83, 157, 0.5); /* Semi-transparent theme color */
+    font-family: 'Inter', sans-serif;
 }
 
 .word-row-card:hover {
@@ -123,5 +139,47 @@ body.panel-expanded .slide-container {
 
     .word-row-card {
         padding: 10px 20px;
+    }
+}
+
+/* Empty state centering */
+.empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

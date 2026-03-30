@@ -281,19 +281,20 @@ export default function Theni5App() {
             }} style={{ cursor: 'pointer' }}>
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
-                        currentWords.map((wordItem) => (
+                        currentWords.map((wordItem, index) => (
                             <div className="word-row-card word-item" key={`${wordItem.y}-${wordItem.s}`}
                                 style={showColor && YEAR_COLORS[wordItem.y] ? { backgroundColor: YEAR_COLORS[wordItem.y] } : undefined}>
+                                <div className="card-index">{index + 1}</div>
                                 <div className="word-text-ta">
                                     {wordItem.w}
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <div className="empty-state-container">
-                            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
-                            No words found in this range.<br />
-                            Try selecting a different word range in settings.
+                        <div className="empty-state">
+                            <div className="empty-icon">🔍</div>
+                            <h3>No words found in this range.</h3>
+                            <p>Try selecting a different word range in settings.</p>
                         </div>
                     )}
                 </div>
