@@ -6,7 +6,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 100px 60px 100px; /* Increased top padding to avoid header overlap */
+    padding: 100px 40px 100px; /* Reduced side padding from 60px to 40px for more horizontal room */
     box-sizing: border-box;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
@@ -16,10 +16,10 @@
 .words-list-centered {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 24px 30px; /* Increased horizontal gap for better breathability */
+    gap: 24px 35px; /* Increased horizontal gap for better breathability */
     width: 100%;
     align-content: center;
-    padding-bottom: 50px; /* More vertical space before navigation */
+    padding-bottom: 50px;
 }
 
 .word-row-card {
@@ -36,7 +36,7 @@
     transition: var(--transition);
     border: 1px solid #f0f0f0;
     width: 100%;
-    max-width: 270px; /* Increased from 220px to prevent word overlap */
+    max-width: 250px; /* Optimized width to maintain gaps in 900px container */
     justify-self: center;
 }
 
