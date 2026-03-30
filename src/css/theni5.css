@@ -36,7 +36,7 @@
     transition: var(--transition);
     border: 1px solid #f0f0f0;
     width: 100%;
-    max-width: 220px; /* Slightly reduced width to account for larger gaps */
+    max-width: 270px; /* Increased from 220px to prevent word overlap */
     justify-self: center;
 }
 
@@ -65,10 +65,14 @@
 
 .word-text-ta {
     font-family: 'Hind Madurai', sans-serif;
-    font-size: 2.2rem;
+    font-size: 2rem; /* Slightly reduced from 2.2rem for better fit */
     color: #5d4037;
     /* Dark brownish purple often used in Tamil UI */
     font-weight: 700;
+    width: 100%;
+    text-align: center;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 /* Specific purple color from user image */
