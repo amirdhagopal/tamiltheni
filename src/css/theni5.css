@@ -133,12 +133,23 @@ body.panel-expanded .slide-container {
 
 /* Responsive adjustments for the new layout */
 @media (max-width: 768px) {
-    .word-text-ta {
-        font-size: 1.6rem;
+    .words-list-centered {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 
-    .word-row-card {
-        padding: 10px 20px;
+    .word-row-card,
+    .word-row-card:nth-child(4),
+    .word-row-card:nth-child(5) {
+        grid-column: 1 / -1;
+        max-width: 100%;
+        aspect-ratio: auto;
+        min-height: 80px;
+        padding: 15px 20px;
+    }
+
+    .word-text-ta {
+        font-size: 1.8rem;
     }
 }
 
