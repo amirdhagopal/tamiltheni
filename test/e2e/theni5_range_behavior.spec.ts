@@ -53,9 +53,8 @@ test.describe('Theni 5 Range and Panel Behavior', () => {
         await applyBtn.click();
         await expect(panel).toHaveClass(/open/);
 
-        // 4. Click on a word card (outside panel) - panel SHOULD collapse
-        // Explicitly click a word card to avoid triggering 'next page' on empty space
-        await page.locator('.word-row-card').first().click();
+        // 4. Click on a non-obscured word card (bottom row) - panel SHOULD collapse
+        await page.locator('.word-row-card').last().click();
         await expect(panel).not.toHaveClass(/open/);
     });
 
@@ -110,7 +109,9 @@ test.describe('Theni 5 Range and Panel Behavior', () => {
         await startInput.fill('1');
         await endInput.fill('10');
         await applyBtn.click();
-        // Click slide area to move focus away from button and onto the page
+
+        // Close the panel first so word cards are accessible for focus/interactions
+        await page.locator('#settingsToggle').click();
         await page.locator('.word-row-card').first().click();
         await page.waitForTimeout(300);
 

@@ -8,40 +8,71 @@ import theni5Words from '../../data/theni5_words.json';
 import { Theni5Word } from '../../types/index';
 
 // Subtle pastel background colors for each year
-const YEAR_COLORS: Record<number, string> = {
-    2026: '#e8e0f0', // soft lavender
-    2025: '#d9f0e0', // soft mint
-    2024: '#f0e0d9', // soft peach
+const YEAR_COLORS: Record<string, string> = {
+    '2026': '#e8e0f0', // soft lavender
+    '2025': '#d9f0e0', // soft mint
+    '2024': '#f0e0d9', // soft peach
+    'சமன்முறிவு': '#f0f0d9', // soft gold
 };
 
 export default function Theni5App() {
     const WORDS_PER_PAGE = 5;
     const allWords = useMemo(() => theni5Words as Theni5Word[], []);
 
-    // Compute available years from data
+    // Compute available years from data (support string and number)
     const availableYears = useMemo(() => {
-        const years = [...new Set(allWords.map(w => w.y))].sort((a, b) => b - a);
+        const yearSet = new Set(allWords.map(w => String(w.y)));
+        const years = [...yearSet].sort((a, b) => {
+            const na = Number(a), nb = Number(b);
+            if (!isNaN(na) && !isNaN(nb)) return nb - na;
+            if (!isNaN(na)) return -1; // numbers first
+            if (!isNaN(nb)) return 1;
+            return a.localeCompare(b);
+        });
         return years;
     }, [allWords]);
 
-    const [selectedYears, setSelectedYears] = useState<number[]>(availableYears);
+    const [selectedYears, setSelectedYears] = useState<string[]>(availableYears);
     const [showColor, setShowColor] = useState(true);
 
-    // 1. Concatenate words from selected years (latest first), assign virtual serial positions
+    // Compute available categories from words in selected years
+    const availableCategories = useMemo(() => {
+        const cats = new Set<string>();
+        allWords
+            .filter(w => selectedYears.includes(String(w.y)))
+            .forEach(w => w.c?.forEach(c => cats.add(c)));
+        return [...cats].sort();
+    }, [allWords, selectedYears]);
+
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+    // Auto-select all categories when available categories change
+    useEffect(() => {
+        setSelectedCategories(availableCategories);
+    }, [availableCategories]);
+
+    // 1. Concatenate words from selected years (latest first), filter by category, assign virtual serial positions
     const yearScopedWords = useMemo(() => {
-        const sortedYears = [...selectedYears].sort((a, b) => b - a); // latest first
+        const sortedYears = [...selectedYears].sort((a, b) => {
+            const na = Number(a), nb = Number(b);
+            if (!isNaN(na) && !isNaN(nb)) return nb - na;
+            if (!isNaN(na)) return -1;
+            if (!isNaN(nb)) return 1;
+            return a.localeCompare(b);
+        });
         let vs = 1;
         const result: (Theni5Word & { vs: number })[] = [];
         for (const year of sortedYears) {
             const yearWords = allWords
-                .filter(w => w.y === year)
+                .filter(w => String(w.y) === year)
+                .filter(w => w.c?.some(c => selectedCategories.includes(c)))
                 .sort((a, b) => a.s - b.s);
             for (const w of yearWords) {
                 result.push({ ...w, vs: vs++ });
             }
         }
         return result;
-    }, [allWords, selectedYears]);
+    }, [allWords, selectedYears, selectedCategories]);
 
     const totalWordsInScope = yearScopedWords.length;
 
@@ -98,7 +129,7 @@ export default function Theni5App() {
     // Reset page on scope changes
     useEffect(() => {
         setCurrentPage(0);
-    }, [shuffle, rangeStart, rangeEnd, selectedYears]);
+    }, [shuffle, rangeStart, rangeEnd, selectedYears, selectedCategories]);
 
     // - [x] Standardize SVG stroke-width for primary icons <!-- id: 23 -->
     // - [/] UI Refinements (Feedback V2) <!-- id: 24 -->
@@ -115,11 +146,11 @@ export default function Theni5App() {
         setRangeEnd(e);
     }, []);
 
-    const handleToggleYear = useCallback((year: number) => {
+    const handleToggleYear = useCallback((year: string) => {
         setSelectedYears(prev =>
             prev.includes(year)
                 ? prev.filter(y => y !== year)
-                : [...prev, year].sort()
+                : [...prev, year]
         );
     }, []);
 
@@ -128,6 +159,20 @@ export default function Theni5App() {
             prev.length === availableYears.length ? [] : [...availableYears]
         );
     }, [availableYears]);
+
+    const handleToggleCategory = useCallback((cat: string) => {
+        setSelectedCategories(prev =>
+            prev.includes(cat)
+                ? prev.filter(c => c !== cat)
+                : [...prev, cat]
+        );
+    }, []);
+
+    const handleToggleAllCategories = useCallback(() => {
+        setSelectedCategories(prev =>
+            prev.length === availableCategories.length ? [] : [...availableCategories]
+        );
+    }, [availableCategories]);
 
     const handleGoFirst = useCallback(() => {
         setCurrentPage(0);
@@ -233,15 +278,16 @@ export default function Theni5App() {
     return (
         <Fragment>
             <Controls
-                categories={[]}
-                selectedCategories={[]}
-                onToggleCategory={() => { }}
-                onToggleAllCategories={() => { }}
+                categories={availableCategories}
+                selectedCategories={selectedCategories}
+                onToggleCategory={handleToggleCategory}
+                onToggleAllCategories={handleToggleAllCategories}
                 reset={() => {
                     resetSelection();
                     setRangeStart(1);
                     setRangeEnd(totalWordsInScope || 250);
                     setSelectedYears([...availableYears]);
+                    setSelectedCategories([...availableCategories]);
                     Timer.restart();
                 }}
                 shuffle={shuffle}
@@ -283,7 +329,7 @@ export default function Theni5App() {
                     {currentWords.length > 0 ? (
                         currentWords.map((wordItem, index) => (
                             <div className="word-row-card word-item" key={`${wordItem.y}-${wordItem.s}`}
-                                style={showColor && YEAR_COLORS[wordItem.y] ? { backgroundColor: YEAR_COLORS[wordItem.y] } : undefined}>
+                                style={showColor && YEAR_COLORS[String(wordItem.y)] ? { backgroundColor: YEAR_COLORS[String(wordItem.y)] } : undefined}>
                                 <div className="card-index">{index + 1}</div>
                                 <div className="word-text-ta">
                                     {wordItem.w}

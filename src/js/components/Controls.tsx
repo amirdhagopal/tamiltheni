@@ -21,9 +21,9 @@ interface ControlsProps {
     onApplyRange?: (start: number, end: number) => void;
 
     // Year Filter
-    availableYears?: number[];
-    selectedYears?: number[];
-    onToggleYear?: (year: number) => void;
+    availableYears?: string[];
+    selectedYears?: string[];
+    onToggleYear?: (year: string) => void;
     onToggleAllYears?: () => void;
 
     shuffle?: boolean;
@@ -41,7 +41,7 @@ interface ControlsProps {
     // Year Color
     showColor?: boolean;
     setShowColor?: (show: boolean) => void;
-    yearColors?: Record<number, string>;
+    yearColors?: Record<string, string>;
 
     // Extra
     voiceEnabled?: boolean;
@@ -228,7 +228,7 @@ export const Controls = ({
                                     <span>Select All / None</span>
                                 </div>
                                 <div>
-                                    {availableYears.map((year: number) => {
+                                    {availableYears.map((year: string) => {
                                         const isSelected = selectedYears.includes(year);
                                         return (
                                             <div className="dropdown-item" key={year} onClick={() => onToggleYear(year)}>
@@ -244,47 +244,6 @@ export const Controls = ({
                             </div>,
                             document.body
                         )}
-                    </div>
-                </div>
-            )}
-
-            {/* ... Range & Level ... */}
-            {(rangeStart !== undefined && rangeEnd !== undefined && onApplyRange) && (
-                <div className="control-row">
-                    {/* ... copied Range ... */}
-                    <span className="control-label">Range:</span>
-                    <input type="number" id="startRange" value={rangeStart} min="1" max="250" title="Starting word number"
-                        onChange={(e) => {
-                            const val = parseInt(e.currentTarget.value);
-                            if (!isNaN(val)) onApplyRange(val, rangeEnd!);
-                        }}
-                        style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }} />
-                    <span style={{ margin: '0 10px' }}>to</span>
-                    <input type="number" id="endRange" value={rangeEnd} min="1" max="250" title="Ending word number"
-                        onChange={(e) => {
-                            const val = parseInt(e.currentTarget.value);
-                            if (!isNaN(val)) onApplyRange(rangeStart!, val);
-                        }}
-                        style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }} />
-                    <button className="action-button" onClick={() => {
-                        // closeDropdown via logic if needed, or keeping explicit logic? 
-                        // The original code passed closeDropdown() which closed via DOM ID.
-                        // We should update reset() calls to also setIsDropdownOpen(false)?
-                        // Actually the only consumers of closeDropdown() were reset/shuffle buttons.
-
-                        const s = parseInt((document.getElementById('startRange') as HTMLInputElement).value);
-                        const e = parseInt((document.getElementById('endRange') as HTMLInputElement).value);
-                        onApplyRange(s, e);
-                    }} style={{ marginLeft: '10px' }}>Apply</button>
-                </div>
-            )}
-
-            {level !== undefined && setLevel && (
-                <div className="control-row">
-                    <span className="control-label">Level:</span>
-                    <div className="pill-group">
-                        <button className={`pill-button ${level === 3 ? 'active' : ''}`} onClick={() => setLevel(3)}>Theni 3</button>
-                        <button className={`pill-button ${level === 4 ? 'active' : ''}`} onClick={() => setLevel(4)}>Theni 4</button>
                     </div>
                 </div>
             )}
@@ -320,8 +279,8 @@ export const Controls = ({
                                     top: dropdownPos.top,
                                     left: dropdownPos.left,
                                     width: dropdownPos.width,
-                                    maxHeight: '60vh', // Prevent running off screen
-                                    zIndex: 9999, // Ensure on top of everything
+                                    maxHeight: '60vh',
+                                    zIndex: 9999,
                                 }}
                             >
                                 <div className="dropdown-item header" id="select-all-cat-row" onClick={() => { onToggleAllCategories(); }}>
@@ -342,6 +301,41 @@ export const Controls = ({
                             </div>,
                             document.body
                         )}
+                    </div>
+                </div>
+            )}
+
+            {/* Range */}
+            {(rangeStart !== undefined && rangeEnd !== undefined && onApplyRange) && (
+                <div className="control-row">
+                    <span className="control-label">Range:</span>
+                    <input type="number" id="startRange" value={rangeStart} min="1" max="250" title="Starting word number"
+                        onChange={(e) => {
+                            const val = parseInt(e.currentTarget.value);
+                            if (!isNaN(val)) onApplyRange(val, rangeEnd!);
+                        }}
+                        style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }} />
+                    <span style={{ margin: '0 10px' }}>to</span>
+                    <input type="number" id="endRange" value={rangeEnd} min="1" max="250" title="Ending word number"
+                        onChange={(e) => {
+                            const val = parseInt(e.currentTarget.value);
+                            if (!isNaN(val)) onApplyRange(rangeStart!, val);
+                        }}
+                        style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }} />
+                    <button className="action-button" onClick={() => {
+                        const s = parseInt((document.getElementById('startRange') as HTMLInputElement).value);
+                        const e = parseInt((document.getElementById('endRange') as HTMLInputElement).value);
+                        onApplyRange(s, e);
+                    }} style={{ marginLeft: '10px' }}>Apply</button>
+                </div>
+            )}
+
+            {level !== undefined && setLevel && (
+                <div className="control-row">
+                    <span className="control-label">Level:</span>
+                    <div className="pill-group">
+                        <button className={`pill-button ${level === 3 ? 'active' : ''}`} onClick={() => setLevel(3)}>Theni 3</button>
+                        <button className={`pill-button ${level === 4 ? 'active' : ''}`} onClick={() => setLevel(4)}>Theni 4</button>
                     </div>
                 </div>
             )}
