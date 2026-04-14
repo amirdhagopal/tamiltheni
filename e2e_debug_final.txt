@@ -1,0 +1,212 @@
+
+> tamiltheni@1.0.0 test:e2e
+> playwright test --config config/playwright.config.ts --grep Theni 1|Theni 3
+
+
+Running 7 tests using 7 workers
+
+[Browser DEBUG]: [vite] connecting...
+[Browser Console]: [vite] connecting...
+[Browser DEBUG]: [vite] connecting...
+[Browser DEBUG]: [vite] connecting...
+[Browser Console]: The script has an unsupported MIME type ('text/html').
+[Browser Console]: [PWA] SW registration failed: SecurityError: Failed to register a ServiceWorker for scope ('http://localhost:5173/') with script ('http://localhost:5173/sw.js'): The script has an unsupported MIME type ('text/html').
+[Browser Console]: [vite] connecting...
+[Browser Console]: [vite] connected.
+[Browser DEBUG]: [vite] connected.
+[Browser Console]: [vite] connected.
+  ✓  1 [chromium] › test/e2e/ui_refinements.spec.ts:146:3 › TamilTheni UI Refinements E2E › FR-001.1: Universal Click-to-Next (Theni 3 & 4) (2.1s)
+[Browser DEBUG]: [vite] connected.
+[Browser LOG]: [AudioManager] Request to speak: "ear" in en-US
+[Browser LOG]: [AudioManager] Voices empty, waiting for voiceschanged...
+[Browser WARNING]: [AudioManager] No specific voice found for en-US, using browser default.
+[Browser ERROR]: [AudioManager] Utterance error: not-allowed SpeechSynthesisErrorEvent
+[Browser DEBUG]: [vite] connected.
+[Browser LOG]: [AudioManager] Request to speak: "ear" in en-US
+[Browser LOG]: [AudioManager] Voices empty, waiting for voiceschanged...
+[Browser WARNING]: [AudioManager] No specific voice found for en-US, using browser default.
+[Browser ERROR]: [AudioManager] Utterance error: not-allowed SpeechSynthesisErrorEvent
+[Browser Console]: [AudioManager] Request to speak: "ear" in en-US
+[Browser Console]: [AudioManager] Voices empty, waiting for voiceschanged...
+[Browser Console]: [AudioManager] No specific voice found for en-US, using browser default.
+[Browser Console]: [AudioManager] Utterance error: not-allowed SpeechSynthesisErrorEvent
+[Browser Console]: The script has an unsupported MIME type ('text/html').
+[Browser Console]: [PWA] SW registration failed: SecurityError: Failed to register a ServiceWorker for scope ('http://localhost:5173/') with script ('http://localhost:5173/sw.js'): The script has an unsupported MIME type ('text/html').
+[Browser LOG]: [AudioManager] Audio unlock triggered.
+[Browser LOG]: [AudioManager] Audio unlock triggered.
+[Browser Console]: [AudioManager] Audio unlock triggered.
+  ✓  4 [chromium] › test/e2e/theni1_visibility.spec.ts:66:3 › Theni 1 Visibility & Layout › Image should be responsive and not push content off-screen (2.5s)
+[Browser LOG]: [AudioManager] Request to speak: "ear" in en-US
+[Browser LOG]: [AudioManager] Using voice: Samantha
+[Browser LOG]: [AudioManager] Request to speak: "ear" in en-US
+[Browser LOG]: [AudioManager] Using voice: Samantha
+  ✓  7 [chromium] › test/e2e/ui_refinements.spec.ts:21:3 › TamilTheni UI Refinements E2E › FR-005.1: Settings Panel Auto-Collapse (Theni 1) (2.8s)
+  ✓  5 [chromium] › test/e2e/ui_refinements.spec.ts:49:3 › TamilTheni UI Refinements E2E › FR-005.2: Category Dropdown Auto-Close (Theni 1) (3.3s)
+WordTa Class: "word-ta revealed", Visible: true
+Container: Top 110, Bottom 670
+Word: Top 494.59375, Bottom 542.59375
+Nav: Top 572
+  ✓  2 [chromium] › test/e2e/theni1_visibility.spec.ts:10:3 › Theni 1 Visibility & Layout › Tamil word should be fully visible within the slide container after reveal (3.4s)
+  ✘  3 [chromium] › test/e2e/global_navigation.spec.ts:103:3 › TamilTheni E2E Suite › Theni 3 & 4: Sentence Reading, Reveal, Next Slide (6.5s)
+[Browser Console]: [vite] connecting...
+[Browser Console]: The script has an unsupported MIME type ('text/html').
+[Browser Console]: [PWA] SW registration failed: SecurityError: Failed to register a ServiceWorker for scope ('http://localhost:5173/') with script ('http://localhost:5173/sw.js'): The script has an unsupported MIME type ('text/html').
+[Browser Console]: [vite] connected.
+  ✘  6 [chromium] › test/e2e/global_navigation.spec.ts:21:3 › TamilTheni E2E Suite › Theni 1: Image, English Word, Reveal, Next Slide (8.2s)
+[Browser Console]: [vite] connecting...
+[Browser Console]: [vite] connected.
+[Browser Console]: [AudioManager] Request to speak: "ear" in en-US
+[Browser Console]: [AudioManager] Voices empty, waiting for voiceschanged...
+[Browser Console]: [AudioManager] No specific voice found for en-US, using browser default.
+[Browser Console]: [AudioManager] Utterance error: not-allowed SpeechSynthesisErrorEvent
+[Browser Console]: The script has an unsupported MIME type ('text/html').
+[Browser Console]: [PWA] SW registration failed: SecurityError: Failed to register a ServiceWorker for scope ('http://localhost:5173/') with script ('http://localhost:5173/sw.js'): The script has an unsupported MIME type ('text/html').
+[Browser Console]: [AudioManager] Audio unlock triggered.
+  ✘  8 [chromium] › test/e2e/global_navigation.spec.ts:103:3 › TamilTheni E2E Suite › Theni 3 & 4: Sentence Reading, Reveal, Next Slide (retry #1) (6.2s)
+  ✘  9 [chromium] › test/e2e/global_navigation.spec.ts:21:3 › TamilTheni E2E Suite › Theni 1: Image, English Word, Reveal, Next Slide (retry #1) (6.7s)
+
+
+  1) [chromium] › test/e2e/global_navigation.spec.ts:21:3 › TamilTheni E2E Suite › Theni 1: Image, English Word, Reveal, Next Slide 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#controlPanel')
+    Expected pattern: [32m/collapsed/[39m
+    Received string:  [31m"control-panel"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('#controlPanel')[22m
+    [2m    9 × locator resolved to <div id="controlPanel" aria-hidden="true" class="control-panel">…</div>[22m
+    [2m      - unexpected value "control-panel"[22m
+
+
+      39 |         await page.keyboard.press('Escape');
+      40 |         await page.waitForTimeout(500);
+    > 41 |         await expect(panel).toHaveClass(/collapsed/);
+         |                             ^
+      42 |
+      43 |         // 3. Reveal
+      44 |         const wrapper = page.locator('#slides-wrapper');
+        at /Users/amirdhagopal/Projects/jupyter/tamiltheni/test/e2e/global_navigation.spec.ts:41:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-bed17-lish-Word-Reveal-Next-Slide-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/global_navigation-TamilThe-bed17-lish-Word-Reveal-Next-Slide-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#controlPanel')
+    Expected pattern: [32m/collapsed/[39m
+    Received string:  [31m"control-panel"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('#controlPanel')[22m
+    [2m    9 × locator resolved to <div id="controlPanel" aria-hidden="true" class="control-panel">…</div>[22m
+    [2m      - unexpected value "control-panel"[22m
+
+
+      39 |         await page.keyboard.press('Escape');
+      40 |         await page.waitForTimeout(500);
+    > 41 |         await expect(panel).toHaveClass(/collapsed/);
+         |                             ^
+      42 |
+      43 |         // 3. Reveal
+      44 |         const wrapper = page.locator('#slides-wrapper');
+        at /Users/amirdhagopal/Projects/jupyter/tamiltheni/test/e2e/global_navigation.spec.ts:41:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-bed17-lish-Word-Reveal-Next-Slide-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/global_navigation-TamilThe-bed17-lish-Word-Reveal-Next-Slide-chromium-retry1/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-bed17-lish-Word-Reveal-Next-Slide-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/global_navigation-TamilThe-bed17-lish-Word-Reveal-Next-Slide-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › test/e2e/global_navigation.spec.ts:103:3 › TamilTheni E2E Suite › Theni 3 & 4: Sentence Reading, Reveal, Next Slide 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#controlPanel')
+    Expected pattern: [32m/collapsed/[39m
+    Received string:  [31m"control-panel"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('#controlPanel')[22m
+    [2m    9 × locator resolved to <div id="controlPanel" aria-hidden="true" class="control-panel">…</div>[22m
+    [2m      - unexpected value "control-panel"[22m
+
+
+      119 |         await page.keyboard.press('Escape');
+      120 |         await page.waitForTimeout(500);
+    > 121 |         await expect(panel).toHaveClass(/collapsed/);
+          |                             ^
+      122 |         await expect(slide0).not.toHaveClass(/revealed/);
+      123 |
+      124 |         // Click -> Should Reveal
+        at /Users/amirdhagopal/Projects/jupyter/tamiltheni/test/e2e/global_navigation.spec.ts:121:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#controlPanel')
+    Expected pattern: [32m/collapsed/[39m
+    Received string:  [31m"control-panel"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('#controlPanel')[22m
+    [2m    9 × locator resolved to <div id="controlPanel" aria-hidden="true" class="control-panel">…</div>[22m
+    [2m      - unexpected value "control-panel"[22m
+
+
+      119 |         await page.keyboard.press('Escape');
+      120 |         await page.waitForTimeout(500);
+    > 121 |         await expect(panel).toHaveClass(/collapsed/);
+          |                             ^
+      122 |         await expect(slide0).not.toHaveClass(/revealed/);
+      123 |
+      124 |         // Click -> Should Reveal
+        at /Users/amirdhagopal/Projects/jupyter/tamiltheni/test/e2e/global_navigation.spec.ts:121:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium-retry1/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › test/e2e/global_navigation.spec.ts:21:3 › TamilTheni E2E Suite › Theni 1: Image, English Word, Reveal, Next Slide 
+    [chromium] › test/e2e/global_navigation.spec.ts:103:3 › TamilTheni E2E Suite › Theni 3 & 4: Sentence Reading, Reveal, Next Slide 
+  5 passed (16.9s)

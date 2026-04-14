@@ -11,6 +11,8 @@ export interface Word {
     complexity?: number;
     clue_words_en?: string;
     clue_words_ta?: string;
+    year?: number;
+    round?: string;
 }
 
 export interface TheniConfig {

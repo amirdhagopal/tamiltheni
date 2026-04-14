@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'preact/hooks';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'preact/hooks';
 import { Utils } from '../utils';
 import { Timer } from '../timer';
 
@@ -22,7 +22,33 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
     disableShortcuts = false,
 }: UseTheniModuleProps<T>) {
     // Shared State
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    // Shared State (initialized below with discoverFilters)
+
+    // Derived State: Discovery functions (used for initialization)
+    const discoverFilters = useCallback(() => {
+        const cats = new Set<string>();
+        const years = new Set<string>();
+        const rounds = new Set<string>();
+
+        allWords.forEach((w: any) => {
+            if (w.year) years.add(String(w.year));
+            if (w.round) rounds.add(w.round);
+            else rounds.add('முதன்மை');
+            if (w.category && w.category_ta) cats.add(`${w.category} - ${w.category_ta}`);
+        });
+
+        return {
+            categories: Array.from(cats).sort(),
+            years: Array.from(years).sort(),
+            rounds: Array.from(rounds).sort(),
+        };
+    }, [allWords]);
+
+    // Shared State with Lazy Initialization
+    const [selectedCategories, setSelectedCategories] = useState<string[]>(() => discoverFilters().categories);
+    const [selectedYears, setSelectedYears] = useState<string[]>(() => discoverFilters().years);
+    const [selectedRounds, setSelectedRounds] = useState<string[]>(() => discoverFilters().rounds);
+
     const [difficulty, setDifficulty] = useState<'all' | 'D1' | 'D2' | 'D3'>('all');
     const [shuffle, setShuffle] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,39 +57,45 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
     const [voiceEnabled, setVoiceEnabled] = useState(false);
     const [showTimer, setShowTimer] = useState(true);
 
-    // Derived State: Categories
+    // Dynamic Discovery (Memoized)
+    // Categories are still dynamic: they update when Year/Round selection changes
     const categories = useMemo(() => {
         const cats = new Set<string>();
         allWords.forEach((w: any) => {
-            if (w.category && w.category_ta) {
+            const wordYear = String(w.year || '');
+            const matchesYear = selectedYears.includes(wordYear) || !w.year;
+            const wordRound = w.round || 'முதன்மை';
+            const matchesRound = selectedRounds.includes(wordRound);
+
+            if (matchesYear && matchesRound && w.category && w.category_ta) {
                 cats.add(`${w.category} - ${w.category_ta}`);
             }
         });
-        return Array.from(cats);
-    }, [allWords]);
+        return Array.from(cats).sort();
+    }, [allWords, selectedYears, selectedRounds]);
 
-    // Initial Category Selection
-    useEffect(() => {
-        if (categories.length > 0 && selectedCategories.length === 0) {
-            setSelectedCategories([...categories]);
-        }
-    }, [categories]);
+    const availableYears = useMemo(() => discoverFilters().years, [discoverFilters]);
+    const availableRounds = useMemo(() => discoverFilters().rounds, [discoverFilters]);
 
     // Derived State: Filtered Words
     const filteredWords = useMemo(() => {
         let result = allWords;
 
         if (filterFn) {
-            result = filterFn(allWords, { selectedCategories, difficulty });
+            result = filterFn(allWords, { selectedCategories, difficulty, selectedYears, selectedRounds });
         } else {
             result = allWords.filter((w: any) => {
-                // If it doesn't have category/difficulty, include it (it's likely Theni 5 or similar handled externally)
                 if (!w.category || !w.difficulty) return true;
 
                 const catKey = `${w.category} - ${w.category_ta}`;
-                const matchesCat = selectedCategories.length > 0 && selectedCategories.includes(catKey);
+                const matchesCat = selectedCategories.includes(catKey);
                 const matchesDiff = difficulty === 'all' || w.difficulty === difficulty;
-                return matchesCat && matchesDiff;
+                const wordYear = String(w.year || '');
+                const matchesYear = !w.year || selectedYears.includes(wordYear);
+                const wordRound = w.round || 'முதன்மை';
+                const matchesRound = selectedRounds.includes(wordRound);
+
+                return matchesCat && matchesDiff && matchesYear && matchesRound;
             });
         }
 
@@ -73,18 +105,23 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         }
 
         return result;
-    }, [allWords, selectedCategories, difficulty, shuffle, filterFn]);
+    }, [allWords, selectedCategories, difficulty, shuffle, filterFn, selectedYears, selectedRounds]);
 
     const isLast = useMemo(() => {
         return filteredWords.length > 0 && currentIndex === filteredWords.length - 1;
     }, [filteredWords.length, currentIndex]);
 
     // Update index and revealed state when filters change
+    const isInitialMount = useRef(true);
     useEffect(() => {
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            return;
+        }
         setCurrentIndex(0);
         setRevealed(false);
         if (onFilterChange) onFilterChange();
-    }, [selectedCategories, difficulty, shuffle]);
+    }, [selectedCategories, difficulty, shuffle, selectedYears, selectedRounds]);
 
     // Progress Update
     useEffect(() => {
@@ -163,6 +200,22 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         setSelectedCategories((prev) => (prev.length === categories.length ? [] : [...categories]));
     }, [categories]);
 
+    const toggleYear = useCallback((y: string) => {
+        setSelectedYears((prev) => (prev.includes(y) ? prev.filter((x) => x !== y) : [...prev, y]));
+    }, []);
+
+    const toggleAllYears = useCallback(() => {
+        setSelectedYears((prev) => (prev.length === availableYears.length ? [] : [...availableYears]));
+    }, [availableYears]);
+
+    const toggleRound = useCallback((r: string) => {
+        setSelectedRounds((prev) => (prev.includes(r) ? prev.filter((x) => x !== r) : [...prev, r]));
+    }, []);
+
+    const toggleAllRounds = useCallback(() => {
+        setSelectedRounds((prev) => (prev.length === availableRounds.length ? [] : [...availableRounds]));
+    }, [availableRounds]);
+
     const resetSelection = useCallback(() => {
         setShuffle(false);
         setCurrentIndex(0);
@@ -234,6 +287,14 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
         handleAction,
         toggleCategory,
         toggleAllCategories,
+        toggleYear,
+        toggleAllYears,
+        toggleRound,
+        toggleAllRounds,
+        availableYears,
+        availableRounds,
+        selectedYears,
+        selectedRounds,
         resetSelection,
     };
 }

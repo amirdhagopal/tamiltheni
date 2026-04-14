@@ -1,0 +1,91 @@
+
+> tamiltheni@1.0.0 test:e2e
+> playwright test --config config/playwright.config.ts --grep Theni 3 & 4: Sentence Reading
+
+
+Running 1 test using 1 worker
+
+[Browser Console]: [vite] connecting...
+[Browser Console]: The script has an unsupported MIME type ('text/html').
+[Browser Console]: [PWA] SW registration failed: SecurityError: Failed to register a ServiceWorker for scope ('http://localhost:5173/') with script ('http://localhost:5173/sw.js'): The script has an unsupported MIME type ('text/html').
+[Browser Console]: [vite] connected.
+  ✘  1 [chromium] › test/e2e/global_navigation.spec.ts:117:3 › TamilTheni E2E Suite › Theni 3 & 4: Sentence Reading, Reveal, Next Slide (5.5s)
+[Browser Console]: [vite] connecting...
+[Browser Console]: The script has an unsupported MIME type ('text/html').
+[Browser Console]: [PWA] SW registration failed: SecurityError: Failed to register a ServiceWorker for scope ('http://localhost:5173/') with script ('http://localhost:5173/sw.js'): The script has an unsupported MIME type ('text/html').
+[Browser Console]: [vite] connected.
+  ✘  2 [chromium] › test/e2e/global_navigation.spec.ts:117:3 › TamilTheni E2E Suite › Theni 3 & 4: Sentence Reading, Reveal, Next Slide (retry #1) (5.7s)
+
+
+  1) [chromium] › test/e2e/global_navigation.spec.ts:117:3 › TamilTheni E2E Suite › Theni 3 & 4: Sentence Reading, Reveal, Next Slide 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#controlPanel')
+    Expected pattern: [32m/collapsed/[39m
+    Received string:  [31m"control-panel open"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('#controlPanel')[22m
+    [2m    9 × locator resolved to <div id="controlPanel" aria-hidden="false" class="control-panel open">…</div>[22m
+    [2m      - unexpected value "control-panel open"[22m
+
+
+      113 |         // Panel should be auto-collapsed on load by the new filter sync logic.
+      114 |         const panel = page.locator('#controlPanel');
+    > 115 |         await expect(panel).toHaveClass(/collapsed/);
+          |                             ^
+      116 |
+      117 |         // Click once to Reveal (Using safe position to avoid any panel overlap)
+      118 |         await page.locator('.slide-container').click({ position: { x: 800, y: 300 } });
+        at /Users/amirdhagopal/Projects/jupyter/tamiltheni/test/e2e/global_navigation.spec.ts:115:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveClass[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#controlPanel')
+    Expected pattern: [32m/collapsed/[39m
+    Received string:  [31m"control-panel open"[39m
+    Timeout: 5000ms
+
+    Call log:
+    [2m  - Expect "toHaveClass" with timeout 5000ms[22m
+    [2m  - waiting for locator('#controlPanel')[22m
+    [2m    9 × locator resolved to <div id="controlPanel" aria-hidden="false" class="control-panel open">…</div>[22m
+    [2m      - unexpected value "control-panel open"[22m
+
+
+      113 |         // Panel should be auto-collapsed on load by the new filter sync logic.
+      114 |         const panel = page.locator('#controlPanel');
+    > 115 |         await expect(panel).toHaveClass(/collapsed/);
+          |                             ^
+      116 |
+      117 |         // Click once to Reveal (Using safe position to avoid any panel overlap)
+      118 |         await page.locator('.slide-container').click({ position: { x: 800, y: 300 } });
+        at /Users/amirdhagopal/Projects/jupyter/tamiltheni/test/e2e/global_navigation.spec.ts:115:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium-retry1/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/global_navigation-TamilThe-6032b-e-Reading-Reveal-Next-Slide-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › test/e2e/global_navigation.spec.ts:117:3 › TamilTheni E2E Suite › Theni 3 & 4: Sentence Reading, Reveal, Next Slide 

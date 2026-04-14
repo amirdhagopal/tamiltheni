@@ -32,6 +32,14 @@ export default function Theni34App() {
         handleGoLast,
         toggleCategory,
         toggleAllCategories,
+        toggleYear,
+        toggleAllYears,
+        toggleRound,
+        toggleAllRounds,
+        availableYears,
+        availableRounds,
+        selectedYears,
+        selectedRounds,
         resetSelection,
         isLast
     } = useTheniModule({
@@ -118,6 +126,14 @@ export default function Theni34App() {
                 selectedCategories={selectedCategories}
                 onToggleCategory={toggleCategory}
                 onToggleAllCategories={toggleAllCategories}
+                availableYears={availableYears}
+                selectedYears={selectedYears}
+                onToggleYear={toggleYear}
+                onToggleAllYears={toggleAllYears}
+                availableRounds={availableRounds}
+                selectedRounds={selectedRounds}
+                onToggleRound={toggleRound}
+                onToggleAllRounds={toggleAllRounds}
                 difficulty={difficulty}
                 setDifficulty={setDifficulty}
                 shuffle={shuffle}

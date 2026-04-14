@@ -26,6 +26,12 @@ interface ControlsProps {
     onToggleYear?: (year: string) => void;
     onToggleAllYears?: () => void;
 
+    // Round Filter
+    availableRounds?: string[];
+    selectedRounds?: string[];
+    onToggleRound?: (round: string) => void;
+    onToggleAllRounds?: () => void;
+
     shuffle?: boolean;
     setShuffle?: (s: boolean) => void;
     reset: () => void;
@@ -71,6 +77,10 @@ export const Controls = ({
     selectedYears,
     onToggleYear,
     onToggleAllYears,
+    availableRounds,
+    selectedRounds,
+    onToggleRound,
+    onToggleAllRounds,
     shuffle,
     setShuffle,
     reset,
@@ -100,6 +110,11 @@ export const Controls = ({
     const [yearDropdownPos, setYearDropdownPos] = useState({ top: 0, left: 0, width: 0 });
     const yearButtonRef = useRef<HTMLButtonElement>(null);
 
+    // Round Dropdown State
+    const [isRoundDropdownOpen, setIsRoundDropdownOpen] = useState(false);
+    const [roundDropdownPos, setRoundDropdownPos] = useState({ top: 0, left: 0, width: 0 });
+    const roundButtonRef = useRef<HTMLButtonElement>(null);
+
     // Close dropdown on global click or panel collapse
     useEffect(() => {
         const handleDocumentClick = (e: MouseEvent) => {
@@ -115,17 +130,20 @@ export const Controls = ({
             }
         };
 
-        const handlePanelCollapsed = () => { setIsDropdownOpen(false); setIsYearDropdownOpen(false); };
+        const handlePanelCollapsed = () => { setIsDropdownOpen(false); setIsYearDropdownOpen(false); setIsRoundDropdownOpen(false); };
 
         const handleScroll = (e: Event) => {
             const dropdown = document.getElementById('categoryMenu');
             const yearDropdown = document.getElementById('yearMenu');
+            const roundDropdown = document.getElementById('roundMenu');
             // If scrolling happens inside a dropdown, do NOT close it
             if (dropdown && dropdown.contains(e.target as Node)) return;
             if (yearDropdown && yearDropdown.contains(e.target as Node)) return;
+            if (roundDropdown && roundDropdown.contains(e.target as Node)) return;
             // If scrolling happens elsewhere (e.g. main page), close dropdowns to prevent detachment
             if (isDropdownOpen) setIsDropdownOpen(false);
             if (isYearDropdownOpen) setIsYearDropdownOpen(false);
+            if (isRoundDropdownOpen) setIsRoundDropdownOpen(false);
         };
 
         document.addEventListener('click', handleDocumentClick);
@@ -148,9 +166,16 @@ export const Controls = ({
             const target = e.target as HTMLElement;
             const yearMenu = document.getElementById('yearMenu');
             const yearBtn = yearButtonRef.current;
+            const roundMenu = document.getElementById('roundMenu');
+            const roundBtn = roundButtonRef.current;
+
             if (yearMenu && yearMenu.contains(target)) return;
             if (yearBtn && yearBtn.contains(target)) return;
+            if (roundMenu && roundMenu.contains(target)) return;
+            if (roundBtn && roundBtn.contains(target)) return;
+
             setIsYearDropdownOpen(false);
+            setIsRoundDropdownOpen(false);
         };
 
         panel.addEventListener('click', handlePanelClick);
@@ -172,6 +197,8 @@ export const Controls = ({
 
     const toggleYearDropdown = (e: MouseEvent) => {
         e.stopPropagation();
+        setIsDropdownOpen(false);
+        setIsRoundDropdownOpen(false);
         if (!isYearDropdownOpen && yearButtonRef.current) {
             const rect = yearButtonRef.current.getBoundingClientRect();
             setYearDropdownPos({
@@ -183,9 +210,24 @@ export const Controls = ({
         setIsYearDropdownOpen(!isYearDropdownOpen);
     };
 
+    const toggleRoundDropdown = (e: MouseEvent) => {
+        e.stopPropagation();
+        setIsDropdownOpen(false);
+        setIsYearDropdownOpen(false);
+        if (!isRoundDropdownOpen && roundButtonRef.current) {
+            const rect = roundButtonRef.current.getBoundingClientRect();
+            setRoundDropdownPos({
+                top: rect.bottom + 5,
+                left: rect.left,
+                width: Math.max(rect.width, 180)
+            });
+        }
+        setIsRoundDropdownOpen(!isRoundDropdownOpen);
+    };
+
     if (!portalTarget) return null;
 
-    const closeDropdown = () => { setIsDropdownOpen(false); setIsYearDropdownOpen(false); };
+    const closeDropdown = () => { setIsDropdownOpen(false); setIsYearDropdownOpen(false); setIsRoundDropdownOpen(false); };
 
     return createPortal(
         <Fragment>
@@ -237,6 +279,62 @@ export const Controls = ({
                                                     <span className="year-color-swatch" style={{ backgroundColor: yearColors[year] }} />
                                                 )}
                                                 <span>{year}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>,
+                            document.body
+                        )}
+                    </div>
+                </div>
+            )}
+
+            {/* Round Filter */}
+            {availableRounds && availableRounds.length > 0 && selectedRounds && onToggleRound && onToggleAllRounds && (
+                <div className="control-row">
+                    <span className="control-label">Round:</span>
+                    <div className="category-dropdown">
+                        <button
+                            className="dropdown-button"
+                            id="round-dropdown-btn"
+                            ref={roundButtonRef}
+                            onClick={toggleRoundDropdown}
+                            title="Select rounds to display">
+                            <span>
+                                {selectedRounds.length === availableRounds.length ? 'All Rounds' :
+                                    selectedRounds.length === 0 ? 'None selected' :
+                                        selectedRounds.join(', ')}
+                            </span>
+                            <span>▼</span>
+                        </button>
+
+                        {isRoundDropdownOpen && createPortal(
+                            <div
+                                className="dropdown-menu show"
+                                id="roundMenu"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                    display: 'block',
+                                    position: 'fixed',
+                                    top: roundDropdownPos.top,
+                                    left: roundDropdownPos.left,
+                                    width: roundDropdownPos.width,
+                                    maxHeight: '60vh',
+                                    zIndex: 9999,
+                                }}
+                            >
+                                <div className="dropdown-item header" onClick={() => { onToggleAllRounds(); }}>
+                                    <input type="checkbox" checked={selectedRounds.length === availableRounds.length} readOnly />
+                                    <span>Select All / None</span>
+                                </div>
+                                <div id="roundList">
+                                    {availableRounds.map((round: string) => {
+                                        const isSelected = selectedRounds.includes(round);
+                                        return (
+                                            <div className="dropdown-item" key={round} onClick={() => onToggleRound(round)}>
+                                                <input type="checkbox" checked={isSelected} readOnly />
+                                                <span>{round}</span>
                                             </div>
                                         );
                                     })}

@@ -31,18 +31,19 @@ test.describe('TamilTheni E2E Suite', () => {
         await expect(slide0.locator('.slide-image')).toBeVisible();
 
         // 2. Handle Potential Panel/Initial Interaction
-        // Initial click might close the panel if open.
+        // Panel starts open. Press Escape to close it.
+        const panel = page.locator('#controlPanel');
+        await expect(panel).not.toHaveClass(/collapsed/);
+
+        // Escape -> Should close panel
+        await page.keyboard.press('Escape');
+        await page.waitForTimeout(500);
+        await expect(panel).not.toHaveClass(/open/);
+
+        // 3. Reveal
         const wrapper = page.locator('#slides-wrapper');
         await wrapper.click();
         await page.waitForTimeout(300);
-
-        // 3. Ensure Revealed
-        // If the first click was consumed by panel closing, we might need another.
-        // Check if 'revealed' class is present.
-        const isRevealed = await slide0.evaluate((el) => el.classList.contains('revealed'));
-        if (!isRevealed) {
-            await wrapper.click();
-        }
 
         // Verify Revealed State (Tamil word visible/unblurred)
         await expect(slide0).toHaveClass(/revealed/);
@@ -110,25 +111,25 @@ test.describe('TamilTheni E2E Suite', () => {
         await expect(slide0.locator('.word-en')).toBeVisible();
 
         // 2. Reveal Logic (Panel Interaction Check)
-        // Panel starts open. First click should CLOSE panel and NOT reveal.
+        // Panel starts open. Press Escape to close it.
         const panel = page.locator('#controlPanel');
         await expect(panel).not.toHaveClass(/collapsed/);
 
-        // First Click -> Should close panel
-        await page.locator('.slide-container').click({ position: { x: 300, y: 300 } });
+        // Escape -> Should close panel
+        await page.keyboard.press('Escape');
         await page.waitForTimeout(500);
-        await expect(panel).toHaveClass(/collapsed/);
+        await expect(panel).not.toHaveClass(/open/);
         await expect(slide0).not.toHaveClass(/revealed/);
 
-        // Second Click -> Should Reveal
-        await page.locator('.slide-container').click({ position: { x: 300, y: 300 } });
+        // Click -> Should Reveal
+        await page.locator('.slide-container').click();
         await page.waitForTimeout(500);
 
         // Verify "revealed"
         await expect(slide0).toHaveClass(/revealed/);
 
         // 3. Next Slide
-        await page.locator('.slide-container').click({ position: { x: 300, y: 300 } });
+        await page.locator('.slide-container').click();
 
         const slide1 = page.locator('#slide-1');
         await expect(slide1).toHaveClass(/active/);
