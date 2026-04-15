@@ -21,7 +21,7 @@ export default function Theni5App() {
 
     // Compute available years from data (support string and number)
     const availableYears = useMemo(() => {
-        const yearSet = new Set(allWords.map(w => String(w.y)));
+        const yearSet = new Set(allWords.map(w => String(w.year)));
         const years = [...yearSet].sort((a, b) => {
             const na = Number(a), nb = Number(b);
             if (!isNaN(na) && !isNaN(nb)) return nb - na;
@@ -39,8 +39,8 @@ export default function Theni5App() {
     const availableCategories = useMemo(() => {
         const cats = new Set<string>();
         allWords
-            .filter(w => selectedYears.includes(String(w.y)))
-            .forEach(w => w.c?.forEach(c => cats.add(c)));
+            .filter(w => selectedYears.includes(String(w.year)))
+            .forEach(w => w.category?.forEach(c => cats.add(c)));
         return [...cats].sort();
     }, [allWords, selectedYears]);
 
@@ -50,6 +50,24 @@ export default function Theni5App() {
     useEffect(() => {
         setSelectedCategories(availableCategories);
     }, [availableCategories]);
+
+    // Compute available rounds from words in selected years
+    const availableRounds = useMemo(() => {
+        const rounds = new Set<string>();
+        allWords
+            .filter(w => selectedYears.includes(String(w.year)))
+            .forEach(w => {
+                if (w.round) rounds.add(w.round);
+            });
+        return [...rounds].sort();
+    }, [allWords, selectedYears]);
+
+    const [selectedRounds, setSelectedRounds] = useState<string[]>([]);
+
+    // Auto-select all rounds when available rounds change
+    useEffect(() => {
+        setSelectedRounds(availableRounds);
+    }, [availableRounds]);
 
     // 1. Concatenate words from selected years (latest first), filter by category, assign virtual serial positions
     const yearScopedWords = useMemo(() => {
@@ -64,9 +82,10 @@ export default function Theni5App() {
         const result: (Theni5Word & { vs: number })[] = [];
         for (const year of sortedYears) {
             const yearWords = allWords
-                .filter(w => String(w.y) === year)
-                .filter(w => w.c?.some(c => selectedCategories.includes(c)))
-                .sort((a, b) => a.s - b.s);
+                .filter(w => String(w.year) === year)
+                .filter(w => !w.round || selectedRounds.includes(w.round))
+                .filter(w => w.category?.some(c => selectedCategories.includes(c)))
+                .sort((a, b) => a.id - b.id);
             for (const w of yearWords) {
                 result.push({ ...w, vs: vs++ });
             }
@@ -173,6 +192,20 @@ export default function Theni5App() {
             prev.length === availableCategories.length ? [] : [...availableCategories]
         );
     }, [availableCategories]);
+
+    const handleToggleRound = useCallback((round: string) => {
+        setSelectedRounds(prev =>
+            prev.includes(round)
+                ? prev.filter(r => r !== round)
+                : [...prev, round]
+        );
+    }, []);
+
+    const handleToggleAllRounds = useCallback(() => {
+        setSelectedRounds(prev =>
+            prev.length === availableRounds.length ? [] : [...availableRounds]
+        );
+    }, [availableRounds]);
 
     const handleGoFirst = useCallback(() => {
         setCurrentPage(0);
@@ -287,6 +320,7 @@ export default function Theni5App() {
                     setRangeStart(1);
                     setRangeEnd(totalWordsInScope || 250);
                     setSelectedYears([...availableYears]);
+                    setSelectedRounds([...availableRounds]);
                     setSelectedCategories([...availableCategories]);
                     Timer.restart();
                 }}
@@ -299,6 +333,10 @@ export default function Theni5App() {
                 selectedYears={selectedYears}
                 onToggleYear={handleToggleYear}
                 onToggleAllYears={handleToggleAllYears}
+                availableRounds={availableRounds}
+                selectedRounds={selectedRounds}
+                onToggleRound={handleToggleRound}
+                onToggleAllRounds={handleToggleAllRounds}
                 showTimer={showTimer}
                 setShowTimer={setShowTimer}
                 showColor={showColor}
@@ -328,11 +366,11 @@ export default function Theni5App() {
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
                         currentWords.map((wordItem, index) => (
-                            <div className="word-row-card word-item" key={`${wordItem.y}-${wordItem.s}`}
-                                style={showColor && YEAR_COLORS[String(wordItem.y)] ? { backgroundColor: YEAR_COLORS[String(wordItem.y)] } : undefined}>
+                            <div className="word-row-card word-item" key={`${wordItem.year}-${wordItem.id}`}
+                                style={showColor && YEAR_COLORS[String(wordItem.year)] ? { backgroundColor: YEAR_COLORS[String(wordItem.year)] } : undefined}>
                                 <div className="card-index">{index + 1}</div>
                                 <div className="word-text-ta">
-                                    {wordItem.w}
+                                    {wordItem.word}
                                 </div>
                             </div>
                         ))
