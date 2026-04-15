@@ -75,7 +75,32 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
     }, [allWords, selectedYears, selectedRounds]);
 
     const availableYears = useMemo(() => discoverFilters().years, [discoverFilters]);
-    const availableRounds = useMemo(() => discoverFilters().rounds, [discoverFilters]);
+    const availableRounds = useMemo(() => {
+        const rounds = new Set<string>();
+        allWords.forEach((w: any) => {
+            const wordYear = String(w.year || '');
+            const matchesYear = selectedYears.includes(wordYear) || !w.year;
+            if (matchesYear) {
+                rounds.add(w.round || 'முதன்மை');
+            }
+        });
+        return Array.from(rounds).sort();
+    }, [allWords, selectedYears]);
+
+    // Filter Cascading Logic
+    useEffect(() => {
+        setSelectedRounds((prev) => {
+            const valid = prev.filter((r) => availableRounds.includes(r));
+            return valid.length > 0 ? valid : availableRounds;
+        });
+    }, [availableRounds]);
+
+    useEffect(() => {
+        setSelectedCategories((prev) => {
+            const valid = prev.filter((c) => categories.includes(c));
+            return valid.length > 0 ? valid : categories;
+        });
+    }, [categories]);
 
     // Derived State: Filtered Words
     const filteredWords = useMemo(() => {
@@ -129,7 +154,16 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
             Utils.updateProgress(currentIndex, filteredWords.length, 'progressBar', 'counter');
         }
         if (onIndexChange) onIndexChange(currentIndex);
-    }, [currentIndex, filteredWords.length, disableProgressUpdate]);
+    }, [
+        currentIndex,
+        filteredWords.length,
+        disableProgressUpdate,
+        selectedCategories,
+        selectedYears,
+        selectedRounds,
+        difficulty,
+        shuffle,
+    ]);
 
     // Timer Init
     useEffect(() => {

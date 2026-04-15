@@ -35,22 +35,6 @@ export default function Theni5App() {
     const [selectedYears, setSelectedYears] = useState<string[]>(availableYears);
     const [showColor, setShowColor] = useState(true);
 
-    // Compute available categories from words in selected years
-    const availableCategories = useMemo(() => {
-        const cats = new Set<string>();
-        allWords
-            .filter(w => selectedYears.includes(String(w.year)))
-            .forEach(w => w.category?.forEach(c => cats.add(c)));
-        return [...cats].sort();
-    }, [allWords, selectedYears]);
-
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-
-    // Auto-select all categories when available categories change
-    useEffect(() => {
-        setSelectedCategories(availableCategories);
-    }, [availableCategories]);
-
     // Compute available rounds from words in selected years
     const availableRounds = useMemo(() => {
         const rounds = new Set<string>();
@@ -66,8 +50,31 @@ export default function Theni5App() {
 
     // Auto-select all rounds when available rounds change
     useEffect(() => {
-        setSelectedRounds(availableRounds);
+        setSelectedRounds(prev => {
+            const valid = prev.filter(r => availableRounds.includes(r));
+            return valid.length > 0 ? valid : availableRounds;
+        });
     }, [availableRounds]);
+
+    // Compute available categories from words in selected years and rounds
+    const availableCategories = useMemo(() => {
+        const cats = new Set<string>();
+        allWords
+            .filter(w => selectedYears.includes(String(w.year)))
+            .filter(w => !w.round || selectedRounds.includes(w.round))
+            .forEach(w => w.category?.forEach(c => cats.add(c)));
+        return [...cats].sort();
+    }, [allWords, selectedYears, selectedRounds]);
+
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+    // Auto-select all categories when available categories change
+    useEffect(() => {
+        setSelectedCategories(prev => {
+            const valid = prev.filter(c => availableCategories.includes(c));
+            return valid.length > 0 ? valid : availableCategories;
+        });
+    }, [availableCategories]);
 
     // 1. Concatenate words from selected years (latest first), filter by category, assign virtual serial positions
     const yearScopedWords = useMemo(() => {
@@ -148,7 +155,7 @@ export default function Theni5App() {
     // Reset page on scope changes
     useEffect(() => {
         setCurrentPage(0);
-    }, [shuffle, rangeStart, rangeEnd, selectedYears, selectedCategories]);
+    }, [shuffle, rangeStart, rangeEnd, selectedYears, selectedRounds, selectedCategories]);
 
     // - [x] Standardize SVG stroke-width for primary icons <!-- id: 23 -->
     // - [/] UI Refinements (Feedback V2) <!-- id: 24 -->
