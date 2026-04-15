@@ -89,17 +89,11 @@ export function useTheniModule<T extends { difficulty?: string; category?: strin
 
     // Filter Cascading Logic
     useEffect(() => {
-        setSelectedRounds((prev) => {
-            const valid = prev.filter((r) => availableRounds.includes(r));
-            return valid.length > 0 ? valid : availableRounds;
-        });
+        setSelectedRounds(availableRounds);
     }, [availableRounds]);
 
     useEffect(() => {
-        setSelectedCategories((prev) => {
-            const valid = prev.filter((c) => categories.includes(c));
-            return valid.length > 0 ? valid : categories;
-        });
+        setSelectedCategories(categories);
     }, [categories]);
 
     // Derived State: Filtered Words

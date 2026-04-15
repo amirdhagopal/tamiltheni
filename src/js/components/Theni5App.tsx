@@ -50,10 +50,7 @@ export default function Theni5App() {
 
     // Auto-select all rounds when available rounds change
     useEffect(() => {
-        setSelectedRounds(prev => {
-            const valid = prev.filter(r => availableRounds.includes(r));
-            return valid.length > 0 ? valid : availableRounds;
-        });
+        setSelectedRounds(availableRounds);
     }, [availableRounds]);
 
     // Compute available categories from words in selected years and rounds
@@ -70,10 +67,7 @@ export default function Theni5App() {
 
     // Auto-select all categories when available categories change
     useEffect(() => {
-        setSelectedCategories(prev => {
-            const valid = prev.filter(c => availableCategories.includes(c));
-            return valid.length > 0 ? valid : availableCategories;
-        });
+        setSelectedCategories(availableCategories);
     }, [availableCategories]);
 
     // 1. Concatenate words from selected years (latest first), filter by category, assign virtual serial positions
