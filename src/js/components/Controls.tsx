@@ -20,13 +20,17 @@ interface ControlsProps {
     rangeEnd?: number;
     onApplyRange?: (start: number, end: number) => void;
 
-    // Year Filter
+    // Year-Round Combined Filter (Theni 5)
+    availableYearRounds?: string[];
+    selectedYearRounds?: string[];
+    onToggleYearRound?: (combo: string) => void;
+    onToggleAllYearRounds?: () => void;
+
+    // Separate Year/Round Filters (Theni 1/2/3/4 backward compat)
     availableYears?: string[];
     selectedYears?: string[];
     onToggleYear?: (year: string) => void;
     onToggleAllYears?: () => void;
-
-    // Round Filter
     availableRounds?: string[];
     selectedRounds?: string[];
     onToggleRound?: (round: string) => void;
@@ -73,6 +77,10 @@ export const Controls = ({
     rangeStart,
     rangeEnd,
     onApplyRange,
+    availableYearRounds,
+    selectedYearRounds,
+    onToggleYearRound,
+    onToggleAllYearRounds,
     availableYears,
     selectedYears,
     onToggleYear,
@@ -105,12 +113,15 @@ export const Controls = ({
     const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
     const buttonRef = useRef<HTMLButtonElement>(null);
 
-    // Year Dropdown State
+    // Year-Round Dropdown State
+    const [isYearRoundDropdownOpen, setIsYearRoundDropdownOpen] = useState(false);
+    const [yearRoundDropdownPos, setYearRoundDropdownPos] = useState({ top: 0, left: 0, width: 0 });
+    const yearRoundButtonRef = useRef<HTMLButtonElement>(null);
+
+    // Separate Year/Round Dropdown State (backward compat)
     const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
     const [yearDropdownPos, setYearDropdownPos] = useState({ top: 0, left: 0, width: 0 });
     const yearButtonRef = useRef<HTMLButtonElement>(null);
-
-    // Round Dropdown State
     const [isRoundDropdownOpen, setIsRoundDropdownOpen] = useState(false);
     const [roundDropdownPos, setRoundDropdownPos] = useState({ top: 0, left: 0, width: 0 });
     const roundButtonRef = useRef<HTMLButtonElement>(null);
@@ -130,18 +141,21 @@ export const Controls = ({
             }
         };
 
-        const handlePanelCollapsed = () => { setIsDropdownOpen(false); setIsYearDropdownOpen(false); setIsRoundDropdownOpen(false); };
+        const handlePanelCollapsed = () => { setIsDropdownOpen(false); setIsYearRoundDropdownOpen(false); setIsYearDropdownOpen(false); setIsRoundDropdownOpen(false); };
 
         const handleScroll = (e: Event) => {
             const dropdown = document.getElementById('categoryMenu');
+            const yearRoundDropdown = document.getElementById('yearRoundMenu');
             const yearDropdown = document.getElementById('yearMenu');
             const roundDropdown = document.getElementById('roundMenu');
             // If scrolling happens inside a dropdown, do NOT close it
             if (dropdown && dropdown.contains(e.target as Node)) return;
+            if (yearRoundDropdown && yearRoundDropdown.contains(e.target as Node)) return;
             if (yearDropdown && yearDropdown.contains(e.target as Node)) return;
             if (roundDropdown && roundDropdown.contains(e.target as Node)) return;
             // If scrolling happens elsewhere (e.g. main page), close dropdowns to prevent detachment
             if (isDropdownOpen) setIsDropdownOpen(false);
+            if (isYearRoundDropdownOpen) setIsYearRoundDropdownOpen(false);
             if (isYearDropdownOpen) setIsYearDropdownOpen(false);
             if (isRoundDropdownOpen) setIsRoundDropdownOpen(false);
         };
@@ -155,25 +169,29 @@ export const Controls = ({
             document.removeEventListener('panelCollapsed', handlePanelCollapsed);
             document.removeEventListener('scroll', handleScroll, true);
         };
-    }, [isDropdownOpen, isYearDropdownOpen]);
+    }, [isDropdownOpen, isYearRoundDropdownOpen, isYearDropdownOpen, isRoundDropdownOpen]);
 
-    // Close year dropdown when clicking on the settings panel (but not on the dropdown itself)
     useEffect(() => {
         const panel = document.getElementById('controlPanel');
         if (!panel) return;
 
         const handlePanelClick = (e: Event) => {
             const target = e.target as HTMLElement;
+            const yearRoundMenu = document.getElementById('yearRoundMenu');
+            const yearRoundBtn = yearRoundButtonRef.current;
             const yearMenu = document.getElementById('yearMenu');
             const yearBtn = yearButtonRef.current;
             const roundMenu = document.getElementById('roundMenu');
             const roundBtn = roundButtonRef.current;
 
+            if (yearRoundMenu && yearRoundMenu.contains(target)) return;
+            if (yearRoundBtn && yearRoundBtn.contains(target)) return;
             if (yearMenu && yearMenu.contains(target)) return;
             if (yearBtn && yearBtn.contains(target)) return;
             if (roundMenu && roundMenu.contains(target)) return;
             if (roundBtn && roundBtn.contains(target)) return;
 
+            setIsYearRoundDropdownOpen(false);
             setIsYearDropdownOpen(false);
             setIsRoundDropdownOpen(false);
         };
@@ -195,10 +213,28 @@ export const Controls = ({
         setIsDropdownOpen(!isDropdownOpen);
     };
 
+    const toggleYearRoundDropdown = (e: MouseEvent) => {
+        e.stopPropagation();
+        setIsDropdownOpen(false);
+        setIsYearDropdownOpen(false);
+        setIsRoundDropdownOpen(false);
+        if (!isYearRoundDropdownOpen && yearRoundButtonRef.current) {
+            const rect = yearRoundButtonRef.current.getBoundingClientRect();
+            setYearRoundDropdownPos({
+                top: rect.bottom + 5,
+                left: rect.left,
+                width: Math.max(rect.width, 220)
+            });
+        }
+        setIsYearRoundDropdownOpen(!isYearRoundDropdownOpen);
+    };
+
+    // Separate Year/Round toggle functions (backward compat)
     const toggleYearDropdown = (e: MouseEvent) => {
         e.stopPropagation();
         setIsDropdownOpen(false);
         setIsRoundDropdownOpen(false);
+        setIsYearRoundDropdownOpen(false);
         if (!isYearDropdownOpen && yearButtonRef.current) {
             const rect = yearButtonRef.current.getBoundingClientRect();
             setYearDropdownPos({
@@ -214,6 +250,7 @@ export const Controls = ({
         e.stopPropagation();
         setIsDropdownOpen(false);
         setIsYearDropdownOpen(false);
+        setIsYearRoundDropdownOpen(false);
         if (!isRoundDropdownOpen && roundButtonRef.current) {
             const rect = roundButtonRef.current.getBoundingClientRect();
             setRoundDropdownPos({
@@ -227,12 +264,73 @@ export const Controls = ({
 
     if (!portalTarget) return null;
 
-    const closeDropdown = () => { setIsDropdownOpen(false); setIsYearDropdownOpen(false); setIsRoundDropdownOpen(false); };
+    const closeDropdown = () => { setIsDropdownOpen(false); setIsYearRoundDropdownOpen(false); setIsYearDropdownOpen(false); setIsRoundDropdownOpen(false); };
 
     return createPortal(
         <Fragment>
-            {/* Year Filter */}
-            {availableYears && availableYears.length > 0 && selectedYears && onToggleYear && onToggleAllYears && (
+            {/* Year - Round Combined Filter */}
+            {availableYearRounds && availableYearRounds.length > 0 && selectedYearRounds && onToggleYearRound && onToggleAllYearRounds && (
+                <div className="control-row">
+                    <span className="control-label">Year - Round:</span>
+                    <div className="category-dropdown">
+                        <button
+                            className="dropdown-button"
+                            id="yearround-dropdown-btn"
+                            ref={yearRoundButtonRef}
+                            onClick={toggleYearRoundDropdown}
+                            title="Select year-round combinations to display">
+                            <span>
+                                {selectedYearRounds.length === availableYearRounds.length ? 'All' :
+                                    selectedYearRounds.length === 0 ? 'None selected' :
+                                        selectedYearRounds.length <= 2 ? selectedYearRounds.join(', ') :
+                                            `${selectedYearRounds.length} selected`}
+                            </span>
+                            <span>▼</span>
+                        </button>
+
+                        {isYearRoundDropdownOpen && createPortal(
+                            <div
+                                className="dropdown-menu show"
+                                id="yearRoundMenu"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                    display: 'block',
+                                    position: 'fixed',
+                                    top: yearRoundDropdownPos.top,
+                                    left: yearRoundDropdownPos.left,
+                                    width: yearRoundDropdownPos.width,
+                                    maxHeight: '60vh',
+                                    zIndex: 9999,
+                                }}
+                            >
+                                <div className="dropdown-item header" onClick={() => { onToggleAllYearRounds(); }}>
+                                    <input type="checkbox" checked={selectedYearRounds.length === availableYearRounds.length} readOnly />
+                                    <span>Select All / None</span>
+                                </div>
+                                <div>
+                                    {availableYearRounds.map((combo: string) => {
+                                        const isSelected = selectedYearRounds.includes(combo);
+                                        const [year] = combo.split(' - ');
+                                        return (
+                                            <div className="dropdown-item" key={combo} onClick={() => onToggleYearRound(combo)}>
+                                                <input type="checkbox" checked={isSelected} readOnly />
+                                                {yearColors && yearColors[year] && (
+                                                    <span className="year-color-swatch" style={{ backgroundColor: yearColors[year] }} />
+                                                )}
+                                                <span>{combo}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>,
+                            document.body
+                        )}
+                    </div>
+                </div>
+            )}
+
+            {/* Separate Year Filter (backward compat for Theni 1/2/3/4) */}
+            {!availableYearRounds && availableYears && availableYears.length > 0 && selectedYears && onToggleYear && onToggleAllYears && (
                 <div className="control-row">
                     <span className="control-label">Year:</span>
                     <div className="category-dropdown">
@@ -290,8 +388,8 @@ export const Controls = ({
                 </div>
             )}
 
-            {/* Round Filter */}
-            {availableRounds && availableRounds.length > 0 && selectedRounds && onToggleRound && onToggleAllRounds && (
+            {/* Separate Round Filter (backward compat for Theni 1/2/3/4) */}
+            {!availableYearRounds && availableRounds && availableRounds.length > 0 && selectedRounds && onToggleRound && onToggleAllRounds && (
                 <div className="control-row">
                     <span className="control-label">Round:</span>
                     <div className="category-dropdown">
