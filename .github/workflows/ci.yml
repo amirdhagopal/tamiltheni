@@ -7,8 +7,8 @@ on:
     branches: [main, publish]
 
 jobs:
-  lint:
-    name: Lint & Format Check
+  verify:
+    name: Lint, Format, Test & Build
     runs-on: ubuntu-latest
 
     steps:
@@ -29,3 +29,9 @@ jobs:
 
       - name: Check Prettier formatting
         run: npm run format:check
+
+      - name: Run unit tests
+        run: npm run test -- --run
+
+      - name: Build production bundle
+        run: npm run build

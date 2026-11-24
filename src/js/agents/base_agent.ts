@@ -18,9 +18,7 @@ export abstract class BaseAgent {
                 attempts++;
                 const msg = error instanceof Error ? error.message : String(error);
                 const isOverloaded =
-                    msg.toLowerCase().includes('overloaded') ||
-                    msg.includes('503') ||
-                    msg.includes('429');
+                    msg.toLowerCase().includes('overloaded') || msg.includes('503') || msg.includes('429');
 
                 if (isOverloaded && attempts < maxRetries) {
                     const waitTime = Math.pow(2, attempts - 1) * 1000; // 1s, 2s, 4s...

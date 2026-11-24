@@ -125,6 +125,14 @@ export function useTheniModule<T extends FilterableWord>({
 
     // Filter Cascading Logic
     useEffect(() => {
+        setSelectedYears(availableYears);
+    }, [availableYears]);
+
+    useEffect(() => {
+        setSelectedYearRounds(availableYearRounds);
+    }, [availableYearRounds]);
+
+    useEffect(() => {
         setSelectedRounds(availableRounds);
     }, [availableRounds]);
 
@@ -317,9 +325,7 @@ export function useTheniModule<T extends FilterableWord>({
     }, []);
 
     const toggleAllYearRounds = useCallback(() => {
-        setSelectedYearRounds((prev) =>
-            prev.length === availableYearRounds.length ? [] : [...availableYearRounds]
-        );
+        setSelectedYearRounds((prev) => (prev.length === availableYearRounds.length ? [] : [...availableYearRounds]));
     }, [availableYearRounds]);
 
     const resetSelection = useCallback(() => {

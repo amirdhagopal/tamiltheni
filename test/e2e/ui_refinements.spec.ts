@@ -69,12 +69,7 @@ test.describe('TamilTheni UI Refinements E2E', () => {
      * Standardized Navigation Bar
      */
     test('Standardized Navigation Presence (Across Modules)', async ({ page }) => {
-        const modules = [
-            '/html/theni1.html',
-            '/html/theni2.html',
-            '/html/theni34.html',
-            '/html/theni5.html',
-        ];
+        const modules = ['/html/theni1.html', '/html/theni2.html', '/html/theni34.html', '/html/theni5.html'];
 
         for (const url of modules) {
             await test.step(`Checking ${url}`, async () => {

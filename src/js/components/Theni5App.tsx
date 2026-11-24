@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { Controls } from './Controls';
 import { useTheniModule } from '../hooks/useTheniModule';
 import { Timer } from '../timer';
-import theni5Words from '../../data/theni5_words.json';
+import { loadTheni5Words } from '../data_loader';
 import { Theni5Word } from '../../types/index';
 
 // Subtle pastel background colors for each year
@@ -12,17 +12,21 @@ const YEAR_COLORS: Record<string, string> = {
     '2026': '#e8e0f0', // soft lavender
     '2025': '#d9f0e0', // soft mint
     '2024': '#f0e0d9', // soft peach
-    'சமன்முறிவு': '#f0f0d9', // soft gold
+    சமன்முறிவு: '#f0f0d9', // soft gold
 };
 
 export default function Theni5App() {
     const WORDS_PER_PAGE = 5;
-    const allWords = useMemo(() => theni5Words as Theni5Word[], []);
+    const [allWords, setAllWords] = useState<Theni5Word[]>([]);
+
+    useEffect(() => {
+        loadTheni5Words().then(setAllWords);
+    }, []);
 
     // Compute available Year-Round combinations from data
     const availableYearRounds = useMemo(() => {
         const combos = new Set<string>();
-        allWords.forEach(w => {
+        allWords.forEach((w) => {
             const yr = String(w.year);
             const rd = w.round || 'முதன்மை';
             combos.add(`${yr} - ${rd}`);
@@ -31,7 +35,8 @@ export default function Theni5App() {
             // Sort by year descending, then round ascending
             const [yearA, roundA] = a.split(' - ');
             const [yearB, roundB] = b.split(' - ');
-            const na = Number(yearA), nb = Number(yearB);
+            const na = Number(yearA),
+                nb = Number(yearB);
             if (na !== nb) return nb - na;
             return roundA.localeCompare(roundB);
         });
@@ -40,15 +45,19 @@ export default function Theni5App() {
     const [selectedYearRounds, setSelectedYearRounds] = useState<string[]>(availableYearRounds);
     const [showColor, setShowColor] = useState(true);
 
+    useEffect(() => {
+        setSelectedYearRounds(availableYearRounds);
+    }, [availableYearRounds]);
+
     // Compute available categories from words matching selected year-round combos
     const availableCategories = useMemo(() => {
         const cats = new Set<string>();
         allWords
-            .filter(w => {
+            .filter((w) => {
                 const combo = `${String(w.year)} - ${w.round || 'முதன்மை'}`;
                 return selectedYearRounds.includes(combo);
             })
-            .forEach(w => w.category?.forEach(c => cats.add(c)));
+            .forEach((w) => w.category?.forEach((c) => cats.add(c)));
         return [...cats].sort();
     }, [allWords, selectedYearRounds]);
 
@@ -65,7 +74,8 @@ export default function Theni5App() {
         const sortedCombos = [...selectedYearRounds].sort((a, b) => {
             const [yearA, roundA] = a.split(' - ');
             const [yearB, roundB] = b.split(' - ');
-            const na = Number(yearA), nb = Number(yearB);
+            const na = Number(yearA),
+                nb = Number(yearB);
             if (na !== nb) return nb - na;
             return roundA.localeCompare(roundB);
         });
@@ -74,8 +84,8 @@ export default function Theni5App() {
         for (const combo of sortedCombos) {
             const [year, round] = combo.split(' - ');
             const comboWords = allWords
-                .filter(w => String(w.year) === year && (w.round || 'முதன்மை') === round)
-                .filter(w => w.category?.some(c => selectedCategories.includes(c)))
+                .filter((w) => String(w.year) === year && (w.round || 'முதன்மை') === round)
+                .filter((w) => w.category?.some((c) => selectedCategories.includes(c)))
                 .sort((a, b) => a.id - b.id);
             for (const w of comboWords) {
                 result.push({ ...w, vs: vs++ });
@@ -97,7 +107,7 @@ export default function Theni5App() {
 
     // 2. Filter by range using virtual serial positions
     const filteredWords = useMemo(() => {
-        return yearScopedWords.filter(w => w.vs >= rangeStart && w.vs <= rangeEnd);
+        return yearScopedWords.filter((w) => w.vs >= rangeStart && w.vs <= rangeEnd);
     }, [yearScopedWords, rangeStart, rangeEnd]);
 
     // Module Hook
@@ -108,12 +118,12 @@ export default function Theni5App() {
         setCurrentIndex: setCurrentPage,
         showTimer,
         setShowTimer,
-        resetSelection
+        resetSelection,
     } = useTheniModule({
         allWords: filteredWords, // Pass filtered list to hook
         initialTimerDuration: 60,
         disableProgressUpdate: true,
-        disableShortcuts: true
+        disableShortcuts: true,
     });
 
     // 2. Shuffle second
@@ -132,7 +142,7 @@ export default function Theni5App() {
 
     // 3. Paginate
     const currentWords = useMemo(() => {
-        const start = (currentPage) * WORDS_PER_PAGE;
+        const start = currentPage * WORDS_PER_PAGE;
         return processedWords.slice(start, start + WORDS_PER_PAGE);
     }, [currentPage, processedWords]);
 
@@ -157,31 +167,19 @@ export default function Theni5App() {
     }, []);
 
     const handleToggleYearRound = useCallback((combo: string) => {
-        setSelectedYearRounds(prev =>
-            prev.includes(combo)
-                ? prev.filter(c => c !== combo)
-                : [...prev, combo]
-        );
+        setSelectedYearRounds((prev) => (prev.includes(combo) ? prev.filter((c) => c !== combo) : [...prev, combo]));
     }, []);
 
     const handleToggleAllYearRounds = useCallback(() => {
-        setSelectedYearRounds(prev =>
-            prev.length === availableYearRounds.length ? [] : [...availableYearRounds]
-        );
+        setSelectedYearRounds((prev) => (prev.length === availableYearRounds.length ? [] : [...availableYearRounds]));
     }, [availableYearRounds]);
 
     const handleToggleCategory = useCallback((cat: string) => {
-        setSelectedCategories(prev =>
-            prev.includes(cat)
-                ? prev.filter(c => c !== cat)
-                : [...prev, cat]
-        );
+        setSelectedCategories((prev) => (prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]));
     }, []);
 
     const handleToggleAllCategories = useCallback(() => {
-        setSelectedCategories(prev =>
-            prev.length === availableCategories.length ? [] : [...availableCategories]
-        );
+        setSelectedCategories((prev) => (prev.length === availableCategories.length ? [] : [...availableCategories]));
     }, [availableCategories]);
 
     const handleGoFirst = useCallback(() => {
@@ -198,14 +196,14 @@ export default function Theni5App() {
         const count = 200;
         const defaults = {
             origin: { y: 0.7 },
-            colors: ['#6a539d', '#9c88ff', '#ffffff']
+            colors: ['#6a539d', '#9c88ff', '#ffffff'],
         };
 
         function fire(particleRatio: number, opts: confetti.Options) {
             confetti({
                 ...defaults,
                 ...opts,
-                particleCount: Math.floor(count * particleRatio)
+                particleCount: Math.floor(count * particleRatio),
             });
         }
 
@@ -251,7 +249,10 @@ export default function Theni5App() {
         return () => window.removeEventListener('click', handleGlobalClick);
     }, [currentPage, totalPages, triggerConfetti]);
 
-    const timerText = totalPages > 0 ? `Page ${currentPage + 1} of ${totalPages} (${filteredWords.length} words in range${shuffle ? ' - shuffled' : ''})` : 'No words in range';
+    const timerText =
+        totalPages > 0
+            ? `Page ${currentPage + 1} of ${totalPages} (${filteredWords.length} words in range${shuffle ? ' - shuffled' : ''})`
+            : 'No words in range';
 
     // Keyboard Shortcuts
     useEffect(() => {
@@ -263,20 +264,26 @@ export default function Theni5App() {
                 case 'ArrowLeft':
                     handlePrev();
                     break;
-                case 'ArrowRight': case ' ': case 'Enter':
+                case 'ArrowRight':
+                case ' ':
+                case 'Enter':
                     if (e.key === ' ') e.preventDefault();
                     handleNext();
                     break;
-                case 'Home': case '[':
+                case 'Home':
+                case '[':
                     handleGoFirst();
                     break;
-                case 'End': case ']':
+                case 'End':
+                case ']':
                     handleGoLast();
                     break;
-                case 't': case 'T':
+                case 't':
+                case 'T':
                     setShowTimer(!showTimer);
                     break;
-                case 'k': case 'K':
+                case 'k':
+                case 'K':
                     setShowColor(!showColor);
                     break;
             }
@@ -324,27 +331,36 @@ export default function Theni5App() {
                 <div id="progressBar" className="progress-bar" style={{ width: '0%' }}></div>
             </div>
 
-            <div className="slide-container" onClick={(e) => {
-                const target = e.target as HTMLElement;
-                if (!target.closest('.navigation, .control-panel')) {
-                    document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
+            <div
+                className="slide-container"
+                onClick={(e) => {
+                    const target = e.target as HTMLElement;
+                    if (!target.closest('.navigation, .control-panel')) {
+                        document.dispatchEvent(new CustomEvent('requestPanelCollapse'));
 
-                    if (currentPage === totalPages - 1 && totalPages > 0) {
-                        triggerConfetti();
-                    } else if (!target.closest('.word-row-card')) {
-                        handleNext();
+                        if (currentPage === totalPages - 1 && totalPages > 0) {
+                            triggerConfetti();
+                        } else if (!target.closest('.word-row-card')) {
+                            handleNext();
+                        }
                     }
-                }
-            }} style={{ cursor: 'pointer' }}>
+                }}
+                style={{ cursor: 'pointer' }}
+            >
                 <div className="words-list-centered">
                     {currentWords.length > 0 ? (
                         currentWords.map((wordItem, index) => (
-                            <div className="word-row-card word-item" key={`${wordItem.year}-${wordItem.id}`}
-                                style={showColor && YEAR_COLORS[String(wordItem.year)] ? { backgroundColor: YEAR_COLORS[String(wordItem.year)] } : undefined}>
+                            <div
+                                className="word-row-card word-item"
+                                key={`${wordItem.year}-${wordItem.id}`}
+                                style={
+                                    showColor && YEAR_COLORS[String(wordItem.year)]
+                                        ? { backgroundColor: YEAR_COLORS[String(wordItem.year)] }
+                                        : undefined
+                                }
+                            >
                                 <div className="card-index">{index + 1}</div>
-                                <div className="word-text-ta">
-                                    {wordItem.word}
-                                </div>
+                                <div className="word-text-ta">{wordItem.word}</div>
                             </div>
                         ))
                     ) : (
@@ -357,20 +373,96 @@ export default function Theni5App() {
                 </div>
 
                 <div className="navigation">
-                    <button id="firstBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoFirst(); }} disabled={currentPage === 0} title="First Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
+                    <button
+                        id="firstBtn"
+                        className="nav-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleGoFirst();
+                        }}
+                        disabled={currentPage === 0}
+                        title="First Page"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <line x1="7" y1="20" x2="7" y2="4"></line>
+                            <polyline points="17 4 9 12 17 20"></polyline>
+                        </svg>
                     </button>
-                    <button id="prevBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handlePrev(); }} disabled={currentPage === 0} title="Previous Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    <button
+                        id="prevBtn"
+                        className="nav-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handlePrev();
+                        }}
+                        disabled={currentPage === 0}
+                        title="Previous Page"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
                     </button>
 
-                    <span className="slide-counter" id="counter">{totalPages > 0 ? currentPage + 1 : 0} / {totalPages}</span>
+                    <span className="slide-counter" id="counter">
+                        {totalPages > 0 ? currentPage + 1 : 0} / {totalPages}
+                    </span>
 
-                    <button id="nextBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleNext(); }} disabled={currentPage >= totalPages - 1 || totalPages === 0} title="Next Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <button
+                        id="nextBtn"
+                        className="nav-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleNext();
+                        }}
+                        disabled={currentPage >= totalPages - 1 || totalPages === 0}
+                        title="Next Page"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
                     </button>
-                    <button id="lastBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoLast(); }} disabled={currentPage >= totalPages - 1 || totalPages === 0} title="Last Page">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
+                    <button
+                        id="lastBtn"
+                        className="nav-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleGoLast();
+                        }}
+                        disabled={currentPage >= totalPages - 1 || totalPages === 0}
+                        title="Last Page"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <line x1="17" y1="20" x2="17" y2="4"></line>
+                            <polyline points="7 20 15 12 7 4"></polyline>
+                        </svg>
                     </button>
                 </div>
             </div>

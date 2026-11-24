@@ -1,16 +1,20 @@
 import { Fragment } from 'preact';
-import { useEffect, useMemo, useCallback } from 'preact/hooks';
+import { useState, useEffect, useCallback } from 'preact/hooks';
 import { Controls } from './Controls';
 import { Utils } from '../utils';
 import { AudioManager } from '../audio_manager';
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
 import { useTheniModule } from '../hooks/useTheniModule';
-import theniWords from '../../data/theni_words.json';
+import { loadTheniWords } from '../data_loader';
 import { Word } from '../../types';
 import confetti from 'canvas-confetti';
 
 export default function Theni1App() {
-    const allWords = useMemo(() => theniWords as Word[], []);
+    const [allWords, setAllWords] = useState<Word[]>([]);
+
+    useEffect(() => {
+        loadTheniWords().then(setAllWords);
+    }, []);
 
     // Speech Recognition
     const { isRecording, feedback, setFeedback, toggleRecording, stopRecording } = useSpeechRecognition();
@@ -19,14 +23,14 @@ export default function Theni1App() {
         const count = 200;
         const defaults = {
             origin: { y: 0.7 },
-            colors: ['#6a539d', '#9c88ff', '#ffffff']
+            colors: ['#6a539d', '#9c88ff', '#ffffff'],
         };
 
         function fire(particleRatio: number, opts: confetti.Options) {
             confetti({
                 ...defaults,
                 ...opts,
-                particleCount: Math.floor(count * particleRatio)
+                particleCount: Math.floor(count * particleRatio),
             });
         }
 
@@ -75,7 +79,7 @@ export default function Theni1App() {
         selectedRounds,
         selectedYearRounds,
         resetSelection,
-        isLast
+        isLast,
     } = useTheniModule({
         allWords,
         initialTimerDuration: 8,
@@ -84,7 +88,7 @@ export default function Theni1App() {
             stopRecording();
             setFeedback({ text: '', type: '' });
         },
-        onLastSlideAction: triggerConfetti
+        onLastSlideAction: triggerConfetti,
     });
 
     const handleNext = useCallback(() => {
@@ -135,12 +139,20 @@ export default function Theni1App() {
         if (!currentWord) return;
 
         const targetText = currentWord.word_ta;
-        const normalize = (text: string) => text.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '').replace(/\s+/g, '');
+        const normalize = (text: string) =>
+            text
+                .toLowerCase()
+                .replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '')
+                .replace(/\s+/g, '');
 
         const normalizedSpoken = normalize(spokenText);
         const normalizedTarget = normalize(targetText);
 
-        if (normalizedSpoken === normalizedTarget || normalizedTarget.includes(normalizedSpoken) || normalizedSpoken.includes(normalizedTarget)) {
+        if (
+            normalizedSpoken === normalizedTarget ||
+            normalizedTarget.includes(normalizedSpoken) ||
+            normalizedSpoken.includes(normalizedTarget)
+        ) {
             setFeedback({ text: `Correct! ✅ (${spokenText})`, type: 'success' });
             if (!revealed) {
                 setRevealed(true);
@@ -226,13 +238,20 @@ export default function Theni1App() {
             </div>
 
             {filteredWords.length > 0 && currentWord ? (
-                <div className="slide-container" onClick={(e) => {
-                    // Only trigger if click is on the slide itself, not interactive elements
-                    if (!(e.target as HTMLElement).closest('.navigation, .mic-button-inline, .control-panel')) {
-                        handleAction();
-                    }
-                }} style={{ cursor: 'pointer' }}>
-                    <div id="slides-wrapper" style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <div
+                    className="slide-container"
+                    onClick={(e) => {
+                        // Only trigger if click is on the slide itself, not interactive elements
+                        if (!(e.target as HTMLElement).closest('.navigation, .mic-button-inline, .control-panel')) {
+                            handleAction();
+                        }
+                    }}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <div
+                        id="slides-wrapper"
+                        style={{ height: 'auto', flex: 1, display: 'flex', flexDirection: 'column' }}
+                    >
                         <div id={`slide-${currentIndex}`} className={`slide active ${revealed ? 'revealed' : ''}`}>
                             {/* Card Header - Category and Difficulty Badges */}
                             <div className="card-footer">
@@ -249,30 +268,35 @@ export default function Theni1App() {
                                         src={Utils.getImagePath(currentWord?.image_word || '')}
                                         alt={currentWord?.word_en || ''}
                                         className="slide-image"
-                                        onError={(e) => { (e.target as HTMLImageElement).src = `https://placehold.co/400x300?text=${encodeURIComponent(currentWord?.image_word || 'Image Missing')}`; }}
+                                        onError={(e) => {
+                                            (e.target as HTMLImageElement).src =
+                                                `https://placehold.co/400x300?text=${encodeURIComponent(currentWord?.image_word || 'Image Missing')}`;
+                                        }}
                                     />
                                 </div>
                                 <div className="word-row">
-                                    <div className="word-en" dangerouslySetInnerHTML={{ __html: currentWord.word_en }}></div>
+                                    <div
+                                        className="word-en"
+                                        dangerouslySetInnerHTML={{ __html: currentWord.word_en }}
+                                    ></div>
                                     {voiceEnabled && (
                                         <Fragment>
                                             <button
                                                 className={`mic-button-inline ${isRecording ? 'recording' : ''}`}
                                                 onClick={() => toggleRecording(handleVoiceResult)}
-                                                title={isRecording ? "Stop Listening" : "Start Voice Validation"}
+                                                title={isRecording ? 'Stop Listening' : 'Start Voice Validation'}
                                                 style={{ display: 'inline-flex', marginLeft: '10px' }}
                                             >
                                                 {isRecording ? '⏹️' : '🎤'}
                                             </button>
-                                            <span className={`voice-feedback-inline ${feedback.type}`}>{feedback.text}</span>
+                                            <span className={`voice-feedback-inline ${feedback.type}`}>
+                                                {feedback.text}
+                                            </span>
                                         </Fragment>
                                     )}
                                 </div>
 
-                                <div
-                                    id="wordTa"
-                                    className={`word-ta ${revealed ? 'revealed' : ''}`.trim()}
-                                >
+                                <div id="wordTa" className={`word-ta ${revealed ? 'revealed' : ''}`.trim()}>
                                     {currentWord.word_ta}
                                 </div>
                             </div>
@@ -280,38 +304,119 @@ export default function Theni1App() {
                     </div>
 
                     <div className="navigation">
-                        <button id="firstBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoFirst(); }} disabled={currentIndex === 0} title="First Slide (Home)">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="20" x2="7" y2="4"></line><polyline points="17 4 9 12 17 20"></polyline></svg>
+                        <button
+                            id="firstBtn"
+                            className="nav-btn"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleGoFirst();
+                            }}
+                            disabled={currentIndex === 0}
+                            title="First Slide (Home)"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <line x1="7" y1="20" x2="7" y2="4"></line>
+                                <polyline points="17 4 9 12 17 20"></polyline>
+                            </svg>
                         </button>
-                        <button id="prevBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handlePrev(); }} disabled={currentIndex === 0} title="Previous Slide (←)">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        <button
+                            id="prevBtn"
+                            className="nav-btn"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handlePrev();
+                            }}
+                            disabled={currentIndex === 0}
+                            title="Previous Slide (←)"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
                         </button>
 
                         <span className="slide-counter" id="counter">
                             {currentIndex + 1} / {filteredWords.length}
                         </span>
 
-                        <button id="nextBtn"
+                        <button
+                            id="nextBtn"
                             className={`nav-btn ${!revealed ? 'reveal-mode' : ''}`}
-                            onClick={e => { e.stopPropagation(); handleAction(); }}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleAction();
+                            }}
                             disabled={currentIndex === filteredWords.length - 1 && revealed}
-                            title={!revealed ? "Reveal (Space/Enter)" : "Next Slide (→)"}
+                            title={!revealed ? 'Reveal (Space/Enter)' : 'Next Slide (→)'}
                         >
                             {!revealed ? (
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="3.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
                             ) : (
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="3.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
                             )}
                         </button>
-                        <button id="lastBtn" className="nav-btn" onClick={e => { e.stopPropagation(); handleGoLast(); }} disabled={currentIndex === filteredWords.length - 1} title="Last Slide (End)">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="17" y1="20" x2="17" y2="4"></line><polyline points="7 20 15 12 7 4"></polyline></svg>
+                        <button
+                            id="lastBtn"
+                            className="nav-btn"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleGoLast();
+                            }}
+                            disabled={currentIndex === filteredWords.length - 1}
+                            title="Last Slide (End)"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <line x1="17" y1="20" x2="17" y2="4"></line>
+                                <polyline points="7 20 15 12 7 4"></polyline>
+                            </svg>
                         </button>
                     </div>
                 </div>
             ) : (
                 <div className="empty-state-container">
                     <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
-                    No words found for the current selection.<br />
+                    No words found for the current selection.
+                    <br />
                     Please check your Category or Difficulty filters.
                 </div>
             )}

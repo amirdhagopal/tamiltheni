@@ -8,7 +8,7 @@ function init() {
         title: 'பியோரியா தமிழ்ப் பள்ளி - தமிழ்த் தேனி 2026 - Theni 3 & 4',
         contentHTML: '',
         timerDisplay: '00:15',
-        injectNavigation: false
+        injectNavigation: false,
     });
 
     const mountNode = document.getElementById('preact-root');

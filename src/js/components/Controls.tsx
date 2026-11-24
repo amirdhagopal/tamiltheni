@@ -106,7 +106,7 @@ export const Controls = ({
     setVoiceEnabled,
     progressText,
     apiKey,
-    setApiKey
+    setApiKey,
 }: ControlsProps) => {
     const portalTarget = document.getElementById('controlSettings') || document.getElementById('controlContent');
 
@@ -143,7 +143,12 @@ export const Controls = ({
             }
         };
 
-        const handlePanelCollapsed = () => { setIsDropdownOpen(false); setIsYearRoundDropdownOpen(false); setIsYearDropdownOpen(false); setIsRoundDropdownOpen(false); };
+        const handlePanelCollapsed = () => {
+            setIsDropdownOpen(false);
+            setIsYearRoundDropdownOpen(false);
+            setIsYearDropdownOpen(false);
+            setIsRoundDropdownOpen(false);
+        };
 
         const handleScroll = (e: Event) => {
             const dropdown = document.getElementById('categoryMenu');
@@ -209,7 +214,7 @@ export const Controls = ({
             setDropdownPos({
                 top: rect.bottom + 5,
                 left: rect.left,
-                width: rect.width
+                width: rect.width,
             });
         }
         setIsDropdownOpen(!isDropdownOpen);
@@ -225,7 +230,7 @@ export const Controls = ({
             setYearRoundDropdownPos({
                 top: rect.bottom + 5,
                 left: rect.left,
-                width: Math.max(rect.width, 220)
+                width: Math.max(rect.width, 220),
             });
         }
         setIsYearRoundDropdownOpen(!isYearRoundDropdownOpen);
@@ -242,7 +247,7 @@ export const Controls = ({
             setYearDropdownPos({
                 top: rect.bottom + 5,
                 left: rect.left,
-                width: Math.max(rect.width, 180)
+                width: Math.max(rect.width, 180),
             });
         }
         setIsYearDropdownOpen(!isYearDropdownOpen);
@@ -258,7 +263,7 @@ export const Controls = ({
             setRoundDropdownPos({
                 top: rect.bottom + 5,
                 left: rect.left,
-                width: Math.max(rect.width, 180)
+                width: Math.max(rect.width, 180),
             });
         }
         setIsRoundDropdownOpen(!isRoundDropdownOpen);
@@ -266,185 +271,262 @@ export const Controls = ({
 
     if (!portalTarget) return null;
 
-    const closeDropdown = () => { setIsDropdownOpen(false); setIsYearRoundDropdownOpen(false); setIsYearDropdownOpen(false); setIsRoundDropdownOpen(false); };
+    const closeDropdown = () => {
+        setIsDropdownOpen(false);
+        setIsYearRoundDropdownOpen(false);
+        setIsYearDropdownOpen(false);
+        setIsRoundDropdownOpen(false);
+    };
 
     return createPortal(
         <Fragment>
             {/* Year - Round Combined Filter */}
-            {availableYearRounds && availableYearRounds.length > 0 && selectedYearRounds && onToggleYearRound && onToggleAllYearRounds && (
-                <div className="control-row">
-                    <span className="control-label">Year - Round:</span>
-                    <div className="category-dropdown">
-                        <button
-                            className="dropdown-button"
-                            id="yearround-dropdown-btn"
-                            ref={yearRoundButtonRef}
-                            onClick={toggleYearRoundDropdown}
-                            title="Select year-round combinations to display">
-                            <span>
-                                {selectedYearRounds.length === availableYearRounds.length ? 'All' :
-                                    selectedYearRounds.length === 0 ? 'None selected' :
-                                        selectedYearRounds.length <= 2 ? selectedYearRounds.join(', ') :
-                                            `${selectedYearRounds.length} selected`}
-                            </span>
-                            <span>▼</span>
-                        </button>
-
-                        {isYearRoundDropdownOpen && createPortal(
-                            <div
-                                className="dropdown-menu show"
-                                id="yearRoundMenu"
-                                onClick={(e) => e.stopPropagation()}
-                                style={{
-                                    display: 'block',
-                                    position: 'fixed',
-                                    top: yearRoundDropdownPos.top,
-                                    left: yearRoundDropdownPos.left,
-                                    width: yearRoundDropdownPos.width,
-                                    maxHeight: '60vh',
-                                    zIndex: 9999,
-                                }}
+            {availableYearRounds &&
+                availableYearRounds.length > 0 &&
+                selectedYearRounds &&
+                onToggleYearRound &&
+                onToggleAllYearRounds && (
+                    <div className="control-row">
+                        <span className="control-label">Year - Round:</span>
+                        <div className="category-dropdown">
+                            <button
+                                className="dropdown-button"
+                                id="yearround-dropdown-btn"
+                                ref={yearRoundButtonRef}
+                                onClick={toggleYearRoundDropdown}
+                                title="Select year-round combinations to display"
                             >
-                                <div className="dropdown-item header" onClick={() => { onToggleAllYearRounds(); }}>
-                                    <input type="checkbox" checked={selectedYearRounds.length === availableYearRounds.length} readOnly />
-                                    <span>Select All / None</span>
-                                </div>
-                                <div>
-                                    {availableYearRounds.map((combo: string) => {
-                                        const isSelected = selectedYearRounds.includes(combo);
-                                        const [year] = combo.split(' - ');
-                                        return (
-                                            <div className="dropdown-item" key={combo} onClick={() => onToggleYearRound(combo)}>
-                                                <input type="checkbox" checked={isSelected} readOnly />
-                                                {yearColors && yearColors[year] && (
-                                                    <span className="year-color-swatch" style={{ backgroundColor: yearColors[year] }} />
-                                                )}
-                                                <span>{combo}</span>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>,
-                            document.body
-                        )}
+                                <span>
+                                    {selectedYearRounds.length === availableYearRounds.length
+                                        ? 'All'
+                                        : selectedYearRounds.length === 0
+                                          ? 'None selected'
+                                          : selectedYearRounds.length <= 2
+                                            ? selectedYearRounds.join(', ')
+                                            : `${selectedYearRounds.length} selected`}
+                                </span>
+                                <span>▼</span>
+                            </button>
+
+                            {isYearRoundDropdownOpen &&
+                                createPortal(
+                                    <div
+                                        className="dropdown-menu show"
+                                        id="yearRoundMenu"
+                                        onClick={(e) => e.stopPropagation()}
+                                        style={{
+                                            display: 'block',
+                                            position: 'fixed',
+                                            top: yearRoundDropdownPos.top,
+                                            left: yearRoundDropdownPos.left,
+                                            width: yearRoundDropdownPos.width,
+                                            maxHeight: '60vh',
+                                            zIndex: 9999,
+                                        }}
+                                    >
+                                        <div
+                                            className="dropdown-item header"
+                                            onClick={() => {
+                                                onToggleAllYearRounds();
+                                            }}
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedYearRounds.length === availableYearRounds.length}
+                                                readOnly
+                                            />
+                                            <span>Select All / None</span>
+                                        </div>
+                                        <div>
+                                            {availableYearRounds.map((combo: string) => {
+                                                const isSelected = selectedYearRounds.includes(combo);
+                                                const [year] = combo.split(' - ');
+                                                return (
+                                                    <div
+                                                        className="dropdown-item"
+                                                        key={combo}
+                                                        onClick={() => onToggleYearRound(combo)}
+                                                    >
+                                                        <input type="checkbox" checked={isSelected} readOnly />
+                                                        {yearColors && yearColors[year] && (
+                                                            <span
+                                                                className="year-color-swatch"
+                                                                style={{ backgroundColor: yearColors[year] }}
+                                                            />
+                                                        )}
+                                                        <span>{combo}</span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>,
+                                    document.body
+                                )}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
             {/* Separate Year Filter (backward compat for Theni 1/2/3/4) */}
-            {!availableYearRounds && availableYears && availableYears.length > 0 && selectedYears && onToggleYear && onToggleAllYears && (
-                <div className="control-row">
-                    <span className="control-label">Year:</span>
-                    <div className="category-dropdown">
-                        <button
-                            className="dropdown-button"
-                            id="year-dropdown-btn"
-                            ref={yearButtonRef}
-                            onClick={toggleYearDropdown}
-                            title="Select years to display">
-                            <span>
-                                {selectedYears.length === availableYears.length ? 'All Years' :
-                                    selectedYears.length === 0 ? 'None selected' :
-                                        selectedYears.join(', ')}
-                            </span>
-                            <span>▼</span>
-                        </button>
-
-                        {isYearDropdownOpen && createPortal(
-                            <div
-                                className="dropdown-menu show"
-                                id="yearMenu"
-                                onClick={(e) => e.stopPropagation()}
-                                style={{
-                                    display: 'block',
-                                    position: 'fixed',
-                                    top: yearDropdownPos.top,
-                                    left: yearDropdownPos.left,
-                                    width: yearDropdownPos.width,
-                                    maxHeight: '60vh',
-                                    zIndex: 9999,
-                                }}
+            {!availableYearRounds &&
+                availableYears &&
+                availableYears.length > 0 &&
+                selectedYears &&
+                onToggleYear &&
+                onToggleAllYears && (
+                    <div className="control-row">
+                        <span className="control-label">Year:</span>
+                        <div className="category-dropdown">
+                            <button
+                                className="dropdown-button"
+                                id="year-dropdown-btn"
+                                ref={yearButtonRef}
+                                onClick={toggleYearDropdown}
+                                title="Select years to display"
                             >
-                                <div className="dropdown-item header" onClick={() => { onToggleAllYears(); }}>
-                                    <input type="checkbox" checked={selectedYears.length === availableYears.length} readOnly />
-                                    <span>Select All / None</span>
-                                </div>
-                                <div>
-                                    {availableYears.map((year: string) => {
-                                        const isSelected = selectedYears.includes(year);
-                                        return (
-                                            <div className="dropdown-item" key={year} onClick={() => onToggleYear(year)}>
-                                                <input type="checkbox" checked={isSelected} readOnly />
-                                                {yearColors && yearColors[year] && (
-                                                    <span className="year-color-swatch" style={{ backgroundColor: yearColors[year] }} />
-                                                )}
-                                                <span>{year}</span>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>,
-                            document.body
-                        )}
+                                <span>
+                                    {selectedYears.length === availableYears.length
+                                        ? 'All Years'
+                                        : selectedYears.length === 0
+                                          ? 'None selected'
+                                          : selectedYears.join(', ')}
+                                </span>
+                                <span>▼</span>
+                            </button>
+
+                            {isYearDropdownOpen &&
+                                createPortal(
+                                    <div
+                                        className="dropdown-menu show"
+                                        id="yearMenu"
+                                        onClick={(e) => e.stopPropagation()}
+                                        style={{
+                                            display: 'block',
+                                            position: 'fixed',
+                                            top: yearDropdownPos.top,
+                                            left: yearDropdownPos.left,
+                                            width: yearDropdownPos.width,
+                                            maxHeight: '60vh',
+                                            zIndex: 9999,
+                                        }}
+                                    >
+                                        <div
+                                            className="dropdown-item header"
+                                            onClick={() => {
+                                                onToggleAllYears();
+                                            }}
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedYears.length === availableYears.length}
+                                                readOnly
+                                            />
+                                            <span>Select All / None</span>
+                                        </div>
+                                        <div>
+                                            {availableYears.map((year: string) => {
+                                                const isSelected = selectedYears.includes(year);
+                                                return (
+                                                    <div
+                                                        className="dropdown-item"
+                                                        key={year}
+                                                        onClick={() => onToggleYear(year)}
+                                                    >
+                                                        <input type="checkbox" checked={isSelected} readOnly />
+                                                        {yearColors && yearColors[year] && (
+                                                            <span
+                                                                className="year-color-swatch"
+                                                                style={{ backgroundColor: yearColors[year] }}
+                                                            />
+                                                        )}
+                                                        <span>{year}</span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>,
+                                    document.body
+                                )}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
             {/* Separate Round Filter (backward compat for Theni 1/2/3/4) */}
-            {!availableYearRounds && availableRounds && availableRounds.length > 0 && selectedRounds && onToggleRound && onToggleAllRounds && (
-                <div className="control-row">
-                    <span className="control-label">Round:</span>
-                    <div className="category-dropdown">
-                        <button
-                            className="dropdown-button"
-                            id="round-dropdown-btn"
-                            ref={roundButtonRef}
-                            onClick={toggleRoundDropdown}
-                            title="Select rounds to display">
-                            <span>
-                                {selectedRounds.length === availableRounds.length ? 'All Rounds' :
-                                    selectedRounds.length === 0 ? 'None selected' :
-                                        selectedRounds.join(', ')}
-                            </span>
-                            <span>▼</span>
-                        </button>
-
-                        {isRoundDropdownOpen && createPortal(
-                            <div
-                                className="dropdown-menu show"
-                                id="roundMenu"
-                                onClick={(e) => e.stopPropagation()}
-                                style={{
-                                    display: 'block',
-                                    position: 'fixed',
-                                    top: roundDropdownPos.top,
-                                    left: roundDropdownPos.left,
-                                    width: roundDropdownPos.width,
-                                    maxHeight: '60vh',
-                                    zIndex: 9999,
-                                }}
+            {!availableYearRounds &&
+                availableRounds &&
+                availableRounds.length > 0 &&
+                selectedRounds &&
+                onToggleRound &&
+                onToggleAllRounds && (
+                    <div className="control-row">
+                        <span className="control-label">Round:</span>
+                        <div className="category-dropdown">
+                            <button
+                                className="dropdown-button"
+                                id="round-dropdown-btn"
+                                ref={roundButtonRef}
+                                onClick={toggleRoundDropdown}
+                                title="Select rounds to display"
                             >
-                                <div className="dropdown-item header" onClick={() => { onToggleAllRounds(); }}>
-                                    <input type="checkbox" checked={selectedRounds.length === availableRounds.length} readOnly />
-                                    <span>Select All / None</span>
-                                </div>
-                                <div id="roundList">
-                                    {availableRounds.map((round: string) => {
-                                        const isSelected = selectedRounds.includes(round);
-                                        return (
-                                            <div className="dropdown-item" key={round} onClick={() => onToggleRound(round)}>
-                                                <input type="checkbox" checked={isSelected} readOnly />
-                                                <span>{round}</span>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>,
-                            document.body
-                        )}
+                                <span>
+                                    {selectedRounds.length === availableRounds.length
+                                        ? 'All Rounds'
+                                        : selectedRounds.length === 0
+                                          ? 'None selected'
+                                          : selectedRounds.join(', ')}
+                                </span>
+                                <span>▼</span>
+                            </button>
+
+                            {isRoundDropdownOpen &&
+                                createPortal(
+                                    <div
+                                        className="dropdown-menu show"
+                                        id="roundMenu"
+                                        onClick={(e) => e.stopPropagation()}
+                                        style={{
+                                            display: 'block',
+                                            position: 'fixed',
+                                            top: roundDropdownPos.top,
+                                            left: roundDropdownPos.left,
+                                            width: roundDropdownPos.width,
+                                            maxHeight: '60vh',
+                                            zIndex: 9999,
+                                        }}
+                                    >
+                                        <div
+                                            className="dropdown-item header"
+                                            onClick={() => {
+                                                onToggleAllRounds();
+                                            }}
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedRounds.length === availableRounds.length}
+                                                readOnly
+                                            />
+                                            <span>Select All / None</span>
+                                        </div>
+                                        <div id="roundList">
+                                            {availableRounds.map((round: string) => {
+                                                const isSelected = selectedRounds.includes(round);
+                                                return (
+                                                    <div
+                                                        className="dropdown-item"
+                                                        key={round}
+                                                        onClick={() => onToggleRound(round)}
+                                                    >
+                                                        <input type="checkbox" checked={isSelected} readOnly />
+                                                        <span>{round}</span>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>,
+                                    document.body
+                                )}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
             {/* Categories */}
             {categories.length > 0 && (
@@ -456,75 +538,114 @@ export const Controls = ({
                             id="cat-dropdown-btn"
                             ref={buttonRef}
                             onClick={toggleDropdown}
-                            title="Select word categories to display">
+                            title="Select word categories to display"
+                        >
                             <span id="selectedCatText">
-                                {selectedCategories.length === categories.length ? 'All Categories' :
-                                    selectedCategories.length === 0 ? 'None selected' :
-                                        `${selectedCategories.length} selected`}
+                                {selectedCategories.length === categories.length
+                                    ? 'All Categories'
+                                    : selectedCategories.length === 0
+                                      ? 'None selected'
+                                      : `${selectedCategories.length} selected`}
                             </span>
                             <span>▼</span>
                         </button>
 
                         {/* Render Dropdown via Portal to Body */}
-                        {isDropdownOpen && createPortal(
-                            <div
-                                className="dropdown-menu show"
-                                id="categoryMenu"
-                                onClick={(e) => e.stopPropagation()}
-                                style={{
-                                    display: 'block',
-                                    position: 'fixed',
-                                    top: dropdownPos.top,
-                                    left: dropdownPos.left,
-                                    width: dropdownPos.width,
-                                    maxHeight: '60vh',
-                                    zIndex: 9999,
-                                }}
-                            >
-                                <div className="dropdown-item header" id="select-all-cat-row" onClick={() => { onToggleAllCategories(); }}>
-                                    <input type="checkbox" id="selectAllCats" checked={selectedCategories.length === categories.length} readOnly />
-                                    <span>Select All / None</span>
-                                </div>
-                                <div id="categoryList">
-                                    {categories.map((cat: string) => {
-                                        const isSelected = selectedCategories.includes(cat);
-                                        return (
-                                            <div className="dropdown-item" key={cat} onClick={() => onToggleCategory(cat)}>
-                                                <input type="checkbox" checked={isSelected} readOnly />
-                                                <span>{cat}</span>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            </div>,
-                            document.body
-                        )}
+                        {isDropdownOpen &&
+                            createPortal(
+                                <div
+                                    className="dropdown-menu show"
+                                    id="categoryMenu"
+                                    onClick={(e) => e.stopPropagation()}
+                                    style={{
+                                        display: 'block',
+                                        position: 'fixed',
+                                        top: dropdownPos.top,
+                                        left: dropdownPos.left,
+                                        width: dropdownPos.width,
+                                        maxHeight: '60vh',
+                                        zIndex: 9999,
+                                    }}
+                                >
+                                    <div
+                                        className="dropdown-item header"
+                                        id="select-all-cat-row"
+                                        onClick={() => {
+                                            onToggleAllCategories();
+                                        }}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            id="selectAllCats"
+                                            checked={selectedCategories.length === categories.length}
+                                            readOnly
+                                        />
+                                        <span>Select All / None</span>
+                                    </div>
+                                    <div id="categoryList">
+                                        {categories.map((cat: string) => {
+                                            const isSelected = selectedCategories.includes(cat);
+                                            return (
+                                                <div
+                                                    className="dropdown-item"
+                                                    key={cat}
+                                                    onClick={() => onToggleCategory(cat)}
+                                                >
+                                                    <input type="checkbox" checked={isSelected} readOnly />
+                                                    <span>{cat}</span>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>,
+                                document.body
+                            )}
                     </div>
                 </div>
             )}
 
             {/* Range */}
-            {(rangeStart !== undefined && rangeEnd !== undefined && onApplyRange) && (
+            {rangeStart !== undefined && rangeEnd !== undefined && onApplyRange && (
                 <div className="control-row">
                     <span className="control-label">Range:</span>
-                    <input type="number" id="startRange" value={rangeStart} min="1" max={maxRange || 5000} title="Starting word number"
+                    <input
+                        type="number"
+                        id="startRange"
+                        value={rangeStart}
+                        min="1"
+                        max={maxRange || 5000}
+                        title="Starting word number"
                         onChange={(e) => {
                             const val = parseInt(e.currentTarget.value);
                             if (!isNaN(val)) onApplyRange(val, rangeEnd!);
                         }}
-                        style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }} />
+                        style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }}
+                    />
                     <span style={{ margin: '0 10px' }}>to</span>
-                    <input type="number" id="endRange" value={rangeEnd} min="1" max={maxRange || 5000} title="Ending word number"
+                    <input
+                        type="number"
+                        id="endRange"
+                        value={rangeEnd}
+                        min="1"
+                        max={maxRange || 5000}
+                        title="Ending word number"
                         onChange={(e) => {
                             const val = parseInt(e.currentTarget.value);
                             if (!isNaN(val)) onApplyRange(rangeStart!, val);
                         }}
-                        style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }} />
-                    <button className="action-button" onClick={() => {
-                        const s = parseInt((document.getElementById('startRange') as HTMLInputElement).value);
-                        const e = parseInt((document.getElementById('endRange') as HTMLInputElement).value);
-                        onApplyRange(s, e);
-                    }} style={{ marginLeft: '10px' }}>Apply</button>
+                        style={{ width: '70px', padding: '5px', borderRadius: '4px', border: '1px solid #ddd' }}
+                    />
+                    <button
+                        className="action-button"
+                        onClick={() => {
+                            const s = parseInt((document.getElementById('startRange') as HTMLInputElement).value);
+                            const e = parseInt((document.getElementById('endRange') as HTMLInputElement).value);
+                            onApplyRange(s, e);
+                        }}
+                        style={{ marginLeft: '10px' }}
+                    >
+                        Apply
+                    </button>
                 </div>
             )}
 
@@ -532,8 +653,12 @@ export const Controls = ({
                 <div className="control-row">
                     <span className="control-label">Level:</span>
                     <div className="pill-group">
-                        <button className={`pill-button ${level === 3 ? 'active' : ''}`} onClick={() => setLevel(3)}>Theni 3</button>
-                        <button className={`pill-button ${level === 4 ? 'active' : ''}`} onClick={() => setLevel(4)}>Theni 4</button>
+                        <button className={`pill-button ${level === 3 ? 'active' : ''}`} onClick={() => setLevel(3)}>
+                            Theni 3
+                        </button>
+                        <button className={`pill-button ${level === 4 ? 'active' : ''}`} onClick={() => setLevel(4)}>
+                            Theni 4
+                        </button>
                     </div>
                 </div>
             )}
@@ -543,9 +668,24 @@ export const Controls = ({
                 <div className="control-row">
                     <span className="control-label">Difficulty:</span>
                     <div className="pill-group">
-                        <button className={`pill-button ${difficulty === 'all' ? 'active' : ''}`} onClick={() => setDifficulty('all')}>All</button>
-                        <button className={`pill-button ${difficulty === 'D1' ? 'active' : ''}`} onClick={() => setDifficulty('D1')}>D1 Only</button>
-                        <button className={`pill-button ${difficulty === 'D2' ? 'active' : ''}`} onClick={() => setDifficulty('D2')}>D2 Only</button>
+                        <button
+                            className={`pill-button ${difficulty === 'all' ? 'active' : ''}`}
+                            onClick={() => setDifficulty('all')}
+                        >
+                            All
+                        </button>
+                        <button
+                            className={`pill-button ${difficulty === 'D1' ? 'active' : ''}`}
+                            onClick={() => setDifficulty('D1')}
+                        >
+                            D1 Only
+                        </button>
+                        <button
+                            className={`pill-button ${difficulty === 'D2' ? 'active' : ''}`}
+                            onClick={() => setDifficulty('D2')}
+                        >
+                            D2 Only
+                        </button>
                     </div>
                 </div>
             )}
@@ -555,33 +695,130 @@ export const Controls = ({
                 <span className="control-label">Actions:</span>
                 <div className="pill-group">
                     {setShuffle && (
-                        <button className={`action-button ${shuffle ? 'active' : ''}`} onClick={() => { closeDropdown(); setShuffle(!shuffle); }}>
-                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style={{ marginRight: '4px' }}><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+                        <button
+                            className={`action-button ${shuffle ? 'active' : ''}`}
+                            onClick={() => {
+                                closeDropdown();
+                                setShuffle(!shuffle);
+                            }}
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                width="16"
+                                height="16"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                style={{ marginRight: '4px' }}
+                            >
+                                <polyline points="16 3 21 3 21 8"></polyline>
+                                <line x1="4" y1="20" x2="21" y2="3"></line>
+                                <polyline points="21 16 21 21 16 21"></polyline>
+                                <line x1="15" y1="15" x2="21" y2="21"></line>
+                                <line x1="4" y1="4" x2="9" y2="9"></line>
+                            </svg>
                             Shuffle
                         </button>
                     )}
-                    <button className="action-button" id="btn-reset-seq" onClick={() => { closeDropdown(); reset(); }}>
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style={{ marginRight: '4px' }}><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                    <button
+                        className="action-button"
+                        id="btn-reset-seq"
+                        onClick={() => {
+                            closeDropdown();
+                            reset();
+                        }}
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            width="16"
+                            height="16"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            style={{ marginRight: '4px' }}
+                        >
+                            <polyline points="1 4 1 10 7 10"></polyline>
+                            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+                        </svg>
                         Reset
                     </button>
                 </div>
                 <div style={{ marginLeft: 'auto', display: 'flex', gap: '15px' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
-                        <input type="checkbox" id="showTimer" checked={showTimer} onChange={(e) => setShowTimer(e.currentTarget.checked)} /> {timerLabel}
+                    <label
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            cursor: 'pointer',
+                            fontSize: '0.85em',
+                        }}
+                    >
+                        <input
+                            type="checkbox"
+                            id="showTimer"
+                            checked={showTimer}
+                            onChange={(e) => setShowTimer(e.currentTarget.checked)}
+                        />{' '}
+                        {timerLabel}
                     </label>
                     {showColor !== undefined && setShowColor && (
-                        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
-                            <input type="checkbox" id="showColor" checked={showColor} onChange={(e) => setShowColor(e.currentTarget.checked)} /> Color
+                        <label
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                cursor: 'pointer',
+                                fontSize: '0.85em',
+                            }}
+                        >
+                            <input
+                                type="checkbox"
+                                id="showColor"
+                                checked={showColor}
+                                onChange={(e) => setShowColor(e.currentTarget.checked)}
+                            />{' '}
+                            Color
                         </label>
                     )}
                     {audioEnabled !== undefined && setAudioEnabled && (
-                        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
-                            <input type="checkbox" id="audioToggle" checked={audioEnabled} onChange={(e) => setAudioEnabled(e.currentTarget.checked)} /> 🔊 Audio
+                        <label
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                cursor: 'pointer',
+                                fontSize: '0.85em',
+                            }}
+                        >
+                            <input
+                                type="checkbox"
+                                id="audioToggle"
+                                checked={audioEnabled}
+                                onChange={(e) => setAudioEnabled(e.currentTarget.checked)}
+                            />{' '}
+                            🔊 Audio
                         </label>
                     )}
                     {voiceEnabled !== undefined && setVoiceEnabled && (
-                        <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontSize: '0.85em' }}>
-                            <input type="checkbox" checked={voiceEnabled} onChange={(e) => setVoiceEnabled(e.currentTarget.checked)} /> 🎤 Voice
+                        <label
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                                cursor: 'pointer',
+                                fontSize: '0.85em',
+                            }}
+                        >
+                            <input
+                                type="checkbox"
+                                checked={voiceEnabled}
+                                onChange={(e) => setVoiceEnabled(e.currentTarget.checked)}
+                            />{' '}
+                            🎤 Voice
                         </label>
                     )}
                 </div>
@@ -593,9 +830,24 @@ export const Controls = ({
                 <span className="progress-info">{progressText}</span>
                 {apiKey !== undefined && setApiKey && (
                     <div style={{ marginLeft: 'auto', display: 'flex', gap: '10px', alignItems: 'center' }}>
-                        <label style={{ fontSize: '0.85em', display: 'flex', alignItems: 'center', gap: '6px' }}>🔑 Gemini AI API:</label>
-                        <input type="password" placeholder="Enter API Key" value={apiKey} onChange={(e) => setApiKey(e.currentTarget.value)}
-                            style={{ padding: '4px 8px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.5)', background: 'rgba(255,255,255,0.15)', color: 'white', fontSize: '0.85em', width: '140px' }} />
+                        <label style={{ fontSize: '0.85em', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            🔑 Gemini AI API:
+                        </label>
+                        <input
+                            type="password"
+                            placeholder="Enter API Key"
+                            value={apiKey}
+                            onChange={(e) => setApiKey(e.currentTarget.value)}
+                            style={{
+                                padding: '4px 8px',
+                                borderRadius: '6px',
+                                border: '1px solid rgba(255,255,255,0.5)',
+                                background: 'rgba(255,255,255,0.15)',
+                                color: 'white',
+                                fontSize: '0.85em',
+                                width: '140px',
+                            }}
+                        />
                     </div>
                 )}
             </div>
