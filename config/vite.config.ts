@@ -55,6 +55,9 @@ export default defineConfig(({ command, isPreview }) => ({
                 injectionPoint: undefined // Disable injection
             },
             workbox: {
+                skipWaiting: true,
+                clientsClaim: true,
+                cleanupOutdatedCaches: true,
                 // Cache all static assets including images
                 globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
                 // Exclude icons folder to prevent duplicate cache entries (icons are in manifest)

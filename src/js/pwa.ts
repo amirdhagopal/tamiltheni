@@ -32,6 +32,7 @@ const PWAManager = {
             .then((registration) => {
                 console.log('[PWA] SW registered:', registration.scope);
                 this.registration = registration;
+                registration.update();
 
                 // Check for updates
                 registration.onupdatefound = () => {
