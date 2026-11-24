@@ -65,11 +65,11 @@ export default defineConfig(({ command, isPreview }) => ({
                 runtimeCaching: [
                     {
                         urlPattern: ({ url }) => url.pathname.includes('/images/'),
-                        handler: 'CacheFirst',
+                        handler: 'StaleWhileRevalidate',
                         options: {
-                            cacheName: 'images-cache',
+                            cacheName: 'images-cache-v2',
                             expiration: {
-                                maxEntries: 100,
+                                maxEntries: 200,
                                 maxAgeSeconds: 60 * 60 * 24 * 30, // 30 Days
                             },
                         },
