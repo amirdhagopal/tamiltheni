@@ -67,7 +67,7 @@ export default defineConfig(({ command, isPreview }) => ({
                         urlPattern: ({ url }) => url.pathname.includes('/images/'),
                         handler: 'StaleWhileRevalidate',
                         options: {
-                            cacheName: 'images-cache-v2',
+                            cacheName: 'images-cache-v3',
                             expiration: {
                                 maxEntries: 200,
                                 maxAgeSeconds: 60 * 60 * 24 * 30, // 30 Days
