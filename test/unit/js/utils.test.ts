@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { Utils } from '../../../src/js/utils';
 
 describe('Utils', () => {

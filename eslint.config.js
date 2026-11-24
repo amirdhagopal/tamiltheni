@@ -9,12 +9,15 @@ export default [
     },
     js.configs.recommended,
     {
-        files: ['src/**/*.ts', 'test/**/*.ts'],
+        files: ['src/**/*.{ts,tsx}', 'test/**/*.ts'],
         languageOptions: {
             parser: tsparser,
             parserOptions: {
                 ecmaVersion: 2022,
                 sourceType: 'module',
+                ecmaFeatures: {
+                    jsx: true,
+                },
             },
             globals: {
                 ...globals.browser,

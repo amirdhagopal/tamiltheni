@@ -118,7 +118,7 @@ export default function Theni5App() {
 
     // 2. Shuffle second
     const processedWords = useMemo(() => {
-        let words = [...filteredWords];
+        const words = [...filteredWords];
         if (shuffle) {
             for (let i = words.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -201,7 +201,7 @@ export default function Theni5App() {
             colors: ['#6a539d', '#9c88ff', '#ffffff']
         };
 
-        function fire(particleRatio: number, opts: any) {
+        function fire(particleRatio: number, opts: confetti.Options) {
             confetti({
                 ...defaults,
                 ...opts,
@@ -304,6 +304,7 @@ export default function Theni5App() {
                 setShuffle={setShuffle}
                 rangeStart={rangeStart}
                 rangeEnd={rangeEnd}
+                maxRange={totalWordsInScope || 250}
                 onApplyRange={handleApplyRange}
                 availableYearRounds={availableYearRounds}
                 selectedYearRounds={selectedYearRounds}

@@ -112,7 +112,7 @@ export const Layout = {
         });
 
         // 4. Global Event / Method for Internal Collapse
-        (window as any).collapsePanel = () => this.collapsePanel();
+        (window as unknown as { collapsePanel?: () => void }).collapsePanel = () => this.collapsePanel();
         document.addEventListener('requestPanelCollapse', () => {
             this.collapsePanel();
         });
@@ -358,11 +358,7 @@ export const Layout = {
                 // Also close control panel if open
                 const panel = document.getElementById('controlPanel');
                 if (panel && panel.classList.contains('open')) {
-                    panel.classList.remove('open');
-                    panel.setAttribute('aria-hidden', 'true');
-                    const toggle = document.getElementById('settingsToggle');
-                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
-                    document.dispatchEvent(new CustomEvent('panelCollapsed'));
+                    this.collapsePanel();
                     return;
                 }
             }
@@ -391,12 +387,10 @@ export const Layout = {
                     const isOpen = panel.classList.contains('open');
 
                     if (isOpen) {
-                        panel.classList.remove('open');
-                        panel.setAttribute('aria-hidden', 'true');
-                        if (toggle) toggle.setAttribute('aria-expanded', 'false');
-                        document.dispatchEvent(new CustomEvent('panelCollapsed'));
+                        this.collapsePanel();
                     } else {
                         panel.classList.add('open');
+                        panel.classList.remove('collapsed');
                         panel.setAttribute('aria-hidden', 'false');
                         if (toggle) toggle.setAttribute('aria-expanded', 'true');
                     }

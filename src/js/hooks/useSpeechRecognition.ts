@@ -81,11 +81,12 @@ export function useSpeechRecognition() {
                 recognition.start();
                 setIsRecording(true);
                 setFeedback({ text: 'Listening for Tamil...', type: 'recording' });
-            } catch (e: any) {
+            } catch (e: unknown) {
                 console.error('[Speech] Start failed:', e);
                 let msg = 'Error starting mic';
-                if (e.name === 'NotAllowedError') msg = 'Microphone access denied';
-                if (e.name === 'NotFoundError') msg = 'No microphone found';
+                const errName = e instanceof Error ? e.name : '';
+                if (errName === 'NotAllowedError') msg = 'Microphone access denied';
+                if (errName === 'NotFoundError') msg = 'No microphone found';
                 setFeedback({ text: msg, type: 'error' });
                 setIsRecording(false);
             }

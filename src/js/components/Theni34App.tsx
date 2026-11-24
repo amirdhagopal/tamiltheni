@@ -11,6 +11,28 @@ export default function Theni34App() {
     const allWords = useMemo(() => theniWords as Word[], []);
     const [level, setLevel] = useState(3);
 
+    const triggerConfetti = useCallback(() => {
+        const count = 200;
+        const defaults = {
+            origin: { y: 0.7 },
+            colors: ['#6a539d', '#9c88ff', '#ffffff']
+        };
+
+        function fire(particleRatio: number, opts: confetti.Options) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }, []);
+
     // Module Hook
     const {
         categories,
@@ -36,38 +58,21 @@ export default function Theni34App() {
         toggleAllYears,
         toggleRound,
         toggleAllRounds,
+        toggleYearRound,
+        toggleAllYearRounds,
         availableYears,
         availableRounds,
+        availableYearRounds,
         selectedYears,
         selectedRounds,
+        selectedYearRounds,
         resetSelection,
         isLast
     } = useTheniModule({
         allWords,
-        initialTimerDuration: level === 4 ? (config.timerDurations.theni4 || 40) : (config.timerDurations.theni3 || 15)
+        initialTimerDuration: level === 4 ? (config.timerDurations.theni4 || 40) : (config.timerDurations.theni3 || 15),
+        onLastSlideAction: triggerConfetti
     });
-
-    const triggerConfetti = useCallback(() => {
-        const count = 200;
-        const defaults = {
-            origin: { y: 0.7 },
-            colors: ['#6a539d', '#9c88ff', '#ffffff']
-        };
-
-        function fire(particleRatio: number, opts: any) {
-            confetti({
-                ...defaults,
-                ...opts,
-                particleCount: Math.floor(count * particleRatio)
-            });
-        }
-
-        fire(0.25, { spread: 26, startVelocity: 55 });
-        fire(0.2, { spread: 60 });
-        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-        fire(0.1, { spread: 120, startVelocity: 45 });
-    }, []);
 
     const handleNext = useCallback(() => {
         if (!isLast) {
@@ -126,6 +131,10 @@ export default function Theni34App() {
                 selectedCategories={selectedCategories}
                 onToggleCategory={toggleCategory}
                 onToggleAllCategories={toggleAllCategories}
+                availableYearRounds={availableYearRounds}
+                selectedYearRounds={selectedYearRounds}
+                onToggleYearRound={toggleYearRound}
+                onToggleAllYearRounds={toggleAllYearRounds}
                 availableYears={availableYears}
                 selectedYears={selectedYears}
                 onToggleYear={toggleYear}
@@ -144,7 +153,7 @@ export default function Theni34App() {
                 showTimer={showTimer}
                 setShowTimer={setShowTimer}
                 timerLabel={timerLabel}
-                progressText={`${currentIndex + 1}/${filteredWords.length} slides - Filter: All Difficulty (Matches: D1=${filteredWords.filter(w => w.difficulty === 'D1').length}, D2=${filteredWords.filter(w => w.difficulty === 'D2').length})`}
+                progressText={`${currentIndex + 1}/${filteredWords.length} slides - Filter: ${difficulty === 'all' ? 'All Difficulty' : difficulty} (Matches: D1=${filteredWords.filter(w => w.difficulty === 'D1').length}, D2=${filteredWords.filter(w => w.difficulty === 'D2').length})`}
             />
 
             {/* Progress Bar Container */}

@@ -5,7 +5,7 @@ import { Layout } from '../../src/js/layout';
 // Mock explicit dependencies that might affect DOM or Audio
 vi.mock('../../src/js/layout', () => ({
     Layout: {
-        init: vi.fn((config) => {
+        init: vi.fn((_config) => {
             document.body.innerHTML = `
                 <div id="controlContent"></div>
                 <div class="slide-container">

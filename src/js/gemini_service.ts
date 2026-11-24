@@ -142,8 +142,9 @@ export const GeminiService = {
 
                 console.log(`[GeminiService] Successfully generated content using: ${modelName}`);
                 return text;
-            } catch (error: any) {
-                if (error.message?.includes('429') || error.message?.toLowerCase().includes('quota')) {
+            } catch (error: unknown) {
+                const msg = error instanceof Error ? error.message : String(error);
+                if (msg.includes('429') || msg.toLowerCase().includes('quota')) {
                     continue;
                 }
                 throw error;

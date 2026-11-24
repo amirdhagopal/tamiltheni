@@ -70,6 +70,28 @@ export default function Theni2App() {
         setLastAiError('');
     }, []);
 
+    const triggerConfetti = useCallback(() => {
+        const count = 200;
+        const defaults = {
+            origin: { y: 0.7 },
+            colors: ['#6a539d', '#9c88ff', '#ffffff']
+        };
+
+        function fire(particleRatio: number, opts: confetti.Options) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }, []);
+
     // Module Hook
     const {
         categories,
@@ -97,40 +119,23 @@ export default function Theni2App() {
         toggleAllYears,
         toggleRound,
         toggleAllRounds,
+        toggleYearRound,
+        toggleAllYearRounds,
         availableYears,
         availableRounds,
+        availableYearRounds,
         selectedYears,
         selectedRounds,
+        selectedYearRounds,
         resetSelection,
         isLast
     } = useTheniModule({
         allWords,
         initialTimerDuration: 20,
         onFilterChange: clearAi,
-        onIndexChange: clearAi
+        onIndexChange: clearAi,
+        onLastSlideAction: triggerConfetti
     });
-
-    const triggerConfetti = useCallback(() => {
-        const count = 200;
-        const defaults = {
-            origin: { y: 0.7 },
-            colors: ['#6a539d', '#9c88ff', '#ffffff']
-        };
-
-        function fire(particleRatio: number, opts: any) {
-            confetti({
-                ...defaults,
-                ...opts,
-                particleCount: Math.floor(count * particleRatio)
-            });
-        }
-
-        fire(0.25, { spread: 26, startVelocity: 55 });
-        fire(0.2, { spread: 60 });
-        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-        fire(0.1, { spread: 120, startVelocity: 45 });
-    }, []);
 
     const partnerMap = useMemo(() => {
         const map = new Map<number, number>();
@@ -158,8 +163,8 @@ export default function Theni2App() {
             const result = await sentenceAgent.generateSentence(currentWord, partnerWord, apiKey);
             setAiResult(result);
             setAiStatus('success');
-        } catch (e: any) {
-            setLastAiError(e.message);
+        } catch (e: unknown) {
+            setLastAiError(e instanceof Error ? e.message : String(e));
             setAiStatus('error');
         }
     };
@@ -239,6 +244,10 @@ export default function Theni2App() {
                 selectedCategories={selectedCategories}
                 onToggleCategory={toggleCategory}
                 onToggleAllCategories={toggleAllCategories}
+                availableYearRounds={availableYearRounds}
+                selectedYearRounds={selectedYearRounds}
+                onToggleYearRound={toggleYearRound}
+                onToggleAllYearRounds={toggleAllYearRounds}
                 availableYears={availableYears}
                 selectedYears={selectedYears}
                 onToggleYear={toggleYear}

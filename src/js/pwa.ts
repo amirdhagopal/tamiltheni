@@ -14,18 +14,16 @@ const PWAManager = {
     },
 
     registerServiceWorker: function () {
-        // In Vite dev mode, the SW is usually 'dev-sw.js?dev-sw'
+        // Skip service worker registration when running under the Vite dev server
+        if (document.querySelector('script[src*="/@vite/client"]')) {
+            return;
+        }
+
         // In production, it's 'sw.js'
         const isHtmlSubdir = window.location.pathname.includes('/html/');
         const pathPrefix = isHtmlSubdir ? '../' : './';
 
-        // Try relative sw.js first, then dev-sw.js if we are on localhost
-        let swUrl = `${pathPrefix}sw.js`;
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            // Check if we are in dev mode by looking for vite markers?
-            // Or just try dev-sw.js if sw.js fails.
-            // For now, let's keep it simple and just resolve the path properly.
-        }
+        const swUrl = `${pathPrefix}sw.js`;
 
         navigator.serviceWorker
             .register(swUrl, { scope: pathPrefix })

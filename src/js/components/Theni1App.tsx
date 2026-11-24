@@ -15,6 +15,28 @@ export default function Theni1App() {
     // Speech Recognition
     const { isRecording, feedback, setFeedback, toggleRecording, stopRecording } = useSpeechRecognition();
 
+    const triggerConfetti = useCallback(() => {
+        const count = 200;
+        const defaults = {
+            origin: { y: 0.7 },
+            colors: ['#6a539d', '#9c88ff', '#ffffff']
+        };
+
+        function fire(particleRatio: number, opts: confetti.Options) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }, []);
+
     // Theni Module Hook
     const {
         categories,
@@ -44,40 +66,26 @@ export default function Theni1App() {
         toggleAllYears,
         toggleRound,
         toggleAllRounds,
+        toggleYearRound,
+        toggleAllYearRounds,
         availableYears,
         availableRounds,
+        availableYearRounds,
         selectedYears,
         selectedRounds,
+        selectedYearRounds,
         resetSelection,
         isLast
     } = useTheniModule({
         allWords,
         initialTimerDuration: 8,
         onFilterChange: stopRecording,
-        onIndexChange: stopRecording
+        onIndexChange: () => {
+            stopRecording();
+            setFeedback({ text: '', type: '' });
+        },
+        onLastSlideAction: triggerConfetti
     });
-
-    const triggerConfetti = useCallback(() => {
-        const count = 200;
-        const defaults = {
-            origin: { y: 0.7 },
-            colors: ['#6a539d', '#9c88ff', '#ffffff']
-        };
-
-        function fire(particleRatio: number, opts: any) {
-            confetti({
-                ...defaults,
-                ...opts,
-                particleCount: Math.floor(count * particleRatio)
-            });
-        }
-
-        fire(0.25, { spread: 26, startVelocity: 55 });
-        fire(0.2, { spread: 60 });
-        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-        fire(0.1, { spread: 120, startVelocity: 45 });
-    }, []);
 
     const handleNext = useCallback(() => {
         if (!isLast) {
@@ -185,6 +193,10 @@ export default function Theni1App() {
                 selectedCategories={selectedCategories}
                 onToggleCategory={toggleCategory}
                 onToggleAllCategories={toggleAllCategories}
+                availableYearRounds={availableYearRounds}
+                selectedYearRounds={selectedYearRounds}
+                onToggleYearRound={toggleYearRound}
+                onToggleAllYearRounds={toggleAllYearRounds}
                 availableYears={availableYears}
                 selectedYears={selectedYears}
                 onToggleYear={toggleYear}

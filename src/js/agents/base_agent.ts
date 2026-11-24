@@ -14,12 +14,13 @@ export abstract class BaseAgent {
         while (attempts < maxRetries) {
             try {
                 return await GeminiService.generateContent(prompt);
-            } catch (error: any) {
+            } catch (error: unknown) {
                 attempts++;
+                const msg = error instanceof Error ? error.message : String(error);
                 const isOverloaded =
-                    error.message?.toLowerCase().includes('overloaded') ||
-                    error.message?.includes('503') ||
-                    error.message?.includes('429');
+                    msg.toLowerCase().includes('overloaded') ||
+                    msg.includes('503') ||
+                    msg.includes('429');
 
                 if (isOverloaded && attempts < maxRetries) {
                     const waitTime = Math.pow(2, attempts - 1) * 1000; // 1s, 2s, 4s...

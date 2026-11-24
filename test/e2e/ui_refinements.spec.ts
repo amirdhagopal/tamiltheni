@@ -71,7 +71,6 @@ test.describe('TamilTheni UI Refinements E2E', () => {
     test('Standardized Navigation Presence (Across Modules)', async ({ page }) => {
         const modules = [
             '/html/theni1.html',
-            '/html/theni1.html',
             '/html/theni2.html',
             '/html/theni34.html',
             '/html/theni5.html',

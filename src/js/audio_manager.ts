@@ -56,7 +56,7 @@ export const AudioManager = {
         };
 
         // Try to pick a specific voice if available
-        let voice = this.getVoice(lang);
+        const voice = this.getVoice(lang);
 
         // Final attempt if voices were empty (sometimes happens on first load)
         if (!voice && this.synth.getVoices().length === 0) {
