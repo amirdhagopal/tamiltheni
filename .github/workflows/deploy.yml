@@ -7,19 +7,14 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    name: Build & Deploy Pages
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build-and-verify:
+    name: Build & Verify Pages Bundle
     runs-on: ubuntu-latest
 
     steps:
@@ -38,14 +33,12 @@ jobs:
       - name: Build production bundle
         run: npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './docs'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Verify Pages artifacts in docs/
+        run: |
+          test -f docs/index.html
+          test -f docs/sw.js
+          test -f docs/manifest.webmanifest
+          test -f docs/html/theni1.html
+          test -f docs/html/theni2.html
+          test -f docs/html/theni34.html
+          test -f docs/html/theni5.html

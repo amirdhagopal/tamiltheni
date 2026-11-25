@@ -5,8 +5,8 @@
     "description": "Tamil language learning web application for the FETNA Tamil Theni competition",
     "scripts": {
         "dev": "vite --config config/vite.config.ts",
-        "build": "tsc && vite build --config config/vite.config.ts && npm run postbuild",
-        "postbuild": "sed -i '' 's/<link rel=\"manifest\" href=\"\\.\\/manifest\\.webmanifest\">//g' docs/html/*.html",
+        "build": "tsc && vite build --config config/vite.config.ts",
+        "postbuild": "node -e \"const fs=require('fs');for(const f of fs.readdirSync('docs/html'))if(f.endsWith('.html')){const p='docs/html/'+f;fs.writeFileSync(p,fs.readFileSync(p,'utf8').replace('<link rel=\\\"manifest\\\" href=\\\"./manifest.webmanifest\\\">',''))}\"",
         "preview": "vite preview --config config/vite.config.ts",
         "lint": "eslint \"src/**/*.{ts,tsx}\" \"test/**/*.ts\"",
         "lint:fix": "eslint \"src/**/*.{ts,tsx}\" \"test/**/*.ts\" --fix",
